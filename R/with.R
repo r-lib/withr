@@ -214,10 +214,10 @@ set_makevars <- function(variables,
 #' are modified to use the value in \code{new}.
 #' @export
 with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars")) {
-  with_envvar(c(R_MAKEVARS_USER = path), {
-      makevars_file <- tempfile()
+  makevars_file <- tempfile()
+  on.exit(unlink(makevars_file))
+  with_envvar(c(R_MAKEVARS_USER = makevars_file), {
       set_makevars(new, path, makevars_file)
-      on.exit(unlink(makevars_file))
       force(code)
     })
 }
