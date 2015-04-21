@@ -19,7 +19,7 @@ subprocess <- function(code, calling_env = parent.frame(),
   tmp_code <- tempfile()
   tmp_objs <- tempfile()
 
-  saveRDS(code, file = tmp_code)
+  saveRDS(substitute(code), file = tmp_code)
 
   saveRDS(calling_env, file = tmp_calling_env)
 
@@ -34,9 +34,7 @@ subprocess <- function(code, calling_env = parent.frame(),
       "load('%s')",
       ".code <- readRDS('%s')",
       "fun <- function() {",
-      "    for(.expr in .code) {",
-      "      eval(.expr)",
-      "    }",
+      "  eval(.code)",
       "  .new_objs <- ls(environment())",
       "  if (length(.new_objs) > 0) {",
       "    save(list = .new_objs, file = '%s')",
@@ -62,13 +60,13 @@ subprocess <- function(code, calling_env = parent.frame(),
     if (file.exists(rout_file)) {
       unlink(rout_file)
     } else if (!quiet) {
-        message(rout_file, " does not exist")
+        message(rout_file, " does not exist1")
     }
   }
 
   if (file.exists(tmp_objs)) {
     load(envir = calling_env, file = tmp_objs)
   } else if (!quiet) {
-        message(tmp_objs, " does not exist")
+        message(tmp_objs, " does not exist2")
   }
 }
