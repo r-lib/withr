@@ -1,4 +1,5 @@
 # Robustr - Safely modify global state #
+[![Travis-CI Build Status](https://travis-ci.org/jimhester/robustr.png?branch=master)](https://travis-ci.org/jimhester/robustr)
 
 This package provides a series of methods which can be used to safely and
 temporarily modify the state of global variables in R.
