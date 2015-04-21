@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^.*\.tar\.gz$
+^robustr\.Rcheck$
+^\.travis\.yml$
+^\.lintr$

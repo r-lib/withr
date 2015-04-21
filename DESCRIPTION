@@ -1,0 +1,15 @@
+Package: robustr
+Title: Methods For Temporarily Modifying Global State
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Jim", "Hester", , "james.f.hester@gmail.com", role = c("aut", "cre")),
+    person("Hadley", "Wickham", , "hadley@rstudio.com", role = "aut"),
+    person("Winston", "Chang", role = "aut")
+    )
+Description: Methods For Temporarily Modifying Global State.
+URL: http://github.com/jimhester/robustr
+BugReports: http://github.com/jimhester/robustr/issues
+Depends: R (>= 3.2.0)
+License: MIT + file LICENSE
+LazyData: true
+Suggests: testthat
