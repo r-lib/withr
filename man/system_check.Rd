@@ -23,6 +23,7 @@ system_check(cmd, args = character(), env = character(), quiet = FALSE,
 command fails.
 }
 \description{
-Run a system command and check if it succeeds.
+This function automatically quotes both the command and each
+argument so they are properly protected from shell expansion.
 }
 

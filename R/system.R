@@ -1,5 +1,7 @@
 #' Run a system command and check if it succeeds.
 #'
+#' This function automatically quotes both the command and each
+#' argument so they are properly protected from shell expansion.
 #' @param cmd the command to run.
 #' @param args a vector of command arguments.
 #' @param env a named character vector of environment variables.  Will be quoted
