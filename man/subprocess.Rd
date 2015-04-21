@@ -19,7 +19,7 @@ subprocess(code, calling_env = parent.frame(), global_env = .GlobalEnv,
 \item{clean}{whether to clean the Rout files generated from the subprocess.}
 }
 \description{
-this function runs a R subprocess with expressions given in ..., trying to
+this function runs a R subprocess then given \code{code}, trying to
 replicate as much of the calling environment as possible, then returning the
 results to the calling environment.
 }
