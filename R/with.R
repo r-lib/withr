@@ -119,8 +119,8 @@ in_dir <- with_something(setwd)
 set_libpaths <- function(paths) {
   libpath <- normalizePath(paths, mustWork = TRUE)
 
-  old <- .libPaths()
-  .libPaths(paths)
+  old <- .libPaths() # nolint
+  .libPaths(libpath) # nolint
   invisible(old)
 }
 
@@ -133,8 +133,8 @@ with_libpaths <- with_something(set_libpaths)
 set_lib <- function(paths) {
   libpath <- normalizePath(paths, mustWork = TRUE)
 
-  old <- .libPaths()
-  .libPaths(c(libpath, .libPaths()))
+  old <- .libPaths() # nolint
+  .libPaths(c(libpath, .libPaths())) # nolint
   invisible(old)
 }
 

@@ -44,7 +44,7 @@ RCMD <- function(cmd, options, path = tempdir(), env_vars = NULL, ...) {
 #' @return a named character vector
 #' @export
 r_env_vars <- function() {
-  vars <- c("R_LIBS" = paste(.libPaths(), collapse = .Platform$path.sep),
+  vars <- c("R_LIBS" = paste(.libPaths(), collapse = .Platform$path.sep), # nolint
     "CYGWIN" = "nodosfilewarning",
     # When R CMD check runs tests, it sets R_TESTS. When the tests
     # themselves run R CMD xxxx, as is the case with the tests in
