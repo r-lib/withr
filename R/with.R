@@ -58,6 +58,9 @@ set_envvar <- function(envs, action = "replace") {
   stopifnot(is.character(action), length(action) == 1)
   action <- match.arg(action, c("replace", "prefix", "suffix"))
 
+  # if there are duplicated entries keep only the last one
+  envs <- envs[!duplicated(names(envs), fromLast = TRUE)]
+
   old <- Sys.getenv(names(envs), names = TRUE, unset = NA)
   set <- !is.na(envs)
 
@@ -79,6 +82,9 @@ set_envvar <- function(envs, action = "replace") {
 #' @param action (for \code{with_envvar} only): should new values
 #'    \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing environmental
 #'    variables with the same name.
+#' @details if \code{NA} is used as a value with \code{with_envvar} those
+#' environment variables will be unset.  If there are any duplicated variable
+#' names only the last one is used.
 #' @export
 with_envvar <- function(new, code, action = "replace") {
   old <- set_envvar(new, action)

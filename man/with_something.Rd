@@ -63,6 +63,10 @@ paths are overwritten, which don't you usually want.}
 }
 }
 \details{
+if \code{NA} is used as a value with \code{with_envvar} those
+environment variables will be unset.  If there are any duplicated variable
+names only the last one is used.
+
 If no existing makevars file exists or the fields in \code{new} do
 not exist in the existing \code{Makevars} file then the fields are added to
 the new file.  Existing fields which are not included in \code{new} are
