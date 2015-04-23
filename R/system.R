@@ -43,7 +43,8 @@ system_check <- function(cmd, args = character(), env = character(),
 #' @return command output if the command succeeds, an error will be thrown if
 #' the command fails.
 #' @export
-system_output <- function(cmd, args = character(), env = character(), ...) {
+system_output <- function(cmd, args = character(), env = character(),
+                          quiet = FALSE, ...) {
   full <- paste(c(shQuote(cmd), lapply(args, shQuote)), collapse = " ")
 
   if (!quiet) {
