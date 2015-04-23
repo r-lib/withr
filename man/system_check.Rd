@@ -16,7 +16,7 @@ system_check(cmd, args = character(), env = character(), quiet = FALSE,
 
 \item{quiet}{if \code{FALSE}, the command to be run will be echoed.}
 
-\item{...}{additional arguments passed to \code{\link[base]{system2}}}
+\item{...}{additional arguments passed to \code{\link[base]{system}}}
 }
 \value{
 \code{TRUE} if the command succeeds, an error will be thrown if the

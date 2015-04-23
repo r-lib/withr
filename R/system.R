@@ -6,7 +6,7 @@
 #' @param args a vector of command arguments.
 #' @param env a named character vector of environment variables.  Will be quoted
 #' @param quiet if \code{FALSE}, the command to be run will be echoed.
-#' @param ... additional arguments passed to \code{\link[base]{system2}}
+#' @param ... additional arguments passed to \code{\link[base]{system}}
 #' @return \code{TRUE} if the command succeeds, an error will be thrown if the
 #' command fails.
 #' @export
@@ -33,6 +33,27 @@ system_check <- function(cmd, args = character(), env = character(),
   }
 
   invisible(TRUE)
+}
+
+#' Run a system command and capture the output.
+#'
+#' This function automatically quotes both the command and each
+#' argument so they are properly protected from shell expansion.
+#' @inheritParams system_check
+#' @return command output if the command succeeds, an error will be thrown if
+#' the command fails.
+#' @export
+system_output <- function(cmd, args = character(), env = character(), ...) {
+  full <- paste(c(shQuote(cmd), lapply(args, shQuote)), collapse = " ")
+
+  if (!quiet) {
+    message(wrap_command(full), "\n")
+  }
+  result <- withCallingHandlers(with_envvar(env,
+    system(full, intern = TRUE, ignore.stderr = quiet, ...)
+    ), warning = function(w) stop(w))
+
+  result
 }
 
 wrap_command <- function(x) {
