@@ -8,7 +8,8 @@ Many of these methods were originally a part of the devtools package.
 Robustr was written to provide a simple package with limited dependencies which
 would provide access to these functions.
 
-Robustr also contains functions to call new R processes from within R.
+Robustr also contains functions to call new R processes from within R, which 
+synergize well with the other robustr functions.
 
 # See Also #
 - [Devtools](https://github.com/hadley/devtools)
