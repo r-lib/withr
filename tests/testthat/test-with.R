@@ -41,6 +41,15 @@ test_that("with_options works", {
   expect_that(getOption("zyxxyzyx"), not(equals("qwrbbl")))
 })
 
+test_that("with_collate works", {
+  # C is really one of the few locales we can be sure will be everywhere
+  if (Sys.getlocale("LC_COLLATE") != "C") {
+    expect_that(Sys.getlocale("LC_COLLATE"), not(equals("C")))
+    expect_equal(with_collate("C", Sys.getlocale("LC_COLLATE")), "C")
+    expect_that(Sys.getlocale("LC_COLLATE"), not(equals("C")))
+  }
+})
+
 #context("with_makevars")
 #test_that("with_makevars correctly matches only exact variable name", {
   #f1 <- tempfile()

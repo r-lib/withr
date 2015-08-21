@@ -3,3 +3,4 @@
 ^robustr\.Rcheck$
 ^\.travis\.yml$
 ^\.lintr$
+^NEWS\.MD$

@@ -16,18 +16,6 @@
 #' @param code code to execute in that environment
 #'
 #' @name with_something
-#' @examples
-#' getwd()
-#' in_dir(tempdir(), getwd())
-#' getwd()
-#'
-#' Sys.getenv("HADLEY")
-#' with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
-#' Sys.getenv("HADLEY")
-#'
-#' with_envvar(c("A" = 1),
-#'   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
-#' )
 NULL
 
 with_something <- function(set) {
@@ -221,9 +209,9 @@ set_makevars <- function(variables,
 #' @export
 with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars")) {
   makevars_file <- tempfile()
-  on.exit(unlink(makevars_file))
+  on.exit(unlink(makevars_file), add = TRUE)
   with_envvar(c(R_MAKEVARS_USER = makevars_file), {
       set_makevars(new, path, makevars_file)
       force(code)
-    })
+  })
 }
