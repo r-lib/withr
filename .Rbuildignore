@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^.*\.tar\.gz$
-^robustr\.Rcheck$
+^withr\.Rcheck$
 ^\.travis\.yml$
 ^\.lintr$
 ^NEWS\.MD$
