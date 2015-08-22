@@ -1,5 +1,5 @@
 # Withr - Run Code 'With' Modified State #
-[![Travis-CI Build Status](https://travis-ci.org/jimhester/withr?branch=master)](https://travis-ci.org/jimhester/withr)
+[![Travis-CI Build Status](https://travis-ci.org/jimhester/withr.svg?branch=master)](https://travis-ci.org/jimhester/withr)
 
 This package provides a series of methods which can be used run code 'with' safely and
 temporarily modified global state.
