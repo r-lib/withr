@@ -125,3 +125,14 @@ test_that("with_collate works and resets collate", {
   )
   expect_equal(current, Sys.getlocale("LC_COLLATE"))
 })
+test_that("in_dir works and resets the working directory", {
+  current <- normalizePath(getwd())
+  new <- normalizePath("..")
+  in_dir(
+    new,
+    {
+      expect_equal(new, getwd())
+    }
+  )
+  expect_equal(current, getwd())
+})
