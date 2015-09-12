@@ -11,28 +11,36 @@
 #'   \item \code{with_path}: PATH environment variable
 #'   \item \code{with_par}: graphics parameters
 #' }
+#' @section Deprecation:
+#' \code{with_env} will be deprecated in devtools 1.2 and removed in
+#' devtools 1.3
 #'
 #' @param new values for setting
 #' @param code code to execute in that environment
 #'
 #' @name with_something
+#' @examples
+#' getwd()
+#' in_dir(tempdir(), getwd())
+#' getwd()
+#'
+#' Sys.getenv("HADLEY")
+#' with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
+#' Sys.getenv("HADLEY")
+#'
+#' with_envvar(c("A" = 1),
+#'   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
+#' )
 NULL
 
-with_something <- function(set) {
-  fun <- substitute(set)
-  # this deparse/parse silliness is really the simplest way to ensure the
-  # returned functions srcref will show the new value of set
-  eval(parse(
-      text = deparse(
-        substitute(
-          function(new, code) {
-            old <- set(new)
-            on.exit(set(old))
-            force(code)
-          },
-          list(set = fun))
-        )))
+with_something <- function(set, reset = set) {
+  function(new, code) {
+    old <- set(new)
+    on.exit(reset(old))
+    force(code)
+  }
 }
+
 is.named <- function(x) {
   !is.null(names(x)) && all(names(x) != "")
 }
@@ -108,33 +116,36 @@ with_collate <- with_something(set_collate)
 #' @export
 in_dir <- with_something(setwd)
 
-# libpaths -------------------------------------------------------------------
-
 set_libpaths <- function(paths) {
   libpath <- normalizePath(paths, mustWork = TRUE)
 
-  old <- .libPaths() # nolint
-  .libPaths(libpath) # nolint
+  old <- .libPaths()
+  .libPaths(paths)
   invisible(old)
+}
+
+reset_libpaths <- function(paths) {
+  .libPaths(paths)
 }
 
 #' @rdname with_something
 #' @export
-with_libpaths <- with_something(set_libpaths)
+with_libpaths <- with_something(set_libpaths, reset_libpaths)
 
 # lib ------------------------------------------------------------------------
 
 set_lib <- function(paths) {
   libpath <- normalizePath(paths, mustWork = TRUE)
 
-  old <- .libPaths() # nolint
-  .libPaths(c(libpath, .libPaths())) # nolint
+  old <- .libPaths()
+  .libPaths(c(libpath, .libPaths()))
   invisible(old)
 }
 
 #' @rdname with_something
 #' @export
-with_lib <- with_something(set_lib)
+with_lib <- with_something(set_lib, reset_libpaths)
+
 
 # options --------------------------------------------------------------------
 

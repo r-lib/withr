@@ -41,70 +41,65 @@ test_that("with_options works", {
   expect_that(getOption("zyxxyzyx"), not(equals("qwrbbl")))
 })
 
-test_that("with_collate works", {
-  # C is really one of the few locales we can be sure will be everywhere
-  if (Sys.getlocale("LC_COLLATE") != "C") {
-    expect_that(Sys.getlocale("LC_COLLATE"), not(equals("C")))
-    expect_equal(with_collate("C", Sys.getlocale("LC_COLLATE")), "C")
-    expect_that(Sys.getlocale("LC_COLLATE"), not(equals("C")))
-  }
+test_that("with_lib works and resets library", {
+  lib <- .libPaths()
+  new_lib <- "."
+  with_lib(
+    new_lib,
+    {
+      expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]]))
+      expect_equal(length(.libPaths()), length(lib) + 1L)
+    }
+  )
+  expect_equal(lib, .libPaths())
 })
 
-#context("with_makevars")
-#test_that("with_makevars correctly matches only exact variable name", {
-  #f1 <- tempfile()
-  #writeLines(c("FCFLAGS=1"), con = f1)
+test_that("with_libpaths works and resets library", {
+  lib <- .libPaths()
+  new_lib <- "."
+  with_libpaths(
+    new_lib,
+    {
+      expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]]))
+    }
+  )
+  expect_equal(lib, .libPaths())
+})
 
-  #with_makevars(c(CFLAGS = "test"), {
+test_that("with_something works", {
+  res <- NULL
+  set <- function(new) {
+    res <<- c(res, 1L)
+  }
+  reset <- function(old) {
+    res <<- c(res, 3L)
+  }
+  with_res <- with_something(set, reset)
+  with_res(NULL, res <- c(res, 2L))
+  expect_equal(res, 1L:3L)
+})
 
-    #}
-  #set_makevars(c(CFLAGS="test"), f1)
-  #expect_equal(c("FCFLAGS=1", "CFLAGS=test"), readLines(f1))
-  #expect_true(file.exists(backup_name(f1)))
+test_that("with_path works and resets path", {
+  current <- normalizePath(get_path())
+  new_path <- normalizePath(".")
+  with_path(
+    new_path,
+    {
+      expect_equal(normalizePath(new_path), tail(get_path(), n = 1))
+      expect_equal(length(get_path()), length(current) + 1L)
+    }
+  )
+  expect_equal(current, get_path())
+})
 
-  #reset_makevars(f1)
-  #expect_false(file.exists(backup_name(f1)))
-  #expect_equal("FCFLAGS=1", readLines(f1))
-#})
-
-#test_that("makevars correctly ignores commented lines", {
-  #f1 <- "Makevars"
-  #writeLines(c("# CFLAGS=1"), con = f1)
-  #set_makevars(c(CFLAGS="test"), f1)
-  #expect_equal(c("# CFLAGS=1", "CFLAGS=test"), readLines(f1))
-  #expect_true(file.exists(backup_name(f1)))
-
-  #reset_makevars(f1)
-  #expect_false(file.exists(backup_name(f1)))
-  #expect_equal("# CFLAGS=1", readLines(f1))
-
-  #unlink(f1)
-#})
-
-#test_that("makevars does nothing if the file will not change", {
-  #f1 <- "Makevars"
-  #writeLines(c("CFLAGS=1"), con = f1)
-  #set_makevars(c(CFLAGS="1"), f1)
-
-  #expect_equal(c("CFLAGS=1"), readLines(f1))
-  #expect_false(file.exists(backup_name(f1)))
-
-  #unlink(f1)
-#})
-
-#test_that("makevars errors if more than one match is found", {
-  #f1 <- "Makevars"
-  #writeLines(c("CFLAGS=1", "CFLAGS=2"), con = f1)
-  #expect_error(set_makevars(c(CFLAGS="1"), f1), "Multiple results")
-
-  #unlink(f1)
-#})
-#test_that("makevars handles the case without a Makevars file", {
-
-  #f1 <- "Makevars"
-  #set_makevars(c(CFLAGS="1"), f1)
-  #expect_equal(c("CFLAGS=1"), readLines(f1))
-
-  #reset_makevars(f1)
-  #expect_false(file.exists(f1))
-#})
+test_that("with_libpaths works and resets library", {
+  lib <- .libPaths()
+  new_lib <- "."
+  with_libpaths(
+    new_lib,
+    {
+      expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]]))
+    }
+  )
+  expect_equal(lib, .libPaths())
+})
