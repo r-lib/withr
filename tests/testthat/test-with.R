@@ -103,7 +103,7 @@ test_that("with_libpaths works and resets library", {
   )
   expect_equal(lib, .libPaths())
 })
-test_that("with_locale works and resets library", {
+test_that("with_locale works and resets locales", {
   current <- Sys.getlocale("LC_CTYPE")
   new <- "C"
   with_locale(
@@ -113,4 +113,15 @@ test_that("with_locale works and resets library", {
     }
   )
   expect_equal(current, Sys.getlocale("LC_CTYPE"))
+})
+test_that("with_collate works and resets collate", {
+  current <- Sys.getlocale("LC_COLLATE")
+  new <- "C"
+  with_collate(
+    new,
+    {
+      expect_equal(new, Sys.getlocale("LC_COLLATE"))
+    }
+  )
+  expect_equal(current, Sys.getlocale("LC_COLLATE"))
 })
