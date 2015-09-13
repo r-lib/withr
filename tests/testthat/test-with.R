@@ -136,3 +136,15 @@ test_that("in_dir works and resets the working directory", {
   )
   expect_equal(current, getwd())
 })
+test_that("with_makevars works and resets the Makevars file", {
+  current <- tempfile()
+  cat(file = current, c("CFLAGS=-03"))
+  new <- c(CFLAGS = "-O0")
+  with_makevars(
+    new, path = current,
+    {
+      expect_equal("CFLAGS=-O0", readLines(Sys.getenv("R_MAKEVARS_USER")))
+    }
+  )
+  expect_equal("CFLAGS=-03", readLines(current))
+})
