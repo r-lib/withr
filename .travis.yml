@@ -4,7 +4,13 @@ language: r
 sudo: required
 warnings_are_errors: true
 
+r_packages:
+  - covr
+
 notifications:
   email:
     on_success: change
     on_failure: change
+
+after_success:
+  - Rscript -e 'covr::codecov()'

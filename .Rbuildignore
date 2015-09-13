@@ -4,3 +4,4 @@
 ^\.travis\.yml$
 ^\.lintr$
 ^NEWS\.MD$
+^appveyor\.yml$
