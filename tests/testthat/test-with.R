@@ -148,3 +148,16 @@ test_that("with_makevars works and resets the Makevars file", {
   )
   expect_equal("CFLAGS=-03", readLines(current))
 })
+test_that("with_makevars changes only the defined variables", {
+  current_name <- tempfile()
+  current <- c("CFLAGS=-03", "LDFLAGS=-lz")
+  cat(file = current_name, current, sep = "\n")
+  new <- c(CFLAGS = "-O0")
+  with_makevars(
+    new, path = current_name,
+    {
+      expect_equal(c("CFLAGS=-O0", "LDFLAGS=-lz"), readLines(Sys.getenv("R_MAKEVARS_USER")))
+    }
+  )
+  expect_equal(current, readLines(current_name))
+})
