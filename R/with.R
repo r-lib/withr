@@ -1,20 +1,5 @@
 #' Execute code in temporarily altered environment.
 #'
-#' \itemize{
-#'   \item \code{in_dir}: working directory
-#'   \item \code{with_collate}: collation order
-#'   \item \code{with_envvar}: environmental variables
-#'   \item \code{with_libpaths}: library paths, replacing current libpaths
-#'   \item \code{with_lib}: library paths, prepending to current libpaths
-#'   \item \code{with_locale}: any locale setting
-#'   \item \code{with_options}: options
-#'   \item \code{with_path}: PATH environment variable
-#'   \item \code{with_par}: graphics parameters
-#' }
-#' @section Deprecation:
-#' \code{with_env} will be deprecated in devtools 1.2 and removed in
-#' devtools 1.3
-#'
 #' @param new values for setting
 #' @param code code to execute in that environment
 #'
@@ -74,7 +59,8 @@ set_envvar <- function(envs, action = "replace") {
 
   invisible(old)
 }
-#' @rdname with_something
+
+#' @describeIn with_something environmental variables
 #' @param action (for \code{with_envvar} only): should new values
 #'    \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing environmental
 #'    variables with the same name.
@@ -99,22 +85,24 @@ set_locale <- function(cats) {
   invisible(old)
 }
 
-#' @rdname with_something
+#' @describeIn with_something any locale setting
 #' @export
 with_locale <- with_something(set_locale)
 
 # collate --------------------------------------------------------------------
 
 set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
-#' @rdname with_something
+
+#' @describeIn with_something collation order
 #' @export
 with_collate <- with_something(set_collate)
 
 # working directory ----------------------------------------------------------
 
-#' @rdname with_something
+#' @describeIn with_something working directory
+#' @aliases with_dir
 #' @export
-in_dir <- with_something(setwd)
+in_dir <- with_dir <- with_something(setwd)
 
 set_libpaths <- function(paths) {
   libpath <- normalizePath(paths, mustWork = TRUE)
@@ -128,7 +116,7 @@ reset_libpaths <- function(paths) {
   .libPaths(paths)
 }
 
-#' @rdname with_something
+#' @describeIn with_something library paths, replacing current libpaths
 #' @export
 with_libpaths <- with_something(set_libpaths, reset_libpaths)
 
@@ -142,7 +130,7 @@ set_lib <- function(paths) {
   invisible(old)
 }
 
-#' @rdname with_something
+#' @describeIn with_something library paths, prepending to current libpaths
 #' @export
 with_lib <- with_something(set_lib, reset_libpaths)
 
@@ -153,19 +141,19 @@ set_options <- function(new_options) {
   do.call(options, as.list(new_options))
 }
 
-#' @rdname with_something
+#' @describeIn with_something options
 #' @export
 with_options <- with_something(set_options)
 
 # par ------------------------------------------------------------------------
 
-#' @rdname with_something
+#' @describeIn with_something graphics parameters
 #' @export
 with_par <- with_something(par)
 
 # path -----------------------------------------------------------------------
 
-#' @rdname with_something
+#' @describeIn with_something PATH environment variable
 #' @export
 #' @param add Combine with existing values? Currently for
 #'   \code{\link{with_path}} only. If \code{FALSE} all existing
@@ -210,7 +198,7 @@ set_makevars <- function(variables,
   old
 }
 
-#' @rdname with_something
+#' @describeIn with_something Makevars variables
 #' @param path location of existing makevars to modify.
 #' @details If no existing makevars file exists or the fields in \code{new} do
 #' not exist in the existing \code{Makevars} file then the fields are added to

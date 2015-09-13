@@ -3,6 +3,7 @@
 \name{with_something}
 \alias{in_dir}
 \alias{with_collate}
+\alias{with_dir}
 \alias{with_envvar}
 \alias{with_lib}
 \alias{with_libpaths}
@@ -50,17 +51,7 @@ paths are overwritten, which don't you usually want.}
 \item{path}{location of existing makevars to modify.}
 }
 \description{
-\itemize{
-  \item \code{in_dir}: working directory
-  \item \code{with_collate}: collation order
-  \item \code{with_envvar}: environmental variables
-  \item \code{with_libpaths}: library paths, replacing current libpaths
-  \item \code{with_lib}: library paths, prepending to current libpaths
-  \item \code{with_locale}: any locale setting
-  \item \code{with_options}: options
-  \item \code{with_path}: PATH environment variable
-  \item \code{with_par}: graphics parameters
-}
+Execute code in temporarily altered environment.
 }
 \details{
 if \code{NA} is used as a value with \code{with_envvar} those
@@ -72,5 +63,40 @@ not exist in the existing \code{Makevars} file then the fields are added to
 the new file.  Existing fields which are not included in \code{new} are
 appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}
 are modified to use the value in \code{new}.
+}
+\section{Functions}{
+\itemize{
+\item \code{with_envvar}: environmental variables
+
+\item \code{with_locale}: any locale setting
+
+\item \code{with_collate}: collation order
+
+\item \code{in_dir}: working directory
+
+\item \code{with_libpaths}: library paths, replacing current libpaths
+
+\item \code{with_lib}: library paths, prepending to current libpaths
+
+\item \code{with_options}: options
+
+\item \code{with_par}: graphics parameters
+
+\item \code{with_path}: PATH environment variable
+
+\item \code{with_makevars}: Makevars variables
+}}
+\examples{
+getwd()
+in_dir(tempdir(), getwd())
+getwd()
+
+Sys.getenv("HADLEY")
+with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
+Sys.getenv("HADLEY")
+
+with_envvar(c("A" = 1),
+  with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
+)
 }
 
