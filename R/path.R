@@ -8,8 +8,7 @@
 #'   of code
 NULL
 
-#' @export
-#' @rdname path
+# @rdname path
 get_path <- function() {
   strsplit(Sys.getenv("PATH"), .Platform$path.sep)[[1]]
 }
@@ -23,25 +22,4 @@ set_path <- function(path) {
   path <- paste(path, collapse = .Platform$path.sep)
   Sys.setenv(PATH = path)
   invisible(old)
-}
-
-#' @export
-#' @rdname path
-#' @param after for \code{add_path}, the place on the PATH where the new paths
-#'   should be added
-add_path <- function(path, after = Inf) {
-  set_path(append(get_path(), path, after))
-}
-
-
-#' Test if an object is on the path.
-#'
-#' @param ... Strings indicating the executables to check for on the path.
-#' @family path
-#' @keywords internal
-#' @export
-on_path <- function(...) {
-  commands <- c(...)
-  stopifnot(is.character(commands))
-  unname(Sys.which(commands) != "")
 }
