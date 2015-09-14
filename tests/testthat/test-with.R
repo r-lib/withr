@@ -131,10 +131,10 @@ test_that("in_dir works and resets the working directory", {
   in_dir(
     new,
     {
-      expect_equal(new, getwd())
+      expect_equal(new, normalizePath(getwd()))
     }
   )
-  expect_equal(current, getwd())
+  expect_equal(current, normalizePath(getwd()))
 })
 test_that("with_makevars works and resets the Makevars file", {
   current <- tempfile()
