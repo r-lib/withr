@@ -40,19 +40,15 @@ append_to_formals <- function(f, extra_args) {
   f
 }
 
-with_action <- function(get, set, reset = set, default_action = "prefix", .merge = c) {
-  eval(bquote(function(new, code, action = .(default_action)) {
-    action <- match.arg(action, c("replace", "prefix", "suffix"))
-    if (action == "suffix") {
-      new <- .merge(get(), new)
-    } else if (action == "prefix") {
-      new <- .merge(new, get())
-    }
+merge_new <- function(old, new, action, merge_fun = c) {
+  action <- match.arg(action, c("replace", "prefix", "suffix"))
 
-    old <- set(new)
-    on.exit(reset(old))
-    force(code)
-  }))
+  if (action == "suffix") {
+    new <- merge_fun(old, new)
+  } else if (action == "prefix") {
+    new <- merge_fun(new, old)
+  }
+  new
 }
 
 is.named <- function(x) {
@@ -129,17 +125,22 @@ with_collate <- with_something(set_collate)
 #' @export
 in_dir <- with_dir <- with_something(setwd)
 
-set_libpaths <- function(paths) {
-  libpath <- normalizePath(paths, mustWork = TRUE)
+
+# library paths --------------------------------------------------------------
+
+set_libpaths <- function(paths, action) {
+  paths <- normalizePath(paths, mustWork = TRUE)
 
   old <- .libPaths()
+  paths <- merge_new(old, paths, action)
+
   .libPaths(paths)
   invisible(old)
 }
 
 #' @describeIn with_something library paths, replacing current libpaths
 #' @export
-with_libpaths <- with_action(.libPaths, set_libpaths, .libPaths, default_action = "replace")
+with_libpaths <- with_something(set_libpaths, .libPaths, action = "replace")
 
 # options --------------------------------------------------------------------
 
@@ -161,7 +162,7 @@ with_par <- with_something(par)
 
 #' @describeIn with_something PATH environment variable
 #' @export
-with_path <- with_action(get_path, set_path)
+with_path <- with_something(set_path, function(old) set_path(old, "replace"), action = "prefix")
 
 set_makevars <- function(variables,
                          old_path = file.path("~", ".R", "Makevars"),
