@@ -41,19 +41,6 @@ test_that("with_options works", {
   expect_that(getOption("zyxxyzyx"), not(equals("qwrbbl")))
 })
 
-test_that("with_lib works and resets library", {
-  lib <- .libPaths()
-  new_lib <- "."
-  with_lib(
-    new_lib,
-    {
-      expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]]))
-      expect_equal(length(.libPaths()), length(lib) + 1L)
-    }
-  )
-  expect_equal(lib, .libPaths())
-})
-
 test_that("with_libpaths works and resets library", {
   lib <- .libPaths()
   new_lib <- "."
