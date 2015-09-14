@@ -20,12 +20,11 @@ NULL
 
 with_something <- function(set, reset = set, ...) {
   extra_args <- list(...)
-  extra_args_names <- names(extra_args)
-  if (length(extra_args) > 0L) {
-    if (!is.named(extra_args_names)) {
-      stop("Only named arguments supported in the ... argument to with_something", call. = FALSE)
-    }
+  if (length(extra_args) > 0 && !is.named(extra_args)) {
+    stop("Only named arguments supported in the ... argument to with_something", call. = FALSE)
   }
+
+  extra_args_names <- names(extra_args)
   extra_args_args <- setNames(lapply(extra_args_names, as.name), extra_args_names)
   set_call <- as.call(c(list(as.name("set"), as.name("new")), extra_args_args))
 
@@ -98,11 +97,7 @@ set_envvar <- function(envs, action = "replace") {
 #' environment variables will be unset.  If there are any duplicated variable
 #' names only the last one is used.
 #' @export
-with_envvar <- function(new, code, action = "replace") {
-  old <- set_envvar(new, action)
-  on.exit(set_envvar(old, "replace"))
-  force(code)
-}
+with_envvar <- with_something(set_envvar, action = "replace")
 
 # locale ---------------------------------------------------------------------
 
