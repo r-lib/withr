@@ -26,6 +26,21 @@ with_something <- function(set, reset = set) {
   }
 }
 
+with_action <- function(get, set, reset = set, default_action = "prefix", .merge = c) {
+  eval(bquote(function(new, code, action = .(default_action)) {
+    action <- match.arg(action, c("replace", "prefix", "suffix"))
+    if (action == "suffix") {
+      new <- .merge(get(), new)
+    } else if (action == "prefix") {
+      new <- .merge(new, get())
+    }
+
+    old <- set(new)
+    on.exit(reset(old))
+    force(code)
+  }))
+}
+
 is.named <- function(x) {
   !is.null(names(x)) && all(names(x) != "")
 }
@@ -155,17 +170,7 @@ with_par <- with_something(par)
 
 #' @describeIn with_something PATH environment variable
 #' @export
-with_path <- function(new, code, action = "prefix") {
-  if (action == "suffix") {
-    new <- c(get_path(), new)
-  } else if (action == "prefix") {
-    new <- c(new, get_path())
-  }
-
-  old <- set_path(new)
-  on.exit(set_path(old))
-  force(code)
-}
+with_path <- with_action(get_path, set_path)
 
 set_makevars <- function(variables,
                          old_path = file.path("~", ".R", "Makevars"),
