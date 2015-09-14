@@ -22,7 +22,7 @@ with_something <- function(set, reset = set, ...) {
   extra_args <- list(...)
   extra_args_names <- names(extra_args)
   if (length(extra_args) > 0L) {
-    if (is.null(extra_args_names) || any(extra_args_names == "")) {
+    if (!is.named(extra_args_names)) {
       stop("Only named arguments supported in the ... argument to with_something", call. = FALSE)
     }
   }
