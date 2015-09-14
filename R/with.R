@@ -126,7 +126,7 @@ with_collate <- with_something(set_collate)
 in_dir <- with_dir <- with_something(setwd)
 
 
-# library paths --------------------------------------------------------------
+# lib ------------------------------------------------------------------------
 
 set_libpaths <- function(paths, action) {
   paths <- normalizePath(paths, mustWork = TRUE)
