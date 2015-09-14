@@ -5,3 +5,4 @@
 ^\.lintr$
 ^NEWS\.MD$
 ^appveyor\.yml$
+^\.Rproj\.user$
