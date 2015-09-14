@@ -210,7 +210,7 @@ with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars")) {
   makevars_file <- tempfile()
   on.exit(unlink(makevars_file), add = TRUE)
   with_envvar(c(R_MAKEVARS_USER = makevars_file), {
-      set_makevars(new, path, makevars_file)
-      force(code)
+    set_makevars(new, path, makevars_file)
+    force(code)
   })
 }
