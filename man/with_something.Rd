@@ -5,7 +5,6 @@
 \alias{with_collate}
 \alias{with_dir}
 \alias{with_envvar}
-\alias{with_lib}
 \alias{with_libpaths}
 \alias{with_locale}
 \alias{with_makevars}
@@ -23,15 +22,13 @@ with_collate(new, code)
 
 in_dir(new, code)
 
-with_libpaths(new, code)
-
-with_lib(new, code)
+with_libpaths(new, code, action = "replace")
 
 with_options(new, code)
 
 with_par(new, code)
 
-with_path(new, code, action = "replace")
+with_path(new, code, action = "prefix")
 
 with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 }
@@ -71,8 +68,6 @@ are modified to use the value in \code{new}.
 \item \code{in_dir}: working directory
 
 \item \code{with_libpaths}: library paths, replacing current libpaths
-
-\item \code{with_lib}: library paths, prepending to current libpaths
 
 \item \code{with_options}: options
 
