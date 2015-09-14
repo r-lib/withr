@@ -18,12 +18,27 @@
 #' )
 NULL
 
-with_something <- function(set, reset = set) {
-  function(new, code) {
-    old <- set(new)
+with_something <- function(set, reset = set, ...) {
+  extra_args <- list(...)
+  extra_args_names <- names(extra_args)
+  if (length(extra_args) > 0L) {
+    if (is.null(extra_args_names) || any(extra_args_names == "")) {
+      stop("Only named arguments supported in the ... argument to with_something", call. = FALSE)
+    }
+  }
+  extra_args_args <- setNames(lapply(extra_args_names, as.name), extra_args_names)
+  set_call <- as.call(c(list(as.name("set"), as.name("new")), extra_args_args))
+
+  append_to_formals(eval(bquote(function(new, code) {
+    old <- .(set_call)
     on.exit(reset(old))
     force(code)
-  }
+  })), extra_args)
+}
+
+append_to_formals <- function(f, extra_args) {
+  formals(f) <- c(formals(f), extra_args)
+  f
 }
 
 with_action <- function(get, set, reset = set, default_action = "prefix", .merge = c) {
