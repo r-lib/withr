@@ -61,9 +61,9 @@ set_envvar <- function(envs, action = "replace") {
 }
 
 #' @describeIn with_something environmental variables
-#' @param action (for \code{with_envvar} only): should new values
-#'    \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing environmental
-#'    variables with the same name.
+#' @param action (for \code{with_envvar} and \code{with_path} only): should new values
+#'    \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing values?
+#'    (For \code{with_envvar}, this refers to environmental variables with the same name.)
 #' @details if \code{NA} is used as a value with \code{with_envvar} those
 #' environment variables will be unset.  If there are any duplicated variable
 #' names only the last one is used.
@@ -155,11 +155,13 @@ with_par <- with_something(par)
 
 #' @describeIn with_something PATH environment variable
 #' @export
-#' @param add Combine with existing values? Currently for
-#'   \code{\link{with_path}} only. If \code{FALSE} all existing
-#'   paths are overwritten, which don't you usually want.
-with_path <- function(new, code, add = TRUE) {
-  if (add) new <- c(get_path(), new)
+with_path <- function(new, code, action = "prefix") {
+  if (action == "suffix") {
+    new <- c(get_path(), new)
+  } else if (action == "prefix") {
+    new <- c(new, get_path())
+  }
+
   old <- set_path(new)
   on.exit(set_path(old))
   force(code)

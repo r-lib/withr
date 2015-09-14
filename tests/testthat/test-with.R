@@ -85,7 +85,7 @@ test_that("with_path works and resets path", {
   with_path(
     new_path,
     {
-      expect_equal(normalizePath(new_path), tail(get_path(), n = 1))
+      expect_equal(normalizePath(new_path), head(get_path(), n = 1))
       expect_equal(length(get_path()), length(current) + 1L)
     }
   )

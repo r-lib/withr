@@ -31,7 +31,7 @@ with_options(new, code)
 
 with_par(new, code)
 
-with_path(new, code, add = TRUE)
+with_path(new, code, action = "replace")
 
 with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 }
@@ -40,13 +40,9 @@ with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 
 \item{code}{code to execute in that environment}
 
-\item{action}{(for \code{with_envvar} only): should new values
-\code{"replace"}, \code{"suffix"}, \code{"prefix"} existing environmental
-variables with the same name.}
-
-\item{add}{Combine with existing values? Currently for
-\code{\link{with_path}} only. If \code{FALSE} all existing
-paths are overwritten, which don't you usually want.}
+\item{action}{(for \code{with_envvar} and \code{with_path} only): should new values
+\code{"replace"}, \code{"suffix"}, \code{"prefix"} existing values?
+(For \code{with_envvar}, this refers to environmental variables with the same name.)}
 
 \item{path}{location of existing makevars to modify.}
 }
