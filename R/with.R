@@ -127,13 +127,9 @@ set_libpaths <- function(paths) {
   invisible(old)
 }
 
-reset_libpaths <- function(paths) {
-  .libPaths(paths)
-}
-
 #' @describeIn with_something library paths, replacing current libpaths
 #' @export
-with_libpaths <- with_something(set_libpaths, reset_libpaths)
+with_libpaths <- with_action(.libPaths, set_libpaths, .libPaths, default_action = "replace")
 
 # lib ------------------------------------------------------------------------
 
