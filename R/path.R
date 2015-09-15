@@ -14,11 +14,16 @@ get_path <- function() {
 }
 
 #' @export
+#' @param action One of \code{"prefix"} (default), \code{"suffix"} or \code{"replace"},
+#'   determines if the existing paths should be prepended, appended, or replaced by the
+#'   existing paths.
 #' @rdname path
-set_path <- function(path) {
+set_path <- function(path, action = "prefix") {
   path <- normalizePath(path, mustWork = FALSE)
 
   old <- get_path()
+  path <- merge_new(old, path, action)
+
   path <- paste(path, collapse = .Platform$path.sep)
   Sys.setenv(PATH = path)
   invisible(old)

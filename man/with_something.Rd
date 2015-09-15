@@ -5,7 +5,6 @@
 \alias{with_collate}
 \alias{with_dir}
 \alias{with_envvar}
-\alias{with_lib}
 \alias{with_libpaths}
 \alias{with_locale}
 \alias{with_makevars}
@@ -23,15 +22,13 @@ with_collate(new, code)
 
 in_dir(new, code)
 
-with_libpaths(new, code)
-
-with_lib(new, code)
+with_libpaths(new, code, action = "replace")
 
 with_options(new, code)
 
-with_par(new, code)
+with_par(new, code, no.readonly = FALSE)
 
-with_path(new, code, add = TRUE)
+with_path(new, code, action = "prefix")
 
 with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 }
@@ -40,13 +37,11 @@ with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 
 \item{code}{code to execute in that environment}
 
-\item{action}{(for \code{with_envvar} only): should new values
-\code{"replace"}, \code{"suffix"}, \code{"prefix"} existing environmental
-variables with the same name.}
+\item{action}{(for \code{with_envvar} and \code{with_path} only): should new values
+\code{"replace"}, \code{"suffix"}, \code{"prefix"} existing values?
+(For \code{with_envvar}, this refers to environmental variables with the same name.)}
 
-\item{add}{Combine with existing values? Currently for
-\code{\link{with_path}} only. If \code{FALSE} all existing
-paths are overwritten, which don't you usually want.}
+\item{no.readonly}{see \code{\link{par}} documentation.}
 
 \item{path}{location of existing makevars to modify.}
 }
@@ -75,8 +70,6 @@ are modified to use the value in \code{new}.
 \item \code{in_dir}: working directory
 
 \item \code{with_libpaths}: library paths, replacing current libpaths
-
-\item \code{with_lib}: library paths, prepending to current libpaths
 
 \item \code{with_options}: options
 
