@@ -19,25 +19,11 @@
 NULL
 
 with_something <- function(set, reset = set, ...) {
-  extra_args <- list(...)
-  if (length(extra_args) > 0 && !is.named(extra_args)) {
-    stop("Only named arguments supported in the ... argument to with_something", call. = FALSE)
-  }
-
-  extra_args_names <- names(extra_args)
-  extra_args_args <- setNames(lapply(extra_args_names, as.name), extra_args_names)
-  set_call <- as.call(c(list(as.name("set"), as.name("new")), extra_args_args))
-
-  append_to_formals(eval(bquote(function(new, code) {
-    old <- .(set_call)
+  function(new, code, ...) {
+    old <- set(new, ...)
     on.exit(reset(old))
     force(code)
-  })), extra_args)
-}
-
-append_to_formals <- function(f, extra_args) {
-  formals(f) <- c(formals(f), extra_args)
-  f
+  }
 }
 
 merge_new <- function(old, new, action, merge_fun = c) {
@@ -128,7 +114,7 @@ in_dir <- with_dir <- with_something(setwd)
 
 # lib ------------------------------------------------------------------------
 
-set_libpaths <- function(paths, action) {
+set_libpaths <- function(paths, action = "replace") {
   paths <- normalizePath(paths, mustWork = TRUE)
 
   old <- .libPaths()
@@ -140,7 +126,7 @@ set_libpaths <- function(paths, action) {
 
 #' @describeIn with_something library paths, replacing current libpaths
 #' @export
-with_libpaths <- with_something(set_libpaths, .libPaths, action = "replace")
+with_libpaths <- with_something(set_libpaths, .libPaths)
 
 # options --------------------------------------------------------------------
 
