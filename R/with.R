@@ -18,12 +18,37 @@
 #' )
 NULL
 
-with_something <- function(set, reset = set) {
-  function(new, code) {
-    old <- set(new)
+with_something <- function(set, reset = set, ...) {
+  extra_args <- list(...)
+  if (length(extra_args) > 0 && !is.named(extra_args)) {
+    stop("Only named arguments supported in the ... argument to with_something", call. = FALSE)
+  }
+
+  extra_args_names <- names(extra_args)
+  extra_args_args <- setNames(lapply(extra_args_names, as.name), extra_args_names)
+  set_call <- as.call(c(list(as.name("set"), as.name("new")), extra_args_args))
+
+  append_to_formals(eval(bquote(function(new, code) {
+    old <- .(set_call)
     on.exit(reset(old))
     force(code)
+  })), extra_args)
+}
+
+append_to_formals <- function(f, extra_args) {
+  formals(f) <- c(formals(f), extra_args)
+  f
+}
+
+merge_new <- function(old, new, action, merge_fun = c) {
+  action <- match.arg(action, c("replace", "prefix", "suffix"))
+
+  if (action == "suffix") {
+    new <- merge_fun(old, new)
+  } else if (action == "prefix") {
+    new <- merge_fun(new, old)
   }
+  new
 }
 
 is.named <- function(x) {
@@ -61,18 +86,14 @@ set_envvar <- function(envs, action = "replace") {
 }
 
 #' @describeIn with_something environmental variables
-#' @param action (for \code{with_envvar} only): should new values
-#'    \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing environmental
-#'    variables with the same name.
+#' @param action (for \code{with_envvar} and \code{with_path} only): should new values
+#'    \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing values?
+#'    (For \code{with_envvar}, this refers to environmental variables with the same name.)
 #' @details if \code{NA} is used as a value with \code{with_envvar} those
 #' environment variables will be unset.  If there are any duplicated variable
 #' names only the last one is used.
 #' @export
-with_envvar <- function(new, code, action = "replace") {
-  old <- set_envvar(new, action)
-  on.exit(set_envvar(old, "replace"))
-  force(code)
-}
+with_envvar <- with_something(set_envvar, action = "replace")
 
 # locale ---------------------------------------------------------------------
 
@@ -104,36 +125,22 @@ with_collate <- with_something(set_collate)
 #' @export
 in_dir <- with_dir <- with_something(setwd)
 
-set_libpaths <- function(paths) {
-  libpath <- normalizePath(paths, mustWork = TRUE)
+
+# lib ------------------------------------------------------------------------
+
+set_libpaths <- function(paths, action) {
+  paths <- normalizePath(paths, mustWork = TRUE)
 
   old <- .libPaths()
+  paths <- merge_new(old, paths, action)
+
   .libPaths(paths)
   invisible(old)
-}
-
-reset_libpaths <- function(paths) {
-  .libPaths(paths)
 }
 
 #' @describeIn with_something library paths, replacing current libpaths
 #' @export
-with_libpaths <- with_something(set_libpaths, reset_libpaths)
-
-# lib ------------------------------------------------------------------------
-
-set_lib <- function(paths) {
-  libpath <- normalizePath(paths, mustWork = TRUE)
-
-  old <- .libPaths()
-  .libPaths(c(libpath, .libPaths()))
-  invisible(old)
-}
-
-#' @describeIn with_something library paths, prepending to current libpaths
-#' @export
-with_lib <- with_something(set_lib, reset_libpaths)
-
+with_libpaths <- with_something(set_libpaths, .libPaths, action = "replace")
 
 # options --------------------------------------------------------------------
 
@@ -155,15 +162,7 @@ with_par <- with_something(par)
 
 #' @describeIn with_something PATH environment variable
 #' @export
-#' @param add Combine with existing values? Currently for
-#'   \code{\link{with_path}} only. If \code{FALSE} all existing
-#'   paths are overwritten, which don't you usually want.
-with_path <- function(new, code, add = TRUE) {
-  if (add) new <- c(get_path(), new)
-  old <- set_path(new)
-  on.exit(set_path(old))
-  force(code)
-}
+with_path <- with_something(set_path, function(old) set_path(old, "replace"), action = "prefix")
 
 set_makevars <- function(variables,
                          old_path = file.path("~", ".R", "Makevars"),

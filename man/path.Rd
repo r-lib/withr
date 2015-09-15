@@ -5,10 +5,14 @@
 \alias{set_path}
 \title{Get/set the PATH variable.}
 \usage{
-set_path(path)
+set_path(path, action = "prefix")
 }
 \arguments{
 \item{path}{character vector of paths}
+
+\item{action}{One of \code{"prefix"} (default), \code{"suffix"} or \code{"replace"},
+determines if the existing paths should be prepended, appended, or replaced by the
+existing paths.}
 }
 \value{
 \code{set_path} invisibly returns the old path.

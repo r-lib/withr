@@ -41,19 +41,6 @@ test_that("with_options works", {
   expect_that(getOption("zyxxyzyx"), not(equals("qwrbbl")))
 })
 
-test_that("with_lib works and resets library", {
-  lib <- .libPaths()
-  new_lib <- "."
-  with_lib(
-    new_lib,
-    {
-      expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]]))
-      expect_equal(length(.libPaths()), length(lib) + 1L)
-    }
-  )
-  expect_equal(lib, .libPaths())
-})
-
 test_that("with_libpaths works and resets library", {
   lib <- .libPaths()
   new_lib <- "."
@@ -85,8 +72,36 @@ test_that("with_path works and resets path", {
   with_path(
     new_path,
     {
+      expect_equal(normalizePath(new_path), head(get_path(), n = 1))
+      expect_equal(length(get_path()), length(current) + 1L)
+    }
+  )
+  expect_equal(current, get_path())
+})
+
+test_that("with_path with suffix action works and resets path", {
+  current <- normalizePath(get_path())
+  new_path <- normalizePath(".")
+  with_path(
+    new_path,
+    action = "suffix",
+    {
       expect_equal(normalizePath(new_path), tail(get_path(), n = 1))
       expect_equal(length(get_path()), length(current) + 1L)
+    }
+  )
+  expect_equal(current, get_path())
+})
+
+test_that("with_path with replace action works and resets path", {
+  current <- normalizePath(get_path())
+  new_path <- normalizePath(".")
+  with_path(
+    new_path,
+    action = "replace",
+    {
+      expect_equal(normalizePath(new_path), get_path())
+      expect_equal(length(get_path()), 1L)
     }
   )
   expect_equal(current, get_path())
