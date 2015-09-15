@@ -23,5 +23,7 @@ Get/set the PATH variable.
 \seealso{
 \code{\link{with_path}} to temporarily set the path for a block
   of code
+
+Other path: \code{\link{with_path}}
 }
 

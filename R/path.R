@@ -1,5 +1,6 @@
-#' Get/set the PATH variable.
-#'
+#' @include with_something.R
+
+#' @title Get/set the PATH variable.
 #' @param path character vector of paths
 #' @return \code{set_path} invisibly returns the old path.
 #' @name path
@@ -7,6 +8,8 @@
 #' @seealso \code{\link{with_path}} to temporarily set the path for a block
 #'   of code
 NULL
+
+# path -----------------------------------------------------------------------
 
 # @rdname path
 get_path <- function() {
@@ -28,3 +31,11 @@ set_path <- function(path, action = "prefix") {
   Sys.setenv(PATH = path)
   invisible(old)
 }
+
+#' PATH environment variable
+#' @inheritParams withr
+#' @param action should new values \code{"replace"}, \code{"prefix"} or
+#'   \code{"suffix"} existing paths.
+#' @family path
+#' @export
+with_path <- with_something(set_path, function(old) set_path(old, "replace"))
