@@ -18,12 +18,34 @@
 #' )
 NULL
 
-with_something <- function(set, reset = set, ...) {
-  function(new, code, ...) {
-    old <- set(new, ...)
+with_something <- function(set, reset = set) {
+
+  fmls <- formals(set)
+
+  # called pass all extra formals on
+  called_fmls <- setNames(lapply(names(fmls), as.symbol), names(fmls))
+
+  # when used in a call ... need to be the value, not the name
+  if (!is.null(called_fmls[["..."]])) {
+    names(called_fmls)[names(called_fmls) == "..."] <- ""
+  }
+
+  # rename first formal to new
+  called_fmls[[1]] <- as.symbol("new")
+
+  set_call <- as.call(c(substitute(set), called_fmls))
+
+  fun <- eval(substitute(function(args) {
+    old <- set_call
     on.exit(reset(old))
     force(code)
-  }
+  }, list(set_call = set_call,
+          reset = if (missing(reset)) substitute(set) else substitute(reset))))
+
+  # substitute does not work on arguments, so we need to fix them manually
+  formals(fun) <- c(alist(new =, code =), fmls[-1])
+
+  fun
 }
 
 merge_new <- function(old, new, action, merge_fun = c) {
@@ -79,7 +101,7 @@ set_envvar <- function(envs, action = "replace") {
 #' environment variables will be unset.  If there are any duplicated variable
 #' names only the last one is used.
 #' @export
-with_envvar <- with_something(set_envvar, action = "replace")
+with_envvar <- with_something(set_envvar)
 
 # locale ---------------------------------------------------------------------
 
@@ -141,6 +163,7 @@ with_options <- with_something(set_options)
 # par ------------------------------------------------------------------------
 
 #' @describeIn with_something graphics parameters
+#' @param no.readonly see \code{\link{par}} documentation.
 #' @export
 with_par <- with_something(par)
 
@@ -148,7 +171,7 @@ with_par <- with_something(par)
 
 #' @describeIn with_something PATH environment variable
 #' @export
-with_path <- with_something(set_path, function(old) set_path(old, "replace"), action = "prefix")
+with_path <- with_something(set_path, function(old) set_path(old, "replace"))
 
 set_makevars <- function(variables,
                          old_path = file.path("~", ".R", "Makevars"),
