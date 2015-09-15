@@ -138,7 +138,7 @@ test_that("in_dir works and resets the working directory", {
 })
 test_that("with_makevars works and resets the Makevars file", {
   current <- tempfile()
-  cat(file = current, c("CFLAGS=-03"))
+  writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
   new <- c(CFLAGS = "-O0")
   with_makevars(
     new, path = current,
@@ -151,7 +151,7 @@ test_that("with_makevars works and resets the Makevars file", {
 test_that("with_makevars changes only the defined variables", {
   current_name <- tempfile()
   current <- c("CFLAGS=-03", "LDFLAGS=-lz")
-  cat(file = current_name, current, sep = "\n")
+  writeLines(con = current_name, current, sep = "\n")
   new <- c(CFLAGS = "-O0")
   with_makevars(
     new, path = current_name,
