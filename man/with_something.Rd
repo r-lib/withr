@@ -14,21 +14,21 @@
 \alias{with_something}
 \title{Execute code in temporarily altered environment.}
 \usage{
-with_envvar(new, code, ...)
+with_envvar(new, code, action = "replace")
 
-with_locale(new, code, ...)
+with_locale(new, code)
 
-with_collate(new, code, ...)
+with_collate(new, code)
 
-in_dir(new, code, ...)
+in_dir(new, code)
 
-with_libpaths(new, code, ...)
+with_libpaths(new, code, action = "replace")
 
-with_options(new, code, ...)
+with_options(new, code)
 
-with_par(new, code, ...)
+with_par(new, code, no.readonly = FALSE)
 
-with_path(new, code, ...)
+with_path(new, code, action = "prefix")
 
 with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 }
@@ -37,11 +37,13 @@ with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 
 \item{code}{code to execute in that environment}
 
-\item{path}{location of existing makevars to modify.}
-
 \item{action}{(for \code{with_envvar} and \code{with_path} only): should new values
 \code{"replace"}, \code{"suffix"}, \code{"prefix"} existing values?
 (For \code{with_envvar}, this refers to environmental variables with the same name.)}
+
+\item{no.readonly}{see \code{\link{par}} documentation.}
+
+\item{path}{location of existing makevars to modify.}
 }
 \description{
 Execute code in temporarily altered environment.
