@@ -18,17 +18,12 @@
 #' )
 NULL
 
-with_something <- function(set, reset = set) {
+with_something <- function(set, reset = set, envir = parent.frame()) {
 
   fmls <- formals(set)
 
   # called pass all extra formals on
   called_fmls <- setNames(lapply(names(fmls), as.symbol), names(fmls))
-
-  # when used in a call ... need to be the value, not the name
-  if (!is.null(called_fmls[["..."]])) {
-    names(called_fmls)[names(called_fmls) == "..."] <- ""
-  }
 
   # rename first formal to new
   called_fmls[[1]] <- as.symbol("new")
@@ -44,6 +39,8 @@ with_something <- function(set, reset = set) {
 
   # substitute does not work on arguments, so we need to fix them manually
   formals(fun) <- c(alist(new =, code =), fmls[-1])
+
+  environment(fun) <- envir
 
   fun
 }
