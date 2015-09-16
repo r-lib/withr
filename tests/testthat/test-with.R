@@ -169,3 +169,26 @@ test_that("with_makevars changes only the defined variables", {
   )
   expect_equal(current, readLines(current_name))
 })
+
+test_that("set_makevars works as expected", {
+  expect_equal(set_makevars(character(0)), NULL)
+
+  tmp_old <- tempfile()
+  tmp_new <- tempfile()
+
+  # empty old file
+  set_makevars(c(CFLAGS = "-O3"), tmp_old, tmp_new)
+  expect_equal(readLines(tmp_new), c("CFLAGS=-O3"))
+
+  # non-empty old file without new field
+  writeLines(con=tmp_old, c("LDFLAGS=-lz"))
+  set_makevars(c(CFLAGS = "-O3"), tmp_old, tmp_new)
+  expect_equal(readLines(tmp_new), c("LDFLAGS=-lz", "CFLAGS=-O3"))
+
+  # non-empty old file without multiple field definitions (error)
+  writeLines(con=tmp_old, c("CFLAGS=-O0", "CFLAGS=-O1"))
+  expect_error(set_makevars(c(CFLAGS = "-O3"), tmp_old, tmp_new))
+
+  unlink(tmp_old)
+  unlink(tmp_new)
+})
