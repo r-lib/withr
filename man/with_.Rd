@@ -24,8 +24,8 @@ added to the returned function.  If \code{set} does not have arguments,
 the returned function only has a \code{code} argument.
 }
 \description{
-This function is a "constructor" for \code{with_...} functions.  This
-function is only needed if you want to alter some global state which is
+This function is a "constructor" for \code{with_...} functions.  It
+is only needed if you want to alter some global state which is
 not covered by the existing \code{with_...} functions, see
 \link{withr-package} for an overview.
 }
