@@ -25,7 +25,7 @@
 #' }
 #' @examples
 #' getwd()
-#' in_dir(tempdir(), getwd())
+#' with_dir(tempdir(), getwd())
 #' getwd()
 #'
 #' Sys.getenv("HADLEY")
