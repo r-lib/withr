@@ -17,7 +17,4 @@ with_path(new, code, action = "prefix")
 \description{
 PATH environment variable
 }
-\seealso{
-Other path: \code{\link{path}}, \code{\link{set_path}}
-}
 
