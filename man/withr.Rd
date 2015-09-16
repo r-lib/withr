@@ -5,6 +5,9 @@
 \alias{withr}
 \alias{withr-package}
 \title{Execute code in temporarily altered environment}
+\usage{
+with_...(new, code, ...)
+}
 \arguments{
 \item{new}{\code{[various]}\cr Values for setting}
 
@@ -29,8 +32,18 @@ state.
 \item \code{\link{with_options}}: options
 \item \code{\link{with_par}}: graphics parameters
 \item \code{\link{with_path}}: PATH environment variable
-\item \code{\link{with_something}}: Execute code in temporarily altered environment
 }
+}
+
+\section{Creating new "with" functions}{
+
+All \code{with_} functions are created by a helper function,
+\code{\link{with_something}}.  This functions accepts two arguments:
+a setter function and an optional resetter function.  The setter function is
+expected to change the global state and return an "undo instruction".
+This undo instruction is then passed to the resetter function, which changes
+back the global state. In many cases, the setter function can be used
+naturally as resetter.
 }
 \examples{
 getwd()
