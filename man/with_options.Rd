@@ -7,11 +7,16 @@
 with_options(new, code)
 }
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[named list]}\cr New options and their values}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 }
 \description{
-Options
+Temporarily change global options.
+}
+\seealso{
+\code{\link{withr}} for examples
+
+\code{\link{options}}
 }
 

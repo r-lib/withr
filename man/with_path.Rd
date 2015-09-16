@@ -7,17 +7,19 @@
 with_path(new, code, action = "prefix")
 }
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[character]}\cr New \code{PATH} entries}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 
-\item{action}{should new values \code{"replace"}, \code{"prefix"} or
-\code{"suffix"} existing paths.}
+\item{action}{\code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
+\code{"suffix"} existing paths}
 }
 \description{
-PATH environment variable
+Temporarily change the system search path.
 }
 \seealso{
-Other path: \code{\link{path}}, \code{\link{set_path}}
+\code{\link{withr}} for examples
+
+\code{\link{Sys.setenv}}
 }
 

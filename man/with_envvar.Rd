@@ -2,23 +2,28 @@
 % Please edit documentation in R/env.R
 \name{with_envvar}
 \alias{with_envvar}
-\title{Environmental Variables}
+\title{Environment variables}
 \usage{
 with_envvar(new, code, action = "replace")
 }
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[named character]}\cr New environment variables}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 
 \item{action}{should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing variables with the same name.}
 }
 \description{
-Environmental Variables
+Temporarily change system environment variables.
 }
 \details{
-if \code{NA} is used those #' environment variables will be unset.
-If there are any duplicated variable #' names only the last one is used.
+if \code{NA} is used those environment variables will be unset.
+If there are any duplicated variable names only the last one is used.
+}
+\seealso{
+\code{\link{withr}} for examples
+
+\code{\link{Sys.setenv}}
 }
 

@@ -28,12 +28,16 @@ set_envvar <- function(envs, action = "replace") {
   invisible(old)
 }
 
-#' Environmental Variables
+#' Environment variables
 #'
-#' @inheritParams withr
+#' Temporarily change system environment variables.
+#'
+#' @template with
+#' @param new \code{[named character]}\cr New environment variables
 #' @param action should new values \code{"replace"}, \code{"prefix"} or
 #'   \code{"suffix"} existing variables with the same name.
-#' @details if \code{NA} is used those #' environment variables will be unset.
-#' If there are any duplicated variable #' names only the last one is used.
+#' @details if \code{NA} is used those environment variables will be unset.
+#' If there are any duplicated variable names only the last one is used.
+#' @seealso \code{\link{Sys.setenv}}
 #' @export
 with_envvar <- with_something(set_envvar)

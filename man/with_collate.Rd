@@ -7,11 +7,15 @@
 with_collate(new, code)
 }
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[character(1)]}\cr New collation order}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 }
 \description{
-Collation Order
+Temporarily change collation order by changing the value of the
+\code{LC_COLLATE} locale.
+}
+\seealso{
+\code{\link{withr}} for examples
 }
 
