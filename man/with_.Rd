@@ -2,7 +2,7 @@
 % Please edit documentation in R/with_.R
 \name{with_}
 \alias{with_}
-\title{Execute code in temporarily altered environment.}
+\title{Create a new "with" function}
 \usage{
 with_(set, reset = set, envir = parent.frame())
 }
@@ -20,9 +20,14 @@ with_(set, reset = set, envir = parent.frame())
 \item \code{code}: Code to run in that state.
 }
 If there are more arguments to the function passed in \code{set} they are
-added to the returned function.
+added to the returned function.  If \code{set} does not have arguments,
+the returned function only has a \code{code} argument.
 }
 \description{
-Execute code in temporarily altered environment.
+This function is a "constructor" for \code{with_...} functions.  This
+function is only needed if you want to alter some global state which is
+not covered by the existing \code{with_...} functions, see
+\link{withr-package} for an overview.
 }
+\keyword{internal}
 
