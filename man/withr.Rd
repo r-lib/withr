@@ -4,28 +4,32 @@
 \name{withr}
 \alias{withr}
 \alias{withr-package}
-\title{Execute code in temporarily altered environment.}
+\title{Execute code in temporarily altered environment}
 \arguments{
-\item{new}{\code{[any]}\cr Values for setting}
+\item{new}{\code{[various]}\cr Values for setting}
 
 \item{code}{\code{[any]}\cr Code to execute in that environment}
 }
 \description{
-Execute code in temporarily altered environment.
+All functions prefixed by \code{with_} work as follows. First, a particular
+aspect of the global environment is modified (see below for a list).
+Then, custom code (passed via the \code{code} argument) is executed.
+Upon completion or error, the global environment is restored to the previous
+state.
 }
 \section{withr functions}{
 
 \itemize{
-\item \code{with_collate}: collation order
-\item \code{with_dir}: working directory
-\item \code{with_envvar}: environment variables
-\item \code{with_libpaths}: library paths, replacing current libpaths
-\item \code{with_locale}: any locale setting
-\item \code{with_makevars}: Makevars variables
-\item \code{with_options}: options
-\item \code{with_par}: graphics parameters
-\item \code{with_path}: PATH environment variable
-\item \code{with_something}: Execute code in temporarily altered environment
+\item \code{\link{with_collate}}: collation order
+\item \code{\link{with_dir}}: working directory
+\item \code{\link{with_envvar}}: environment variables
+\item \code{\link{with_libpaths}}: library paths, replacing current libpaths
+\item \code{\link{with_locale}}: any locale setting
+\item \code{\link{with_makevars}}: Makevars variables
+\item \code{\link{with_options}}: options
+\item \code{\link{with_par}}: graphics parameters
+\item \code{\link{with_path}}: PATH environment variable
+\item \code{\link{with_something}}: Execute code in temporarily altered environment
 }
 }
 \examples{
