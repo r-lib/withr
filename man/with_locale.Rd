@@ -14,6 +14,9 @@ with_locale(new, code)
 \description{
 Temporarily change locale settings.
 }
+\details{
+Setting the \code{LC_ALL} category is currently not implemented.
+}
 \seealso{
 \code{\link{withr}} for examples
 

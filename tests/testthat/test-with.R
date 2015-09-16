@@ -131,6 +131,10 @@ test_that("with_locale works and resets locales", {
   expect_equal(current, Sys.getlocale("LC_CTYPE"))
 })
 
+test_that("with_locale fails with LC_ALL", {
+  expect_error(with_locale(c(LC_ALL = "C"), NULL), "LC_ALL")
+})
+
 test_that("with_collate works and resets collate", {
   current <- Sys.getlocale("LC_COLLATE")
   new <- "C"
