@@ -118,6 +118,7 @@ test_that("with_libpaths works and resets library", {
   )
   expect_equal(lib, .libPaths())
 })
+
 test_that("with_locale works and resets locales", {
   current <- Sys.getlocale("LC_CTYPE")
   new <- "C"
@@ -129,6 +130,7 @@ test_that("with_locale works and resets locales", {
   )
   expect_equal(current, Sys.getlocale("LC_CTYPE"))
 })
+
 test_that("with_collate works and resets collate", {
   current <- Sys.getlocale("LC_COLLATE")
   new <- "C"
@@ -140,17 +142,7 @@ test_that("with_collate works and resets collate", {
   )
   expect_equal(current, Sys.getlocale("LC_COLLATE"))
 })
-test_that("in_dir works and resets the working directory", {
-  current <- normalizePath(getwd())
-  new <- normalizePath("..")
-  in_dir(
-    new,
-    {
-      expect_equal(new, normalizePath(getwd()))
-    }
-  )
-  expect_equal(current, normalizePath(getwd()))
-})
+
 test_that("with_makevars works and resets the Makevars file", {
   current <- tempfile()
   writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
@@ -163,6 +155,7 @@ test_that("with_makevars works and resets the Makevars file", {
   )
   expect_equal("CFLAGS=-03", readLines(current))
 })
+
 test_that("with_makevars changes only the defined variables", {
   current_name <- tempfile()
   current <- c("CFLAGS=-03", "LDFLAGS=-lz")
