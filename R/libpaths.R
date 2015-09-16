@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 
 # lib ------------------------------------------------------------------------
 
@@ -22,4 +22,4 @@ set_libpaths <- function(paths, action = "replace") {
 #'   \code{"suffix"} existing paths.
 #' @seealso \code{\link{.libPaths}}
 #' @export
-with_libpaths <- with_something(set_libpaths, .libPaths)
+with_libpaths <- with_(set_libpaths, .libPaths)

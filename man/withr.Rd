@@ -38,7 +38,7 @@ state.
 \section{Creating new "with" functions}{
 
 All \code{with_} functions are created by a helper function,
-\code{\link{with_something}}.  This functions accepts two arguments:
+\code{\link{with_}}.  This functions accepts two arguments:
 a setter function and an optional resetter function.  The setter function is
 expected to change the global state and return an "undo instruction".
 This undo instruction is then passed to the resetter function, which changes

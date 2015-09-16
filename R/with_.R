@@ -3,7 +3,7 @@
 #' @param set Function used to set the state.
 #' @param reset Function used to reset the state.
 #' @param envir Environment of the returned function.
-#' @return \code{with_something()} A function with at least two arguments,
+#' @return \code{with_()} A function with at least two arguments,
 #' \itemize{
 #' \item \code{new}: New state to use
 #' \item \code{code}: Code to run in that state.
@@ -11,7 +11,7 @@
 #' If there are more arguments to the function passed in \code{set} they are
 #' added to the returned function.
 #' @export
-with_something <- function(set, reset = set, envir = parent.frame()) {
+with_ <- function(set, reset = set, envir = parent.frame()) {
 
   fmls <- formals(set)
 
