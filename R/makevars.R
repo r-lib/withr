@@ -37,13 +37,17 @@ set_makevars <- function(variables,
 
 #' Makevars variables
 #'
-#' @inheritParams withr
-#' @param path location of existing makevars to modify.
-#' @details If no existing makevars file exists or the fields in \code{new} do
+#' Temporarily change contents of an existing \code{Makevars} file.
+#'
+#' @details If no \code{Makevars} file exists or the fields in \code{new} do
 #' not exist in the existing \code{Makevars} file then the fields are added to
 #' the new file.  Existing fields which are not included in \code{new} are
 #' appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}
 #' are modified to use the value in \code{new}.
+#'
+#' @inheritParams withr
+#' @param new \code{[named character]}\cr New variables and their values
+#' @param path \code{[character(1)]}\cr location of existing \code{Makevars} file to modify.
 #' @export
 with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars")) {
   makevars_file <- tempfile()

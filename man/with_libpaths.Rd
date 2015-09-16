@@ -2,19 +2,22 @@
 % Please edit documentation in R/lib.R
 \name{with_libpaths}
 \alias{with_libpaths}
-\title{library paths, replacing current libpaths}
+\title{Library paths}
 \usage{
 with_libpaths(new, code, action = "replace")
 }
 \arguments{
-\item{new}{\code{[any]}\cr Values for setting}
+\item{new}{\code{[character]}\cr New library paths}
 
 \item{code}{\code{[any]}\cr Code to execute in that environment}
 
-\item{action}{should new values \code{"replace"}, \code{"prefix"} or
+\item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths.}
 }
 \description{
-library paths, replacing current libpaths
+Temporarily change library paths.
+}
+\seealso{
+\code{\link{.libPaths}}
 }
 

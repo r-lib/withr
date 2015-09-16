@@ -12,9 +12,14 @@ set_libpaths <- function(paths, action = "replace") {
   invisible(old)
 }
 
-#' library paths, replacing current libpaths
+#' Library paths
+#'
+#' Temporarily change library paths.
+#'
 #' @inheritParams withr
-#' @param action should new values \code{"replace"}, \code{"prefix"} or
+#' @param new \code{[character]}\cr New library paths
+#' @param action \code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 #'   \code{"suffix"} existing paths.
+#' @seealso \code{\link{.libPaths}}
 #' @export
 with_libpaths <- with_something(set_libpaths, .libPaths)

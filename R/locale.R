@@ -9,7 +9,12 @@ set_locale <- function(cats) {
   invisible(old)
 }
 
-#' any locale setting
+#' Locale settings
+#'
+#' Temporarily change locale settings.
+#'
 #' @inheritParams withr
+#' @param new \code{[named character]}\cr New locale settings
+#' @seealso \code{\link{Sys.setlocale}}
 #' @export
 with_locale <- with_something(set_locale)

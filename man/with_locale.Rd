@@ -2,16 +2,19 @@
 % Please edit documentation in R/locale.R
 \name{with_locale}
 \alias{with_locale}
-\title{any locale setting}
+\title{Locale settings}
 \usage{
 with_locale(new, code)
 }
 \arguments{
-\item{new}{\code{[any]}\cr Values for setting}
+\item{new}{\code{[named character]}\cr New locale settings}
 
 \item{code}{\code{[any]}\cr Code to execute in that environment}
 }
 \description{
-any locale setting
+Temporarily change locale settings.
+}
+\seealso{
+\code{\link{Sys.setlocale}}
 }
 

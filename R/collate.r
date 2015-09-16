@@ -10,5 +10,6 @@ set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
 #' \code{LC_COLLATE} locale.
 #'
 #' @inheritParams withr
+#' @param new \code{[character(1)]}\cr New collation order
 #' @export
 with_collate <- with_something(set_collate)

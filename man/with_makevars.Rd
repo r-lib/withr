@@ -7,17 +7,17 @@
 with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 }
 \arguments{
-\item{new}{\code{[any]}\cr Values for setting}
+\item{new}{\code{[named character]}\cr New variables and their values}
 
 \item{code}{\code{[any]}\cr Code to execute in that environment}
 
-\item{path}{location of existing makevars to modify.}
+\item{path}{\code{[character(1)]}\cr location of existing \code{Makevars} file to modify.}
 }
 \description{
-Makevars variables
+Temporarily change contents of an existing \code{Makevars} file.
 }
 \details{
-If no existing makevars file exists or the fields in \code{new} do
+If no \code{Makevars} file exists or the fields in \code{new} do
 not exist in the existing \code{Makevars} file then the fields are added to
 the new file.  Existing fields which are not included in \code{new} are
 appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}

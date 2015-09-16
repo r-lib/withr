@@ -2,18 +2,21 @@
 % Please edit documentation in R/par.R
 \name{with_par}
 \alias{with_par}
-\title{Graphics Parameters}
+\title{Graphics parameters}
 \usage{
 with_par(new, code, no.readonly = FALSE)
 }
 \arguments{
-\item{new}{\code{[any]}\cr Values for setting}
+\item{new}{\code{[named list]}\cr New graphics parameters and their values}
 
 \item{code}{\code{[any]}\cr Code to execute in that environment}
 
-\item{no.readonly}{see \code{\link{par}} documentation.}
+\item{no.readonly}{\code{[logical(1)]}\cr see \code{\link{par}} documentation.}
 }
 \description{
-Graphics Parameters
+Temporarily change graphics parameters.
+}
+\seealso{
+\code{\link{par}}
 }
 

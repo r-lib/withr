@@ -16,9 +16,13 @@ set_path <- function(path, action = "prefix") {
 }
 
 #' PATH environment variable
+#'
+#' Temporarily change the system search path.
+#'
 #' @inheritParams withr
-#' @param action should new values \code{"replace"}, \code{"prefix"} or
-#'   \code{"suffix"} existing paths.
-#' @family path
+#' @param new \code{[character]}\cr New \code{PATH} entries
+#' @param action \code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
+#'   \code{"suffix"} existing paths
+#' @seealso \code{\link{Sys.setenv}}
 #' @export
 with_path <- with_something(set_path, function(old) set_path(old, "replace"))

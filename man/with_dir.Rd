@@ -2,16 +2,19 @@
 % Please edit documentation in R/working_directory.R
 \name{with_dir}
 \alias{with_dir}
-\title{Working Directory}
+\title{Working directory}
 \usage{
 with_dir(new, code)
 }
 \arguments{
-\item{new}{\code{[any]}\cr Values for setting}
+\item{new}{\code{[character(1)]}\cr New working directory}
 
 \item{code}{\code{[any]}\cr Code to execute in that environment}
 }
 \description{
-Working Directory
+Temorarily change the current working directory.
+}
+\seealso{
+\code{\link{setwd}}
 }
 
