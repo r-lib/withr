@@ -1,3 +1,4 @@
+Encoding: UTF-8
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
 Version: 0.0.0.9002
