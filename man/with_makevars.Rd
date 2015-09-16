@@ -7,9 +7,9 @@
 with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 }
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[any]}\cr Values for setting}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 
 \item{path}{location of existing makevars to modify.}
 }

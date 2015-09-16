@@ -6,9 +6,9 @@
 \alias{withr-package}
 \title{Execute code in temporarily altered environment.}
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[any]}\cr Values for setting}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 }
 \description{
 Execute code in temporarily altered environment.

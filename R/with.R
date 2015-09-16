@@ -1,7 +1,7 @@
 #' Execute code in temporarily altered environment.
 #'
-#' @param new Values for setting
-#' @param code Code to execute in that environment
+#' @param new \code{[any]}\cr Values for setting
+#' @param code \code{[any]}\cr Code to execute in that environment
 #' @name withr
 #' @docType package
 #' @section withr functions:

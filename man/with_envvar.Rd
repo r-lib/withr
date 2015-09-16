@@ -7,9 +7,9 @@
 with_envvar(new, code, action = "replace")
 }
 \arguments{
-\item{new}{Values for setting}
+\item{new}{\code{[any]}\cr Values for setting}
 
-\item{code}{Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in that environment}
 
 \item{action}{should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing variables with the same name.}
