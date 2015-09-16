@@ -16,15 +16,16 @@ Execute code in temporarily altered environment.
 \section{withr functions}{
 
 \itemize{
-\item \code{with_locale}: any locale setting
 \item \code{with_collate}: collation order
-\item \code{with_env}: environment variables
-\item \code{in_dir}: working directory
+\item \code{with_dir}: working directory
+\item \code{with_envvar}: environment variables
 \item \code{with_libpaths}: library paths, replacing current libpaths
+\item \code{with_locale}: any locale setting
+\item \code{with_makevars}: Makevars variables
 \item \code{with_options}: options
 \item \code{with_par}: graphics parameters
 \item \code{with_path}: PATH environment variable
-\item \code{with_makevars}: Makevars variables
+\item \code{with_something}: Execute code in temporarily altered environment
 }
 }
 \examples{
