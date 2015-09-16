@@ -15,6 +15,8 @@ with_dir(new, code)
 Temorarily change the current working directory.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{setwd}}
 }
 

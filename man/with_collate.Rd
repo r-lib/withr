@@ -15,4 +15,7 @@ with_collate(new, code)
 Temporarily change collation order by changing the value of the
 \code{LC_COLLATE} locale.
 }
+\seealso{
+\code{\link{withr}} for examples
+}
 

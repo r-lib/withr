@@ -17,6 +17,8 @@ with_par(new, code, no.readonly = FALSE)
 Temporarily change graphics parameters.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{par}}
 }
 

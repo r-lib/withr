@@ -15,6 +15,8 @@ with_locale(new, code)
 Temporarily change locale settings.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{Sys.setlocale}}
 }
 

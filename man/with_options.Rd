@@ -15,6 +15,8 @@ with_options(new, code)
 Temporarily change global options.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{options}}
 }
 

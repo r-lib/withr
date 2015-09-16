@@ -7,7 +7,7 @@ NULL
 #'
 #' Temporarily change graphics parameters.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[named list]}\cr New graphics parameters and their values
 #' @param no.readonly \code{[logical(1)]}\cr see \code{\link{par}} documentation.
 #' @seealso \code{\link{par}}

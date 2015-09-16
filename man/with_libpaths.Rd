@@ -18,6 +18,8 @@ with_libpaths(new, code, action = "replace")
 Temporarily change library paths.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{.libPaths}}
 }
 

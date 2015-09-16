@@ -22,6 +22,8 @@ if \code{NA} is used those environment variables will be unset.
 If there are any duplicated variable names only the last one is used.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{Sys.setenv}}
 }
 

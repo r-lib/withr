@@ -13,7 +13,7 @@ set_locale <- function(cats) {
 #'
 #' Temporarily change locale settings.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[named character]}\cr New locale settings
 #' @seealso \code{\link{Sys.setlocale}}
 #' @export

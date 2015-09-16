@@ -10,7 +10,7 @@ set_options <- function(new_options) {
 #'
 #' Temporarily change global options.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[named list]}\cr New options and their values
 #' @seealso \code{\link{options}}
 #' @export

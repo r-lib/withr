@@ -23,4 +23,7 @@ the new file.  Existing fields which are not included in \code{new} are
 appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}
 are modified to use the value in \code{new}.
 }
+\seealso{
+\code{\link{withr}} for examples
+}
 

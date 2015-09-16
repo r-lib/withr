@@ -7,7 +7,7 @@ NULL
 #'
 #' Temorarily change the current working directory.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[character(1)]}\cr New working directory
 #' @seealso \code{\link{setwd}}
 #' @export

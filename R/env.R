@@ -32,7 +32,7 @@ set_envvar <- function(envs, action = "replace") {
 #'
 #' Temporarily change system environment variables.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[named character]}\cr New environment variables
 #' @param action should new values \code{"replace"}, \code{"prefix"} or
 #'   \code{"suffix"} existing variables with the same name.

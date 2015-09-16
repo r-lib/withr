@@ -6,3 +6,4 @@
 ^NEWS\.MD$
 ^appveyor\.yml$
 ^\.Rproj\.user$
+^man-roxygen$

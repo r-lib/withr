@@ -19,7 +19,7 @@ set_path <- function(path, action = "prefix") {
 #'
 #' Temporarily change the system search path.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[character]}\cr New \code{PATH} entries
 #' @param action \code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
 #'   \code{"suffix"} existing paths

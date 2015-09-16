@@ -18,6 +18,8 @@ with_path(new, code, action = "prefix")
 Temporarily change the system search path.
 }
 \seealso{
+\code{\link{withr}} for examples
+
 \code{\link{Sys.setenv}}
 }
 

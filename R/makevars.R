@@ -45,7 +45,7 @@ set_makevars <- function(variables,
 #' appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}
 #' are modified to use the value in \code{new}.
 #'
-#' @inheritParams withr
+#' @template with
 #' @param new \code{[named character]}\cr New variables and their values
 #' @param path \code{[character(1)]}\cr location of existing \code{Makevars} file to modify.
 #' @export
