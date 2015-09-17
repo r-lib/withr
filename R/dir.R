@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 NULL
 
 # working directory ----------------------------------------------------------
@@ -11,4 +11,4 @@ NULL
 #' @param new \code{[character(1)]}\cr New working directory
 #' @seealso \code{\link{setwd}}
 #' @export
-with_dir <- with_something(setwd)
+with_dir <- with_(setwd)

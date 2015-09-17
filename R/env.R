@@ -40,4 +40,4 @@ set_envvar <- function(envs, action = "replace") {
 #' If there are any duplicated variable names only the last one is used.
 #' @seealso \code{\link{Sys.setenv}}
 #' @export
-with_envvar <- with_something(set_envvar)
+with_envvar <- with_(set_envvar)

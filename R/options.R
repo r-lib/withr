@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 
 # options --------------------------------------------------------------------
 
@@ -14,4 +14,4 @@ set_options <- function(new_options) {
 #' @param new \code{[named list]}\cr New options and their values
 #' @seealso \code{\link{options}}
 #' @export
-with_options <- with_something(set_options)
+with_options <- with_(set_options)

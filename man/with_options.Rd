@@ -9,7 +9,7 @@ with_options(new, code)
 \arguments{
 \item{new}{\code{[named list]}\cr New options and their values}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
 \description{
 Temporarily change global options.

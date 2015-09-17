@@ -9,7 +9,7 @@ with_par(new, code, no.readonly = FALSE)
 \arguments{
 \item{new}{\code{[named list]}\cr New graphics parameters and their values}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{no.readonly}{\code{[logical(1)]}\cr see \code{\link{par}} documentation.}
 }

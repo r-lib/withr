@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 
 # lib ------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ set_temp_libpath <- function() {
 #' @seealso \code{\link{.libPaths}}
 #' @family libpaths
 #' @export
-with_libpaths <- with_something(set_libpaths, .libPaths)
+with_libpaths <- with_(set_libpaths, .libPaths)
 
 #' Library paths
 #'
@@ -39,4 +39,4 @@ with_libpaths <- with_something(set_libpaths, .libPaths)
 #' @seealso \code{\link{.libPaths}}
 #' @family libpaths
 #' @export
-with_temp_libpaths <- with_something(set_temp_libpath, .libPaths)
+with_temp_libpaths <- with_(set_temp_libpath, .libPaths)

@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 NULL
 
 # par ------------------------------------------------------------------------
@@ -12,4 +12,4 @@ NULL
 #' @param no.readonly \code{[logical(1)]}\cr see \code{\link{par}} documentation.
 #' @seealso \code{\link{par}}
 #' @export
-with_par <- with_something(par)
+with_par <- with_(par)
