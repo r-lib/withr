@@ -22,11 +22,20 @@ with_ <- function(set, reset = set, envir = parent.frame()) {
 
   fmls <- formals(set)
 
-  # called pass all extra formals on
-  called_fmls <- setNames(lapply(names(fmls), as.symbol), names(fmls))
+  if (length(fmls) > 0L) {
+    # called pass all extra formals on
+    called_fmls <- setNames(lapply(names(fmls), as.symbol), names(fmls))
 
-  # rename first formal to new
-  called_fmls[[1]] <- as.symbol("new")
+    # rename first formal to new
+    called_fmls[[1]] <- as.symbol("new")
+
+    fun_args <- c(alist(new =, code =), fmls[-1L])
+  } else {
+    # no formals -- only have code
+    called_fmls <- NULL
+
+    fun_args <- alist(code =)
+  }
 
   set_call <- as.call(c(substitute(set), called_fmls))
 
@@ -38,7 +47,7 @@ with_ <- function(set, reset = set, envir = parent.frame()) {
           reset = if (missing(reset)) substitute(set) else substitute(reset))))
 
   # substitute does not work on arguments, so we need to fix them manually
-  formals(fun) <- c(alist(new =, code =), fmls[-1])
+  formals(fun) <- fun_args
 
   environment(fun) <- envir
 
