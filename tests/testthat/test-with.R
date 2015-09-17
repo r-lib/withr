@@ -212,3 +212,14 @@ test_that("with_dir works as expected", {
   })
   expect_equal(normalizePath(getwd()), normalizePath(old))
 })
+
+test_that("with_par works as expected", {
+
+  pdf()
+  old <- par("pty")
+  with_par(list(pty = "s"), {
+    expect_equal(par("pty"), "s")
+  })
+  expect_equal(par("pty"), old)
+  dev.off()
+})
