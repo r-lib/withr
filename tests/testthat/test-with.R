@@ -207,6 +207,7 @@ test_that("set_makevars works as expected", {
 
 test_that("with_par works as expected", {
 
+  pdf()
   old <- par("pty")
   with_par(list(pty = "s"), {
     expect_equal(par("pty"), "s")
