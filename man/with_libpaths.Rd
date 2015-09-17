@@ -9,7 +9,7 @@ with_libpaths(new, code, action = "replace")
 \arguments{
 \item{new}{\code{[character]}\cr New library paths}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths.}
