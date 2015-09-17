@@ -5,11 +5,6 @@
 \alias{withr}
 \alias{withr-package}
 \title{Execute code in temporarily altered environment}
-\arguments{
-\item{new}{\code{[various]}\cr Values for setting}
-
-\item{code}{\code{[any]}\cr Code to execute in that environment}
-}
 \description{
 All functions prefixed by \code{with_} work as follows. First, a particular
 aspect of the global environment is modified (see below for a list).
@@ -17,6 +12,15 @@ Then, custom code (passed via the \code{code} argument) is executed.
 Upon completion or error, the global environment is restored to the previous
 state.
 }
+\section{Arguments pattern}{
+
+\tabular{lll}{
+  \code{new} \tab \code{[various]} \tab Values for setting \cr
+  \code{code} \tab \code{[any]} \tab Code to execute in the temporary environment \cr
+  \code{...} \tab \tab Further arguments \cr
+}
+}
+
 \section{Usage pattern}{
 
 \code{with_...(new, code, ...)}

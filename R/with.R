@@ -6,10 +6,14 @@
 #' Upon completion or error, the global environment is restored to the previous
 #' state.
 #'
+#' @section Arguments pattern:
+#' \tabular{lll}{
+#'   \code{new} \tab \code{[various]} \tab Values for setting \cr
+#'   \code{code} \tab \code{[any]} \tab Code to execute in the temporary environment \cr
+#'   \code{...} \tab \tab Further arguments \cr
+#' }
 #' @section Usage pattern:
 #' \code{with_...(new, code, ...)}
-#' @param new \code{[various]}\cr Values for setting
-#' @param code \code{[any]}\cr Code to execute in that environment
 #' @name withr
 #' @docType package
 #' @section withr functions:
