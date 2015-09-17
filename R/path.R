@@ -25,4 +25,4 @@ set_path <- function(path, action = "prefix") {
 #'   \code{"suffix"} existing paths
 #' @seealso \code{\link{Sys.setenv}}
 #' @export
-with_path <- with_something(set_path, function(old) set_path(old, "replace"))
+with_path <- with_(set_path, function(old) set_path(old, "replace"))

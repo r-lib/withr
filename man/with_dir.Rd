@@ -9,7 +9,7 @@ with_dir(new, code)
 \arguments{
 \item{new}{\code{[character(1)]}\cr New working directory}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
 \description{
 Temorarily change the current working directory.

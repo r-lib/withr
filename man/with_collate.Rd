@@ -9,7 +9,7 @@ with_collate(new, code)
 \arguments{
 \item{new}{\code{[character(1)]}\cr New collation order}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
 \description{
 Temporarily change collation order by changing the value of the

@@ -22,7 +22,7 @@ Suggests:
     testthat,
     lintr
 Collate:
-    'with_something.R'
+    'with_.R'
     'collate.r'
     'dir.R'
     'env.R'

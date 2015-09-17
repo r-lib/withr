@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 
 # collate --------------------------------------------------------------------
 
@@ -12,4 +12,4 @@ set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
 #' @template with
 #' @param new \code{[character(1)]}\cr New collation order
 #' @export
-with_collate <- with_something(set_collate)
+with_collate <- with_(set_collate)

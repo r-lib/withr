@@ -1,4 +1,4 @@
-#' @include with_something.R
+#' @include with_.R
 
 # Makevars --------------------------------------------------------------------
 

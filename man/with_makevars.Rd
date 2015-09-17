@@ -9,7 +9,7 @@ with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 \arguments{
 \item{new}{\code{[named character]}\cr New variables and their values}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{path}{\code{[character(1)]}\cr location of existing \code{Makevars} file to modify.}
 }

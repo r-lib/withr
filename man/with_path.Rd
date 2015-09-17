@@ -9,7 +9,7 @@ with_path(new, code, action = "prefix")
 \arguments{
 \item{new}{\code{[character]}\cr New \code{PATH} entries}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{action}{\code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths}

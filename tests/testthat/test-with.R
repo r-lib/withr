@@ -61,7 +61,7 @@ test_that("with_temp_libpaths works and resets library", {
   expect_equal(lib, .libPaths())
 })
 
-test_that("with_something works", {
+test_that("with_ works", {
   res <- NULL
   set <- function(new) {
     res <<- c(res, 1L)
@@ -69,7 +69,7 @@ test_that("with_something works", {
   reset <- function(old) {
     res <<- c(res, 3L)
   }
-  with_res <- with_something(set, reset)
+  with_res <- with_(set, reset)
   with_res(NULL, res <- c(res, 2L))
   expect_equal(res, 1L:3L)
 })
