@@ -204,3 +204,13 @@ test_that("set_makevars works as expected", {
   unlink(tmp_old)
   unlink(tmp_new)
 })
+
+test_that("with_par works as expected", {
+
+  old <- par("pty")
+  with_par(list(pty = "s"), {
+    expect_equal(par("pty"), "s")
+  })
+  expect_equal(par("pty"), old)
+  dev.off()
+})
