@@ -74,6 +74,19 @@ test_that("with_ works", {
   expect_equal(res, 1L:3L)
 })
 
+test_that("with_ works on functions without arguments", {
+  res <- NULL
+  set <- function() {
+    res <<- c(res, 1L)
+  }
+  reset <- function(x) {
+    res <<- c(res, 3L)
+  }
+  with_res <- with_(set, reset)
+  with_res(res <- c(res, 2L))
+  expect_equal(res, 1L:3L)
+})
+
 test_that("with_path works and resets path", {
   current <- normalizePath(get_path())
   new_path <- normalizePath(".")
