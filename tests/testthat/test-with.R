@@ -204,3 +204,11 @@ test_that("set_makevars works as expected", {
   unlink(tmp_old)
   unlink(tmp_new)
 })
+
+test_that("with_dir works as expected", {
+  old <- normalizePath(getwd())
+  with_dir("..", {
+    expect_equal(normalizePath(getwd()), normalizePath(file.path(old, "..")))
+  })
+  expect_equal(getwd(), old)
+})
