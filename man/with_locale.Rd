@@ -9,7 +9,7 @@ with_locale(new, code)
 \arguments{
 \item{new}{\code{[named character]}\cr New locale settings}
 
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
 \description{
 Temporarily change locale settings.
