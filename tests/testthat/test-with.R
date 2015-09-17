@@ -210,5 +210,5 @@ test_that("with_dir works as expected", {
   with_dir("..", {
     expect_equal(normalizePath(getwd()), normalizePath(file.path(old, "..")))
   })
-  expect_equal(getwd(), old)
+  expect_equal(normalizePath(getwd()), normalizePath(old))
 })
