@@ -53,6 +53,14 @@ test_that("with_libpaths works and resets library", {
   expect_equal(lib, .libPaths())
 })
 
+test_that("with_temp_libpaths works and resets library", {
+  lib <- .libPaths()
+  with_temp_libpaths(
+    expect_equal(.libPaths()[-1], lib)
+  )
+  expect_equal(lib, .libPaths())
+})
+
 test_that("with_something works", {
   res <- NULL
   set <- function(new) {
@@ -129,6 +137,10 @@ test_that("with_locale works and resets locales", {
     }
   )
   expect_equal(current, Sys.getlocale("LC_CTYPE"))
+})
+
+test_that("with_locale fails with LC_ALL", {
+  expect_error(with_locale(c(LC_ALL = "C"), NULL), "LC_ALL")
 })
 
 test_that("with_collate works and resets collate", {

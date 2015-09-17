@@ -21,5 +21,7 @@ Temporarily change library paths.
 \code{\link{withr}} for examples
 
 \code{\link{.libPaths}}
+
+Other libpaths: \code{\link{with_temp_libpaths}}
 }
 
