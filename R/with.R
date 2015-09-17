@@ -6,7 +6,8 @@
 #' Upon completion or error, the global environment is restored to the previous
 #' state.
 #'
-#' @usage with_...(new, code, ...)
+#' @section Usage pattern:
+#' \code{with_...(new, code, ...)}
 #' @param new \code{[various]}\cr Values for setting
 #' @param code \code{[any]}\cr Code to execute in that environment
 #' @name withr

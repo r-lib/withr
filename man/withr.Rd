@@ -5,9 +5,6 @@
 \alias{withr}
 \alias{withr-package}
 \title{Execute code in temporarily altered environment}
-\usage{
-with_...(new, code, ...)
-}
 \arguments{
 \item{new}{\code{[various]}\cr Values for setting}
 
@@ -20,6 +17,11 @@ Then, custom code (passed via the \code{code} argument) is executed.
 Upon completion or error, the global environment is restored to the previous
 state.
 }
+\section{Usage pattern}{
+
+\code{with_...(new, code, ...)}
+}
+
 \section{withr functions}{
 
 \itemize{
