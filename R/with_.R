@@ -10,8 +10,8 @@
 #'   in the formals of the returned function.
 #' @param reset \code{[function(x)]}\cr Function used to reset the state.
 #'   The first argument can be named arbitrarily, further arguments with default
-#'   values, or a "dots" argument, are supported. The function will be called as
-#'   \code{reset(old)}.
+#'   values, or a "dots" argument, are supported but not used: The function will
+#'   be called as \code{reset(old)}.
 #' @param envir \code{[environment]}\cr Environment of the returned function.
 #' @return \code{[function(new, code, ...)]} A function with at least two arguments,
 #' \itemize{

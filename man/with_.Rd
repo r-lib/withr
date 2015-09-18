@@ -13,8 +13,8 @@ in the formals of the returned function.}
 
 \item{reset}{\code{[function(x)]}\cr Function used to reset the state.
 The first argument can be named arbitrarily, further arguments with default
-values, or a "dots" argument, are supported. The function will be called as
-\code{reset(old)}.}
+values, or a "dots" argument, are supported but not used: The function will
+be called as \code{reset(old)}.}
 
 \item{envir}{\code{[environment]}\cr Environment of the returned function.}
 }
