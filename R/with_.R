@@ -39,9 +39,9 @@ with_ <- function(set, reset = set, envir = parent.frame()) {
 
   set_call <- as.call(c(substitute(set), called_fmls))
 
-  fun <- eval(substitute(function(args) {
-    old <- set_call
-    on.exit(reset(old))
+  fun <- eval(bquote(function(args) {
+    old <- .(set_call)
+    on.exit(.(reset)(old))
     force(code)
   }, list(set_call = set_call,
           reset = if (missing(reset)) substitute(set) else substitute(reset))))
