@@ -7,7 +7,7 @@
 with_temp_libpaths(code)
 }
 \arguments{
-\item{code}{\code{[any]}\cr Code to execute in that environment}
+\item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
 \description{
 Temporarily prepend a new temporary directory to the library paths.
