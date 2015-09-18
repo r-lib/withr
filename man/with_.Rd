@@ -36,7 +36,6 @@ not covered by the existing \code{with_...} functions, see
 }
 \examples{
 with_(setwd)
-with_(options)
 
 global_stack <- list()
 set_global_state <- function(state, msg = "Changing global state.") {

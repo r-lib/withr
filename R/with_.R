@@ -24,7 +24,6 @@
 #' @keywords internal
 #' @examples
 #' with_(setwd)
-#' with_(options)
 #'
 #' global_stack <- list()
 #' set_global_state <- function(state, msg = "Changing global state.") {
