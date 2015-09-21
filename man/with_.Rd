@@ -7,14 +7,19 @@
 with_(set, reset = set, envir = parent.frame())
 }
 \arguments{
-\item{set}{Function used to set the state.}
+\item{set}{\code{[function(...)]}\cr Function used to set the state.
+The function can have arbirarily many arguments, they will be replicated
+in the formals of the returned function.}
 
-\item{reset}{Function used to reset the state.}
+\item{reset}{\code{[function(x)]}\cr Function used to reset the state.
+The first argument can be named arbitrarily, further arguments with default
+values, or a "dots" argument, are supported but not used: The function will
+be called as \code{reset(old)}.}
 
-\item{envir}{Environment of the returned function.}
+\item{envir}{\code{[environment]}\cr Environment of the returned function.}
 }
 \value{
-\code{with_()} A function with at least two arguments,
+\code{[function(new, code, ...)]} A function with at least two arguments,
 \itemize{
 \item \code{new}: New state to use
 \item \code{code}: Code to run in that state.
@@ -28,6 +33,22 @@ This function is a "constructor" for \code{with_...} functions.  It
 is only needed if you want to alter some global state which is
 not covered by the existing \code{with_...} functions, see
 \link{withr-package} for an overview.
+}
+\examples{
+with_(setwd)
+
+global_stack <- list()
+set_global_state <- function(state, msg = "Changing global state.") {
+  global_stack <- c(list(state), global_stack)
+  message(msg)
+  state
+}
+reset_global_state <- function(state) {
+  old_state <- global_stack[[1]]
+  global_stack <- global_stack[-1]
+  stopifnot(identical(state, old_state))
+}
+with_(set_global_state, reset_global_state)
 }
 \keyword{internal}
 
