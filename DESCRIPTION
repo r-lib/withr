@@ -8,7 +8,10 @@ Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = "aut"),
     person("Winston", "Chang", role = "aut"),
     person("RStudio", role = "cph"))
-Description: Run Code 'With' Temporarily Modified Global State.
+Description: A set of functions to run code 'with' safely and temporarily
+    modified global state. Many of these functions were originally a part of the
+    devtools package, this provides a simple package with limited dependencies
+    to provide access to these functions.
 URL: http://github.com/jimhester/withr
 BugReports: http://github.com/jimhester/withr/issues
 Depends:
@@ -16,8 +19,7 @@ Depends:
 License: GPL (>= 2)
 LazyData: true
 Suggests:
-    testthat,
-    lintr
+    testthat
 Collate:
     'with_.R'
     'collate.r'
