@@ -13,6 +13,10 @@ with_par(new, code, no.readonly = FALSE)
 
 \item{no.readonly}{\code{[logical(1)]}\cr see \code{\link{par}} documentation.}
 }
+\value{
+\code{[any]}\cr The results of the evaluation of the \code{code}
+  argument.
+}
 \description{
 Temporarily change graphics parameters.
 }

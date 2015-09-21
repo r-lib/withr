@@ -13,6 +13,10 @@ with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 
 \item{path}{\code{[character(1)]}\cr location of existing \code{Makevars} file to modify.}
 }
+\value{
+\code{[any]}\cr The results of the evaluation of the \code{code}
+  argument.
+}
 \description{
 Temporarily change contents of an existing \code{Makevars} file.
 }
