@@ -9,3 +9,4 @@
 ^man-roxygen$
 ^README\.Rmd$
 ^README-.*\.png$
+^.*\.Rcheck$

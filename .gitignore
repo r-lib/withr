@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 withr.Rproj
+*.Rcheck/
