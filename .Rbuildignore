@@ -7,3 +7,5 @@
 ^appveyor\.yml$
 ^\.Rproj\.user$
 ^man-roxygen$
+^README\.Rmd$
+^README-.*\.png$

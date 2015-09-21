@@ -1,0 +1,58 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# Withr - Run Code 'With' Modified State #
+[![Travis-CI Build Status](https://travis-ci.org/jimhester/withr.svg?branch=master)](https://travis-ci.org/jimhester/withr)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jimhester/withr?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/withr)
+[![Coverage Status](https://img.shields.io/codecov/c/github/jimhester/withr/master.svg)](https://codecov.io/github/jimhester/withr?branch=master)
+
+A set of functions to run code 'with' safely and temporarily modified global
+state.
+
+Many of these functions were originally a part of the [devtools][] package,
+this provides a simple package with limited dependencies to provide access to
+these functions.
+
+- with_collate - collation order
+- with_dir - working directory
+- with_envvar - environment variables
+- with_libpaths - library paths
+- with_locale - any locale setting
+- with_makevars - Makevars variables
+- with_options - options
+- with_par - graphics parameters
+- with_path - PATH environment variable
+
+There is also a `with_()` function to construct new `with_*` functions if
+needed.
+
+```{r}
+getwd()
+with_dir(tempdir(), getwd())
+getwd()
+
+Sys.getenv("HADLEY")
+with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
+Sys.getenv("HADLEY")
+
+with_envvar(c("A" = 1),
+  with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
+)
+```
+# See Also #
+- [Devtools][devtools]
+
+[devtools]: https://github.com/hadley/devtools
