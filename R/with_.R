@@ -5,10 +5,15 @@
 #' not covered by the existing \code{with_...} functions, see
 #' \link{withr-package} for an overview.
 #'
-#' @param set Function used to set the state.
-#' @param reset Function used to reset the state.
-#' @param envir Environment of the returned function.
-#' @return \code{with_()} A function with at least two arguments,
+#' @param set \code{[function(...)]}\cr Function used to set the state.
+#'   The function can have arbirarily many arguments, they will be replicated
+#'   in the formals of the returned function.
+#' @param reset \code{[function(x)]}\cr Function used to reset the state.
+#'   The first argument can be named arbitrarily, further arguments with default
+#'   values, or a "dots" argument, are supported but not used: The function will
+#'   be called as \code{reset(old)}.
+#' @param envir \code{[environment]}\cr Environment of the returned function.
+#' @return \code{[function(new, code, ...)]} A function with at least two arguments,
 #' \itemize{
 #' \item \code{new}: New state to use
 #' \item \code{code}: Code to run in that state.
@@ -17,6 +22,21 @@
 #' added to the returned function.  If \code{set} does not have arguments,
 #' the returned function only has a \code{code} argument.
 #' @keywords internal
+#' @examples
+#' with_(setwd)
+#'
+#' global_stack <- list()
+#' set_global_state <- function(state, msg = "Changing global state.") {
+#'   global_stack <- c(list(state), global_stack)
+#'   message(msg)
+#'   state
+#' }
+#' reset_global_state <- function(state) {
+#'   old_state <- global_stack[[1]]
+#'   global_stack <- global_stack[-1]
+#'   stopifnot(identical(state, old_state))
+#' }
+#' with_(set_global_state, reset_global_state)
 #' @export
 with_ <- function(set, reset = set, envir = parent.frame()) {
 
