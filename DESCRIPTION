@@ -19,8 +19,8 @@ Depends:
 License: GPL (>= 2)
 LazyData: true
 Imports:
-  stats,
-  graphics
+    stats,
+    graphics
 Suggests:
     testthat
 Collate:
