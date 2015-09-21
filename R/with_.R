@@ -44,7 +44,7 @@ with_ <- function(set, reset = set, envir = parent.frame()) {
 
   if (length(fmls) > 0L) {
     # called pass all extra formals on
-    called_fmls <- setNames(lapply(names(fmls), as.symbol), names(fmls))
+    called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
 
     # rename first formal to new
     called_fmls[[1]] <- as.symbol("new")

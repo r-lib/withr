@@ -18,6 +18,9 @@ Depends:
     R (>= 3.2.0)
 License: GPL (>= 2)
 LazyData: true
+Imports:
+  stats,
+  graphics
 Suggests:
     testthat
 Collate:
