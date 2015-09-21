@@ -21,12 +21,14 @@ Many of these functions were originally a part of the [devtools](https://github.
 There is also a `with_()` function to construct new `with_*` functions if needed.
 
 ``` r
+dir.create("test")
 getwd()
-#> [1] "/home/jhester/Dropbox/projects/withr"
-with_dir(tempdir(), getwd())
 #> [1] "/tmp/RtmpaPrDI5"
+with_dir("test", getwd())
+#> [1] "/tmp/RtmpaPrDI5/test"
 getwd()
-#> [1] "/home/jhester/Dropbox/projects/withr"
+#> [1] "/tmp/RtmpaPrDI5"
+unlink("test")
 
 Sys.getenv("HADLEY")
 #> [1] ""

@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+knitr::opts_knit$set(root.dir = tempdir())
 ```
 
 # Withr - Run Code 'With' Modified State #
@@ -40,9 +41,11 @@ There is also a `with_()` function to construct new `with_*` functions if
 needed.
 
 ```{r}
+dir.create("test")
 getwd()
-with_dir(tempdir(), getwd())
+with_dir("test", getwd())
 getwd()
+unlink("test")
 
 Sys.getenv("HADLEY")
 with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
@@ -52,6 +55,7 @@ with_envvar(c("A" = 1),
   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
 )
 ```
+
 # See Also #
 - [Devtools][devtools]
 
