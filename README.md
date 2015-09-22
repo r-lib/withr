@@ -8,15 +8,15 @@ A set of functions to run code 'with' safely and temporarily modified global sta
 
 Many of these functions were originally a part of the [devtools](https://github.com/hadley/devtools) package, this provides a simple package with limited dependencies to provide access to these functions.
 
--   with\_collate - collation order
--   with\_dir - working directory
--   with\_envvar - environment variables
--   with\_libpaths - library paths
--   with\_locale - any locale setting
--   with\_makevars - Makevars variables
--   with\_options - options
--   with\_par - graphics parameters
--   with\_path - PATH environment variable
+-   `with_collate()` - collation order
+-   `with_dir()` - working directory
+-   `with_envvar()` - environment variables
+-   `with_libpaths()` - library paths
+-   `with_locale()` - any locale setting
+-   `with_makevars()` - Makevars variables
+-   `with_options()` - options
+-   `with_par()` - graphics parameters
+-   `with_path()` - PATH environment variable
 
 There is also a `with_()` function to construct new `with_*` functions if needed.
 

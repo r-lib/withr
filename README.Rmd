@@ -28,15 +28,15 @@ Many of these functions were originally a part of the [devtools][] package,
 this provides a simple package with limited dependencies to provide access to
 these functions.
 
-- with_collate - collation order
-- with_dir - working directory
-- with_envvar - environment variables
-- with_libpaths - library paths
-- with_locale - any locale setting
-- with_makevars - Makevars variables
-- with_options - options
-- with_par - graphics parameters
-- with_path - PATH environment variable
+- `with_collate()` - collation order
+- `with_dir()` - working directory
+- `with_envvar()` - environment variables
+- `with_libpaths()` - library paths
+- `with_locale()` - any locale setting
+- `with_makevars()` - Makevars variables
+- `with_options()` - options
+- `with_par()` - graphics parameters
+- `with_path()` - PATH environment variable
 
 There is also a `with_()` function to construct new `with_*` functions if
 needed.
