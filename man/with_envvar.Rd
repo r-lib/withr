@@ -14,6 +14,10 @@ with_envvar(new, code, action = "replace")
 \item{action}{should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing variables with the same name.}
 }
+\value{
+\code{[any]}\cr The results of the evaluation of the \code{code}
+  argument.
+}
 \description{
 Temporarily change system environment variables.
 }

@@ -14,6 +14,10 @@ with_libpaths(new, code, action = "replace")
 \item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths.}
 }
+\value{
+\code{[any]}\cr The results of the evaluation of the \code{code}
+  argument.
+}
 \description{
 Temporarily change library paths.
 }

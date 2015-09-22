@@ -11,6 +11,10 @@ with_locale(new, code)
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
+\value{
+\code{[any]}\cr The results of the evaluation of the \code{code}
+  argument.
+}
 \description{
 Temporarily change locale settings.
 }
