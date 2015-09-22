@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
-Version: 0.0.0.9003
+Version: 1.0.0
 Authors@R: c(
     person("Jim", "Hester", , "james.f.hester@gmail.com", role = c("aut", "cre")),
     person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "aut"),
@@ -19,13 +19,13 @@ Depends:
 License: GPL (>= 2)
 LazyData: true
 Imports:
-  stats,
-  graphics
+    stats,
+    graphics
 Suggests:
     testthat
 Collate:
     'with_.R'
-    'collate.r'
+    'collate.R'
     'dir.R'
     'env.R'
     'libpaths.R'
