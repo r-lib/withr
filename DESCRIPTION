@@ -10,7 +10,7 @@ Authors@R: c(
     person("RStudio", role = "cph"))
 Description: A set of functions to run code 'with' safely and temporarily
     modified global state. Many of these functions were originally a part of the
-    devtools package, this provides a simple package with limited dependencies
+    'devtools' package, this provides a simple package with limited dependencies
     to provide access to these functions.
 URL: http://github.com/jimhester/withr
 BugReports: http://github.com/jimhester/withr/issues
