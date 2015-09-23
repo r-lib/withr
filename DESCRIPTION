@@ -1,7 +1,7 @@
 Encoding: UTF-8
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: c(
     person("Jim", "Hester", , "james.f.hester@gmail.com", role = c("aut", "cre")),
     person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "aut"),
