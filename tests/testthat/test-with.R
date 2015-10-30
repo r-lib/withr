@@ -227,8 +227,11 @@ test_that("with_dir works as expected", {
 })
 
 test_that("with_par works as expected", {
+  tmp <- tempfile()
 
-  pdf()
+  pdf(tmp)
+  on.exit(unlink(tmp), add = TRUE)
+
   old <- par("pty")
   with_par(list(pty = "s"), {
     expect_equal(par("pty"), "s")
