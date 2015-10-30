@@ -241,8 +241,13 @@ test_that("with_sink works as expected", {
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
 
+  expect_equal(sink.number(), 0L)
+
   with_sink(tmp, {
+    stopifnot(sink.number() == 1L)
     cat("output\n")
   })
   expect_equal(readLines(tmp), "output")
+
+  expect_equal(sink.number(), 0L)
 })
