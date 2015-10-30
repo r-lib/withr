@@ -236,3 +236,13 @@ test_that("with_par works as expected", {
   expect_equal(par("pty"), old)
   dev.off()
 })
+
+test_that("with_sink works as expected", {
+  tmp <- tempfile()
+  on.exit(unlink(tmp), add = TRUE)
+
+  with_sink(tmp, {
+    cat("output\n")
+  })
+  expect_equal(readLines(tmp), "output")
+})
