@@ -34,4 +34,5 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
+    'sink.R'
     'with.R'
