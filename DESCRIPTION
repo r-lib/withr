@@ -36,3 +36,4 @@ Collate:
     'path.R'
     'sink.R'
     'with.R'
+RoxygenNote: 5.0.0
