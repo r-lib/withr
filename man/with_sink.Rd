@@ -8,6 +8,9 @@ with_sink(new, code, append = FALSE, type = c("output", "message"),
   split = FALSE)
 }
 \arguments{
+\item{new}{a writable \link{connection} or a character string naming the file
+to write to, or \code{NULL} to stop sink-ing.}
+
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{append}{logical.  If \code{TRUE}, output will be appended to
