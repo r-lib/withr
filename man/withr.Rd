@@ -37,7 +37,8 @@ state.
 \item \code{\link{with_makevars}}: Makevars variables
 \item \code{\link{with_options}}: options
 \item \code{\link{with_par}}: graphics parameters
-\item \code{\link{with_path}}: PATH environment variable
+\item \code{\link{with_path}}: \code{PATH} environment variable
+\item \code{\link{with_sink}}: output redirection
 }
 }
 
