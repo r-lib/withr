@@ -20,7 +20,8 @@ License: GPL (>= 2)
 LazyData: true
 Imports:
     stats,
-    graphics
+    graphics,
+    later
 Suggests:
     testthat
 Collate:
@@ -35,6 +36,9 @@ Collate:
     'par.R'
     'path.R'
     'wrap.R'
+    'scope_.R'
     'sink.R'
     'with.R'
 RoxygenNote: 5.0.1
+Remotes:
+    kevinushey/later
