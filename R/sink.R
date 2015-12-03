@@ -52,7 +52,7 @@ do_reset_sink <- function(sink_info) {
         return()
       }
     } else {
-      warning("Sink #", sink_info$n, " already closed.", call. = FALSE)
+      warning("Sink #", sink_info$n, " already removed.", call. = FALSE)
       return()
     }
   }
