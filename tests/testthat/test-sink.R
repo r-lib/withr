@@ -1,5 +1,9 @@
 context("With sink")
 
+test_that("with_sink knows only message and output", {
+  expect_equal(eval(formals(with_sink)$type), c("output", "message"))
+})
+
 test_that("with_sink works as expected", {
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)
