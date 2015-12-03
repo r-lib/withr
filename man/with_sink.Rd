@@ -10,7 +10,7 @@ with_sink(new, code, append = FALSE, type = c("output", "message"),
 \arguments{
 \item{new}{\code{[character(1)|connection]}\cr
 A writable \link{connection} or a character string naming the file to write
-to, or \code{NULL} to stop sink-ing.}
+to. Passing \code{NULL} will throw an error.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
