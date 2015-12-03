@@ -29,7 +29,9 @@ to. Passing \code{NULL} will throw an error.}
   argument.
 }
 \description{
-Temporarily divert output to a file via \code{\link{sink}}.
+Temporarily divert output to a file via \code{\link{sink}}.  For
+sinks of type \code{message}, an error is raised if such a sink is already
+active.
 }
 \seealso{
 \code{\link{withr}} for examples

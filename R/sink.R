@@ -8,8 +8,13 @@ set_sink <- wrap(
       stop("file cannot be NULL", call. = FALSE)
     }
     type <- match.arg(type)
-    con <- if (type == "message" && is.character(file)) {
-      file <- file(file, if (append) "a+" else "w+")
+    con <- if (type == "message") {
+      if (sink.number(type = type) != 2L) {
+        stop("Cannot establish message sink when another sink is active.")
+      }
+      if (is.character(file)) {
+        file <- file(file, if (append) "a" else "w")
+      }
     }
   },
   {
@@ -55,7 +60,9 @@ do_reset_sink <- function(sink_info) {
 
 #' Output redirection
 #'
-#' Temporarily divert output to a file via \code{\link{sink}}.
+#' Temporarily divert output to a file via \code{\link{sink}}.  For
+#' sinks of type \code{message}, an error is raised if such a sink is already
+#' active.
 #'
 #' @template with
 #' @param new \code{[character(1)|connection]}\cr
