@@ -1,50 +1,46 @@
 # sink -----------------------------------------------------------------------
 
+# FIXME: Use (a better version of) pryr::partial when available
+output_sink <- function(file = NULL, append = FALSE, split = FALSE) {
+  sink(file = file, append = append, type = "output", split = split)
+}
+
+message_sink <- function(file = NULL, append = FALSE) {
+  sink(file = file, append = append, type = "message", split = FALSE)
+}
+
 #' @include wrap.R
-set_sink <- wrap(
-  sink,
+set_output_sink <- wrap(
+  output_sink,
+  if (is.null(file)) {
+    stop("file cannot be NULL", call. = FALSE)
+  },
+  list(n = sink.number()))
+
+set_message_sink <- wrap(
+  message_sink,
   {
     if (is.null(file)) {
       stop("file cannot be NULL", call. = FALSE)
     }
-    type <- match.arg(type)
-    con <- if (type == "message") {
-      if (sink.number(type = type) != 2L) {
-        stop("Cannot establish message sink when another sink is active.")
-      }
-      if (is.character(file)) {
-        file <- file(file, if (append) "a" else "w")
-      }
+    if (sink.number(type = "message") != 2L) {
+      stop("Cannot establish message sink when another sink is active.")
+    }
+    con <- if (is.character(file)) {
+      file <- file(file, if (append) "a" else "w")
     }
   },
   {
-    list(n = sink.number(type = type), type = type, con = con)
+    list(n = sink.number(type = "message"), con = con)
   })
 
-reset_sink <- function(sink_info) {
-  if (!is.null(sink_info$con)) {
-    on.exit(close(sink_info$con), add = TRUE)
-  }
-
-  do_reset_sink(sink_info)
-}
-
-do_reset_sink <- function(sink_info) {
+reset_output_sink <- function(sink_info) {
   repeat {
-    n <- sink.number(type = sink_info$type)
-    if (sink_info$type == "message") {
-      if (n == 2L) {
-        warning("No more sinks to remove", call. = FALSE)
-        return()
-      }
-
-      delta <- if (n != sink_info$n) 1L else 0L
-    } else if (sink_info$type == "output") {
-      delta <- n - sink_info$n
-    }
+    n <- sink.number()
+    delta <- n - sink_info$n
 
     if (delta >= 0L) {
-      sink(type = sink_info$type)
+      sink()
 
       if (delta > 0L) {
         warning("Removing a different sink.", call. = FALSE)
@@ -55,6 +51,25 @@ do_reset_sink <- function(sink_info) {
       warning("Sink #", sink_info$n, " already removed.", call. = FALSE)
       return()
     }
+  }
+}
+
+reset_message_sink <- function(sink_info) {
+  if (!is.null(sink_info$con)) {
+    on.exit(close(sink_info$con), add = TRUE)
+  }
+
+  do_reset_message_sink(sink_info)
+}
+
+do_reset_message_sink <- function(sink_info) {
+  n <- sink.number(type = "message")
+  if (n == 2L) {
+    warning("No message sink to remove", call. = FALSE)
+  } else if (n == sink_info$n) {
+    sink(type = "message")
+  } else {
+    warning("Not removing a different sink.", call. = FALSE)
   }
 }
 
@@ -71,4 +86,9 @@ do_reset_sink <- function(sink_info) {
 #' @inheritParams base::sink
 #' @seealso \code{\link{sink}}
 #' @export
-with_sink <- with_(set_sink, reset_sink)
+#' @name with_sink
+with_output_sink <- with_(set_output_sink, reset_output_sink)
+
+#' @rdname with_sink
+#' @export
+with_message_sink <- with_(set_message_sink, reset_message_sink)
