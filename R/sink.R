@@ -1,7 +1,9 @@
 # sink -----------------------------------------------------------------------
 
 #' @include wrap.R
-set_sink <- wrap(sink, list(n = sink.number(type = type), type = type))
+set_sink <- wrap(sink,
+                 if (is.null(file)) stop("file cannot be NULL", call. = FALSE),
+                 list(n = sink.number(type = type), type = type))
 
 reset_sink <- function(sink_info) {
   n <- sink.number(type = sink_info$type)

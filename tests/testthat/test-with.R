@@ -286,4 +286,13 @@ test_that("with_sink works as expected", {
 
   expect_equal(sink.number(), 0L)
 
+  expect_error(
+    with_sink(NULL, {
+      NULL
+    }),
+    "cannot be NULL"
+  )
+
+  expect_equal(sink.number(), 0L)
+
 })
