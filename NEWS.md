@@ -1,4 +1,4 @@
-- New `with_sink()` (#24)
+- New `with_output_sink()` and `with_message_sink()` (#24).
 
 # 1.0.0
 
