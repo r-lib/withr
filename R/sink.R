@@ -9,18 +9,22 @@ set_sink <- wrap(
     }
     type <- match.arg(type)
     con <- if (type == "message" && is.character(file)) {
-      file <-  file(file, "a")
+      file <- file(file, if (append) "a+" else "w+")
     }
   },
   {
-    list(n = sink.number(), type = type, con <- con)
+    list(n = sink.number(type = type), type = type, con = con)
   })
 
 reset_sink <- function(sink_info) {
   if (!is.null(sink_info$con)) {
-    close(sink_info$con)
+    on.exit(close(sink_info$con), add = TRUE)
   }
 
+  do_reset_sink(sink_info)
+}
+
+do_reset_sink <- function(sink_info) {
   repeat {
     n <- sink.number(type = sink_info$type)
     if (sink_info$type == "message") {
@@ -36,6 +40,7 @@ reset_sink <- function(sink_info) {
 
     if (delta >= 0L) {
       sink(type = sink_info$type)
+
       if (delta > 0L) {
         warning("Removing a different sink.", call. = FALSE)
       } else {
