@@ -15,19 +15,18 @@ test_that("with_sink works as expected", {
   expect_equal(sink.number(), 0L)
 
   with_sink(tmp, {
-    stopifnot(sink.number() == 1L)
+    expect_equal(sink.number(), 1L)
     cat("output\n")
   })
   expect_equal(readLines(tmp), "output")
 
   expect_equal(sink.number(), 0L)
 
-  expect_warning(
-    with_sink(tmp, {
-      sink(tmp2)
-    }),
-    "Removing a different"
-  )
+  with_sink(tmp, append = TRUE, {
+    expect_equal(sink.number(), 1L)
+    cat("output 2\n")
+  })
+  expect_equal(readLines(tmp), c("output", "output 2"))
 
   expect_equal(sink.number(), 0L)
 
