@@ -1,23 +1,50 @@
 # sink -----------------------------------------------------------------------
 
 #' @include wrap.R
-set_sink <- wrap(sink,
-                 if (is.null(file)) stop("file cannot be NULL", call. = FALSE),
-                 list(n = sink.number(type = type), type = type))
+set_sink <- wrap(
+  sink,
+  {
+    if (is.null(file)) {
+      stop("file cannot be NULL", call. = FALSE)
+    }
+    type <- match.arg(type)
+    con <- if (type == "message" && is.character(file)) {
+      file <-  file(file, "a")
+    }
+  },
+  {
+    list(n = sink.number(), type = type, con <- con)
+  })
 
 reset_sink <- function(sink_info) {
-  n <- sink.number(type = sink_info$type)
-  delta <- n - sink_info$n
+  if (!is.null(sink_info$con)) {
+    close(sink_info$con)
+  }
 
-  if (delta >= 0L) {
-    if (delta > 0L) {
-      warning("Closing ", delta, " sinks.", call. = FALSE)
+  repeat {
+    n <- sink.number(type = sink_info$type)
+    if (sink_info$type == "message") {
+      if (n == 2L) {
+        warning("No more sinks to remove", call. = FALSE)
+        return()
+      }
+
+      delta <- if (n != sink_info$n) 1L else 0L
+    } else if (sink_info$type == "output") {
+      delta <- n - sink_info$n
     }
-    for (i in seq_len(delta + 1L)) {
-      sink(file = NULL, type = sink_info$type)
+
+    if (delta >= 0L) {
+      sink(type = sink_info$type)
+      if (delta > 0L) {
+        warning("Removing a different sink.", call. = FALSE)
+      } else {
+        return()
+      }
+    } else {
+      warning("Sink #", sink_info$n, " already closed.", call. = FALSE)
+      return()
     }
-  } else if (delta < 0L) {
-    warning("Sink #", sink_info$n, " already closed.", call. = FALSE)
   }
 }
 
