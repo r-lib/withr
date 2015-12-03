@@ -34,6 +34,7 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
+    'wrap.R'
     'sink.R'
     'with.R'
 RoxygenNote: 5.0.0

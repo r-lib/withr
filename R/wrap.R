@@ -1,0 +1,22 @@
+wrap <- function(f, code, envir = parent.frame()) {
+  fmls <- formals(f)
+
+  # called pass all extra formals on
+  called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
+
+  f_call <- as.call(c(substitute(f), called_fmls))
+  code <- substitute(code)
+
+  fun <- eval(bquote(function(args) {
+    .retval <- .(f_call)
+    .(code)
+  }, as.environment(list(f_call = f_call, code = code))))
+
+  # substitute does not work on arguments, so we need to fix them manually
+  formals(fun) <- fmls
+
+  environment(fun) <- envir
+
+  fun
+
+}
