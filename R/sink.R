@@ -1,6 +1,6 @@
 # sink -----------------------------------------------------------------------
 
-# FIXME: Use (a better version of) pryr::partial when available
+# FIXME: Use (a better version of) pryr:::partial2 when available
 output_sink <- function(file = NULL, append = FALSE, split = FALSE) {
   sink(file = file, append = append, type = "output", split = split)
 }
@@ -21,10 +21,11 @@ set_message_sink <- wrap(
   message_sink,
   {
     if (is.null(file)) {
-      stop("file cannot be NULL", call. = FALSE)
+      stop("file cannot be NULL,", call. = FALSE)
     }
     if (sink.number(type = "message") != 2L) {
-      stop("Cannot establish message sink when another sink is active.")
+      stop("Cannot establish message sink when another sink is active.",
+           call. = FALSE)
     }
     con <- if (is.character(file)) {
       file <- file(file, if (append) "a" else "w")
@@ -65,11 +66,11 @@ reset_message_sink <- function(sink_info) {
 do_reset_message_sink <- function(sink_info) {
   n <- sink.number(type = "message")
   if (n == 2L) {
-    warning("No message sink to remove", call. = FALSE)
+    warning("No message sink to remove.", call. = FALSE)
   } else if (n == sink_info$n) {
     sink(type = "message")
   } else {
-    warning("Not removing a different sink.", call. = FALSE)
+    warning("Not removing a different message sink.", call. = FALSE)
   }
 }
 
