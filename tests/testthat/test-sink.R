@@ -26,29 +26,62 @@ test_that("with_sink works as expected", {
     with_sink(tmp, {
       sink(tmp2)
     }),
-    "Closing 1 "
+    "Removing a different"
   )
 
   expect_equal(sink.number(), 0L)
 
   expect_warning(
-    with_sink(tmp, {
+    with_sink(tmp, type = "message", {
       sink(tmp2)
-      sink(tmp3)
     }),
-    "Closing 2 "
+    NA
   )
 
-  expect_equal(sink.number(), 0L)
+  expect_equal(sink.number(type = "message"), 0L)
+  expect_equal(sink.number(), 1L)
+  sink()
+
+  expect_warning(
+    with_sink(tmp, type = "message", {
+      sink(tmp2, type = "message")
+    }),
+    "Removing a different"
+  )
+
+  expect_equal(sink.number(type = "message"), 0L)
 
   expect_warning(
     with_sink(tmp, {
       sink()
     }),
-    "already closed"
+    "already removed"
   )
 
   expect_equal(sink.number(), 0L)
+
+  expect_warning(
+    with_sink(tmp, type = "message", {
+      sink(type = "message")
+    }),
+    "already closed"
+  )
+
+  expect_equal(sink.number(type = "message"), 0L)
+
+  expect_warning(
+    with_sink(tmp, type = "message", {
+      expect_warning(
+        with_sink(tmp2, type = "message", {
+          sink(type = "message")
+        }),
+        "No more sinks to remove"
+      )
+    }),
+    "No more sinks to remove"
+  )
+
+  expect_equal(sink.number(type = "message"), 0L)
 
   expect_error(
     with_sink(NULL, {
@@ -56,4 +89,7 @@ test_that("with_sink works as expected", {
     }),
     "cannot be NULL"
   )
+
+  expect_equal(sink.number(), 0L)
+
 })
