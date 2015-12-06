@@ -20,12 +20,15 @@ License: GPL (>= 2)
 LazyData: true
 Imports:
     stats,
-    graphics
+    graphics,
+    grDevices
 Suggests:
     testthat
 Collate:
     'with_.R'
     'collate.R'
+    'wrap.R'
+    'devices.R'
     'dir.R'
     'env.R'
     'libpaths.R'
@@ -34,7 +37,6 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
-    'wrap.R'
     'sink.R'
     'with.R'
 RoxygenNote: 5.0.0
