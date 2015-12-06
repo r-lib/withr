@@ -14,13 +14,13 @@ cairo_pdf_dev <- wrap(cairo_pdf, NULL, dev.cur())
 cairo_ps_dev <- wrap(cairo_ps, NULL, dev.cur())
 
 #' @importFrom grDevices jpeg
-jpeg_dev <- wrap(jpeg, NULL, dev.cur())
+jpeg_dev <- wrap(jpeg, antialias <- match.arg(antialias), dev.cur())
 
 #' @importFrom grDevices pdf
 pdf_dev <- wrap(pdf, NULL, dev.cur())
 
 #' @importFrom grDevices png
-png_dev <- wrap(png, NULL, dev.cur())
+png_dev <- wrap(png, antialias <- match.arg(antialias), dev.cur()) 
 
 #' @importFrom grDevices postscript
 postscript_dev <- wrap(postscript, NULL, dev.cur())
@@ -45,7 +45,17 @@ xfig_dev <- wrap(xfig, NULL, dev.cur())
 #' @param new \code{[named character]}\cr New graphics device
 #' @seealso \code{\link[grDevices]{Devices}}
 #' @examples
-#' with_pdf(c(file = "test.pdf", width = 7, height = 5), plot(runif(5)))
+#' # dimensions are in inches
+#' with_pdf(
+#'   c(file = file.path(tempdir(), "test.pdf"), width = 7, height = 5), 
+#'   plot(runif(5))
+#' )
+#' 
+#' # dimensions are in pixels
+#' with_png(
+#'   c(file = file.path(tempdir(), "test.png"), width = 800, height = 600), 
+#'   plot(runif(5))
+#' )
 #' @aliases with_dev with_device
 #' @importFrom grDevices dev.off
 #' @export

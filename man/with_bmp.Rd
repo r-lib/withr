@@ -77,7 +77,17 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
 Temporarily use a graphics device.
 }
 \examples{
-with_pdf(c(file = "test.pdf", width = 7, height = 5), plot(runif(5)))
+# dimensions are in inches
+with_pdf(
+  c(file = file.path(tempdir(), "test.pdf"), width = 7, height = 5),
+  plot(runif(5))
+)
+
+# dimensions are in pixels
+with_png(
+  c(file = file.path(tempdir(), "test.png"), width = 800, height = 600),
+  plot(runif(5))
+)
 }
 \seealso{
 \code{\link{withr}} for examples
