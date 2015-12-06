@@ -8,6 +8,7 @@
 \alias{with_device}
 \alias{with_jpeg}
 \alias{with_pdf}
+\alias{with_png}
 \alias{with_postscript}
 \alias{with_svg}
 \alias{with_tiff}
@@ -37,6 +38,11 @@ with_jpeg(new, code, width = 480, height = 480, units = "px",
 with_pdf(new, code, width, height, onefile, family, title, fonts, version,
   paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
   useKerning, fillOddEven, compress)
+
+with_png(new, code, width = 480, height = 480, units = "px",
+  pointsize = 12, bg = "white", res = NA, family = "sans",
+  restoreConsole = TRUE, type = c("windows", "cairo", "cairo-png"),
+  antialias = c("default", "none", "cleartype", "gray", "subpixel"))
 
 with_postscript(new, code, onefile, family, title, fonts, encoding, bg, fg,
   width, height, horizontal, pointsize, paper, pagecentre, print.it, command,

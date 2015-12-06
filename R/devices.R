@@ -69,6 +69,10 @@ with_pdf <- with_(pdf_dev, dev.off)
 
 #' @rdname with_bmp
 #' @export
+with_png <- with_(png_dev, dev.off)
+
+#' @rdname with_bmp
+#' @export
 with_postscript <- with_(postscript_dev, dev.off)
 
 #' @rdname with_bmp
