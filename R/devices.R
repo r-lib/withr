@@ -4,11 +4,11 @@
 #' @include wrap.R
 NULL
 
-bmp_dev <- wrap(grDevices::bmp, NULL, grDevices::dev.cur())
+bmp_dev <- wrap(grDevices::bmp, antialias <- match.arg(antialias), grDevices::dev.cur())
 
 cairo_pdf_dev <- wrap(grDevices::cairo_pdf, NULL, grDevices::dev.cur())
 
-cairo_ps_dev <- wrap(grDevices::cairo_ps, NULL, grDevices::dev.cur())
+cairo_ps_dev <- wrap(grDevices::cairo_ps, antialias <- match.arg(antialias), grDevices::dev.cur())
 
 jpeg_dev <- wrap(grDevices::jpeg, antialias <- match.arg(antialias), grDevices::dev.cur())
 
@@ -20,7 +20,7 @@ postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
 
 svg_dev <- wrap(grDevices::svg, NULL, grDevices::dev.cur())
 
-tiff_dev <- wrap(grDevices::tiff, NULL, grDevices::dev.cur())
+tiff_dev <- wrap(grDevices::tiff, antialias <- match.arg(antialias), grDevices::dev.cur())
 
 xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 
