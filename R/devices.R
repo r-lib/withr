@@ -1,6 +1,5 @@
 # Internal *_dev functions ------------------------------------------------
 
-#' @importFrom grDevices dev.cur
 #' @include wrap.R
 NULL
 
