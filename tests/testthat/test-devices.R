@@ -7,6 +7,8 @@ p <- lattice::xyplot(y ~ x, data.frame(x = -2:2, y = dnorm(-2:2)))
 plot_dir <- tempfile("withr-test-plots-")
 dir.create(plot_dir)
 
+context("Test with_*device* fns")
+
 test_that("with_*device* fns create a plot file", {
   fn_names <- c(
     "with_bmp", "with_cairo_pdf", "with_cairo_ps", "with_jpeg", 
@@ -34,7 +36,8 @@ test_that("with_*device* fns create a plot file", {
   }
 })
 
-# Teardown
+
+context("Teardown")
 
 rm(p)
 
