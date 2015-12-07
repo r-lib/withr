@@ -17,9 +17,8 @@
 \title{Graphics devices}
 \usage{
 with_bmp(new, code, width = 480, height = 480, units = "px",
-  pointsize = 12, bg = "white", res = NA, family = "sans",
-  restoreConsole = TRUE, type = c("windows", "cairo"),
-  antialias = c("default", "none", "cleartype", "gray", "subpixel"))
+  pointsize = 12, bg = "white", res = NA, ..., type = c("cairo", "Xlib",
+  "quartz"), antialias)
 
 with_cairo_pdf(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
@@ -31,19 +30,9 @@ with_cairo_ps(new, code, width = 7, height = 7, pointsize = 12,
   antialias = c("default", "none", "gray", "subpixel"),
   fallback_resolution = 300)
 
-with_jpeg(new, code, width = 480, height = 480, units = "px",
-  pointsize = 12, quality = 75, bg = "white", res = NA,
-  family = "sans", restoreConsole = TRUE, type = c("windows", "cairo"),
-  antialias = c("default", "none", "cleartype", "gray", "subpixel"))
-
 with_pdf(new, code, width, height, onefile, family, title, fonts, version,
   paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
   useKerning, fillOddEven, compress)
-
-with_png(new, code, width = 480, height = 480, units = "px",
-  pointsize = 12, bg = "white", res = NA, family = "sans",
-  restoreConsole = TRUE, type = c("windows", "cairo", "cairo-png"),
-  antialias = c("default", "none", "cleartype", "gray", "subpixel"))
 
 with_postscript(new, code, onefile, family, title, fonts, encoding, bg, fg,
   width, height, horizontal, pointsize, paper, pagecentre, print.it, command,
@@ -55,15 +44,18 @@ with_svg(new, code, width = 7, height = 7, pointsize = 12,
 
 with_tiff(new, code, width = 480, height = 480, units = "px",
   pointsize = 12, compression = c("none", "rle", "lzw", "jpeg", "zip",
-  "lzw+p", "zip+p"), bg = "white", res = NA, family = "sans",
-  restoreConsole = TRUE, type = c("windows", "cairo"),
-  antialias = c("default", "none", "cleartype", "gray", "subpixel"))
+  "lzw+p", "zip+p"), bg = "white", res = NA, ..., type = c("cairo",
+  "Xlib", "quartz"), antialias)
 
 with_xfig(new, code, onefile = FALSE, encoding = "none",
   paper = "default", horizontal = TRUE, width = 0, height = 0,
   family = "Helvetica", pointsize = 12, bg = "transparent",
   fg = "black", pagecentre = TRUE, defaultfont = FALSE,
   textspecial = FALSE)
+
+with_png(...)
+
+with_jpeg(...)
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}
@@ -85,39 +77,43 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
     par("bg").}
 
 \item{res}{The nominal resolution in ppi which will be recorded in the
-    bitmap file, if a positive integer.  Also used for units other than
-    the default.  If not specified, taken as 72 ppi to set the size of
-    text and line widths.}
+    bitmap file, if a positive integer.  Also used for \code{units}
+    other than the default, and to convert points to pixels.}
 
-\item{family}{A length-one character vector specifying the default
-    font family.  The default means to use the font numbers on the
-    Windows GDI versions and \code{"sans"} on the cairographics
-    versions.}
+\item{...}{for \code{type = "Xlib"} only, additional arguments to
+    the underlying \code{\link{X11}} device such as \code{fonts} or
+     \code{family}.
 
-\item{restoreConsole}{See the \sQuote{Details} section of
-    \code{\link{windows}}.  For \code{type == "windows"} only.}
+    For types \code{"cairo"} and \code{"quartz"}, the \code{family}
+    argument can be supplied.  See the \sQuote{Cairo fonts}
+    section in the help for \code{\link{X11}}.}
 
-\item{type}{Should be plotting be done using Windows GDI or cairographics?}
+\item{type}{character string, one of \code{"Xlib"} or \code{"quartz"}
+    (some OS X builds) or \code{"cairo"}.  The latter will only be
+    available if the system was compiled with support for cairo --
+    otherwise \code{"Xlib"} will be used.  The default is set by
+    \code{\link{getOption}("bitmapType")} -- the \sQuote{out of the box}
+    default is \code{"quartz"} or \code{"cairo"} where available,
+    otherwise \code{"Xlib"}.}
 
-\item{antialias}{Length-one character vector.
-
-    For allowed values and their effect on fonts with \code{type =
-      "windows"} see \code{\link{windows}}: for that type if the
-    argument is missing the default is taken from
-    \code{windows.options()$bitmap.aa.win}.
-
-    For allowed values and their effect (on fonts and lines, but not
-    fills) with \code{type = "cairo"} see \code{\link{svg}}.}
+\item{antialias}{for \code{type = "cairo"}, giving the type of
+    anti-aliasing (if any) to be used for fonts and lines (but not
+    fills). See \code{\link{X11}}.  The default is set by
+    \code{\link{X11.options}}.  Also for \code{type = "quartz"}, where
+    antialiasing is used unless \code{antialias = "none"}.}
 
 \item{onefile}{should all plots appear in one file or in separate files?}
+
+\item{family}{one of the device-independent font families,
+    \code{"sans"}, \code{"serif"} and \code{"mono"}, or a character
+    string specify a font family to be searched for in a
+    system-dependent way.
+    See, the \sQuote{Cairo fonts} section in the help for \code{\link{X11}}.
+  }
 
 \item{fallback_resolution}{numeric: the resolution in dpi used when
     falling back to bitmap output.  Prior to \R 3.3.0 this depended on
     the cairo implementation but was commonly 300.}
-
-\item{quality}{the \sQuote{quality} of the JPEG image, as a
-    percentage.  Smaller values will give more compression but also more
-    degradation of the image.}
 
 \item{title}{title string to embed as the \samp{/Title} field in the
     file.  Defaults to \code{"R Graphics Output"}.}
@@ -164,7 +160,8 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
     around font display problems in broken PDF viewers: although this
     font is one of the 14 guaranteed to be available in all PDF viewers,
     that guarantee is not always honoured.
-#ifdef unix not active    }
+    See the \sQuote{Note} for a possible fix for some viewers.
+    }
 
 \item{useKerning}{logical.  Should kerning corrections be included in
     setting text and calculating string widths?  Defaults to \code{TRUE}.}
@@ -186,10 +183,10 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
 \item{command}{the command to be used for \sQuote{printing}.  Defaults
     to \code{"default"}, the value of option \code{"printcmd"}.  The
     length limit is \code{2*PATH_MAX},
-#ifdef unix not active    520 bytes.
-  }
+    typically 8096 bytes.}
 
-\item{compression}{the type of compression to be used.}
+\item{compression}{the type of compression to be used.  Ignored for
+     \code{type = "quartz"}.}
 
 \item{defaultfont}{logical: should the device use xfig's default
     font?}
@@ -213,11 +210,7 @@ Temporarily use a graphics device.
 
 \item \code{with_cairo_ps}: CAIRO_PS device
 
-\item \code{with_jpeg}: JPEG device
-
 \item \code{with_pdf}: PDF device
-
-\item \code{with_png}: PNG device
 
 \item \code{with_postscript}: POSTSCRIPT device
 
@@ -226,6 +219,10 @@ Temporarily use a graphics device.
 \item \code{with_tiff}: TIFF device
 
 \item \code{with_xfig}: XFIG device
+
+\item \code{with_png}: PNG device
+
+\item \code{with_jpeg}: JPEG device
 }}
 \examples{
 # dimensions are in inches

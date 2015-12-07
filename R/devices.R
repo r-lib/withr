@@ -1,26 +1,21 @@
-# Internal *_dev functions ------------------------------------------------
-
-#' @importFrom grDevices dev.cur
 #' @include wrap.R
 NULL
 
-bmp_dev <- wrap(grDevices::bmp, antialias <- match.arg(antialias), grDevices::dev.cur())
+# Internal *_dev functions ------------------------------------------------
+
+bmp_dev <- wrap(grDevices::bmp, NULL, grDevices::dev.cur())
 
 cairo_pdf_dev <- wrap(grDevices::cairo_pdf, NULL, grDevices::dev.cur())
 
-cairo_ps_dev <- wrap(grDevices::cairo_ps, antialias <- match.arg(antialias), grDevices::dev.cur())
-
-jpeg_dev <- wrap(grDevices::jpeg, antialias <- match.arg(antialias), grDevices::dev.cur())
+cairo_ps_dev <- wrap(grDevices::cairo_ps, NULL, grDevices::dev.cur())
 
 pdf_dev <- wrap(grDevices::pdf, NULL, grDevices::dev.cur())
-
-png_dev <- wrap(grDevices::png, antialias <- match.arg(antialias), grDevices::dev.cur()) 
 
 postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
 
 svg_dev <- wrap(grDevices::svg, NULL, grDevices::dev.cur())
 
-tiff_dev <- wrap(grDevices::tiff, antialias <- match.arg(antialias), grDevices::dev.cur())
+tiff_dev <- wrap(grDevices::tiff, NULL, grDevices::dev.cur())
 
 xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 
@@ -65,20 +60,10 @@ with_cairo_pdf <- with_(cairo_pdf_dev, grDevices::dev.off)
 #' @export
 with_cairo_ps <- with_(cairo_ps_dev, grDevices::dev.off)
 
-#' @describeIn devices JPEG device
-#' @inheritParams grDevices::jpeg
-#' @export
-with_jpeg <- with_(jpeg_dev, grDevices::dev.off)
-
 #' @describeIn devices PDF device
 #' @inheritParams grDevices::pdf
 #' @export
 with_pdf <- with_(pdf_dev, grDevices::dev.off)
-
-#' @describeIn devices PNG device
-#' @inheritParams grDevices::png
-#' @export
-with_png <- with_(png_dev, grDevices::dev.off)
 
 #' @describeIn devices POSTSCRIPT device
 #' @inheritParams grDevices::postscript
@@ -99,3 +84,17 @@ with_tiff <- with_(tiff_dev, grDevices::dev.off)
 #' @inheritParams grDevices::xfig
 #' @export
 with_xfig <- with_(xfig_dev, grDevices::dev.off)
+
+
+# There are just placeholder workarounds because roxygen doesn't support OS
+# specific directories or collate directives.
+
+#' @describeIn devices PNG device
+#' @inheritParams grDevices::png
+#' @export
+with_png <- function(...) NULL
+
+#' @describeIn devices JPEG device
+#' @inheritParams grDevices::jpeg
+#' @export
+with_jpeg <- function(...) NULL

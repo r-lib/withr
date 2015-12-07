@@ -25,6 +25,37 @@ Imports:
 Suggests:
     testthat,
     lattice
+Collate.windows: 'with_.R'
+    'collate.R'
+    'wrap.R'
+    'devices.R'
+    'windows/png.R'
+    'dir.R'
+    'env.R'
+    'libpaths.R'
+    'locale.R'
+    'makevars.R'
+    'options.R'
+    'par.R'
+    'path.R'
+    'sink.R'
+    'with.R'
+Collate.unix: 'with_.R'
+    'collate.R'
+    'wrap.R'
+    'devices.R'
+    'unix/png.R'
+    'dir.R'
+    'env.R'
+    'libpaths.R'
+    'locale.R'
+    'makevars.R'
+    'options.R'
+    'par.R'
+    'path.R'
+    'sink.R'
+    'with.R'
+RoxygenNote: 5.0.1
 Collate:
     'with_.R'
     'collate.R'
@@ -40,4 +71,3 @@ Collate:
     'path.R'
     'sink.R'
     'with.R'
-RoxygenNote: 5.0.1
