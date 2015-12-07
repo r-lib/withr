@@ -69,8 +69,31 @@ with_cairo_ps <- with_(cairo_ps_dev, grDevices::dev.off)
 #' @export
 with_jpeg <- with_(jpeg_dev, grDevices::dev.off)
 
+# Cannot @inheritParams grDevices::pdf due to differing docs across OSes
 #' @describeIn devices PDF device
-#' @inheritParams grDevices::pdf
+#' @param title title string to embed as the \code{/Title} field in the file. 
+#' Defaults to \code{"R Graphics Output"}.
+#' @param fonts a character vector specifying R graphics font family names for 
+#' additional fonts which will be included in the PDF file. Defaults to 
+#' \code{NULL}.
+#' @param version a string describing the PDF version that will be required to 
+#' view the output. This is a minimum, and will be increased (with a warning) if 
+#' necessary. Defaults to "1.4", but see 'Details' section of 
+#' \code{\link[grDevices]{pdf}}.
+#' @param colormodel a character string describing the color model: currently 
+#' allowed values are "srgb", "gray" (or "grey") and "cmyk". Defaults to "srgb". 
+#' See section 'Color models' of \code{\link[grDevices]{pdf}}.
+#' @param useDingbats logical. Should small circles be rendered via the Dingbats
+#' font? Defaults to \code{TRUE}, which produces smaller and better output. 
+#' Setting this to \code{FALSE} can work around font display problems in broken 
+#' PDF viewers: although this font is one of the 14 guaranteed to be available 
+#' in all PDF viewers, that guarantee is not always honoured.
+#' @param useKerning logical. Should kerning corrections be included in setting 
+#' text and calculating string widths? Defaults to \code{TRUE}.
+#' @param fillOddEven logical controlling the polygon fill mode: see polygon for 
+#' details. Defaults to \code{FALSE}.
+#' @param compress logical. Should PDF streams be generated with Flate 
+#' compression? Defaults to \code{TRUE}.
 #' @export
 with_pdf <- with_(pdf_dev, grDevices::dev.off)
 
@@ -79,8 +102,14 @@ with_pdf <- with_(pdf_dev, grDevices::dev.off)
 #' @export
 with_png <- with_(png_dev, grDevices::dev.off)
 
+# Cannot @inheritParams grDevices::postscript due to differing docs across OSes
 #' @describeIn devices POSTSCRIPT device
-#' @inheritParams grDevices::postscript
+#' @param print.it logical: should the file be printed when the device is 
+#' closed? (This only applies if \code{file} is a real file name.) Defaults to 
+#' \code{FALSE}.
+#' @param command the command to be used for ‘printing’. Defaults to 
+#' \code{"default"}, the value of option \code{"printcmd"}. The length limit is 
+#' \code{2*PATH_MAX}, 520 bytes on Windows and 8096 bytes on Unix-alikes.
 #' @export
 with_postscript <- with_(postscript_dev, grDevices::dev.off)
 
