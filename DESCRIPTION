@@ -23,7 +23,8 @@ Imports:
     graphics,
     grDevices
 Suggests:
-    testthat
+    testthat,
+    lattice
 Collate:
     'with_.R'
     'collate.R'
