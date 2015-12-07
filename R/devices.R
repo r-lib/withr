@@ -85,16 +85,12 @@ with_tiff <- with_(tiff_dev, grDevices::dev.off)
 #' @export
 with_xfig <- with_(xfig_dev, grDevices::dev.off)
 
-
-# There are just placeholder workarounds because roxygen doesn't support OS
-# specific directories or collate directives.
-
 #' @describeIn devices PNG device
 #' @inheritParams grDevices::png
 #' @export
-with_png <- function(...) NULL
+with_png <- with_(png_dev, grDevices::dev.off)
 
 #' @describeIn devices JPEG device
 #' @inheritParams grDevices::jpeg
 #' @export
-with_jpeg <- function(...) NULL
+with_jpeg <- with_(jpeg_dev, grDevices::dev.off)

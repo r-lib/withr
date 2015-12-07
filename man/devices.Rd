@@ -53,9 +53,9 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
   fg = "black", pagecentre = TRUE, defaultfont = FALSE,
   textspecial = FALSE)
 
-with_png(...)
+with_png(new, code)
 
-with_jpeg(...)
+with_jpeg(new, code)
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}
@@ -183,7 +183,8 @@ with_jpeg(...)
 \item{command}{the command to be used for \sQuote{printing}.  Defaults
     to \code{"default"}, the value of option \code{"printcmd"}.  The
     length limit is \code{2*PATH_MAX},
-    typically 8096 bytes.}
+    typically 8096 bytes.
+#ifdef windows not active  }
 
 \item{compression}{the type of compression to be used.  Ignored for
      \code{type = "quartz"}.}
