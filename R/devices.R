@@ -4,35 +4,25 @@
 #' @include wrap.R
 NULL
 
-#' @importFrom grDevices bmp
-bmp_dev <- wrap(bmp, NULL, dev.cur())
+bmp_dev <- wrap(grDevices::bmp, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices cairo_pdf
-cairo_pdf_dev <- wrap(cairo_pdf, NULL, dev.cur())
+cairo_pdf_dev <- wrap(grDevices::cairo_pdf, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices cairo_ps
-cairo_ps_dev <- wrap(cairo_ps, NULL, dev.cur())
+cairo_ps_dev <- wrap(grDevices::cairo_ps, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices jpeg
-jpeg_dev <- wrap(jpeg, antialias <- match.arg(antialias), dev.cur())
+jpeg_dev <- wrap(grDevices::jpeg, antialias <- match.arg(antialias), grDevices::dev.cur())
 
-#' @importFrom grDevices pdf
-pdf_dev <- wrap(pdf, NULL, dev.cur())
+pdf_dev <- wrap(grDevices::pdf, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices png
-png_dev <- wrap(png, antialias <- match.arg(antialias), dev.cur()) 
+png_dev <- wrap(grDevices::png, antialias <- match.arg(antialias), grDevices::dev.cur()) 
 
-#' @importFrom grDevices postscript
-postscript_dev <- wrap(postscript, NULL, dev.cur())
+postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices svg
-svg_dev <- wrap(svg, NULL, dev.cur())
+svg_dev <- wrap(grDevices::svg, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices tiff
-tiff_dev <- wrap(tiff, NULL, dev.cur())
+tiff_dev <- wrap(grDevices::tiff, NULL, grDevices::dev.cur())
 
-#' @importFrom grDevices xfig
-xfig_dev <- wrap(xfig, NULL, dev.cur())
+xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 
 
 # User-level with_* fns ---------------------------------------------------
@@ -41,6 +31,8 @@ xfig_dev <- wrap(xfig, NULL, dev.cur())
 #'
 #' Temporarily use a graphics device.
 #'
+#' @name devices
+#' @aliases with_dev with_device
 #' @template with
 #' @param new \code{[named character]}\cr New graphics device
 #' @seealso \code{\link[grDevices]{Devices}}
@@ -56,43 +48,54 @@ xfig_dev <- wrap(xfig, NULL, dev.cur())
 #'   c(file = file.path(tempdir(), "test.png"), width = 800, height = 600), 
 #'   plot(runif(5))
 #' )
-#' @aliases with_dev with_device
-#' @importFrom grDevices dev.off
-#' @export
-with_bmp <- with_(bmp_dev, dev.off)
+NULL
 
-#' @rdname with_bmp
+#' @describeIn devices BMP device
+#' @inheritParams grDevices::bmp
 #' @export
-with_cairo_pdf <- with_(cairo_pdf_dev, dev.off)
+with_bmp <- with_(bmp_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices CAIRO_PDF device
+#' @inheritParams grDevices::cairo_pdf
 #' @export
-with_cairo_ps <- with_(cairo_ps_dev, dev.off)
+with_cairo_pdf <- with_(cairo_pdf_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices CAIRO_PS device
+#' @inheritParams grDevices::cairo_ps
 #' @export
-with_jpeg <- with_(jpeg_dev, dev.off)
+with_cairo_ps <- with_(cairo_ps_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices JPEG device
+#' @inheritParams grDevices::jpeg
 #' @export
-with_pdf <- with_(pdf_dev, dev.off)
+with_jpeg <- with_(jpeg_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices PDF device
+#' @inheritParams grDevices::pdf
 #' @export
-with_png <- with_(png_dev, dev.off)
+with_pdf <- with_(pdf_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices PNG device
+#' @inheritParams grDevices::png
 #' @export
-with_postscript <- with_(postscript_dev, dev.off)
+with_png <- with_(png_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices POSTSCRIPT device
+#' @inheritParams grDevices::postscript
 #' @export
-with_svg <- with_(svg_dev, dev.off)
+with_postscript <- with_(postscript_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices SVG device
+#' @inheritParams grDevices::svg
 #' @export
-with_tiff <- with_(tiff_dev, dev.off)
+with_svg <- with_(svg_dev, grDevices::dev.off)
 
-#' @rdname with_bmp
+#' @describeIn devices TIFF device
+#' @inheritParams grDevices::tiff
 #' @export
-with_xfig <- with_(xfig_dev, dev.off)
+with_tiff <- with_(tiff_dev, grDevices::dev.off)
+
+#' @describeIn devices XFIG device
+#' @inheritParams grDevices::xfig
+#' @export
+with_xfig <- with_(xfig_dev, grDevices::dev.off)
