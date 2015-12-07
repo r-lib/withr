@@ -54,12 +54,12 @@ NULL
 #' @export
 with_bmp <- with_(bmp_dev, grDevices::dev.off)
 
-#' @describeIn devices CAIRO_PDF device
+#' @describeIn devices PDF device, using cairo graphics API
 #' @inheritParams grDevices::cairo_pdf
 #' @export
 with_cairo_pdf <- with_(cairo_pdf_dev, grDevices::dev.off)
 
-#' @describeIn devices CAIRO_PS device
+#' @describeIn devices POSTSCRIPT device, using cairo graphics API
 #' @inheritParams grDevices::cairo_ps
 #' @export
 with_cairo_ps <- with_(cairo_ps_dev, grDevices::dev.off)
