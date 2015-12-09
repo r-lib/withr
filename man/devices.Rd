@@ -119,75 +119,66 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
     percentage.  Smaller values will give more compression but also more
     degradation of the image.}
 
-\item{title}{title string to embed as the \samp{/Title} field in the
-    file.  Defaults to \code{"R Graphics Output"}.}
+\item{title}{title string to embed as the \code{/Title} field in the file. 
+Defaults to \code{"R Graphics Output"}.}
 
-\item{fonts}{a character vector specifying \R graphics font family
-    names for additional fonts which will be included in the PDF file.
-    Defaults to \code{NULL}.}
+\item{fonts}{a character vector specifying R graphics font family names for 
+additional fonts which will be included in the PDF file. Defaults to 
+\code{NULL}.}
 
-\item{version}{a string describing the PDF version that will be
-    required to view the output.  This is a minimum, and will be
-    increased (with a warning) if necessary.  Defaults to \code{"1.4"},
-    but see \sQuote{Details}.}
+\item{version}{a string describing the PDF version that will be required to 
+view the output. This is a minimum, and will be increased (with a warning) if 
+necessary. Defaults to "1.4", but see 'Details' section of 
+\code{\link[grDevices]{pdf}}.}
 
-\item{paper}{the target paper size.  The choices are
-    \code{"a4"}, \code{"letter"}, \code{"legal"} (or \code{"us"}) and
-    \code{"executive"} (and these can be capitalized), or \code{"a4r"}
-    and \code{"USr"} for rotated (\sQuote{landscape}).
-    The default is \code{"special"}, which means that the \code{width}
-    and \code{height} specify the paper size.  A further choice is
-    \code{"default"}; if this is selected, the
-    papersize is taken from the option \code{"papersize"}
-    if that is set and as \code{"a4"} if it is unset or empty.
-    Defaults to \code{"special"}.
-  }
+\item{paper}{the size of paper region.  The choices
+    are \code{"A4"}, \code{"Letter"} and \code{"Legal"} (and these
+    can be lowercase).  A further choice is \code{"default"}, which
+    is the default.  If this is selected, the papersize is taken
+    from the option \code{"papersize"} if that is set to a non-empty
+    value, otherwise \code{"A4"}.}
 
-\item{encoding}{the name of an encoding file.  See
-    \code{\link{postscript}} for details.  Defaults to \code{"default"}.}
+\item{encoding}{The encoding in which to write text strings.  The
+    default is not to re-encode.  This can be any encoding recognized by
+    \code{\link{iconv}}: in a Western UTF-8 locale you probably want to
+    select an 8-bit encoding such as \code{latin1}, and in an East Asian
+    locale an \code{EUC} encoding.  If re-encoding fails, the text
+    strings will be written in the current encoding with a warning.}
 
-\item{fg}{the initial foreground color to be used.  Defaults to
-   \code{"black"}.}
+\item{fg}{the initial foreground color to be used.}
 
 \item{pagecentre}{logical: should the device region be centred on the
-    page? -- is only relevant for \code{paper != "special"}.
-    Defaults to \code{TRUE}.}
+    page?}
 
-\item{colormodel}{a character string describing the color model:
-    currently allowed values are \code{"srgb"}, \code{"gray"} (or
-    \code{"grey"}) and \code{"cmyk"}.  Defaults to \code{"srgb"}.  See section
-    \sQuote{Color models}.}
+\item{colormodel}{a character string describing the color model: currently 
+allowed values are "srgb", "gray" (or "grey") and "cmyk". Defaults to "srgb". 
+See section 'Color models' of \code{\link[grDevices]{pdf}}.}
 
-\item{useDingbats}{logical.  Should small circles be rendered
-    \emph{via} the Dingbats font?  Defaults to \code{TRUE}, which produces
-    smaller and better output.  Setting this to \code{FALSE} can work
-    around font display problems in broken PDF viewers: although this
-    font is one of the 14 guaranteed to be available in all PDF viewers,
-    that guarantee is not always honoured.
-#ifdef unix not active    }
+\item{useDingbats}{logical. Should small circles be rendered via the Dingbats
+font? Defaults to \code{TRUE}, which produces smaller and better output. 
+Setting this to \code{FALSE} can work around font display problems in broken 
+PDF viewers: although this font is one of the 14 guaranteed to be available 
+in all PDF viewers, that guarantee is not always honoured.}
 
-\item{useKerning}{logical.  Should kerning corrections be included in
-    setting text and calculating string widths?  Defaults to \code{TRUE}.}
+\item{useKerning}{logical. Should kerning corrections be included in setting 
+text and calculating string widths? Defaults to \code{TRUE}.}
 
-\item{fillOddEven}{logical controlling the polygon fill mode:  see
-    \code{\link{polygon}} for details.  Defaults to \code{FALSE}.}
+\item{fillOddEven}{logical controlling the polygon fill mode: see polygon for 
+details. Defaults to \code{FALSE}.}
 
-\item{compress}{logical.  Should PDF streams be generated with Flate
-    compression?  Defaults to \code{TRUE}.}
+\item{compress}{logical. Should PDF streams be generated with Flate 
+compression? Defaults to \code{TRUE}.}
 
-\item{horizontal}{the orientation of the printed image, a logical.
-    Defaults to true, that is landscape orientation on paper sizes
-    with width less than height.}
+\item{horizontal}{the orientation of the printed image, a
+    logical.  Defaults to true, that is landscape orientation.}
 
-\item{print.it}{logical: should the file be printed when the device is
-    closed?  (This only applies if \code{file} is a real file name.)
-    Defaults to false.}
+\item{print.it}{logical: should the file be printed when the device is 
+closed? (This only applies if \code{file} is a real file name.) Defaults to 
+\code{FALSE}.}
 
-\item{command}{the command to be used for \sQuote{printing}.  Defaults
-    to \code{"default"}, the value of option \code{"printcmd"}.  The
-    length limit is \code{2*PATH_MAX},
-#ifdef unix not active    520 bytes.
-  }
+\item{command}{the command to be used for ‘printing’. Defaults to 
+\code{"default"}, the value of option \code{"printcmd"}. The length limit is 
+\code{2*PATH_MAX}, 520 bytes on Windows and 8096 bytes on Unix-alikes.}
 
 \item{compression}{the type of compression to be used.}
 
@@ -209,9 +200,9 @@ Temporarily use a graphics device.
 \itemize{
 \item \code{with_bmp}: BMP device
 
-\item \code{with_cairo_pdf}: CAIRO_PDF device
+\item \code{with_cairo_pdf}: PDF device, using cairo graphics API
 
-\item \code{with_cairo_ps}: CAIRO_PS device
+\item \code{with_cairo_ps}: POSTSCRIPT device, using cairo graphics API
 
 \item \code{with_jpeg}: JPEG device
 
