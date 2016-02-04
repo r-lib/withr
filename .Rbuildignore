@@ -11,3 +11,4 @@
 ^README-.*\.png$
 ^.*\.Rcheck$
 ^cran-comments\.md$
+^revdep$

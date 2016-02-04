@@ -1,21 +1,15 @@
 ## Test environments
-* ubuntu 14.04 (local install), R-devel
-* ubuntu 12.04 (on travis-ci), R 3.2.2
-* Windows Server 2012 R2 (x64), R 3.2.2
+* OS X El Capitan, R 3.2.3
+* ubuntu 12.04 (on travis-ci), R 3.2.3
+* Windows Server 2012 R2 (x64), R 3.2.3
 
 ## R CMD check results
-There were no ERRORs or WARNINGs.
-
-There was 1 NOTE:
-
- * checking CRAN incoming feasibility ... NOTE
-   Maintainer: ‘Jim Hester <james.f.hester@gmail.com>’
-   New submission
-
-   Possibly mis-spelled words in DESCRIPTION:
-    devtools (13:5)
-
-  devtools is the name of an R package, so it is correctly spelled.
+There were no NOTEs, ERRORs or WARNINGs.
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
+
+* I ran R CMD check on all 1 downstream dependencies of withr
+  Summary at: https://github.com/jimhester/withr/blob/master/revdep/summary.md
+
+* There were No ERRORs
