@@ -3,7 +3,6 @@
 ^withr\.Rcheck$
 ^\.travis\.yml$
 ^\.lintr$
-^NEWS\.MD$
 ^appveyor\.yml$
 ^\.Rproj\.user$
 ^man-roxygen$
