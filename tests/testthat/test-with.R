@@ -56,7 +56,7 @@ test_that("with_libpaths works and resets library", {
 test_that("with_temp_libpaths works and resets library", {
   lib <- .libPaths()
   with_temp_libpaths(
-    expect_equal(.libPaths()[-1], lib)
+    code = expect_equal(.libPaths()[-1], lib)
   )
   expect_equal(lib, .libPaths())
 })

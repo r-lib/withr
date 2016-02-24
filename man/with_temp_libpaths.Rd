@@ -4,10 +4,15 @@
 \alias{with_temp_libpaths}
 \title{Library paths}
 \usage{
-with_temp_libpaths(code)
+with_temp_libpaths(new = tempfile("temp_libpath"), code, action = "prefix")
 }
 \arguments{
+\item{new}{\code{[character]}\cr New library paths}
+
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
+\code{"suffix"} existing paths.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

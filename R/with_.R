@@ -50,6 +50,11 @@ with_ <- function(set, reset = set, envir = parent.frame()) {
     called_fmls[[1]] <- as.symbol("new")
 
     fun_args <- c(alist(new =, code =), fmls[-1L])
+
+    # argument default should be the same if it exists
+    if (!is.null(fmls[[1]])) {
+      fun_args[[1]] <- fmls[[1]]
+    }
   } else {
     # no formals -- only have code
     called_fmls <- NULL
