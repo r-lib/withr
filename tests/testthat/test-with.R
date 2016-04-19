@@ -195,6 +195,19 @@ test_that("with_makevars changes only the defined variables", {
   expect_equal(current, readLines(current_name))
 })
 
+test_that("with_makevars works with alternative assignments", {
+  current <- tempfile()
+  writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
+  new <- c(CFLAGS = "-O0")
+  with_makevars(
+    new, path = current, assignment = "+=",
+    {
+      expect_equal("CFLAGS+=-O0", readLines(Sys.getenv("R_MAKEVARS_USER")))
+    }
+  )
+  expect_equal("CFLAGS=-03", readLines(current))
+})
+
 test_that("set_makevars works as expected", {
   expect_equal(set_makevars(character(0)), NULL)
 

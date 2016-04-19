@@ -4,11 +4,14 @@
 
 set_makevars <- function(variables,
                          old_path = file.path("~", ".R", "Makevars"),
-                         new_path = tempfile()) {
+                         new_path = tempfile(),
+                         assignment = c("=", ":=", "?=", "+=")) {
   if (length(variables) == 0) {
     return()
   }
   stopifnot(is.named(variables))
+
+  assignment <- match.arg(assignment)
 
   old <- NULL
   if (file.exists(old_path)) {
@@ -17,15 +20,15 @@ set_makevars <- function(variables,
     for (var in names(variables)) {
       loc <- grep(paste(c("^[[:space:]]*", var, "[[:space:]]*", "="), collapse = ""), lines)
       if (length(loc) == 0) {
-        lines <- append(lines, paste(sep = "=", var, variables[var]))
+        lines <- append(lines, paste(sep = assignment, var, variables[var]))
       } else if(length(loc) == 1) {
-        lines[loc] <- paste(sep = "=", var, variables[var])
+        lines[loc] <- paste(sep = assignment, var, variables[var])
       } else {
         stop("Multiple results for ", var, " found, something is wrong.", .call = FALSE)
       }
     }
   } else {
-    lines <- paste(names(variables), variables, sep = "=")
+    lines <- paste(names(variables), variables, sep = assignment)
   }
 
   if (!identical(old, lines)) {
@@ -48,12 +51,14 @@ set_makevars <- function(variables,
 #' @template with
 #' @param new \code{[named character]}\cr New variables and their values
 #' @param path \code{[character(1)]}\cr location of existing \code{Makevars} file to modify.
+#' @param assignment \code{[character(1)]}\cr assignment type to use.
 #' @export
-with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars")) {
+with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars"), assignment = c("=", ":=", "?=", "+=")) {
+  assignment <- match.arg(assignment)
   makevars_file <- tempfile()
   on.exit(unlink(makevars_file), add = TRUE)
   with_envvar(c(R_MAKEVARS_USER = makevars_file), {
-    set_makevars(new, path, makevars_file)
+    set_makevars(new, path, makevars_file, assignment = assignment)
     force(code)
   })
 }

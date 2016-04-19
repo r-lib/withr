@@ -4,7 +4,8 @@
 \alias{with_makevars}
 \title{Makevars variables}
 \usage{
-with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
+with_makevars(new, code, path = file.path("~", ".R", "Makevars"),
+  assignment = c("=", ":=", "?=", "+="))
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New variables and their values}
@@ -12,6 +13,8 @@ with_makevars(new, code, path = file.path("~", ".R", "Makevars"))
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{path}{\code{[character(1)]}\cr location of existing \code{Makevars} file to modify.}
+
+\item{assignment}{\code{[character(1)]}\cr assignment type to use.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
