@@ -7,4 +7,4 @@ r:
   - devel
 
 after_success:
-  - test $TRAVIS_R_VERSION = "3.2.4" && Rscript -e 'covr::codecov()'
+  - test $TRAVIS_R_VERSION = "3.2.4" && Rscript -e 'install_github("jimhester/covr")' -e 'covr::codecov()'
