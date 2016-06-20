@@ -12,10 +12,9 @@ set_libpaths <- function(paths, action = "replace") {
   invisible(old)
 }
 
-set_temp_libpath <- function() {
-  paths <- tempfile("temp_libpath")
+set_temp_libpath <- function(paths = tempfile("temp_libpath"), action = "prefix") {
   dir.create(paths)
-  set_libpaths(paths, action = "prefix")
+  set_libpaths(paths, action = action)
 }
 
 #' Library paths
@@ -36,6 +35,9 @@ with_libpaths <- with_(set_libpaths, .libPaths)
 #' Temporarily prepend a new temporary directory to the library paths.
 #'
 #' @template with
+#' @param new \code{[character]}\cr New library paths
+#' @param action \code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
+#'   \code{"suffix"} existing paths.
 #' @seealso \code{\link{.libPaths}}
 #' @family libpaths
 #' @export
