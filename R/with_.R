@@ -1,12 +1,17 @@
-#' @include scope_.R
+#' @include scoped_.R
 NULL
 
-#' Create a new "with" or "scope" function
+#' Create a new "with" or "scoped" function
 #'
-#' These are constructors for \code{with_...} or \code{scope_...} functions.
+#' These are constructors for \code{with_...} or \code{scoped_...} functions.
 #' They are only needed if you want to alter some global state which is not
 #' covered by the existing \code{with_...} functions, see \link{withr-package}
 #' for an overview.
+#'
+#' The \code{with_...} functions reset the state immediately after the
+#' \code{code} argument has been evaluated. The \code{scoped_...} functions
+#' reset their arguments after they go out of scope, usually at the end of the
+#' function body.
 #'
 #' @param set \code{[function(...)]}\cr Function used to set the state.
 #'   The function can have arbitrarily many arguments, they will be replicated

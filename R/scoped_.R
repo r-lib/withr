@@ -1,6 +1,6 @@
 #' @rdname with_
 #' @export
-scope_ <- function(set, reset = set, envir = parent.frame()) {
+scoped_ <- function(set, reset = set, envir = parent.frame()) {
 
   fmls <- formals(set)
 

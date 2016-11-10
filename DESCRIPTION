@@ -25,7 +25,7 @@ Imports:
 Suggests:
     testthat
 Collate:
-    'scope_.R'
+    'scoped_.R'
     'with_.R'
     'collate.R'
     'dir.R'

@@ -28,4 +28,4 @@ with_locale <- with_(set_locale)
 
 #' @rdname with_locale
 #' @export
-scope_locale <- scope_(set_locale)
+scoped_locale <- scoped_(set_locale)

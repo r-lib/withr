@@ -45,4 +45,4 @@ with_envvar <- with_(set_envvar)
 
 #' @rdname with_envvar
 #' @export
-scope_envvar <- scope_(set_envvar)
+scoped_envvar <- scoped_(set_envvar)

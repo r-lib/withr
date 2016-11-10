@@ -17,4 +17,4 @@ with_collate <- with_(set_collate)
 
 #' @rdname with_collate
 #' @export
-scope_collate <- scope_(set_collate)
+scoped_collate <- scoped_(set_collate)
