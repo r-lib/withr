@@ -7,19 +7,21 @@
 \usage{
 with_dir(new, code)
 
-scope_dir(dir, .scoped_envir = parent.frame())
+scope_dir(new, code, .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character(1)]}\cr New working directory}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
   argument.
 }
 \description{
-Temorarily change the current working directory.
+Temporarily change the current working directory.
 }
 \seealso{
 \code{\link{withr}} for examples

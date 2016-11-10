@@ -7,7 +7,7 @@
 \usage{
 with_envvar(new, code, action = "replace")
 
-scope_envvar(envs, action = "replace", .scoped_envir = parent.frame())
+scope_envvar(new, code, action = "replace", .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New environment variables}
@@ -16,6 +16,8 @@ scope_envvar(envs, action = "replace", .scoped_envir = parent.frame())
 
 \item{action}{should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing variables with the same name.}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

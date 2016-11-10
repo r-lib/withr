@@ -7,12 +7,14 @@
 \usage{
 with_collate(new, code)
 
-scope_collate(locale, .scoped_envir = parent.frame())
+scope_collate(new, code, .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character(1)]}\cr New collation order}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

@@ -1,15 +1,15 @@
 #' @include scope_.R
 NULL
 
-#' Create a new "with" function
+#' Create a new "with" or "scope" function
 #'
-#' This function is a "constructor" for \code{with_...} functions.  It
-#' is only needed if you want to alter some global state which is
-#' not covered by the existing \code{with_...} functions, see
-#' \link{withr-package} for an overview.
+#' These are constructors for \code{with_...} or \code{scope_...} functions.
+#' They are only needed if you want to alter some global state which is not
+#' covered by the existing \code{with_...} functions, see \link{withr-package}
+#' for an overview.
 #'
 #' @param set \code{[function(...)]}\cr Function used to set the state.
-#'   The function can have arbirarily many arguments, they will be replicated
+#'   The function can have arbitrarily many arguments, they will be replicated
 #'   in the formals of the returned function.
 #' @param reset \code{[function(x)]}\cr Function used to reset the state.
 #'   The first argument can be named arbitrarily, further arguments with default

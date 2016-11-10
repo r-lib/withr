@@ -7,7 +7,7 @@
 \usage{
 with_path(new, code, action = "prefix")
 
-scope_path(path, action = "prefix", .scoped_envir = parent.frame())
+scope_path(new, code, action = "prefix", .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character]}\cr New \code{PATH} entries}
@@ -16,6 +16,8 @@ scope_path(path, action = "prefix", .scoped_envir = parent.frame())
 
 \item{action}{\code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

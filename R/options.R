@@ -12,6 +12,7 @@ set_options <- function(new_options) {
 #'
 #' @template with
 #' @param new \code{[named list]}\cr New options and their values
+#' @inheritParams with_collate
 #' @seealso \code{\link{options}}
 #' @export
 with_options <- with_(set_options)

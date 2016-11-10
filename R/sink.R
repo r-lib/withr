@@ -85,6 +85,7 @@ do_reset_message_sink <- function(sink_info) {
 #'   A writable \link{connection} or a character string naming the file to write
 #'   to. Passing \code{NULL} will throw an error.
 #' @inheritParams base::sink
+#' @inheritParams with_collate
 #' @seealso \code{\link{sink}}
 #' @export
 #' @name with_sink

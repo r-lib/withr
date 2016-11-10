@@ -10,12 +10,12 @@
 \usage{
 with_output_sink(new, code, append = FALSE, split = FALSE)
 
-scope_output_sink(file = NULL, append = FALSE, split = FALSE,
+scope_output_sink(new, code, append = FALSE, split = FALSE,
   .scoped_envir = parent.frame())
 
 with_message_sink(new, code, append = FALSE)
 
-scope_message_sink(file = NULL, append = FALSE,
+scope_message_sink(new, code, append = FALSE,
   .scoped_envir = parent.frame())
 }
 \arguments{
@@ -32,8 +32,7 @@ to. Passing \code{NULL} will throw an error.}
 \item{split}{logical: if \code{TRUE}, output will be sent to the new
     sink and to the current output stream, like the Unix program \code{tee}.}
 
-\item{file}{a writable \link{connection} or a character string naming the
-    file to write to, or \code{NULL} to stop sink-ing.}
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

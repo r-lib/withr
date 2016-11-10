@@ -7,7 +7,7 @@
 \usage{
 with_par(new, code, no.readonly = FALSE)
 
-scope_par(..., no.readonly = FALSE, .scoped_envir = parent.frame())
+scope_par(new, code, no.readonly = FALSE, .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named list]}\cr New graphics parameters and their values}
@@ -15,6 +15,8 @@ scope_par(..., no.readonly = FALSE, .scoped_envir = parent.frame())
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{no.readonly}{\code{[logical(1)]}\cr see \code{\link{par}} documentation.}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

@@ -21,6 +21,7 @@ set_locale <- function(cats) {
 #'
 #' @template with
 #' @param new \code{[named character]}\cr New locale settings
+#' @inheritParams with_collate
 #' @seealso \code{\link{Sys.setlocale}}
 #' @export
 with_locale <- with_(set_locale)

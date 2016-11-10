@@ -7,12 +7,14 @@
 \usage{
 with_options(new, code)
 
-scope_options(new_options, .scoped_envir = parent.frame())
+scope_options(new, code, .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named list]}\cr New options and their values}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

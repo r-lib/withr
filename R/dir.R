@@ -5,10 +5,11 @@ NULL
 
 #' Working directory
 #'
-#' Temorarily change the current working directory.
+#' Temporarily change the current working directory.
 #'
 #' @template with
 #' @param new \code{[character(1)]}\cr New working directory
+#' @inheritParams with_collate
 #' @seealso \code{\link{setwd}}
 #' @export
 with_dir <- with_(setwd)

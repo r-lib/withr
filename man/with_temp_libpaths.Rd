@@ -7,10 +7,12 @@
 \usage{
 with_temp_libpaths(code)
 
-scope_temp_libpaths(.scoped_envir = parent.frame())
+scope_temp_libpaths(code, .scoped_envir = parent.frame())
 }
 \arguments{
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

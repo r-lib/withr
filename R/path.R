@@ -23,6 +23,7 @@ set_path <- function(path, action = "prefix") {
 #' @param new \code{[character]}\cr New \code{PATH} entries
 #' @param action \code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
 #'   \code{"suffix"} existing paths
+#' @inheritParams with_collate
 #' @seealso \code{\link{Sys.setenv}}
 #' @export
 with_path <- with_(set_path, function(old) set_path(old, "replace"))

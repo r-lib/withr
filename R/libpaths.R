@@ -26,6 +26,7 @@ set_temp_libpath <- function() {
 #' @param new \code{[character]}\cr New library paths
 #' @param action \code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 #'   \code{"suffix"} existing paths.
+#' @inheritParams with_collate
 #' @seealso \code{\link{.libPaths}}
 #' @family libpaths
 #' @export
@@ -41,6 +42,7 @@ scope_libpaths <- scope_(set_libpaths, .libPaths)
 #'
 #' @template with
 #' @seealso \code{\link{.libPaths}}
+#' @inheritParams with_collate
 #' @family libpaths
 #' @export
 with_temp_libpaths <- with_(set_temp_libpath, .libPaths)

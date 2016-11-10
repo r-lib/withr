@@ -7,7 +7,8 @@
 \usage{
 with_libpaths(new, code, action = "replace")
 
-scope_libpaths(paths, action = "replace", .scoped_envir = parent.frame())
+scope_libpaths(new, code, action = "replace",
+  .scoped_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character]}\cr New library paths}
@@ -16,6 +17,8 @@ scope_libpaths(paths, action = "replace", .scoped_envir = parent.frame())
 
 \item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths.}
+
+\item{.scoped_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
