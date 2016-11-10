@@ -35,10 +35,9 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
-    'wrap.R'
     'scope_.R'
+    'wrap.R'
     'sink.R'
     'with.R'
 RoxygenNote: 5.0.1
-Remotes:
-    kevinushey/later
+Remotes: kevinushey/later
