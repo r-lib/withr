@@ -8,20 +8,21 @@ A set of functions to run code 'with' safely and temporarily modified global sta
 
 Many of these functions were originally a part of the [devtools](https://github.com/hadley/devtools) package, this provides a simple package with limited dependencies to provide access to these functions.
 
--   `with_collate()` - collation order
--   `with_dir()` - working directory
--   `with_envvar()` - environment variables
--   `with_libpaths()` - library paths
--   `with_locale()` - any locale setting
--   `with_makevars()` - Makevars variables
--   `with_options()` - options
--   `with_par()` - graphics parameters
--   `with_path()` - PATH environment variable
+-   `with_collate()` / `scoped_collate()` - collation order
+-   `with_dir()` / `scoped_dir()` - working directory
+-   `with_envvar()` / `scoped_envvar()` - environment variables
+-   `with_libpaths()` / `scoped_libpaths()` - library paths
+-   `with_locale()` / `scoped_locale()` - any locale setting
+-   `with_makevars()` / `scoped_makevars()` - Makevars variables
+-   `with_options()` / `scoped_options()` - options
+-   `with_par()` / `scoped_par()` - graphics parameters
+-   `with_path()` / `scoped_path()` - PATH environment variable
 
-There is also a `with_()` function to construct new `with_*` functions if needed.
+There are also `with_()` and `scoped_()` functions to construct new `with_*` and `scoped_*` functions if needed.
 
 ``` r
 dir.create("test")
+#> Warning in dir.create("test"): 'test' already exists
 getwd()
 #> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpRNDrWs"
 with_dir("test", getwd())
