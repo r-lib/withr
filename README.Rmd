@@ -22,7 +22,10 @@ knitr::opts_knit$set(root.dir = tempdir())
 [![CRAN Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
 
 A set of functions to run code 'with' safely and temporarily modified global
-state.
+state. There are two sets of functions, those prefixed with `with_` and those
+with `scoped_`. The former reset their state as soon as the `code` argument has
+been evaluated. The latter reset when they reach the end of their scope,
+usually at the end of a function body.
 
 Many of these functions were originally a part of the [devtools][] package,
 this provides a simple package with limited dependencies to provide access to
