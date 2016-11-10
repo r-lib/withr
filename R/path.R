@@ -26,3 +26,7 @@ set_path <- function(path, action = "prefix") {
 #' @seealso \code{\link{Sys.setenv}}
 #' @export
 with_path <- with_(set_path, function(old) set_path(old, "replace"))
+
+#' @rdname with_path
+#' @export
+scope_path <- scope_(set_path, function(old) set_path(old, "replace"))

@@ -25,6 +25,7 @@ Imports:
 Suggests:
     testthat
 Collate:
+    'scope_.R'
     'with_.R'
     'collate.R'
     'dir.R'
@@ -35,7 +36,6 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
-    'scope_.R'
     'wrap.R'
     'sink.R'
     'with.R'

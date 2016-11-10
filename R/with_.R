@@ -1,3 +1,6 @@
+#' @include scope_.R
+NULL
+
 #' Create a new "with" function
 #'
 #' This function is a "constructor" for \code{with_...} functions.  It

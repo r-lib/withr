@@ -41,3 +41,7 @@ set_envvar <- function(envs, action = "replace") {
 #' @seealso \code{\link{Sys.setenv}}
 #' @export
 with_envvar <- with_(set_envvar)
+
+#' @rdname with_envvar
+#' @export
+scope_envvar <- scope_(set_envvar)

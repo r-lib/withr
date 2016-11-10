@@ -12,3 +12,7 @@ NULL
 #' @seealso \code{\link{setwd}}
 #' @export
 with_dir <- with_(setwd)
+
+#' @rdname with_dir
+#' @export
+scope_dir <- scope_(setwd)

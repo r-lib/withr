@@ -13,3 +13,7 @@ NULL
 #' @seealso \code{\link{par}}
 #' @export
 with_par <- with_(graphics::par)
+
+#' @rdname with_par
+#' @export
+scope_par <- scope_(graphics::par)

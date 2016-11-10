@@ -24,3 +24,7 @@ set_locale <- function(cats) {
 #' @seealso \code{\link{Sys.setlocale}}
 #' @export
 with_locale <- with_(set_locale)
+
+#' @rdname with_locale
+#' @export
+scope_locale <- scope_(set_locale)

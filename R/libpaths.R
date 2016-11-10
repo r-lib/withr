@@ -31,6 +31,10 @@ set_temp_libpath <- function() {
 #' @export
 with_libpaths <- with_(set_libpaths, .libPaths)
 
+#' @rdname with_libpaths
+#' @export
+scope_libpaths <- scope_(set_libpaths, .libPaths)
+
 #' Library paths
 #'
 #' Temporarily prepend a new temporary directory to the library paths.
@@ -40,3 +44,7 @@ with_libpaths <- with_(set_libpaths, .libPaths)
 #' @family libpaths
 #' @export
 with_temp_libpaths <- with_(set_temp_libpath, .libPaths)
+
+#' @rdname with_temp_libpaths
+#' @export
+scope_temp_libpaths <- scope_(set_temp_libpath, .libPaths)

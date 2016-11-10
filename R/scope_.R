@@ -24,7 +24,7 @@
 #' @keywords internal
 #' @export
 scope_ <- function(set, reset = set, envir = parent.frame()) {
-  fmls <- formals(set)
+  fmls <- c(formals(set))
 
   # called pass all extra formals on
   called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
@@ -32,13 +32,13 @@ scope_ <- function(set, reset = set, envir = parent.frame()) {
 
   fun <- eval(bquote(function(args) {
     old <- .(set_call)
-    later::defer_parent(.(reset)(old))
+    later::defer(.(reset)(old), envir = .scoped_envir)
     old
   }, as.environment(list(set_call = set_call,
                          reset = if (missing(reset)) substitute(set) else substitute(reset)))))
 
   # substitute does not work on arguments, so we need to fix them manually
-  formals(fun) <- fmls
+  formals(fun) <- c(fmls, alist(.scoped_envir = parent.frame()))
 
   environment(fun) <- envir
 

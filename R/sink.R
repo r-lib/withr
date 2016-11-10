@@ -92,4 +92,12 @@ with_output_sink <- with_(set_output_sink, reset_output_sink)
 
 #' @rdname with_sink
 #' @export
+scope_output_sink <- scope_(set_output_sink, reset_output_sink)
+
+#' @rdname with_sink
+#' @export
 with_message_sink <- with_(set_message_sink, reset_message_sink)
+
+#' @rdname with_sink
+#' @export
+scope_message_sink <- scope_(set_message_sink, reset_message_sink)

@@ -13,3 +13,7 @@ set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
 #' @param new \code{[character(1)]}\cr New collation order
 #' @export
 with_collate <- with_(set_collate)
+
+#' @rdname with_collate
+#' @export
+scope_collate <- scope_(set_collate)

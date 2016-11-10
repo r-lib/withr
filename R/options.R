@@ -15,3 +15,7 @@ set_options <- function(new_options) {
 #' @seealso \code{\link{options}}
 #' @export
 with_options <- with_(set_options)
+
+#' @rdname with_options
+#' @export
+scope_options <- scope_(set_options)
