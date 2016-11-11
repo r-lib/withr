@@ -19,4 +19,4 @@ with_options <- with_(set_options)
 
 #' @rdname with_options
 #' @export
-scoped_options <- scoped_(set_options)
+local_options <- local_(set_options)

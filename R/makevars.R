@@ -63,10 +63,10 @@ with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars"), as
   })
 }
 
-scoped_makevars <- function(new, path = file.path("~", ".R", "Makevars"), assignment = c("=", ":=", "?=", "+="), .scoped_envir = parent.frame()) {
+local_makevars <- function(new, path = file.path("~", ".R", "Makevars"), assignment = c("=", ":=", "?=", "+="), .local_envir = parent.frame()) {
   assignment <- match.arg(assignment)
   makevars_file <- tempfile()
-  later::defer(unlink(makevars_file), envir = .scoped_envir)
-  scoped_envvar(c(R_MAKEVARS_USER = makevars_file), .scoped_envir = .scoped_envir)
+  later::defer(unlink(makevars_file), envir = .local_envir)
+  local_envvar(c(R_MAKEVARS_USER = makevars_file), .local_envir = .local_envir)
   set_makevars(new, path, makevars_file, assignment = assignment)
 }

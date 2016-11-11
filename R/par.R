@@ -17,4 +17,4 @@ with_par <- with_(graphics::par)
 
 #' @rdname with_par
 #' @export
-scoped_par <- scoped_(graphics::par)
+local_par <- local_(graphics::par)

@@ -30,4 +30,4 @@ with_path <- with_(set_path, function(old) set_path(old, "replace"))
 
 #' @rdname with_path
 #' @export
-scoped_path <- scoped_(set_path, function(old) set_path(old, "replace"))
+local_path <- local_(set_path, function(old) set_path(old, "replace"))

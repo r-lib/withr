@@ -1,6 +1,6 @@
 #' @rdname with_
 #' @export
-scoped_ <- function(set, reset = set, envir = parent.frame()) {
+local_ <- function(set, reset = set, envir = parent.frame()) {
 
   fmls <- formals(set)
 
@@ -23,13 +23,13 @@ scoped_ <- function(set, reset = set, envir = parent.frame()) {
 
   fun <- eval(bquote(function(args) {
     old <- .(set_call)
-    later::defer(.(reset)(old), envir = .scoped_envir)
+    later::defer(.(reset)(old), envir = .local_envir)
     old
   }, as.environment(list(set_call = set_call,
                          reset = if (missing(reset)) substitute(set) else substitute(reset)))))
 
   # substitute does not work on arguments, so we need to fix them manually
-  formals(fun) <- c(fun_args, alist(.scoped_envir = parent.frame()))
+  formals(fun) <- c(fun_args, alist(.local_envir = parent.frame()))
 
   environment(fun) <- envir
 

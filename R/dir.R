@@ -16,4 +16,4 @@ with_dir <- with_(setwd)
 
 #' @rdname with_dir
 #' @export
-scoped_dir <- scoped_(setwd)
+local_dir <- local_(setwd)

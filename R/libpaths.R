@@ -34,7 +34,7 @@ with_libpaths <- with_(set_libpaths, .libPaths)
 
 #' @rdname with_libpaths
 #' @export
-scoped_libpaths <- scoped_(set_libpaths, .libPaths)
+local_libpaths <- local_(set_libpaths, .libPaths)
 
 #' Library paths
 #'
@@ -49,4 +49,4 @@ with_temp_libpaths <- with_(set_temp_libpath, .libPaths)
 
 #' @rdname with_temp_libpaths
 #' @export
-scoped_temp_libpaths <- scoped_(set_temp_libpath, .libPaths)
+local_temp_libpaths <- local_(set_temp_libpath, .libPaths)
