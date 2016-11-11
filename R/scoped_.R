@@ -23,7 +23,7 @@ scoped_ <- function(set, reset = set, envir = parent.frame()) {
 
   fun <- eval(bquote(function(args) {
     old <- .(set_call)
-    later::defer(.(reset)(old), envir = .scoped_envir)
+    defer(.(reset)(old), envir = .scoped_envir)
     old
   }, as.environment(list(set_call = set_call,
                          reset = if (missing(reset)) substitute(set) else substitute(reset)))))

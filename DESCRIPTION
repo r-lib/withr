@@ -4,7 +4,8 @@ Title: Run Code 'With' Temporarily Modified Global State
 Version: 1.0.2
 Authors@R: c(
     person("Jim", "Hester", , "james.f.hester@gmail.com", role = c("aut", "cre")),
-    person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "aut"),
+    person("Kirill", "M<U+00FC>ller", , "krlmlr+r@mailbox.org", role = "aut"),
+    person("Kevin", "Ushey", email = "kevinushey@gmail.com", role = c("aut")),
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = "aut"),
     person("Winston", "Chang", role = "aut"),
     person("RStudio", role = "cph"))
@@ -28,6 +29,7 @@ Collate:
     'scoped_.R'
     'with_.R'
     'collate.R'
+    'defer.R'
     'dir.R'
     'env.R'
     'libpaths.R'
@@ -38,6 +40,6 @@ Collate:
     'path.R'
     'wrap.R'
     'sink.R'
+    'utils.R'
     'with.R'
 RoxygenNote: 5.0.1
-Remotes: kevinushey/later
