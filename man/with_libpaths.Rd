@@ -7,8 +7,7 @@
 \usage{
 with_libpaths(new, code, action = "replace")
 
-local_libpaths(new, code, action = "replace",
-  .local_envir = parent.frame())
+local_libpaths(new, code, action = "replace", .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character]}\cr New library paths}

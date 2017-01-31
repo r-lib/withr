@@ -22,8 +22,8 @@
 #'
 #' @family scope-related functions
 #' @export
-#' @examples
 #' @author Kevin Ushey
+#' @examples
 #' # define a 'scope' function that creates a file, and
 #' # removes it when the parent function has finished executing
 #' scope_file <- function(path) {
