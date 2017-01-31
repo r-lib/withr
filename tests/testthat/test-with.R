@@ -32,13 +32,13 @@ test_that("with_envar respects suffix and prefix", {
 })
 
 test_that("with_options works", {
-  expect_that(getOption("scipen"), not(equals(999)))
+  expect_false(identical(getOption("scipen"), 999))
   expect_equal(with_options(c(scipen=999), getOption("scipen")), 999)
-  expect_that(getOption("scipen"), not(equals(999)))
+  expect_false(identical(getOption("scipen"), 999))
 
-  expect_that(getOption("zyxxyzyx"), not(equals("qwrbbl")))
+  expect_false(identical(getOption("zyxxyzyx"), "qwrbbl"))
   expect_equal(with_options(c(zyxxyzyx="qwrbbl"), getOption("zyxxyzyx")), "qwrbbl")
-  expect_that(getOption("zyxxyzyx"), not(equals("qwrbbl")))
+  expect_false(identical(getOption("zyxxyzyx"), "qwrbbl"))
 })
 
 test_that("with_libpaths works and resets library", {
@@ -88,7 +88,7 @@ test_that("with_ works on functions without arguments", {
 })
 
 test_that("with_path works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   with_path(
     new_path,
@@ -101,7 +101,7 @@ test_that("with_path works and resets path", {
 })
 
 test_that("with_path with suffix action works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   with_path(
     new_path,
@@ -115,7 +115,7 @@ test_that("with_path with suffix action works and resets path", {
 })
 
 test_that("with_path with replace action works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   with_path(
     new_path,

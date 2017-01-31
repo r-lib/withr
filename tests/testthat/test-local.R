@@ -103,7 +103,7 @@ test_that("local_ works on functions without arguments", {
 })
 
 test_that("local_path works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   local({
     local_path(new_path)
@@ -114,7 +114,7 @@ test_that("local_path works and resets path", {
 })
 
 test_that("local_path with suffix action works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   local({
     local_path(new_path, action = "suffix")
@@ -125,7 +125,7 @@ test_that("local_path with suffix action works and resets path", {
 })
 
 test_that("local_path with replace action works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   local({
     local_path(new_path, action = "replace")
@@ -140,7 +140,7 @@ test_that("local_libpaths works and resets library", {
   new_lib <- "."
   local({
     local_libpaths(new_lib)
-    expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]]))
+    expect_equal(normalizePath(new_lib), normalizePath(.libPaths()[[1L]], mustWork = FALSE))
   })
   expect_equal(lib, .libPaths())
 })

@@ -21,8 +21,7 @@ License: GPL (>= 2)
 LazyData: true
 Imports:
     stats,
-    graphics,
-    later
+    graphics
 Suggests:
     testthat
 Collate:
@@ -42,4 +41,4 @@ Collate:
     'sink.R'
     'utils.R'
     'with.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000

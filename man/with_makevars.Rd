@@ -33,4 +33,3 @@ are modified to use the value in \code{new}.
 \seealso{
 \code{\link{withr}} for examples
 }
-

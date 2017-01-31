@@ -52,6 +52,7 @@ This undo instruction is then passed to the resetter function, which changes
 back the global state. In many cases, the setter function can be used
 naturally as resetter.
 }
+
 \examples{
 getwd()
 with_dir(tempdir(), getwd())
@@ -65,4 +66,3 @@ with_envvar(c("A" = 1),
   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
 )
 }
-
