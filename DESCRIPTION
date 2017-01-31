@@ -21,8 +21,7 @@ License: GPL (>= 2)
 LazyData: true
 Imports:
     stats,
-    graphics,
-    later
+    graphics
 Suggests:
     testthat
 Collate:
@@ -43,4 +42,3 @@ Collate:
     'utils.R'
     'with.R'
 RoxygenNote: 5.0.1
-Remotes: kevinushey/later
