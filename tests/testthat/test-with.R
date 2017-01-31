@@ -88,7 +88,7 @@ test_that("with_ works on functions without arguments", {
 })
 
 test_that("with_path works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   with_path(
     new_path,
@@ -101,7 +101,7 @@ test_that("with_path works and resets path", {
 })
 
 test_that("with_path with suffix action works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   with_path(
     new_path,
@@ -115,7 +115,7 @@ test_that("with_path with suffix action works and resets path", {
 })
 
 test_that("with_path with replace action works and resets path", {
-  current <- normalizePath(get_path())
+  current <- normalizePath(get_path(), mustWork = FALSE)
   new_path <- normalizePath(".")
   with_path(
     new_path,
