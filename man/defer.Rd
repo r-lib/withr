@@ -62,4 +62,3 @@ local({
 \author{
 Kevin Ushey
 }
-

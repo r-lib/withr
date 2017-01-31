@@ -41,4 +41,4 @@ Collate:
     'sink.R'
     'utils.R'
     'with.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000

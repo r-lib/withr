@@ -60,4 +60,3 @@ reset_global_state <- function(state) {
 with_(set_global_state, reset_global_state)
 }
 \keyword{internal}
-
