@@ -4,7 +4,16 @@
 #'
 #' @template with
 #' @param seed `[integer(1)]`\cr The random seed to use to evaluate the code.
-#'   Pass `NA` to use the RNG to draw the random seed.
+#' @examples
+#' # Same random values:
+#' with_preserve_seed(runif(5))
+#' with_preserve_seed(runif(5))
+#'
+#' # Use a pseudorandom value as seed to advance the RNG and pick a different
+#' # value for the next call:
+#' with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
+#' with_seed(seed, runif(5))
+#' with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
 #' @export
 with_seed <- function(seed, code) {
   with_preserve_seed({

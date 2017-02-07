@@ -10,9 +10,7 @@ with_seed(seed, code)
 with_preserve_seed(code)
 }
 \arguments{
-\item{seed}{`[integer(1)]`\cr The random seed to use to evaluate the code.
-Pass `NA` to use the RNG to draw the random seed, pass `NULL` to not change
-the random seed at all (and also to avoid resetting it).}
+\item{seed}{`[integer(1)]`\cr The random seed to use to evaluate the code.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
@@ -25,6 +23,17 @@ the random seed at all (and also to avoid resetting it).}
 
 `with_preserve_seed()` runs code with the current random seed and resets it
   afterwards.
+}
+\examples{
+# Same random values:
+with_preserve_seed(runif(5))
+with_preserve_seed(runif(5))
+
+# Use a pseudorandom value as seed to advance the RNG and pick a different
+# value for the next call:
+with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
+with_seed(seed, runif(5))
+with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
 }
 \seealso{
 \code{\link{withr}} for examples
