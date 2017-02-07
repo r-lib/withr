@@ -252,3 +252,16 @@ test_that("with_par works as expected", {
   expect_equal(par("pty"), old)
   dev.off()
 })
+
+test_that("with_seed works as expected", {
+  expect_identical(
+    with_preserve_seed(runif(10L)),
+    with_preserve_seed(runif(10L)))
+  expect_identical(
+    with_seed(1L, runif(10L)),
+    with_seed(1L, runif(10L)))
+  expect_identical(
+    with_seed(NA, runif(10L)),
+    with_seed(NA, runif(10L)))
+  expect_false(with_seed(NULL, runif(1L)) == with_seed(NULL, runif(1L)))
+})
