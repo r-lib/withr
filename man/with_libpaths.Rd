@@ -29,7 +29,7 @@ Temporarily change library paths.
 \seealso{
 \code{\link{withr}} for examples
 
-\code{\link{.libPaths}}
+\code{\link[=.libPaths]{.libPaths()}}
 
 Other libpaths: \code{\link{with_temp_libpaths}}
 }

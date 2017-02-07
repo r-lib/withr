@@ -40,18 +40,18 @@ set_makevars <- function(variables,
 
 #' Makevars variables
 #'
-#' Temporarily change contents of an existing \code{Makevars} file.
+#' Temporarily change contents of an existing `Makevars` file.
 #'
-#' @details If no \code{Makevars} file exists or the fields in \code{new} do
-#' not exist in the existing \code{Makevars} file then the fields are added to
-#' the new file.  Existing fields which are not included in \code{new} are
-#' appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}
-#' are modified to use the value in \code{new}.
+#' @details If no `Makevars` file exists or the fields in `new` do
+#' not exist in the existing `Makevars` file then the fields are added to
+#' the new file.  Existing fields which are not included in `new` are
+#' appended unchanged.  Fields which exist in `Makevars` and in `new`
+#' are modified to use the value in `new`.
 #'
 #' @template with
-#' @param new \code{[named character]}\cr New variables and their values
-#' @param path \code{[character(1)]}\cr location of existing \code{Makevars} file to modify.
-#' @param assignment \code{[character(1)]}\cr assignment type to use.
+#' @param new `[named character]`\cr New variables and their values
+#' @param path `[character(1)]`\cr location of existing `Makevars` file to modify.
+#' @param assignment `[character(1)]`\cr assignment type to use.
 #' @export
 with_makevars <- function(new, code, path = file.path("~", ".R", "Makevars"), assignment = c("=", ":=", "?=", "+=")) {
   assignment <- match.arg(assignment)
