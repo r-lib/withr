@@ -10,9 +10,12 @@
 with_seed <- function(seed, code) {
   if (is.null(seed)) {
     code
+  } else if (is.na(seed)) {
+    set.seed(sample.int(2147483647L, 1L))
+    with_preserve_seed(code)
   } else {
     with_preserve_seed({
-      set_seed(seed)
+      set.seed(seed)
       code
     })
   }
@@ -42,11 +45,4 @@ get_valid_seed <- function() {
 
 get_seed <- function() {
   get0(".Random.seed", globalenv(), mode = "integer")
-}
-
-set_seed <- function(seed) {
-  if (is.na(seed)) {
-    seed <- sample.int(2147483647L, 1L)
-  }
-  set.seed(seed)
 }
