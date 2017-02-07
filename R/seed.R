@@ -4,21 +4,13 @@
 #'
 #' @template with
 #' @param seed `[integer(1)]`\cr The random seed to use to evaluate the code.
-#'   Pass `NA` to use the RNG to draw the random seed, pass `NULL` to not change
-#'   the random seed at all (and also to avoid resetting it).
+#'   Pass `NA` to use the RNG to draw the random seed.
 #' @export
 with_seed <- function(seed, code) {
-  if (is.null(seed)) {
+  with_preserve_seed({
+    set.seed(seed)
     code
-  } else if (is.na(seed)) {
-    set.seed(sample.int(2147483647L, 1L))
-    with_preserve_seed(code)
-  } else {
-    with_preserve_seed({
-      set.seed(seed)
-      code
-    })
-  }
+  })
 }
 
 #' @rdname with_seed
