@@ -16,6 +16,7 @@
 #' with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
 #' @export
 with_seed <- function(seed, code) {
+  force(seed)
   with_preserve_seed({
     set.seed(seed)
     code
