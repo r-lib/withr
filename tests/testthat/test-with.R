@@ -263,4 +263,5 @@ test_that("with_seed works as expected", {
   expect_identical(
     with_seed(1L, runif(10L)),
     with_seed(1L, runif(10L)))
+  expect_false(with_seed(1L, runif(1L)) == runif(1L))
 })
