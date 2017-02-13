@@ -24,7 +24,7 @@ Imports:
     graphics
 Suggests:
     testthat
-Collate:
+Collate: 
     'local_.R'
     'with_.R'
     'collate.R'
@@ -37,6 +37,7 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
+    'seed.R'
     'wrap.R'
     'sink.R'
     'utils.R'

@@ -252,3 +252,18 @@ test_that("with_par works as expected", {
   expect_equal(par("pty"), old)
   dev.off()
 })
+
+test_that("with_seed works as expected", {
+  expect_identical(
+    with_preserve_seed(runif(10L)),
+    runif(10L))
+  expect_identical(
+    with_preserve_seed(runif(10L)),
+    with_preserve_seed(runif(10L)))
+  expect_identical(
+    with_seed(1L, runif(10L)),
+    with_seed(1L, runif(10L)))
+  expect_false(with_seed(1L, runif(1L)) == runif(1L))
+  expect_false(with_seed(sample.int(.Machine$integer.max, 1), runif(1L)) ==
+                 with_seed(sample.int(.Machine$integer.max, 1), runif(1L)))
+})
