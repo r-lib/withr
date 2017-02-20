@@ -26,5 +26,5 @@ Temporarily change global options.
 \seealso{
 \code{\link{withr}} for examples
 
-\code{\link{options}}
+\code{\link[=options]{options()}}
 }

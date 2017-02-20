@@ -17,12 +17,12 @@ set_locale <- function(cats) {
 #'
 #' Temporarily change locale settings.
 #'
-#' Setting the \code{LC_ALL} category is currently not implemented.
+#' Setting the `LC_ALL` category is currently not implemented.
 #'
 #' @template with
-#' @param new \code{[named character]}\cr New locale settings
+#' @param new `[named character]`\cr New locale settings
 #' @inheritParams with_collate
-#' @seealso \code{\link{Sys.setlocale}}
+#' @seealso [Sys.setlocale()]
 #' @export
 with_locale <- with_(set_locale)
 

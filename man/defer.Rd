@@ -14,14 +14,14 @@ defer_parent(expr, priority = c("first", "last"))
 
 \item{envir}{\code{[environment]}\cr Attach exit handlers to this environment.
 Typically, this should be either the current environment or
-a parent frame (accessed through \code{\link{parent.frame}()}).}
+a parent frame (accessed through \code{\link[=parent.frame]{parent.frame()}}).}
 
 \item{priority}{\code{[character(1)]}\cr Specify whether this handler should
 be executed \code{"first"} or \code{"last"}, relative to any other
 registered handlers on this environment.}
 }
 \description{
-Similar to \code{\link{on.exit}()}, but allows one to attach
+Similar to \code{\link[=on.exit]{on.exit()}}, but allows one to attach
 an expression to be evaluated when exitting any frame currently
 on the stack. This provides a nice mechanism for scoping side
 effects for the duration of a function's execution.

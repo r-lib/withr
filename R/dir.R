@@ -8,9 +8,9 @@ NULL
 #' Temporarily change the current working directory.
 #'
 #' @template with
-#' @param new \code{[character(1)]}\cr New working directory
+#' @param new `[character(1)]`\cr New working directory
 #' @inheritParams with_collate
-#' @seealso \code{\link{setwd}}
+#' @seealso [setwd()]
 #' @export
 with_dir <- with_(setwd)
 

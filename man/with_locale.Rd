@@ -29,5 +29,5 @@ Setting the \code{LC_ALL} category is currently not implemented.
 \seealso{
 \code{\link{withr}} for examples
 
-\code{\link{Sys.setlocale}}
+\code{\link[=Sys.setlocale]{Sys.setlocale()}}
 }

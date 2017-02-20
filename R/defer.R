@@ -1,22 +1,22 @@
 #' Defer Evaluation of an Expression
 #'
-#' Similar to \code{\link{on.exit}()}, but allows one to attach
+#' Similar to [on.exit()], but allows one to attach
 #' an expression to be evaluated when exitting any frame currently
 #' on the stack. This provides a nice mechanism for scoping side
 #' effects for the duration of a function's execution.
 #'
-#' @param expr \code{[expression]}\cr An expression to be evaluated.
-#' @param envir \code{[environment]}\cr Attach exit handlers to this environment.
+#' @param expr `[expression]`\cr An expression to be evaluated.
+#' @param envir `[environment]`\cr Attach exit handlers to this environment.
 #'   Typically, this should be either the current environment or
-#'   a parent frame (accessed through \code{\link{parent.frame}()}).
-#' @param priority \code{[character(1)]}\cr Specify whether this handler should
-#' be executed \code{"first"} or \code{"last"}, relative to any other
+#'   a parent frame (accessed through [parent.frame()]).
+#' @param priority `[character(1)]`\cr Specify whether this handler should
+#' be executed `"first"` or `"last"`, relative to any other
 #' registered handlers on this environment.
 #'
 #' @details
 #'
-#' \code{defer} works by attaching handlers to the requested environment (as an
-#' attribute called \code{"handlers"}), and registering an exit handler that
+#' `defer` works by attaching handlers to the requested environment (as an
+#' attribute called `"handlers"`), and registering an exit handler that
 #' executes the registered handler when the function associated with the
 #' requested environment finishes execution.
 #'

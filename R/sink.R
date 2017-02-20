@@ -76,17 +76,17 @@ do_reset_message_sink <- function(sink_info) {
 
 #' Output redirection
 #'
-#' Temporarily divert output to a file via \code{\link{sink}}.  For
-#' sinks of type \code{message}, an error is raised if such a sink is already
+#' Temporarily divert output to a file via [sink()].  For
+#' sinks of type `message`, an error is raised if such a sink is already
 #' active.
 #'
 #' @template with
-#' @param new \code{[character(1)|connection]}\cr
+#' @param new `[character(1)|connection]`\cr
 #'   A writable \link{connection} or a character string naming the file to write
-#'   to. Passing \code{NULL} will throw an error.
+#'   to. Passing `NULL` will throw an error.
 #' @inheritParams base::sink
 #' @inheritParams with_collate
-#' @seealso \code{\link{sink}}
+#' @seealso [sink()]
 #' @export
 #' @name with_sink
 with_output_sink <- with_(set_output_sink, reset_output_sink)

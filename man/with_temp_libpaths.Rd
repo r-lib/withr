@@ -24,7 +24,7 @@ Temporarily prepend a new temporary directory to the library paths.
 \seealso{
 \code{\link{withr}} for examples
 
-\code{\link{.libPaths}}
+\code{\link[=.libPaths]{.libPaths()}}
 
 Other libpaths: \code{\link{with_libpaths}}
 }

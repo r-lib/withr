@@ -15,9 +15,9 @@ state.
 \section{Arguments pattern}{
 
 \tabular{lll}{
-  \code{new} \tab \code{[various]} \tab Values for setting \cr
-  \code{code} \tab \code{[any]} \tab Code to execute in the temporary environment \cr
-  \code{...} \tab \tab Further arguments \cr
+\code{new} \tab \code{[various]} \tab Values for setting \cr
+\code{code} \tab \code{[any]} \tab Code to execute in the temporary environment \cr
+\code{...} \tab \tab Further arguments \cr
 }
 }
 
@@ -29,23 +29,23 @@ state.
 \section{withr functions}{
 
 \itemize{
-\item \code{\link{with_collate}}: collation order
-\item \code{\link{with_dir}}: working directory
-\item \code{\link{with_envvar}}: environment variables
-\item \code{\link{with_libpaths}}: library paths, replacing current libpaths
-\item \code{\link{with_locale}}: any locale setting
-\item \code{\link{with_makevars}}: Makevars variables
-\item \code{\link{with_options}}: options
-\item \code{\link{with_par}}: graphics parameters
-\item \code{\link{with_path}}: \code{PATH} environment variable
-\item \code{\link{with_sink}}: output redirection
+\item \code{\link[=with_collate]{with_collate()}}: collation order
+\item \code{\link[=with_dir]{with_dir()}}: working directory
+\item \code{\link[=with_envvar]{with_envvar()}}: environment variables
+\item \code{\link[=with_libpaths]{with_libpaths()}}: library paths, replacing current libpaths
+\item \code{\link[=with_locale]{with_locale()}}: any locale setting
+\item \code{\link[=with_makevars]{with_makevars()}}: Makevars variables
+\item \code{\link[=with_options]{with_options()}}: options
+\item \code{\link[=with_par]{with_par()}}: graphics parameters
+\item \code{\link[=with_path]{with_path()}}: \code{PATH} environment variable
+\item \code{\link[=with_sink]{with_sink()}}: output redirection
 }
 }
 
 \section{Creating new "with" functions}{
 
 All \code{with_} functions are created by a helper function,
-\code{\link{with_}}.  This functions accepts two arguments:
+\code{\link[=with_]{with_()}}.  This functions accepts two arguments:
 a setter function and an optional resetter function.  The setter function is
 expected to change the global state and return an "undo instruction".
 This undo instruction is then passed to the resetter function, which changes

@@ -20,11 +20,11 @@ set_path <- function(path, action = "prefix") {
 #' Temporarily change the system search path.
 #'
 #' @template with
-#' @param new \code{[character]}\cr New \code{PATH} entries
-#' @param action \code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
-#'   \code{"suffix"} existing paths
+#' @param new `[character]`\cr New `PATH` entries
+#' @param action `[character(1)]`\cr Should new values `"replace"`, `"prefix"` or
+#'   `"suffix"` existing paths
 #' @inheritParams with_collate
-#' @seealso \code{\link{Sys.setenv}}
+#' @seealso [Sys.setenv()]
 #' @export
 with_path <- with_(set_path, function(old) set_path(old, "replace"))
 

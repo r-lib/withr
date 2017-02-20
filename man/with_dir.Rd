@@ -26,5 +26,5 @@ Temporarily change the current working directory.
 \seealso{
 \code{\link{withr}} for examples
 
-\code{\link{setwd}}
+\code{\link[=setwd]{setwd()}}
 }

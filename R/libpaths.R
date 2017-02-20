@@ -23,11 +23,11 @@ set_temp_libpath <- function() {
 #' Temporarily change library paths.
 #'
 #' @template with
-#' @param new \code{[character]}\cr New library paths
-#' @param action \code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
-#'   \code{"suffix"} existing paths.
+#' @param new `[character]`\cr New library paths
+#' @param action `[character(1)]`\cr should new values `"replace"`, `"prefix"` or
+#'   `"suffix"` existing paths.
 #' @inheritParams with_collate
-#' @seealso \code{\link{.libPaths}}
+#' @seealso [.libPaths()]
 #' @family libpaths
 #' @export
 with_libpaths <- with_(set_libpaths, .libPaths)
@@ -41,7 +41,7 @@ local_libpaths <- local_(set_libpaths, .libPaths)
 #' Temporarily prepend a new temporary directory to the library paths.
 #'
 #' @template with
-#' @seealso \code{\link{.libPaths}}
+#' @seealso [.libPaths()]
 #' @inheritParams with_collate
 #' @family libpaths
 #' @export
