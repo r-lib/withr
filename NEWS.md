@@ -1,4 +1,6 @@
 # devel
+- `with_namespace()` function added, to run code with a modified object search
+  path.
 
 - Remove the `code` argument from `local_` functions (#50).
 

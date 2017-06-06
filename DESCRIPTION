@@ -35,6 +35,7 @@ Collate:
     'libpaths.R'
     'locale.R'
     'makevars.R'
+    'namespace.R'
     'options.R'
     'par.R'
     'path.R'
