@@ -2,7 +2,7 @@
 Withr - Run Code 'With' Modified State
 ======================================
 
-[![Travis-CI Build Status](https://travis-ci.org/jimhester/withr.svg?branch=master)](https://travis-ci.org/jimhester/withr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jimhester/withr?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/withr) [![Coverage Status](https://img.shields.io/codecov/c/github/jimhester/withr/master.svg)](https://codecov.io/github/jimhester/withr?branch=master) [![CRAN Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
+[![Travis-CI Build Status](https://travis-ci.org/r-lib/withr.svg?branch=master)](https://travis-ci.org/r-lib/withr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/r-lib/withr?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/withr) [![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/withr/master.svg)](https://codecov.io/github/r-lib/withr?branch=master) [![CRAN Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
 
 A set of functions to run code 'with' safely and temporarily modified global state. There are two sets of functions, those prefixed with `with_` and those with `local_`. The former reset their state as soon as the `code` argument has been evaluated. The latter reset when they reach the end of their scope, usually at the end of a function body.
 
@@ -22,13 +22,12 @@ There are also `with_()` and `local_()` functions to construct new `with_*` and 
 
 ``` r
 dir.create("test")
-#> Warning in dir.create("test"): 'test' already exists
 getwd()
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpRNDrWs"
+#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp8xR1aN"
 with_dir("test", getwd())
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpRNDrWs/test"
+#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp8xR1aN/test"
 getwd()
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpRNDrWs"
+#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp8xR1aN"
 unlink("test")
 
 Sys.getenv("HADLEY")

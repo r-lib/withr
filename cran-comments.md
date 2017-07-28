@@ -9,4 +9,4 @@ There were no NOTEs, ERRORs or WARNINGs.
 
 ## Downstream dependencies
 * I ran R CMD check on all 30 downstream dependencies of withr
-  Summary at: https://github.com/jimhester/covr/tree/master/revdep
+  Summary at: https://github.com/r-lib/covr/tree/master/revdep
