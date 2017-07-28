@@ -1,7 +1,7 @@
 #' Defer Evaluation of an Expression
 #'
 #' Similar to [on.exit()], but allows one to attach
-#' an expression to be evaluated when exitting any frame currently
+#' an expression to be evaluated when exiting any frame currently
 #' on the stack. This provides a nice mechanism for scoping side
 #' effects for the duration of a function's execution.
 #'
