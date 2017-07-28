@@ -35,7 +35,7 @@ with_preserve_seed <- function(code) {
   code
 }
 
-#' @importFrom utils runif
+#' @importFrom stats runif
 get_valid_seed <- function() {
   seed <- get_seed()
   if (is.null(seed)) {
