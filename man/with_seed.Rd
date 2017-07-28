@@ -10,7 +10,7 @@ with_seed(seed, code)
 with_preserve_seed(code)
 }
 \arguments{
-\item{seed}{`[integer(1)]`\cr The random seed to use to evaluate the code.}
+\item{seed}{\code{[integer(1)]}\cr The random seed to use to evaluate the code.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
@@ -19,10 +19,10 @@ with_preserve_seed(code)
   argument.
 }
 \description{
-`with_seed()` runs code with a specific random seed and resets it afterwards.
+\code{with_seed()} runs code with a specific random seed and resets it afterwards.
 
-`with_preserve_seed()` runs code with the current random seed and resets it
-  afterwards.
+\code{with_preserve_seed()} runs code with the current random seed and resets it
+afterwards.
 }
 \examples{
 # Same random values:
