@@ -1,103 +1,61 @@
-# Setup
+# Platform
 
-## Platform
+|field    |value                                       |
+|:--------|:-------------------------------------------|
+|version  |R version 3.4.0 Patched (2017-05-10 r72669) |
+|os       |macOS Sierra 10.12.5                        |
+|system   |x86_64, darwin15.6.0                        |
+|ui       |X11                                         |
+|language |(EN)                                        |
+|collate  |en_US.UTF-8                                 |
+|tz       |America/New_York                            |
+|date     |2017-07-28                                  |
 
-|setting  |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.3.0 (2016-05-03) |
-|system   |x86_64, darwin13.4.0         |
-|ui       |X11                          |
-|language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|tz       |America/New_York             |
-|date     |2016-06-20                   |
+# Dependencies
 
-## Packages
+|package |old   |new   |Δ  |
+|:-------|:-----|:-----|:--|
+|withr   |1.0.2 |2.0.0 |*  |
 
-|package  |*  |version |date       |source                     |
-|:--------|:--|:-------|:----------|:--------------------------|
-|testthat |   |1.0.2   |2016-04-23 |cran (@1.0.2)              |
-|withr    |   |1.0.2   |2016-06-20 |local (jimhester/withr@NA) |
+# Revdeps
 
-# Check results
-8 packages
+## Broken (0)
 
-## assertive.sets (0.0-2)
-Maintainer: Richard Cotton <richierocks@gmail.com>  
-Bug reports: https://bitbucket.org/richierocks/assertive.sets/issues
+|package |version |error |warning |note |
+|:-------|:-------|:-----|:-------|:----|
 
-0 errors | 0 warnings | 1 note 
+## All (30)
 
-```
-checking Rd cross-references ... NOTE
-Package unavailable to check Rd xrefs: ‘sets’
-```
-
-## covr (2.0.1)
-Maintainer: Jim Hester <james.f.hester@gmail.com>  
-Bug reports: https://github.com/jimhester/covr/issues
-
-0 errors | 0 warnings | 1 note 
-
-```
-checking dependencies in R code ... NOTE
-There are ::: calls to the package's namespace in its code. A package
-  almost never needs to use ::: for its own objects:
-  ‘count’
-```
-
-## DBItest (1.2)
-Maintainer: Kirill Müller <krlmlr+r@mailbox.org>  
-Bug reports: https://github.com/rstats-db/DBItest/issues
-
-0 errors | 0 warnings | 0 notes
-
-## devtools (1.11.1)
-Maintainer: Hadley Wickham <hadley@rstudio.com>  
-Bug reports: https://github.com/hadley/devtools/issues
-
-0 errors | 0 warnings | 0 notes
-
-## rcmdcheck (1.1.0)
-Maintainer: Gabor Csardi <gcsardi@mango-solutions.com>  
-Bug reports: https://github.com/MangoTheCat/rcmdcheck/issues
-
-0 errors | 0 warnings | 0 notes
-
-## rprojroot (1.0-2)
-Maintainer: Kirill Müller <krlmlr+r@mailbox.org>  
-Bug reports: https://github.com/krlmlr/rprojroot/issues
-
-0 errors | 0 warnings | 0 notes
-
-## testthat (1.0.2)
-Maintainer: Hadley Wickham <hadley@rstudio.com>  
-Bug reports: https://github.com/hadley/testthat/issues
-
-0 errors | 0 warnings | 0 notes
-
-## tibble (1.0)
-Maintainer: Kirill Müller <krlmlr+r@mailbox.org>  
-Bug reports: https://github.com/hadley/tibble/issues
-
-1 error  | 0 warnings | 0 notes
-
-```
-checking tests ... ERROR
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-  4. Failure: trunc_mat output matches known output (@test-trunc-mat.r#48) -------
-  attr(knit, "knit_cacheable") isn't true.
-  
-  
-  testthat results ================================================================
-  OK: 190 SKIPPED: 0 FAILED: 4
-  1. Failure: trunc_mat output matches known output (@test-trunc-mat.r#37) 
-  2. Failure: trunc_mat output matches known output (@test-trunc-mat.r#41) 
-  3. Failure: trunc_mat output matches known output (@test-trunc-mat.r#44) 
-  4. Failure: trunc_mat output matches known output (@test-trunc-mat.r#48) 
-  
-  Error: testthat unit tests failed
-  Execution halted
-```
+|package      |version |error |warning |note |
+|:------------|:-------|:-----|:-------|:----|
+|bigrquery    |0.4.1   |      |        |     |
+|covr         |3.0.0   |1     |        |     |
+|cranlike     |1.0.0   |      |        |     |
+|cyclocomp    |1.1.0   |      |        |     |
+|DBItest      |1.5     |      |        |1    |
+|debugme      |1.0.2   |      |        |     |
+|DeepBlueR    |1.2.10  |1     |1       |     |
+|desc         |1.1.0   |      |        |     |
+|devtools     |1.13.2  |1     |        |     |
+|dplyr        |0.7.2   |      |        |2    |
+|flippant     |1.1.0   |      |        |     |
+|gdtools      |0.1.4   |      |        |     |
+|ggExtra      |0.7     |      |        |1    |
+|harvestr     |0.7.1   |      |        |     |
+|IRdisplay    |0.4.4   |      |        |     |
+|learnr       |0.9     |      |        |     |
+|miniCRAN     |0.2.9   |      |        |     |
+|pathological |0.1-2   |      |        |1    |
+|prettycode   |1.0.0   |      |        |     |
+|processx     |2.0.0   |      |        |     |
+|rcmdcheck    |1.2.1   |      |        |     |
+|readat       |1.2.0   |      |        |     |
+|rprojroot    |1.2     |      |        |     |
+|secret       |1.0.0   |      |        |     |
+|sessioninfo  |1.0.0   |      |        |     |
+|sparklyr     |0.5.6   |      |        |1    |
+|surveydata   |0.2.0   |      |        |     |
+|testthat     |1.0.2   |      |        |     |
+|tibble       |1.3.3   |      |        |     |
+|zip          |1.0.0   |      |        |     |
 

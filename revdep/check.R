@@ -1,4 +1,5 @@
-library("devtools")
+library("revdepcheck")
 
-res <- revdep_check()
-revdep_check_save_summary(res)
+revdep_check(num_workers = 8, "..")
+revdep_report_summary("..", file = "README.md")
+revdep_report_problems("..", file = "problems.md")
