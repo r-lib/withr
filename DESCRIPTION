@@ -22,8 +22,9 @@ LazyData: true
 Imports:
     stats,
     graphics
-Suggests:
-    testthat
+Suggests: 
+    testthat,
+    covr
 Collate: 
     'local_.R'
     'with_.R'
