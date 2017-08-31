@@ -58,9 +58,9 @@ getwd()
 with_dir(tempdir(), getwd())
 getwd()
 
-Sys.getenv("HADLEY")
-with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
-Sys.getenv("HADLEY")
+Sys.getenv("WITHR")
+with_envvar(c("WITHR" = 2), Sys.getenv("WITHR"))
+Sys.getenv("WITHR")
 
 with_envvar(c("A" = 1),
   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))

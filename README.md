@@ -23,18 +23,18 @@ There are also `with_()` and `local_()` functions to construct new `with_*` and 
 ``` r
 dir.create("test")
 getwd()
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp5QYyoz"
+#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp5eQ5oF"
 with_dir("test", getwd())
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp5QYyoz/test"
+#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp5eQ5oF/test"
 getwd()
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp5QYyoz"
+#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp5eQ5oF"
 unlink("test")
 
-Sys.getenv("HADLEY")
+Sys.getenv("WITHR")
 #> [1] ""
-with_envvar(c("HADLEY" = 2), Sys.getenv("HADLEY"))
+with_envvar(c("WITHR" = 2), Sys.getenv("WITHR"))
 #> [1] "2"
-Sys.getenv("HADLEY")
+Sys.getenv("WITHR")
 #> [1] ""
 
 with_envvar(c("A" = 1),
