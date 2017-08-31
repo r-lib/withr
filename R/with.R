@@ -4,7 +4,9 @@
 #' aspect of the global environment is modified (see below for a list).
 #' Then, custom code (passed via the `code` argument) is executed.
 #' Upon completion or error, the global environment is restored to the previous
-#' state.
+#' state. Each `with_` function has a `local_` variant, which instead resets
+#' the state when the current evaluation context ends (such as the end of a
+#' function).
 #'
 #' @section Arguments pattern:
 #' \tabular{lll}{
@@ -49,4 +51,11 @@
 #' with_envvar(c("A" = 1),
 #'   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
 #' )
+#'
+#' # local variants are best used within other functions
+#' f <- function(x) {
+#'   local_envvar(c("WITHR" = 2))
+#'   Sys.getenv("WITHR"))
+#' }
+#' Sys.getenv("WITHR")
 NULL
