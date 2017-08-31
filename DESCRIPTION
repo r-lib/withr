@@ -41,6 +41,7 @@ Collate:
     'seed.R'
     'wrap.R'
     'sink.R'
+    'tempfile.R'
     'utils.R'
     'with.R'
 RoxygenNote: 6.0.1

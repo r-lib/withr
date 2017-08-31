@@ -1,5 +1,8 @@
 # devel
 
+- Add `with_tempfile()` and `local_tempfile()` functions to create temporary
+  files which are cleanup up afterwards. (#32)
+
 - Remove the `code` argument from `local_` functions (#50).
 
 # 2.0.0
