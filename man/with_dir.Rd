@@ -7,7 +7,7 @@
 \usage{
 with_dir(new, code)
 
-local_dir(new, code, .local_envir = parent.frame())
+local_dir(new, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character(1)]}\cr New working directory}

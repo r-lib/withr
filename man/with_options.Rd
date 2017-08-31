@@ -7,7 +7,7 @@
 \usage{
 with_options(new, code)
 
-local_options(new, code, .local_envir = parent.frame())
+local_options(new, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named list]}\cr New options and their values}

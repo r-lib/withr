@@ -7,7 +7,7 @@
 \usage{
 with_collate(new, code)
 
-local_collate(new, code, .local_envir = parent.frame())
+local_collate(new, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character(1)]}\cr New collation order}

@@ -7,7 +7,7 @@
 \usage{
 with_envvar(new, code, action = "replace")
 
-local_envvar(new, code, action = "replace", .local_envir = parent.frame())
+local_envvar(new, action = "replace", .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New environment variables}

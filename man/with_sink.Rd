@@ -10,12 +10,12 @@
 \usage{
 with_output_sink(new, code, append = FALSE, split = FALSE)
 
-local_output_sink(new, code, append = FALSE, split = FALSE,
+local_output_sink(new, append = FALSE, split = FALSE,
   .local_envir = parent.frame())
 
 with_message_sink(new, code, append = FALSE)
 
-local_message_sink(new, code, append = FALSE, .local_envir = parent.frame())
+local_message_sink(new, append = FALSE, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character(1)|connection]}\cr

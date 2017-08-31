@@ -7,7 +7,7 @@
 \usage{
 with_path(new, code, action = "prefix")
 
-local_path(new, code, action = "prefix", .local_envir = parent.frame())
+local_path(new, action = "prefix", .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[character]}\cr New \code{PATH} entries}

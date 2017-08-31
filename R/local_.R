@@ -11,12 +11,12 @@ local_ <- function(set, reset = set, envir = parent.frame()) {
     # rename first formal to new
     called_fmls[[1]] <- as.symbol("new")
 
-    fun_args <- c(alist(new =, code =), fmls[-1L])
+    fun_args <- c(alist(new =), fmls[-1L])
   } else {
-    # no formals -- only have code
+    # no formals
     called_fmls <- NULL
 
-    fun_args <- alist(code =)
+    fun_args <- alist()
   }
 
   set_call <- as.call(c(substitute(set), called_fmls))

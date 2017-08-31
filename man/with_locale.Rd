@@ -7,7 +7,7 @@
 \usage{
 with_locale(new, code)
 
-local_locale(new, code, .local_envir = parent.frame())
+local_locale(new, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New locale settings}

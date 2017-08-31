@@ -7,7 +7,7 @@
 \usage{
 with_par(new, code, no.readonly = FALSE)
 
-local_par(new, code, no.readonly = FALSE, .local_envir = parent.frame())
+local_par(new, no.readonly = FALSE, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named list]}\cr New graphics parameters and their values}

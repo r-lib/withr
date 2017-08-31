@@ -7,7 +7,7 @@
 \usage{
 with_temp_libpaths(code)
 
-local_temp_libpaths(code, .local_envir = parent.frame())
+local_temp_libpaths(.local_envir = parent.frame())
 }
 \arguments{
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
