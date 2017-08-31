@@ -55,7 +55,7 @@
 #' # local variants are best used within other functions
 #' f <- function(x) {
 #'   local_envvar(c("WITHR" = 2))
-#'   Sys.getenv("WITHR"))
+#'   Sys.getenv("WITHR")
 #' }
 #' Sys.getenv("WITHR")
 NULL
