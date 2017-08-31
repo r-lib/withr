@@ -1,3 +1,7 @@
+# devel
+
+- Remove the `code` argument from `local_` functions (#50).
+
 # 2.0.0
 
 - Each `with_` function now has a `local_` variant, which reset at the end of
