@@ -22,10 +22,13 @@ LazyData: true
 Imports:
     stats,
     graphics
-Suggests: 
+Suggests:
     testthat,
-    covr
-Collate: 
+    covr,
+    lattice,
+    graphics,
+    grDevices
+Collate:
     'local_.R'
     'with_.R'
     'collate.R'
@@ -41,6 +44,22 @@ Collate:
     'path.R'
     'seed.R'
     'wrap.R'
+    'sink.R'
+    'tempfile.R'
+    'utils.R'
+    'with.R'
+    'wrap.R'
+    'devices.R'
+    'dir.R'
+    'env.R'
+    'libpaths.R'
+    'locale.R'
+    'makevars.R'
+    'namesapce.R'
+    'options.R'
+    'par.R'
+    'path.R'
+    'seed.R'
     'sink.R'
     'tempfile.R'
     'utils.R'
