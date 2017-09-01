@@ -49,17 +49,16 @@ jpeg_dev <- function(filename, ...) {
 #' @template with
 #' @param new \code{[named character]}\cr New graphics device
 #' @param ... Additional arguments passed to the graphics device.
+#' @param .local_envir `[environment]`\cr The environment to use for scoping.
 #' @seealso \code{\link[grDevices]{Devices}}
 #' @examples
 #' # dimensions are in inches
-#' with_pdf(
-#'   c(file = file.path(tempdir(), "test.pdf"), width = 7, height = 5), 
+#' with_pdf(file.path(tempdir(), "test.pdf"), width = 7, height = 5,
 #'   plot(runif(5))
 #' )
 #' 
 #' # dimensions are in pixels
-#' with_png(
-#'   c(file = file.path(tempdir(), "test.png"), width = 800, height = 600), 
+#' with_png(file.path(tempdir(), "test.png"), width = 800, height = 600,
 #'   plot(runif(5))
 #' )
 NULL
@@ -68,20 +67,36 @@ NULL
 #' @export
 with_bmp <- with_(bmp_dev, grDevices::dev.off)
 
+#' @rdname devices
+#' @export
+local_bmp <- local_(bmp_dev, grDevices::dev.off)
+
 #' @describeIn devices CAIRO_PDF device
 #' @inheritParams grDevices::cairo_pdf
 #' @export
 with_cairo_pdf <- with_(cairo_pdf_dev, grDevices::dev.off)
+
+#' @rdname devices
+#' @export
+local_cairo_pdf <- local_(cairo_pdf_dev, grDevices::dev.off)
 
 #' @describeIn devices CAIRO_PS device
 #' @inheritParams grDevices::cairo_ps
 #' @export
 with_cairo_ps <- with_(cairo_ps_dev, grDevices::dev.off)
 
+#' @rdname devices
+#' @export
+local_cairo_ps <- local_(cairo_ps_dev, grDevices::dev.off)
+
 #' @describeIn devices PDF device
 #' @inheritParams grDevices::pdf
 #' @export
 with_pdf <- with_(pdf_dev, grDevices::dev.off)
+
+#' @rdname devices
+#' @export
+local_pdf <- local_(pdf_dev, grDevices::dev.off)
 
 #' @describeIn devices POSTSCRIPT device
 #' @inheritParams grDevices::postscript
@@ -92,24 +107,49 @@ with_pdf <- with_(pdf_dev, grDevices::dev.off)
 #' @export
 with_postscript <- with_(postscript_dev, grDevices::dev.off)
 
+#' @rdname devices
+#' @export
+local_postscript <- local_(postscript_dev, grDevices::dev.off)
+
 #' @describeIn devices SVG device
 #' @inheritParams grDevices::svg
 #' @export
 with_svg <- with_(svg_dev, grDevices::dev.off)
 
+#' @rdname devices
+#' @export
+local_svg <- local_(svg_dev, grDevices::dev.off)
+
 #' @describeIn devices TIFF device
 #' @export
 with_tiff <- with_(tiff_dev, grDevices::dev.off)
+
+
+#' @rdname devices
+#' @export
+local_tiff <- local_(tiff_dev, grDevices::dev.off)
 
 #' @describeIn devices XFIG device
 #' @inheritParams grDevices::xfig
 #' @export
 with_xfig <- with_(xfig_dev, grDevices::dev.off)
 
+#' @rdname devices
+#' @export
+local_xfig <- local_(xfig_dev, grDevices::dev.off)
+
 #' @describeIn devices PNG device
 #' @export
 with_png <- with_(png_dev, grDevices::dev.off)
 
+#' @rdname devices
+#' @export
+local_png <- local_(png_dev, grDevices::dev.off)
+
 #' @describeIn devices JPEG device
 #' @export
 with_jpeg <- with_(jpeg_dev, grDevices::dev.off)
+
+#' @rdname devices
+#' @export
+local_jpeg <- local_(jpeg_dev, grDevices::dev.off)

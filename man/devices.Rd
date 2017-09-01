@@ -5,42 +5,78 @@
 \alias{with_dev}
 \alias{with_device}
 \alias{with_bmp}
+\alias{local_bmp}
 \alias{with_cairo_pdf}
+\alias{local_cairo_pdf}
 \alias{with_cairo_ps}
+\alias{local_cairo_ps}
 \alias{with_pdf}
+\alias{local_pdf}
 \alias{with_postscript}
+\alias{local_postscript}
 \alias{with_svg}
+\alias{local_svg}
 \alias{with_tiff}
+\alias{local_tiff}
 \alias{with_xfig}
+\alias{local_xfig}
 \alias{with_png}
+\alias{local_png}
 \alias{with_jpeg}
+\alias{local_jpeg}
 \title{Graphics devices}
 \usage{
 with_bmp(new, code, ...)
+
+local_bmp(new, ..., .local_envir = parent.frame())
 
 with_cairo_pdf(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
   antialias = c("default", "none", "gray", "subpixel"),
   fallback_resolution = 300)
 
+local_cairo_pdf(new, width = 7, height = 7, pointsize = 12,
+  onefile = FALSE, family = "sans", bg = "white",
+  antialias = c("default", "none", "gray", "subpixel"),
+  fallback_resolution = 300, .local_envir = parent.frame())
+
 with_cairo_ps(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
   antialias = c("default", "none", "gray", "subpixel"),
   fallback_resolution = 300)
 
+local_cairo_ps(new, width = 7, height = 7, pointsize = 12,
+  onefile = FALSE, family = "sans", bg = "white",
+  antialias = c("default", "none", "gray", "subpixel"),
+  fallback_resolution = 300, .local_envir = parent.frame())
+
 with_pdf(new, code, width, height, onefile, family, title, fonts, version,
   paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
   useKerning, fillOddEven, compress)
+
+local_pdf(new, width, height, onefile, family, title, fonts, version, paper,
+  encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats, useKerning,
+  fillOddEven, compress, .local_envir = parent.frame())
 
 with_postscript(new, code, onefile, family, title, fonts, encoding, bg, fg,
   width, height, horizontal, pointsize, paper, pagecentre, print.it, command,
   colormodel, useKerning, fillOddEven)
 
+local_postscript(new, onefile, family, title, fonts, encoding, bg, fg, width,
+  height, horizontal, pointsize, paper, pagecentre, print.it, command,
+  colormodel, useKerning, fillOddEven, .local_envir = parent.frame())
+
 with_svg(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
   antialias = c("default", "none", "gray", "subpixel"))
 
+local_svg(new, width = 7, height = 7, pointsize = 12, onefile = FALSE,
+  family = "sans", bg = "white", antialias = c("default", "none", "gray",
+  "subpixel"), .local_envir = parent.frame())
+
 with_tiff(new, code, ...)
+
+local_tiff(new, ..., .local_envir = parent.frame())
 
 with_xfig(new, code, onefile = FALSE, encoding = "none",
   paper = "default", horizontal = TRUE, width = 0, height = 0,
@@ -48,9 +84,18 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
   fg = "black", pagecentre = TRUE, defaultfont = FALSE,
   textspecial = FALSE)
 
+local_xfig(new, onefile = FALSE, encoding = "none", paper = "default",
+  horizontal = TRUE, width = 0, height = 0, family = "Helvetica",
+  pointsize = 12, bg = "transparent", fg = "black", pagecentre = TRUE,
+  defaultfont = FALSE, textspecial = FALSE, .local_envir = parent.frame())
+
 with_png(new, code, ...)
 
+local_png(new, ..., .local_envir = parent.frame())
+
 with_jpeg(new, code, ...)
+
+local_jpeg(new, ..., .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}
@@ -58,6 +103,8 @@ with_jpeg(new, code, ...)
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{...}{Additional arguments passed to the graphics device.}
+
+\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
 
 \item{width}{the width of the device in inches.}
 
@@ -193,14 +240,12 @@ Temporarily use a graphics device.
 
 \examples{
 # dimensions are in inches
-with_pdf(
-  c(file = file.path(tempdir(), "test.pdf"), width = 7, height = 5), 
+with_pdf(file.path(tempdir(), "test.pdf"), width = 7, height = 5,
   plot(runif(5))
 )
 
 # dimensions are in pixels
-with_png(
-  c(file = file.path(tempdir(), "test.png"), width = 800, height = 600), 
+with_png(file.path(tempdir(), "test.png"), width = 800, height = 600,
   plot(runif(5))
 )
 }
