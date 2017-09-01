@@ -66,5 +66,46 @@ test_that("local_namespace works", {
   f()
 
   # tools namespace still not attached to the search path
-  expect_false("asNamespace(\"tools\")" %in% search())
+  expect_false("<environment: namespace:tools>" %in% search())
+})
+
+test_that("with_environment works", {
+
+  e <- new.env()
+  e$a <- 1
+
+  # environment not attached to the search path
+  expect_false(format(e) %in% search())
+
+  with_environment(e, {
+
+  # environment attached to the search path
+    expect_true(format(e) %in% search())
+    expect_equal(a, 1)
+  })
+
+  # environment not attached to the search path
+  expect_false(format(e) %in% search())
+})
+
+test_that("local_environment works", {
+
+  e <- new.env()
+  e$a <- 1
+
+  # environment not attached to the search path
+  expect_false(format(e) %in% search())
+
+  f <- function() {
+    local_environment(e)
+
+  # environment attached to the search path
+    expect_true(format(e) %in% search())
+    expect_equal(a, 1)
+  }
+
+  f()
+
+  # environment not attached to the search path
+  expect_false(format(e) %in% search())
 })

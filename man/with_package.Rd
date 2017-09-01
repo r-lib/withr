@@ -5,6 +5,8 @@
 \alias{local_package}
 \alias{with_namespace}
 \alias{local_namespace}
+\alias{with_environment}
+\alias{local_environment}
 \title{Execute code with a modifed search path}
 \usage{
 with_package(package, code)
@@ -14,6 +16,10 @@ local_package(package, envir = parent.frame())
 with_namespace(package, code)
 
 local_namespace(package, envir = parent.frame())
+
+with_environment(env, code)
+
+local_environment(env, envir = parent.frame())
 }
 \arguments{
 \item{package}{\code{[character(1)]}\cr package name to load.}
@@ -23,6 +29,8 @@ local_namespace(package, envir = parent.frame())
 \item{envir}{\code{[environment]}\cr Attach exit handlers to this environment.
 Typically, this should be either the current environment or
 a parent frame (accessed through \code{\link[=parent.frame]{parent.frame()}}).}
+
+\item{env}{\code{[environment()]}\cr Environment to attach.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

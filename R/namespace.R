@@ -6,6 +6,7 @@
 #' package namespace to the search path, so all objects (even unexported ones) are also
 #' available on the search path.
 #' @param package \code{[character(1)]}\cr package name to load.
+#' @param env \code{[environment()]}\cr Environment to attach.
 #' @inheritParams defer
 #' @template with
 #' @examples
@@ -44,5 +45,22 @@ local_namespace <- function(package, envir = parent.frame()) {
   ns <- asNamespace(package)
   name <- format(ns)
   (get("attach"))(ns, name = name)
+  defer(detach(name, character.only = TRUE), envir = envir)
+}
+
+#' @rdname with_package
+#' @export
+with_environment <- function(env, code) {
+  name <- format(env)
+  (get("attach"))(env, name = name)
+  on.exit(detach(name, character.only = TRUE))
+  force(code)
+}
+
+#' @rdname with_package
+#' @export
+local_environment <- function(env, envir = parent.frame()) {
+  name <- format(env)
+  (get("attach"))(env, name = name)
   defer(detach(name, character.only = TRUE), envir = envir)
 }

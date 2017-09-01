@@ -1,6 +1,7 @@
 # devel
-- `with_namespace()` function added, to run code with a modified object search
-  path.
+- `with_package()`, `with_namespace()` and `with_environment()` (and equivalent
+  locals) functions added, to run code with a modified object search path (#38,
+  #48).
 
 - Add `with_tempfile()` and `local_tempfile()` functions to create temporary
   files which are cleanup up afterwards. (#32)
