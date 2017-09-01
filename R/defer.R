@@ -20,13 +20,13 @@
 #' executes the registered handler when the function associated with the
 #' requested environment finishes execution.
 #'
-#' @family scope-related functions
+#' @family local-related functions
 #' @export
 #' @author Kevin Ushey
 #' @examples
-#' # define a 'scope' function that creates a file, and
+#' # define a 'local' function that creates a file, and
 #' # removes it when the parent function has finished executing
-#' scope_file <- function(path) {
+#' local_file <- function(path) {
 #'   file.create(path)
 #'   defer_parent(unlink(path))
 #' }
@@ -34,19 +34,19 @@
 #' # create tempfile path
 #' path <- tempfile()
 #'
-#' # use 'scope_file' in a function
+#' # use 'local_file' in a function
 #' local({
-#'   scope_file(path)
+#'   local_file(path)
 #'   stopifnot(file.exists(path))
 #' })
 #'
-#' # file is deleted as we leave 'local' scope
+#' # file is deleted as we leave 'local' local
 #' stopifnot(!file.exists(path))
 #'
 #' # investigate how 'defer' modifies the
 #' # executing function's environment
 #' local({
-#'   scope_file(path)
+#'   local_file(path)
 #'   print(attributes(environment()))
 #' })
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
