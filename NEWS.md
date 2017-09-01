@@ -1,4 +1,7 @@
 # devel
+- `with_gctorture2` command to run code with gctorture2, useful for testing
+  (#47).
+
 - `with_package()`, `with_namespace()` and `with_environment()` (and equivalent
   locals) functions added, to run code with a modified object search path (#38,
   #48).
