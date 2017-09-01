@@ -16,7 +16,7 @@
 #' }
 #' @export
 with_package <- function(package, code) {
-  library(package, character.only = TRUE)
+  suppressPackageStartupMessages(library(package, character.only = TRUE, quietly = TRUE))
   on.exit(detach(paste0("package:", package), character.only = TRUE))
   force(code)
 }
@@ -24,7 +24,7 @@ with_package <- function(package, code) {
 #' @rdname with_package
 #' @export
 local_package <- function(package, envir = parent.frame()) {
-  library(package, character.only = TRUE)
+  suppressPackageStartupMessages(library(package, character.only = TRUE, quietly = TRUE))
   defer(detach(paste0("package:", package), character.only = TRUE), envir = envir)
 }
 
