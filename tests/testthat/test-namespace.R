@@ -32,13 +32,32 @@ test_that("local_package works", {
   expect_false("package:tools" %in% search())
 })
 
+test_that("with_namespace works", {
+
+  # tools package not attached to the search path
+  expect_false("<environment: namespace:tools>" %in% search())
+
+  with_namespace("tools", {
+
+    expect_true("<environment: namespace:tools>" %in% search())
+
+    # .BioC_version_associated_with_R_version is a non-exported object in tools
+    expect_true(is.function(.BioC_version_associated_with_R_version))
+  })
+
+  # tools namespace still not attached to the search path
+  expect_false("<environment: namespace:tools>" %in% search())
+})
+
 test_that("local_namespace works", {
 
   # tools package not attached to the search path
-  expect_false("asNamespace(\"tools\")" %in% search())
+  expect_false("<environment: namespace:tools>" %in% search())
 
   f <- function() {
     local_namespace("tools")
+
+    expect_true("<environment: namespace:tools>" %in% search())
 
     # .BioC_version_associated_with_R_version is a non-exported object in tools
     expect_true(is.function(.BioC_version_associated_with_R_version))

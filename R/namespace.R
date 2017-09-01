@@ -31,8 +31,9 @@ local_package <- function(package, envir = parent.frame()) {
 #' @rdname with_package
 #' @export
 with_namespace <- function(package, code) {
-  name <- paste0("asNamespace(\"", package, "\")")
-  (get("attach"))(asNamespace(package), name = name)
+  ns <- asNamespace(package)
+  name <- format(ns)
+  (get("attach"))(ns, name = name)
   on.exit(detach(name, character.only = TRUE))
   force(code)
 }
@@ -40,7 +41,8 @@ with_namespace <- function(package, code) {
 #' @rdname with_package
 #' @export
 local_namespace <- function(package, envir = parent.frame()) {
-  name <- paste0("asNamespace(\"", package, "\")")
-  (get("attach"))(asNamespace(package), name = name)
+  ns <- asNamespace(package)
+  name <- format(ns)
+  (get("attach"))(ns, name = name)
   defer(detach(name, character.only = TRUE), envir = envir)
 }
