@@ -54,7 +54,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
     stop("attempt to defer event on global environment")
   priority <- match.arg(priority)
   front <- priority == "first"
-  invisible(add_handler(envir, later(substitute(expr), parent.frame()), front))
+  invisible(add_handler(envir, list(expr = substitute(expr), envir = parent.frame()), front))
 }
 
 #' @rdname defer
@@ -103,14 +103,4 @@ add_handler <- function(envir, handler, front) {
 
   set_handlers(envir, handlers)
   handler
-}
-
-later <- function(expr, envir = .GlobalEnv) {
-  `class<-`(list(expr = expr, envir = envir), "later")
-}
-
-#' @export
-print.later <- function(x, ...) {
-  fmt <- "<later>\n  expr:  %s\n  envir: %s\n"
-  cat(sprintf(fmt, format(x$expr), format(x$envir)))
 }
