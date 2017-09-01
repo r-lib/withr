@@ -2,23 +2,21 @@
 % Please edit documentation in R/devices.R
 \name{devices}
 \alias{devices}
+\alias{with_dev}
+\alias{with_device}
 \alias{with_bmp}
 \alias{with_cairo_pdf}
 \alias{with_cairo_ps}
-\alias{with_dev}
-\alias{with_device}
-\alias{with_jpeg}
 \alias{with_pdf}
-\alias{with_png}
 \alias{with_postscript}
 \alias{with_svg}
 \alias{with_tiff}
 \alias{with_xfig}
+\alias{with_png}
+\alias{with_jpeg}
 \title{Graphics devices}
 \usage{
-with_bmp(new, code, width = 480, height = 480, units = "px",
-  pointsize = 12, bg = "white", res = NA, ..., type = c("cairo", "Xlib",
-  "quartz"), antialias)
+with_bmp(new, code, ...)
 
 with_cairo_pdf(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
@@ -42,10 +40,7 @@ with_svg(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
   antialias = c("default", "none", "gray", "subpixel"))
 
-with_tiff(new, code, width = 480, height = 480, units = "px",
-  pointsize = 12, compression = c("none", "rle", "lzw", "jpeg", "zip",
-  "lzw+p", "zip+p"), bg = "white", res = NA, ..., type = c("cairo",
-  "Xlib", "quartz"), antialias)
+with_tiff(new, code, ...)
 
 with_xfig(new, code, onefile = FALSE, encoding = "none",
   paper = "default", horizontal = TRUE, width = 0, height = 0,
@@ -53,54 +48,22 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
   fg = "black", pagecentre = TRUE, defaultfont = FALSE,
   textspecial = FALSE)
 
-with_png(new, code)
+with_png(new, code, ...)
 
-with_jpeg(new, code)
+with_jpeg(new, code, ...)
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{width}{the width of the device.}
+\item{...}{Additional arguments passed to the graphics device.}
 
-\item{height}{the height of the device.}
+\item{width}{the width of the device in inches.}
 
-\item{units}{The units in which \code{height} and \code{width} are
-    given.  Can be \code{px} (pixels, the default), \code{in} (inches),
-    \code{cm} or \code{mm}.}
+\item{height}{the height of the device in inches.}
 
-\item{pointsize}{the default pointsize of plotted text, interpreted as
-    big points (1/72 inch) at \code{res} ppi.}
-
-\item{bg}{the initial background colour: can be overridden by setting
-    par("bg").}
-
-\item{res}{The nominal resolution in ppi which will be recorded in the
-    bitmap file, if a positive integer.  Also used for \code{units}
-    other than the default, and to convert points to pixels.}
-
-\item{...}{for \code{type = "Xlib"} only, additional arguments to
-    the underlying \code{\link{X11}} device such as \code{fonts} or
-     \code{family}.
-
-    For types \code{"cairo"} and \code{"quartz"}, the \code{family}
-    argument can be supplied.  See the \sQuote{Cairo fonts}
-    section in the help for \code{\link{X11}}.}
-
-\item{type}{character string, one of \code{"Xlib"} or \code{"quartz"}
-    (some OS X builds) or \code{"cairo"}.  The latter will only be
-    available if the system was compiled with support for cairo --
-    otherwise \code{"Xlib"} will be used.  The default is set by
-    \code{\link{getOption}("bitmapType")} -- the \sQuote{out of the box}
-    default is \code{"quartz"} or \code{"cairo"} where available,
-    otherwise \code{"Xlib"}.}
-
-\item{antialias}{for \code{type = "cairo"}, giving the type of
-    anti-aliasing (if any) to be used for fonts and lines (but not
-    fills). See \code{\link{X11}}.  The default is set by
-    \code{\link{X11.options}}.  Also for \code{type = "quartz"}, where
-    antialiasing is used unless \code{antialias = "none"}.}
+\item{pointsize}{the default pointsize of plotted text (in big points).}
 
 \item{onefile}{should all plots appear in one file or in separate files?}
 
@@ -110,6 +73,12 @@ with_jpeg(new, code)
     system-dependent way.
     See, the \sQuote{Cairo fonts} section in the help for \code{\link{X11}}.
   }
+
+\item{bg}{the initial background colour: can be overridden by setting
+    par("bg").}
+
+\item{antialias}{string, the type of anti-aliasing (if any) to be used;
+    defaults to \code{"default"}.}
 
 \item{fallback_resolution}{numeric: the resolution in dpi used when
     falling back to bitmap output.  Prior to \R 3.3.0 this depended on
@@ -180,14 +149,10 @@ with_jpeg(new, code)
     closed?  (This only applies if \code{file} is a real file name.)
     Defaults to false.}
 
-\item{command}{the command to be used for \sQuote{printing}.  Defaults
-    to \code{"default"}, the value of option \code{"printcmd"}.  The
-    length limit is \code{2*PATH_MAX},
-    typically 8096 bytes.
-#ifdef windows not active  }
-
-\item{compression}{the type of compression to be used.  Ignored for
-     \code{type = "quartz"}.}
+\item{command}{the command to be used for \sQuote{printing}. Defaults
+to \code{"default"}, the value of option \code{"printcmd"}. The
+length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
+520 bytes on windows.}
 
 \item{defaultfont}{logical: should the device use xfig's default
     font?}
@@ -225,6 +190,7 @@ Temporarily use a graphics device.
 
 \item \code{with_jpeg}: JPEG device
 }}
+
 \examples{
 # dimensions are in inches
 with_pdf(
@@ -243,4 +209,3 @@ with_png(
 
 \code{\link[grDevices]{Devices}}
 }
-

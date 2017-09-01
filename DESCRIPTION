@@ -8,6 +8,7 @@ Authors@R: c(
     person("Kevin", "Ushey", email = "kevinushey@gmail.com", role = c("aut")),
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = "aut"),
     person("Winston", "Chang", role = "aut"),
+    person("Richard", "Cotton", role = c("ctb")),
     person("RStudio", role = "cph"))
 Description: A set of functions to run code 'with' safely and temporarily
     modified global state. Many of these functions were originally a part of the
@@ -21,33 +22,17 @@ License: GPL (>= 2)
 LazyData: true
 Imports:
     stats,
-    graphics
-Suggests:
-    testthat,
-    covr,
     lattice,
     graphics,
     grDevices
-Collate:
+Suggests:
+    testthat,
+    covr,
+Collate: 
     'local_.R'
     'with_.R'
     'collate.R'
     'defer.R'
-    'dir.R'
-    'env.R'
-    'libpaths.R'
-    'locale.R'
-    'makevars.R'
-    'namespace.R'
-    'options.R'
-    'par.R'
-    'path.R'
-    'seed.R'
-    'wrap.R'
-    'sink.R'
-    'tempfile.R'
-    'utils.R'
-    'with.R'
     'wrap.R'
     'devices.R'
     'dir.R'
@@ -55,7 +40,7 @@ Collate:
     'libpaths.R'
     'locale.R'
     'makevars.R'
-    'namesapce.R'
+    'namespace.R'
     'options.R'
     'par.R'
     'path.R'

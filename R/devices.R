@@ -3,8 +3,6 @@ NULL
 
 # Internal *_dev functions ------------------------------------------------
 
-bmp_dev <- wrap(grDevices::bmp, NULL, grDevices::dev.cur())
-
 cairo_pdf_dev <- wrap(grDevices::cairo_pdf, NULL, grDevices::dev.cur())
 
 cairo_ps_dev <- wrap(grDevices::cairo_ps, NULL, grDevices::dev.cur())
@@ -15,10 +13,30 @@ postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
 
 svg_dev <- wrap(grDevices::svg, NULL, grDevices::dev.cur())
 
-tiff_dev <- wrap(grDevices::tiff, NULL, grDevices::dev.cur())
-
 xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 
+
+# These functions arguments differ between unix and windows, so just use ...
+
+bmp_dev <- function(filename, ...) {
+  grDevices::bmp(filename = filename, ...)
+  grDevices::dev.cur()
+}
+
+tiff_dev <- function(filename, ...) {
+  grDevices::tiff(filename = filename, ...)
+  grDevices::dev.cur()
+}
+
+png_dev <- function(filename, ...) {
+  grDevices::png(filename = filename, ...)
+  grDevices::dev.cur()
+}
+
+jpeg_dev <- function(filename, ...) {
+  grDevices::jpeg(filename = filename, ...)
+  grDevices::dev.cur()
+}
 
 # User-level with_* fns ---------------------------------------------------
 
@@ -30,6 +48,7 @@ xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 #' @aliases with_dev with_device
 #' @template with
 #' @param new \code{[named character]}\cr New graphics device
+#' @param ... Additional arguments passed to the graphics device.
 #' @seealso \code{\link[grDevices]{Devices}}
 #' @examples
 #' # dimensions are in inches
@@ -46,7 +65,6 @@ xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 NULL
 
 #' @describeIn devices BMP device
-#' @inheritParams grDevices::bmp
 #' @export
 with_bmp <- with_(bmp_dev, grDevices::dev.off)
 
@@ -67,6 +85,10 @@ with_pdf <- with_(pdf_dev, grDevices::dev.off)
 
 #' @describeIn devices POSTSCRIPT device
 #' @inheritParams grDevices::postscript
+#' @param command the command to be used for \sQuote{printing}. Defaults
+#'   to \code{"default"}, the value of option \code{"printcmd"}. The
+#'   length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
+#'   520 bytes on windows.
 #' @export
 with_postscript <- with_(postscript_dev, grDevices::dev.off)
 
@@ -76,7 +98,6 @@ with_postscript <- with_(postscript_dev, grDevices::dev.off)
 with_svg <- with_(svg_dev, grDevices::dev.off)
 
 #' @describeIn devices TIFF device
-#' @inheritParams grDevices::tiff
 #' @export
 with_tiff <- with_(tiff_dev, grDevices::dev.off)
 
@@ -86,11 +107,9 @@ with_tiff <- with_(tiff_dev, grDevices::dev.off)
 with_xfig <- with_(xfig_dev, grDevices::dev.off)
 
 #' @describeIn devices PNG device
-#' @inheritParams grDevices::png
 #' @export
 with_png <- with_(png_dev, grDevices::dev.off)
 
 #' @describeIn devices JPEG device
-#' @inheritParams grDevices::jpeg
 #' @export
 with_jpeg <- with_(jpeg_dev, grDevices::dev.off)
