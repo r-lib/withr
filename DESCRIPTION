@@ -32,6 +32,7 @@ Collate:
     'local_.R'
     'with_.R'
     'collate.R'
+    'connection.R'
     'defer.R'
     'wrap.R'
     'devices.R'
