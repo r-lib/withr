@@ -4,7 +4,7 @@ Title: Run Code 'With' Temporarily Modified Global State
 Version: 2.0.0
 Authors@R: c(
     person("Jim", "Hester", , "james.f.hester@gmail.com", role = c("aut", "cre")),
-    person("Kirill", "M<U+00FC>ller", , "krlmlr+r@mailbox.org", role = "aut"),
+    person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "aut"),
     person("Kevin", "Ushey", email = "kevinushey@gmail.com", role = c("aut")),
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = "aut"),
     person("Winston", "Chang", role = "aut"),
