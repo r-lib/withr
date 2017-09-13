@@ -2,9 +2,12 @@
 % Please edit documentation in R/connection.R
 \name{with_connection}
 \alias{with_connection}
+\alias{local_connection}
 \title{Automatically close connections}
 \usage{
 with_connection(...)
+
+local_connection(con, .local_envir = parent.frame())
 }
 \arguments{
 \item{...}{One or more named parameters with the connection(s) to create and
@@ -12,6 +15,8 @@ one unnamed parameter with the code to run.}
 
 \item{con}{The connection to create, this is returned by
 \code{local_connection()}.}
+
+\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \description{
 Connections which are automatically closed.

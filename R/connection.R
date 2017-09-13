@@ -6,7 +6,8 @@
 #'   one unnamed parameter with the code to run.
 #' @param con The connection to create, this is returned by
 #'   `local_connection()`.
-#' @inheritParams local_
+#' @param .local_envir `[environment]`\cr The environment to use for scoping.
+#' @importFrom stats setNames
 #' @examples
 #' with_connection(con = file("foo", "w"), {
 #'   writeLines(c("foo", "bar"), con)
@@ -25,7 +26,7 @@ with_connection <- function(...) {
   connections <- setNames(lapply(which(named), function(x) eval(call("force", as.symbol(paste0("..", x))))), names(args)[named])
 
   nme <- tempfile()
-  attach(connections, name = nme, warn.conflicts = FALSE)
+  (get("attach", baseenv()))(connections, name = nme, warn.conflicts = FALSE)
   on.exit({
     for (connection in connections) close(connection)
     detach(nme, character.only = TRUE)
@@ -33,6 +34,7 @@ with_connection <- function(...) {
   eval(call("force", as.symbol(paste0("..", which(!named)))))
 }
 
+#' @rdname with_connection
 #' @export
 local_connection <- function(con, .local_envir = parent.frame()) {
   defer(close(con), envir = .local_envir)
