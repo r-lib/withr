@@ -9,28 +9,70 @@
 \alias{local_environment}
 \title{Execute code with a modifed search path}
 \usage{
-with_package(package, code)
+with_package(package, code, help, pos = 2, lib.loc = NULL,
+  character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,
+  quietly = TRUE, verbose = getOption("verbose"))
 
-local_package(package, envir = parent.frame())
+local_package(package, help, pos = 2, lib.loc = NULL,
+  character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,
+  quietly = TRUE, verbose = getOption("verbose"),
+  .local_envir = parent.frame())
 
 with_namespace(package, code)
 
-local_namespace(package, envir = parent.frame())
+local_namespace(package, .local_envir = parent.frame())
 
-with_environment(env, code)
+with_environment(env, code, pos = 2L, name = format(env),
+  warn.conflicts = FALSE)
 
-local_environment(env, envir = parent.frame())
+local_environment(env, pos = 2L, name = format(env),
+  warn.conflicts = FALSE, .local_envir = parent.frame())
 }
 \arguments{
 \item{package}{\code{[character(1)]}\cr package name to load.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{envir}{\code{[environment]}\cr Attach exit handlers to this environment.
-Typically, this should be either the current environment or
-a parent frame (accessed through \code{\link[=parent.frame]{parent.frame()}}).}
+\item{help}{the name of a package, given as a \link{name} or
+    literal character string, or a character string, depending on
+    whether \code{character.only} is \code{FALSE} (default) or
+    \code{TRUE}).}
+
+\item{pos}{the position on the search list at which to attach the
+    loaded namespace.  Can also be the name of a position on the current
+    search list as given by \code{\link{search}()}.}
+
+\item{lib.loc}{a character vector describing the location of \R
+    library trees to search through, or \code{NULL}.  The default value
+    of \code{NULL} corresponds to all libraries currently known to
+    \code{\link{.libPaths}()}.
+    Non-existent library trees are silently ignored.}
+
+\item{character.only}{a logical indicating whether \code{package} or
+    \code{help} can be assumed to be character strings.}
+
+\item{logical.return}{logical.  If it is \code{TRUE},  \code{FALSE} or
+    \code{TRUE} is returned to indicate success.}
+
+\item{warn.conflicts}{logical.  If \code{TRUE}, warnings are
+    printed about \code{\link{conflicts}} from attaching the new
+    package.  A conflict is a function masking a function,
+    or a non-function masking a non-function.
+  }
+
+\item{quietly}{a logical.  If \code{TRUE}, no message confirming
+    package attaching is printed, and most often, no errors/warnings are
+    printed if package attaching fails.}
+
+\item{verbose}{a logical.  If \code{TRUE}, additional diagnostics are
+    printed.}
+
+\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
 
 \item{env}{\code{[environment()]}\cr Environment to attach.}
+
+\item{name}{name to use for the attached database. Names starting with
+    \code{package:} are reserved for \code{\link{library}}.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
