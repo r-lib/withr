@@ -18,19 +18,14 @@ Many of these functions were originally a part of the [devtools](https://github.
 -   `with_options()` / `local_options()` - options
 -   `with_par()` / `local_par()` - graphics parameters
 -   `with_path()` / `local_path()` - PATH environment variable
+-   `with_*()` and `local_()` functions for the built in R devices, `bmp`, `cairo_pdf`, `cairo_ps`, `pdf`, `postscript`, `svg`, `tiff`, `xfig`, `png`, `jpeg`.
+-   `with_connection()` / `local_connection()` - R connections.
+-   `with_package()`, `with_namespace()` and `with_environment()` - to run code with modified object search paths.
+-   `with_tempfile()` / `local_tempfile()` - Create and clean up a temp file.
 
 There are also `with_()` and `local_()` functions to construct new `with_*` and `local_*` functions if needed.
 
 ``` r
-dir.create("test")
-getwd()
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3LuM6Q"
-with_dir("test", getwd())
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3LuM6Q/test"
-getwd()
-#> [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3LuM6Q"
-unlink("test")
-
 Sys.getenv("WITHR")
 #> [1] ""
 with_envvar(c("WITHR" = 2), Sys.getenv("WITHR"))

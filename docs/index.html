@@ -90,28 +90,39 @@
 <code><a href="reference/with_par.html">with_par()</a></code> / <code><a href="reference/with_par.html">local_par()</a></code> - graphics parameters</li>
 <li>
 <code><a href="reference/with_path.html">with_path()</a></code> / <code><a href="reference/with_path.html">local_path()</a></code> - PATH environment variable</li>
+<li>
+<code>with_*()</code> and <code><a href="reference/with_.html">local_()</a></code> functions for the built in R devices, <code>bmp</code>, <code>cairo_pdf</code>, <code>cairo_ps</code>, <code>pdf</code>, <code>postscript</code>, <code>svg</code>, <code>tiff</code>, <code>xfig</code>, <code>png</code>, <code>jpeg</code>.</li>
+<li>
+<code><a href="reference/with_connection.html">with_connection()</a></code> / <code><a href="reference/with_connection.html">local_connection()</a></code> - R connections.</li>
+<li>
+<code><a href="reference/with_package.html">with_package()</a></code>, <code><a href="reference/with_package.html">with_namespace()</a></code> and <code><a href="reference/with_package.html">with_environment()</a></code> - to run code with modified object search paths.</li>
+<li>
+<code><a href="reference/with_tempfile.html">with_tempfile()</a></code> / <code><a href="reference/with_tempfile.html">local_tempfile()</a></code> - Create and clean up a temp file.</li>
 </ul>
 <p>There are also <code><a href="reference/with_.html">with_()</a></code> and <code><a href="reference/with_.html">local_()</a></code> functions to construct new <code>with_*</code> and <code>local_*</code> functions if needed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">"test"</span>)
-<span class="kw">getwd</span>()
-<span class="co">#&gt; [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp4q2vly"</span>
-<span class="kw"><a href="reference/with_dir.html">with_dir</a></span>(<span class="st">"test"</span>, <span class="kw">getwd</span>())
-<span class="co">#&gt; [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp4q2vly/test"</span>
-<span class="kw">getwd</span>()
-<span class="co">#&gt; [1] "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp4q2vly"</span>
-<span class="kw">unlink</span>(<span class="st">"test"</span>)
-
-<span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)
-<span class="co">#&gt; [1] ""</span>
-<span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>))
-<span class="co">#&gt; [1] "2"</span>
-<span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)
-<span class="co">#&gt; [1] ""</span>
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</code></pre></div>
+<div class="output">
+<pre class="knitr r">#&gt; [1] ""
+</pre>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>))</code></pre></div>
+<div class="output">
+<pre class="knitr r">#&gt; [1] "2"
+</pre>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</code></pre></div>
+<div class="output">
+<pre class="knitr r">#&gt; [1] ""
+</pre>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"A"</span> =<span class="st"> </span><span class="dv">1</span>),
   <span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"A"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="dt">action =</span> <span class="st">"suffix"</span>, <span class="kw">Sys.getenv</span>(<span class="st">"A"</span>))
-)
-<span class="co">#&gt; [1] "1 2"</span></code></pre></div>
+)</code></pre></div>
+<div class="output">
+<pre class="knitr r">#&gt; [1] "1 2"
+</pre>
+</div>
 <div id="local-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#local-functions" class="anchor"></a>local functions</h2>
@@ -120,8 +131,11 @@
   <span class="kw"><a href="reference/with_envvar.html">local_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>))
   <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)
 }
-<span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)
-<span class="co">#&gt; [1] ""</span></code></pre></div>
+<span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</code></pre></div>
+<div class="output">
+<pre class="knitr r">#&gt; [1] ""
+</pre>
+</div>
 </div>
 </div>
 <div id="see-also" class="section level1">
