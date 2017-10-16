@@ -28,11 +28,17 @@ Imports:
 Suggests:
     testthat,
     covr,
+    DBI,
+    RSQLite,
+    methods
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
 Collate: 
     'local_.R'
     'with_.R'
     'collate.R'
     'connection.R'
+    'db.R'
     'defer.R'
     'wrap.R'
     'devices.R'
@@ -51,5 +57,3 @@ Collate:
     'torture.R'
     'utils.R'
     'with.R'
-RoxygenNote: 6.0.1
-Roxygen: list(markdown = TRUE)

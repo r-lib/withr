@@ -1,6 +1,9 @@
 # devel
 - `with_connection()` function to automatically close R file connections.
 
+- `with_db_connection()` function to automatically disconnect from DBI database
+  connections.
+
 - `with_gctorture2` command to run code with gctorture2, useful for testing
   (#47).
 

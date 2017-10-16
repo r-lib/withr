@@ -3,7 +3,7 @@
 \name{with_connection}
 \alias{with_connection}
 \alias{local_connection}
-\title{Automatically close connections}
+\title{Connections which close themselves}
 \usage{
 with_connection(con, code)
 
@@ -23,7 +23,7 @@ which is then returned.}
   argument.
 }
 \description{
-Connections which are automatically closed.
+R file connections which are automatically closed.
 }
 \examples{
 with_connection(list(con = file("foo", "w")), {
