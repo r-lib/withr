@@ -1,15 +1,15 @@
-#' Automatically close connections
+#' Connections which close themselves
 #'
-#' Connections which are automatically closed.
+#' R file connections which are automatically closed.
 #'
-#' @param ... One or more named parameters with the connection(s) to create and
-#'   one unnamed parameter with the code to run.
-#' @param con The connection to create, this is returned by
-#'   `local_connection()`.
+#' @template with
+#' @param con For `with_connection()` a named list with the connection(s) to
+#' create. For `local_connection()` the code to create a single connection,
+#' which is then returned.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
 #' @importFrom stats setNames
 #' @examples
-#' with_connection(con = file("foo", "w"), {
+#' with_connection(list(con = file("foo", "w")), {
 #'   writeLines(c("foo", "bar"), con)
 #' })
 #'
@@ -18,25 +18,22 @@
 #' }
 #' read_foo()
 #' @export
-with_connection <- function(...) {
-  args <- eval(substitute(alist(...)))
-  named <- names(args) != ""
-  stopifnot(sum(named) == 1)
+with_connection <- function(con, code) {
 
-  connections <- setNames(lapply(which(named), function(x) eval(call("force", as.symbol(paste0("..", x))))), names(args)[named])
+  stopifnot(all(is.named(con)))
 
   nme <- tempfile()
-  (get("attach", baseenv()))(connections, name = nme, warn.conflicts = FALSE)
+  (get("attach", baseenv()))(con, name = nme, warn.conflicts = FALSE)
   on.exit({
-    for (connection in connections) close(connection)
+    for (connection in con) close(connection)
     detach(nme, character.only = TRUE)
   })
-  eval(call("force", as.symbol(paste0("..", which(!named)))))
+  force(code)
 }
 
 #' @rdname with_connection
 #' @export
 local_connection <- function(con, .local_envir = parent.frame()) {
   defer(close(con), envir = .local_envir)
-  return(con)
+  con
 }
