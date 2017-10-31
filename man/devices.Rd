@@ -30,25 +30,13 @@ with_bmp(new, code, ...)
 
 local_bmp(new, ..., .local_envir = parent.frame())
 
-with_cairo_pdf(new, code, width = 7, height = 7, pointsize = 12,
-  onefile = FALSE, family = "sans", bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"),
-  fallback_resolution = 300)
+with_cairo_pdf(new, code, ...)
 
-local_cairo_pdf(new, width = 7, height = 7, pointsize = 12,
-  onefile = FALSE, family = "sans", bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"),
-  fallback_resolution = 300, .local_envir = parent.frame())
+local_cairo_pdf(new, ..., .local_envir = parent.frame())
 
-with_cairo_ps(new, code, width = 7, height = 7, pointsize = 12,
-  onefile = FALSE, family = "sans", bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"),
-  fallback_resolution = 300)
+with_cairo_ps(new, code, ...)
 
-local_cairo_ps(new, width = 7, height = 7, pointsize = 12,
-  onefile = FALSE, family = "sans", bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"),
-  fallback_resolution = 300, .local_envir = parent.frame())
+local_cairo_ps(new, ..., .local_envir = parent.frame())
 
 with_pdf(new, code, width, height, onefile, family, title, fonts, version,
   paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
@@ -110,8 +98,6 @@ local_jpeg(new, ..., .local_envir = parent.frame())
 
 \item{height}{the height of the device in inches.}
 
-\item{pointsize}{the default pointsize of plotted text (in big points).}
-
 \item{onefile}{should all plots appear in one file or in separate files?}
 
 \item{family}{one of the device-independent font families,
@@ -120,16 +106,6 @@ local_jpeg(new, ..., .local_envir = parent.frame())
     system-dependent way.
     See, the \sQuote{Cairo fonts} section in the help for \code{\link{X11}}.
   }
-
-\item{bg}{the initial background colour: can be overridden by setting
-    par("bg").}
-
-\item{antialias}{string, the type of anti-aliasing (if any) to be used;
-    defaults to \code{"default"}.}
-
-\item{fallback_resolution}{numeric: the resolution in dpi used when
-    falling back to bitmap output.  Prior to \R 3.3.0 this depended on
-    the cairo implementation but was commonly 300.}
 
 \item{title}{title string to embed as the \samp{/Title} field in the
     file.  Defaults to \code{"R Graphics Output"}.}
@@ -158,8 +134,13 @@ local_jpeg(new, ..., .local_envir = parent.frame())
 \item{encoding}{the name of an encoding file.  See
     \code{\link{postscript}} for details.  Defaults to \code{"default"}.}
 
+\item{bg}{the initial background colour: can be overridden by setting
+    par("bg").}
+
 \item{fg}{the initial foreground color to be used.  Defaults to
    \code{"black"}.}
+
+\item{pointsize}{the default pointsize of plotted text (in big points).}
 
 \item{pagecentre}{logical: should the device region be centred on the
     page? -- is only relevant for \code{paper != "special"}.
@@ -200,6 +181,9 @@ local_jpeg(new, ..., .local_envir = parent.frame())
 to \code{"default"}, the value of option \code{"printcmd"}. The
 length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
 520 bytes on windows.}
+
+\item{antialias}{string, the type of anti-aliasing (if any) to be used;
+    defaults to \code{"default"}.}
 
 \item{defaultfont}{logical: should the device use xfig's default
     font?}

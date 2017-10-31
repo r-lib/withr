@@ -3,10 +3,6 @@ NULL
 
 # Internal *_dev functions ------------------------------------------------
 
-cairo_pdf_dev <- wrap(grDevices::cairo_pdf, NULL, grDevices::dev.cur())
-
-cairo_ps_dev <- wrap(grDevices::cairo_ps, NULL, grDevices::dev.cur())
-
 pdf_dev <- wrap(grDevices::pdf, NULL, grDevices::dev.cur())
 
 postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
@@ -15,6 +11,18 @@ svg_dev <- wrap(grDevices::svg, NULL, grDevices::dev.cur())
 
 xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 
+
+# These functions arguments differ between R versions, so just use ...
+
+cairo_pdf_dev <- function(filename, ...) {
+  grDevices::cairo_pdf(filename = filename, ...)
+  grDevices::dev.cur()
+}
+
+cairo_ps_dev <- function(filename, ...) {
+  grDevices::cairo_ps(filename = filename, ...)
+  grDevices::dev.cur()
+}
 
 # These functions arguments differ between unix and windows, so just use ...
 
@@ -56,7 +64,7 @@ jpeg_dev <- function(filename, ...) {
 #' with_pdf(file.path(tempdir(), "test.pdf"), width = 7, height = 5,
 #'   plot(runif(5))
 #' )
-#' 
+#'
 #' # dimensions are in pixels
 #' with_png(file.path(tempdir(), "test.png"), width = 800, height = 600,
 #'   plot(runif(5))
