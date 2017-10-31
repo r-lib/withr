@@ -47,5 +47,8 @@ get_valid_seed <- function() {
 }
 
 get_seed <- function() {
-  get0(".Random.seed", globalenv(), mode = "integer")
+  if (!exists(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)) {
+    return(NULL)
+  }
+  get(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)
 }
