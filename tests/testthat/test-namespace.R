@@ -41,8 +41,8 @@ test_that("with_namespace works", {
 
     expect_true("<environment: namespace:tools>" %in% search())
 
-    # .BioC_version_associated_with_R_version is a non-exported object in tools
-    expect_true(is.function(.BioC_version_associated_with_R_version))
+    # .check_packages is a non-exported object in tools
+    expect_true(is.function(.check_packages))
   })
 
   # tools namespace still not attached to the search path
@@ -59,8 +59,8 @@ test_that("local_namespace works", {
 
     expect_true("<environment: namespace:tools>" %in% search())
 
-    # .BioC_version_associated_with_R_version is a non-exported object in tools
-    expect_true(is.function(.BioC_version_associated_with_R_version))
+    # .check_packages is a non-exported object in tools
+    expect_true(is.function(.check_packages))
   }
 
   f()
