@@ -1,4 +1,5 @@
-# devel
+# 2.1.0
+
 - `with_connection()` function to automatically close R file connections.
 
 - `with_db_connection()` function to automatically disconnect from DBI database
