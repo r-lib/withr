@@ -1,4 +1,4 @@
-#' Execute code with a modifed search path
+#' Execute code with a modified search path
 #'
 #' `with_package()` attaches a package to the search path, executes the code, then
 #' removes the package from the search path. The package namespace is _not_

@@ -12,7 +12,7 @@ local_tempfile(new, envir = parent.frame(), pattern = "file",
   tmpdir = tempdir(), fileext = "")
 }
 \arguments{
-\item{new}{\code{[character vector]}\cr Names of temporay file handles to create.}
+\item{new}{\code{[character vector]}\cr Names of temporary file handles to create.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 

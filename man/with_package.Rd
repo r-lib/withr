@@ -7,7 +7,7 @@
 \alias{local_namespace}
 \alias{with_environment}
 \alias{local_environment}
-\title{Execute code with a modifed search path}
+\title{Execute code with a modified search path}
 \usage{
 with_package(package, code, help, pos = 2, lib.loc = NULL,
   character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,

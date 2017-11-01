@@ -2,7 +2,7 @@
 #'
 #' Temporarily create a tempfile, which is automatically removed afterwards.
 #' @template with
-#' @param new `[character vector]`\cr Names of temporay file handles to create.
+#' @param new `[character vector]`\cr Names of temporary file handles to create.
 #' @param envir `[environment]`\cr Environment in which to define the temporary files.
 #' @inheritParams base::tempfile
 #' @export
