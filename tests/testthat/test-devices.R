@@ -26,7 +26,7 @@ test_that("with_*device* functions create a plot file", {
       expect_silent(fns[[i]](filename, print(p)))
     }
     expect_true(file.exists(filename), info = info)
-    expect_gt(file.size(filename), 0, label = info)
+    expect_gt(file.info(filename)$size, 0, label = info)
   }
 
   unlink(plot_dir)
@@ -61,7 +61,7 @@ test_that("local_device functions create a plot file", {
       print(p)
     })(i)
     expect_true(file.exists(filename), info = info)
-    expect_gt(file.size(filename), 0, label = info)
+    expect_gt(file.info(filename)$size, 0, label = info)
   }
 
   unlink(plot_dir)
