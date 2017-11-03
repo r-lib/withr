@@ -44,6 +44,7 @@ Collate:
     'devices.R'
     'dir.R'
     'env.R'
+    'file.R'
     'libpaths.R'
     'locale.R'
     'makevars.R'

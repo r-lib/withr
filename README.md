@@ -22,6 +22,7 @@ Many of these functions were originally a part of the [devtools](https://github.
 -   `with_connection()` / `local_connection()` - R connections.
 -   `with_package()`, `with_namespace()` and `with_environment()` - to run code with modified object search paths.
 -   `with_tempfile()` / `local_tempfile()` - Create and clean up a temp file.
+-   `with_file()` / `local_file()` - Create and clean up a normal file.
 
 There are also `with_()` and `local_()` functions to construct new `with_*` and `local_*` functions if needed.
 
