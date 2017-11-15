@@ -22,12 +22,12 @@ License: GPL (>= 2)
 LazyData: true
 Imports:
     stats,
-    lattice,
     graphics,
     grDevices
 Suggests:
     testthat,
     covr,
+    lattice,
     DBI,
     RSQLite,
     methods
