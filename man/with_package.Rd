@@ -10,17 +10,18 @@
 \title{Execute code with a modified search path}
 \usage{
 with_package(package, code, help, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,
+  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose"))
 
 local_package(package, help, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,
+  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose"),
   .local_envir = parent.frame())
 
-with_namespace(package, code)
+with_namespace(package, code, warn.conflicts = FALSE)
 
-local_namespace(package, .local_envir = parent.frame())
+local_namespace(package, .local_envir = parent.frame(),
+  warn.conflicts = FALSE)
 
 with_environment(env, code, pos = 2L, name = format(env),
   warn.conflicts = FALSE)

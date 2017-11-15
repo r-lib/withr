@@ -19,7 +19,7 @@
 #' }
 #' @export
 with_package <- function(package, code, help, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,
+  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose")) {
 
   suppressPackageStartupMessages(
@@ -34,7 +34,7 @@ with_package <- function(package, code, help, pos = 2, lib.loc = NULL,
 #' @rdname with_package
 #' @export
 local_package <- function(package, help, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = TRUE,
+  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose"),
   .local_envir = parent.frame()) {
 
@@ -48,20 +48,20 @@ local_package <- function(package, help, pos = 2, lib.loc = NULL,
 
 #' @rdname with_package
 #' @export
-with_namespace <- function(package, code) {
+with_namespace <- function(package, code, warn.conflicts = FALSE) {
   ns <- asNamespace(package)
   name <- format(ns)
-  (get("attach"))(ns, name = name)
+  (get("attach"))(ns, name = name, warn.conflicts = FALSE)
   on.exit(detach(name, character.only = TRUE))
   force(code)
 }
 
 #' @rdname with_package
 #' @export
-local_namespace <- function(package, .local_envir = parent.frame()) {
+local_namespace <- function(package, .local_envir = parent.frame(), warn.conflicts = FALSE) {
   ns <- asNamespace(package)
   name <- format(ns)
-  (get("attach"))(ns, name = name)
+  (get("attach"))(ns, name = name, warn.conflicts = FALSE)
   defer(detach(name, character.only = TRUE), envir = .local_envir)
 }
 
