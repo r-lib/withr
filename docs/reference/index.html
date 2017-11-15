@@ -52,16 +52,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Release notes</li>
+    <li>
+      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Change log</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -85,7 +96,7 @@
     <div class="page-header">
       <h1>
         Reference
-        <small>version&nbsp;2.0.0</small>
+        <small>version&nbsp;2.1.0.9000</small>
       </h1>
     </div>
 
@@ -127,7 +138,13 @@
           <td>
             <p><code><a href="with_connection.html">with_connection</a></code> <code><a href="with_connection.html">local_connection</a></code> </p>
           </td>
-          <td><p>Automatically close connections</p></td>
+          <td><p>Connections which close themselves</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="with_db_connection.html">with_db_connection</a></code> <code><a href="with_db_connection.html">local_db_connection</a></code> </p>
+          </td>
+          <td><p>DBMS Connections which disconnect themselves.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -140,6 +157,12 @@
             <p><code><a href="with_envvar.html">with_envvar</a></code> <code><a href="with_envvar.html">local_envvar</a></code> </p>
           </td>
           <td><p>Environment variables</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="with_file.html">with_file</a></code> <code><a href="with_file.html">local_file</a></code> </p>
+          </td>
+          <td><p>Files which delete themselves</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -175,7 +198,7 @@
           <td>
             <p><code><a href="with_package.html">with_package</a></code> <code><a href="with_package.html">local_package</a></code> <code><a href="with_package.html">with_namespace</a></code> <code><a href="with_package.html">local_namespace</a></code> <code><a href="with_package.html">with_environment</a></code> <code><a href="with_package.html">local_environment</a></code> </p>
           </td>
-          <td><p>Execute code with a modifed search path</p></td>
+          <td><p>Execute code with a modified search path</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -234,7 +257,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jim Hester, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">

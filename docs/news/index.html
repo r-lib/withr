@@ -52,16 +52,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Release notes</li>
+    <li>
+      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Change log</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -88,6 +99,57 @@
     </div>
 
     <div class="contents">
+    <div id="withr-2-1-0-9000" class="section level1">
+<h1 class="hasAnchor">
+<a href="#withr-2-1-0-9000" class="anchor"></a>withr 2.1.0.9000</h1>
+<ul>
+<li>
+<code><a href="../reference/with_file.html">with_file()</a></code> function to automatically remove files.</li>
+</ul>
+</div>
+    <div id="withr-2-1-0" class="section level1">
+<h1 class="hasAnchor">
+<a href="#withr-2-1-0" class="anchor"></a>withr 2.1.0</h1>
+<ul>
+<li><p><code><a href="../reference/with_connection.html">with_connection()</a></code> function to automatically close R file connections.</p></li>
+<li><p><code><a href="../reference/with_db_connection.html">with_db_connection()</a></code> function to automatically disconnect from DBI database connections.</p></li>
+<li><p><code>with_gctorture2</code> command to run code with gctorture2, useful for testing (#47).</p></li>
+<li><p><code><a href="../reference/with_package.html">with_package()</a></code>, <code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">with_environment()</a></code> (and equivalent locals) functions added, to run code with a modified object search path (#38, #48).</p></li>
+<li><p>Add <code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> functions to create temporary files which are cleanup up afterwards. (#32)</p></li>
+<li><p>Remove the <code>code</code> argument from <code>local_</code> functions (#50).</p></li>
+</ul>
+</div>
+    <div id="withr-2-0-0" class="section level1">
+<h1 class="hasAnchor">
+<a href="#withr-2-0-0" class="anchor"></a>withr 2.0.0</h1>
+<ul>
+<li><p>Each <code>with_</code> function now has a <code>local_</code> variant, which reset at the end of their local scope, generally at the end of the function body.</p></li>
+<li><p>New functions <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> for running code with a given random seed (#45, @krlmlr).</p></li>
+</ul>
+</div>
+    <div id="withr-1-0-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#withr-1-0-2" class="anchor"></a>withr 1.0.2</h1>
+<ul>
+<li>
+<code><a href="../reference/with_makevars.html">with_makevars()</a></code> gains an <code>assignment</code> argument to allow specifying additional assignment types.</li>
+</ul>
+</div>
+    <div id="withr-1-0-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#withr-1-0-1" class="anchor"></a>withr 1.0.1</h1>
+<ul>
+<li>Relaxed R version requirement to 3.0.2 (#35, #39).</li>
+<li>New <code><a href="../reference/with_sink.html">with_output_sink()</a></code> and <code><a href="../reference/with_sink.html">with_message_sink()</a></code> (#24).</li>
+</ul>
+</div>
+    <div id="withr-1-0-0" class="section level1">
+<h1 class="hasAnchor">
+<a href="#withr-1-0-0" class="anchor"></a>withr 1.0.0</h1>
+<ul>
+<li>First Public Release</li>
+</ul>
+</div>
     </div>
   </div>
 
@@ -95,6 +157,12 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#withr-2-1-0-9000">2.1.0.9000</a></li>
+        <li><a href="#withr-2-1-0">2.1.0</a></li>
+        <li><a href="#withr-2-0-0">2.0.0</a></li>
+        <li><a href="#withr-1-0-2">1.0.2</a></li>
+        <li><a href="#withr-1-0-1">1.0.1</a></li>
+        <li><a href="#withr-1-0-0">1.0.0</a></li>
       </ul>
     </div>
   </div>
@@ -103,7 +171,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jim Hester, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">

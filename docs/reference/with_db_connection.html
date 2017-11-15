@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Connections which close themselves — with_connection • withr</title>
+<title>DBMS Connections which disconnect themselves. — with_db_connection • withr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -94,24 +94,26 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Connections which close themselves</h1>
+    <h1>DBMS Connections which disconnect themselves.</h1>
     </div>
 
     
-    <p>R file connections which are automatically closed.</p>
+    <p>Connections to Database Management Systems which automatically disconnect. In
+particular connections which are created with <code><a href='http://www.rdocumentation.org/packages/DBI/topics/dbConnect'>DBI::dbConnect()</a></code> and closed
+with <code><a href='http://www.rdocumentation.org/packages/DBI/topics/dbDisconnect'>DBI::dbDisconnect()</a></code>.</p>
     
 
-    <pre class="usage"><span class='fu'>with_connection</span>(<span class='no'>con</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_db_connection</span>(<span class='no'>con</span>, <span class='no'>code</span>)
 
-<span class='fu'>local_connection</span>(<span class='no'>con</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
+<span class='fu'>local_db_connection</span>(<span class='no'>con</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>con</th>
-      <td><p>For <code>with_connection()</code> a named list with the connection(s) to
-create. For <code>local_connection()</code> the code to create a single connection,
+      <td><p>For <code>with_db_connection()</code> a named list with the connection(s) to
+create. For <code>local_db_connection()</code> the code to create a single connection,
 which is then returned.</p></td>
     </tr>
     <tr>
@@ -135,14 +137,23 @@ which is then returned.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>with_connection</span>(<span class='fu'>list</span>(<span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'>file</span>(<span class='st'>"foo"</span>, <span class='st'>"w"</span>)), {
-  <span class='fu'>writeLines</span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>), <span class='no'>con</span>)
+    <pre class="examples"><div class='input'><span class='no'>db</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>()
+<span class='fu'>with_db_connection</span>(
+  <span class='fu'>list</span>(<span class='kw'>con</span> <span class='kw'>=</span> <span class='kw pkg'>DBI</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/DBI/topics/dbConnect'>dbConnect</a></span>(<span class='kw pkg'>RSQLite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span>(), <span class='no'>db</span>)), {
+    <span class='kw pkg'>DBI</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/DBI/topics/dbWriteTable'>dbWriteTable</a></span>(<span class='no'>con</span>, <span class='st'>"mtcars"</span>, <span class='no'>mtcars</span>)
 })
 
-<span class='no'>read_foo</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
-  <span class='fu'>readLines</span>(<span class='fu'>local_connection</span>(<span class='fu'>file</span>(<span class='st'>"foo"</span>, <span class='st'>"r"</span>)))
+<span class='no'>head_db_table</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>...</span>) {
+  <span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'>local_db_connection</span>(<span class='kw pkg'>DBI</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/DBI/topics/dbConnect'>dbConnect</a></span>(<span class='kw pkg'>RSQLite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/RSQLite/topics/SQLite'>SQLite</a></span>(), <span class='no'>db</span>))
+  <span class='fu'>head</span>(<span class='kw pkg'>DBI</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/DBI/topics/dbReadTable'>dbReadTable</a></span>(<span class='no'>con</span>, <span class='st'>"mtcars"</span>), <span class='no'>...</span>)
 }
-<span class='fu'>read_foo</span>()</div><div class='output co'>#&gt; [1] "foo" "bar"</div></pre>
+<span class='fu'>head_db_table</span>()</div><div class='output co'>#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</div><div class='input'><span class='fu'>unlink</span>(<span class='no'>db</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

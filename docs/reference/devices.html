@@ -52,16 +52,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Release notes</li>
+    <li>
+      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Change log</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -94,25 +105,13 @@
 
 <span class='fu'>local_bmp</span>(<span class='no'>new</span>, <span class='no'>...</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
 
-<span class='fu'>with_cairo_pdf</span>(<span class='no'>new</span>, <span class='no'>code</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>pointsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>onefile</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>antialias</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span>),
-  <span class='kw'>fallback_resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>)
+<span class='fu'>with_cairo_pdf</span>(<span class='no'>new</span>, <span class='no'>code</span>, <span class='no'>...</span>)
 
-<span class='fu'>local_cairo_pdf</span>(<span class='no'>new</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>pointsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>onefile</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>antialias</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span>),
-  <span class='kw'>fallback_resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
+<span class='fu'>local_cairo_pdf</span>(<span class='no'>new</span>, <span class='no'>...</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
 
-<span class='fu'>with_cairo_ps</span>(<span class='no'>new</span>, <span class='no'>code</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>pointsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>onefile</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>antialias</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span>),
-  <span class='kw'>fallback_resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>)
+<span class='fu'>with_cairo_ps</span>(<span class='no'>new</span>, <span class='no'>code</span>, <span class='no'>...</span>)
 
-<span class='fu'>local_cairo_ps</span>(<span class='no'>new</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>pointsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>onefile</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='st'>"sans"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>antialias</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span>),
-  <span class='kw'>fallback_resolution</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
+<span class='fu'>local_cairo_ps</span>(<span class='no'>new</span>, <span class='no'>...</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
 
 <span class='fu'>with_pdf</span>(<span class='no'>new</span>, <span class='no'>code</span>, <span class='no'>width</span>, <span class='no'>height</span>, <span class='no'>onefile</span>, <span class='no'>family</span>, <span class='no'>title</span>, <span class='no'>fonts</span>, <span class='no'>version</span>,
   <span class='no'>paper</span>, <span class='no'>encoding</span>, <span class='no'>bg</span>, <span class='no'>fg</span>, <span class='no'>pointsize</span>, <span class='no'>pagecentre</span>, <span class='no'>colormodel</span>, <span class='no'>useDingbats</span>,
@@ -189,10 +188,6 @@
       <td><p>the height of the device in inches.</p></td>
     </tr>
     <tr>
-      <th>pointsize</th>
-      <td><p>the default pointsize of plotted text (in big points).</p></td>
-    </tr>
-    <tr>
       <th>onefile</th>
       <td><p>should all plots appear in one file or in separate files?</p></td>
     </tr>
@@ -203,22 +198,6 @@
     string specify a font family to be searched for in a
     system-dependent way.
     See, the &#8216;Cairo fonts&#8217; section in the help for <code>X11</code>.</p></td>
-    </tr>
-    <tr>
-      <th>bg</th>
-      <td><p>the initial background colour: can be overridden by setting
-    par("bg").</p></td>
-    </tr>
-    <tr>
-      <th>antialias</th>
-      <td><p>string, the type of anti-aliasing (if any) to be used;
-    defaults to <code>"default"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>fallback_resolution</th>
-      <td><p>numeric: the resolution in dpi used when
-    falling back to bitmap output.  Prior to <span style="R">R</span> 3.3.0 this depended on
-    the cairo implementation but was commonly 300.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -257,9 +236,18 @@
     <code>postscript</code> for details.  Defaults to <code>"default"</code>.</p></td>
     </tr>
     <tr>
+      <th>bg</th>
+      <td><p>the initial background colour: can be overridden by setting
+    par("bg").</p></td>
+    </tr>
+    <tr>
       <th>fg</th>
       <td><p>the initial foreground color to be used.  Defaults to
    <code>"black"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>pointsize</th>
+      <td><p>the default pointsize of plotted text (in big points).</p></td>
     </tr>
     <tr>
       <th>pagecentre</th>
@@ -317,6 +305,11 @@
 to <code>"default"</code>, the value of option <code>"printcmd"</code>. The
 length limit is <code>2*PATH_MAX</code>, typically 8096 bytes on unix systems and
 520 bytes on windows.</p></td>
+    </tr>
+    <tr>
+      <th>antialias</th>
+      <td><p>string, the type of anti-aliasing (if any) to be used;
+    defaults to <code>"default"</code>.</p></td>
     </tr>
     <tr>
       <th>defaultfont</th>
@@ -387,7 +380,7 @@ length limit is <code>2*PATH_MAX</code>, typically 8096 bytes on unix systems an
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jim Hester, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">

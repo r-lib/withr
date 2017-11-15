@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Execute code with a modifed search path — with_package • withr</title>
+<title>Execute code with a modified search path — with_package • withr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -52,16 +52,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Release notes</li>
+    <li>
+      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Change log</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -83,7 +94,7 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Execute code with a modifed search path</h1>
+    <h1>Execute code with a modified search path</h1>
     </div>
 
     
@@ -95,17 +106,18 @@ available on the search path.</p>
     
 
     <pre class="usage"><span class='fu'>with_package</span>(<span class='no'>package</span>, <span class='no'>code</span>, <span class='no'>help</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lib.loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>character.only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>logical.return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>character.only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>logical.return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"verbose"</span>))
 
 <span class='fu'>local_package</span>(<span class='no'>package</span>, <span class='no'>help</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lib.loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>character.only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>logical.return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>character.only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>logical.return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"verbose"</span>),
   <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
 
-<span class='fu'>with_namespace</span>(<span class='no'>package</span>, <span class='no'>code</span>)
+<span class='fu'>with_namespace</span>(<span class='no'>package</span>, <span class='no'>code</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>local_namespace</span>(<span class='no'>package</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
+<span class='fu'>local_namespace</span>(<span class='no'>package</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(),
+  <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>with_environment</span>(<span class='no'>env</span>, <span class='no'>code</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'>format</span>(<span class='no'>env</span>),
   <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
@@ -222,7 +234,7 @@ available on the search path.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jim Hester, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">

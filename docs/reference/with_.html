@@ -52,16 +52,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Release notes</li>
+    <li>
+      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Change log</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -143,7 +154,7 @@ function body.</p>
 #&gt;     on.exit(setwd(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7faf852c8ab0&gt;</div><div class='input'>
+#&gt; &lt;environment: 0x7fac29f08540&gt;</div><div class='input'>
 <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>()
 <span class='no'>set_global_state</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>state</span>, <span class='no'>msg</span> <span class='kw'>=</span> <span class='st'>"Changing global state."</span>) {
   <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fu'>list</span>(<span class='no'>state</span>), <span class='no'>global_stack</span>)
@@ -161,7 +172,7 @@ function body.</p>
 #&gt;     on.exit(reset_global_state(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7faf852c8ab0&gt;</div></pre>
+#&gt; &lt;environment: 0x7fac29f08540&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -180,7 +191,7 @@ function body.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jim Hester, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">

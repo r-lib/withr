@@ -52,16 +52,27 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Release notes</li>
+    <li>
+      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Change log</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -139,7 +150,7 @@ requested environment finishes execution.</p>
 
 <span class='co'># use 'local_file' in a function</span>
 <span class='fu'>local</span>({
-  <span class='fu'>local_file</span>(<span class='no'>path</span>)
+  <span class='fu'><a href='with_file.html'>local_file</a></span>(<span class='no'>path</span>)
   <span class='fu'>stopifnot</span>(<span class='fu'>file.exists</span>(<span class='no'>path</span>))
 })
 
@@ -149,7 +160,7 @@ requested environment finishes execution.</p>
 <span class='co'># investigate how 'defer' modifies the</span>
 <span class='co'># executing function's environment</span>
 <span class='fu'>local</span>({
-  <span class='fu'>local_file</span>(<span class='no'>path</span>)
+  <span class='fu'><a href='with_file.html'>local_file</a></span>(<span class='no'>path</span>)
   <span class='fu'>print</span>(<span class='fu'>attributes</span>(<span class='fu'>environment</span>()))
 })</div><div class='output co'>#&gt; $handlers
 #&gt; $handlers[[1]]
@@ -157,7 +168,7 @@ requested environment finishes execution.</p>
 #&gt; unlink(path)
 #&gt; 
 #&gt; $handlers[[1]]$envir
-#&gt; &lt;environment: 0x7faf87319268&gt;
+#&gt; &lt;environment: 0x7fac305178a0&gt;
 #&gt; 
 #&gt; 
 #&gt; </div></pre>
@@ -181,7 +192,7 @@ Kevin Ushey
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jim Hester, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, Kirill Müller, Kevin Ushey, <a href='http://hadley.nz'>Hadley Wickham</a>, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">

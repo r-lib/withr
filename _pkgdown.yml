@@ -1,3 +1,19 @@
+navbar:
+  type: default
+  left:
+  - text: Home
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: News
+    menu:
+      - text: "Release notes"
+      - text: "Version 2.1.0"
+        href: articles/releases/withr-2.1.0.html
+      - text: "------------------"
+      - text: "Change log"
+        href: news/index.html
+
 authors:
   "Jim Hester":
     href: http://jimhester.com
