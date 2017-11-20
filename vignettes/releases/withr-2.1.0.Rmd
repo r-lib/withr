@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(withr)
 ```
 
-[withr 2.1.0](http://withr.tidyverse.org/news/index.html) is now available on CRAN!
+[withr 2.1.0](http://withr.r-lib.org/news/index.html) is now available on CRAN!
 [withr](http://withr.r-lib.org) makes working with global state in R safer and
 less error prone. It has only base package dependencies so is easily included
 in packages.
@@ -95,7 +95,7 @@ need to remember to use an `on.exit()` call after each stateful call. In
 addition by default each `on.exit()` action will overwrite any previous
 `on.exit()` action in the same function unless you use the `add = TRUE` option.
 `add = TRUE` also adds additional code to the _end_ of existing code, which
-means the code is not run in the [First-In
+means the code is not run in the [Last-In,
 First-Out](https://en.wikipedia.org/wiki/FIFO_and_LIFO_accounting) order you
 would generally prefer. It is also not possible to have this cleanup code
 performed before the function has finished.
@@ -228,7 +228,7 @@ with_tempfile("file1", {
 
 There are many other bug fixes and other minor improvements in this release.
 You can see a complete list in the [release
-notes](https://github.com/tidyverse/withr/releases/tag/v2.1.0).
+notes](https://github.com/r-lib/withr/releases/tag/v2.1.0).
 
 A big thanks goes to all the community members who contributed code and opened
 issues since the last release!
