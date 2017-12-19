@@ -24,13 +24,15 @@ Imports:
     stats,
     graphics,
     grDevices
-Suggests:
+Suggests: 
     testthat,
     covr,
     lattice,
     DBI,
     RSQLite,
-    methods
+    methods,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 Collate: 
@@ -58,3 +60,4 @@ Collate:
     'torture.R'
     'utils.R'
     'with.R'
+VignetteBuilder: knitr

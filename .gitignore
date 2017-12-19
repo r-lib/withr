@@ -3,3 +3,4 @@
 .RData
 withr.Rproj
 *.Rcheck/
+inst/doc
