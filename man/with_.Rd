@@ -5,9 +5,9 @@
 \alias{with_}
 \title{Create a new "with" or "local" function}
 \usage{
-local_(set, reset = set, envir = parent.frame())
+local_(set, reset = set, envir = parent.frame(), new = TRUE)
 
-with_(set, reset = set, envir = parent.frame())
+with_(set, reset = set, envir = parent.frame(), new = TRUE)
 }
 \arguments{
 \item{set}{\code{[function(...)]}\cr Function used to set the state.

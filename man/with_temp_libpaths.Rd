@@ -5,13 +5,11 @@
 \alias{local_temp_libpaths}
 \title{Library paths}
 \usage{
-with_temp_libpaths(new, code)
+with_temp_libpaths(code, action = "prefix")
 
-local_temp_libpaths(new, .local_envir = parent.frame())
+local_temp_libpaths(action = "prefix", .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\code{[character(1)]}\cr New collation order}
-
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
