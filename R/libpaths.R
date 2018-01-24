@@ -42,7 +42,7 @@ local_libpaths <- local_(set_libpaths, .libPaths)
 #'
 #' @template with
 #' @seealso [.libPaths()]
-#' @inheritParams with_collate
+#' @inheritParams with_libpaths
 #' @family libpaths
 #' @export
 with_temp_libpaths <- with_(set_temp_libpath, .libPaths, new = FALSE)

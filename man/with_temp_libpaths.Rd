@@ -12,6 +12,9 @@ local_temp_libpaths(action = "prefix", .local_envir = parent.frame())
 \arguments{
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
+\item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
+\code{"suffix"} existing paths.}
+
 \item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
 }
 \value{

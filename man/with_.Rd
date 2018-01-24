@@ -20,6 +20,9 @@ values, or a "dots" argument, are supported but not used: The function will
 be called as \code{reset(old)}.}
 
 \item{envir}{\code{[environment]}\cr Environment of the returned function.}
+
+\item{new}{\code{[logical(1)]}\cr Replace the first argument of the \code{set} function
+by \code{new}? Set to \code{FALSE} if the \code{set} function only has optional arguments.}
 }
 \value{
 \code{[function(new, code, ...)]} A function with at least two arguments,
@@ -29,7 +32,7 @@ be called as \code{reset(old)}.}
 }
 If there are more arguments to the function passed in \code{set} they are
 added to the returned function.  If \code{set} does not have arguments,
-the returned function only has a \code{code} argument.
+or \code{new} is \code{FALSE}, the returned function does not have a \code{code} argument.
 }
 \description{
 These are constructors for \code{with_...} or \code{local_...} functions.
