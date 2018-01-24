@@ -46,7 +46,7 @@ NULL
 #' }
 #' with_(set_global_state, reset_global_state)
 #' @export
-with_ <- function(set, reset = set, envir = parent.frame()) {
+with_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
 
   fmls <- formals(set)
 
@@ -54,10 +54,14 @@ with_ <- function(set, reset = set, envir = parent.frame()) {
     # called pass all extra formals on
     called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
 
-    # rename first formal to new
-    called_fmls[[1]] <- as.symbol("new")
+    if (new) {
+      # rename first formal to new
+      called_fmls[[1]] <- as.symbol("new")
 
-    fun_args <- c(alist(new =, code =), fmls[-1L])
+      fun_args <- c(alist(new =, code =), fmls[-1L])
+    } else {
+      fun_args <- c(alist(code =), fmls)
+    }
   } else {
     # no formals -- only have code
     called_fmls <- NULL
