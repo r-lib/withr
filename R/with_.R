@@ -21,6 +21,8 @@ NULL
 #'   values, or a "dots" argument, are supported but not used: The function will
 #'   be called as `reset(old)`.
 #' @param envir `[environment]`\cr Environment of the returned function.
+#' @param new `[logical(1)]`\cr Replace the first argument of the `set` function
+#'  by `new`? Set to `FALSE` if the `set` function only has optional arguments.
 #' @return `[function(new, code, ...)]` A function with at least two arguments,
 #' \itemize{
 #' \item `new`: New state to use
@@ -28,7 +30,7 @@ NULL
 #' }
 #' If there are more arguments to the function passed in `set` they are
 #' added to the returned function.  If `set` does not have arguments,
-#' the returned function only has a `code` argument.
+#' or `new` is `FALSE`, the returned function does not have a `code` argument.
 #' @keywords internal
 #' @examples
 #' with_(setwd)
