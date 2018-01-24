@@ -61,6 +61,15 @@ test_that("with_temp_libpaths works and resets library", {
   expect_equal(lib, .libPaths())
 })
 
+test_that("with_temp_libpaths has an action argument", {
+  lib <- .libPaths()
+  with_temp_libpaths(
+    action = "suffix",
+    expect_equal(.libPaths()[-length(.libPaths())], lib)
+  )
+  expect_equal(lib, .libPaths())
+})
+
 test_that("with_ works", {
   res <- NULL
   set <- function(new) {

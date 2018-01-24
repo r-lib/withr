@@ -12,10 +12,10 @@ set_libpaths <- function(paths, action = "replace") {
   invisible(old)
 }
 
-set_temp_libpath <- function() {
+set_temp_libpath <- function(action = "prefix") {
   paths <- tempfile("temp_libpath")
   dir.create(paths)
-  set_libpaths(paths, action = "prefix")
+  set_libpaths(paths, action = action)
 }
 
 #' Library paths
@@ -45,8 +45,8 @@ local_libpaths <- local_(set_libpaths, .libPaths)
 #' @inheritParams with_collate
 #' @family libpaths
 #' @export
-with_temp_libpaths <- with_(set_temp_libpath, .libPaths)
+with_temp_libpaths <- with_(set_temp_libpath, .libPaths, new = FALSE)
 
 #' @rdname with_temp_libpaths
 #' @export
-local_temp_libpaths <- local_(set_temp_libpath, .libPaths)
+local_temp_libpaths <- local_(set_temp_libpath, .libPaths, new = FALSE)

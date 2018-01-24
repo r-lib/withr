@@ -1,6 +1,6 @@
 #' @rdname with_
 #' @export
-local_ <- function(set, reset = set, envir = parent.frame()) {
+local_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
 
   fmls <- formals(set)
 
@@ -8,10 +8,14 @@ local_ <- function(set, reset = set, envir = parent.frame()) {
     # called pass all extra formals on
     called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
 
-    # rename first formal to new
-    called_fmls[[1]] <- as.symbol("new")
+    if (new) {
+      # rename first formal to new
+      called_fmls[[1]] <- as.symbol("new")
 
-    fun_args <- c(alist(new =), fmls[-1L])
+      fun_args <- c(alist(new =), fmls[-1L])
+    } else {
+      fun_args <- fmls
+    }
   } else {
     # no formals
     called_fmls <- NULL
