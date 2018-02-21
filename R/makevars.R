@@ -5,7 +5,7 @@ NULL
 
 #' Create a new `Makevars` file, by adding new variables
 #'
-#' You probably need [with_makevars()] instead of this function.
+#' You probably want [with_makevars()] instead of this function.
 #'
 #' Unlike [with_makevars()], it does not activate the new `Makevars`
 #' file, i.e. it does not set the `R_MAKEVARS_USER` environment variable.
@@ -18,7 +18,6 @@ NULL
 #'
 #' @keywords internal
 #' @export
-
 set_makevars <- function(variables,
                          old_path = file.path("~", ".R", "Makevars"),
                          new_path = tempfile(),
