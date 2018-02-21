@@ -18,7 +18,7 @@ file to modify.}
 \item{assignment}{\code{[character(1)]}\cr assignment type to use.}
 }
 \description{
-You probably need \code{\link[=with_makevars]{with_makevars()}} instead of this function.
+You probably want \code{\link[=with_makevars]{with_makevars()}} instead of this function.
 }
 \details{
 Unlike \code{\link[=with_makevars]{with_makevars()}}, it does not activate the new \code{Makevars}
