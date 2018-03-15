@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,10 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Library paths — with_temp_libpaths" />
+
+<meta property="og:description" content="Temporarily prepend a new temporary directory to the library paths." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -101,9 +107,9 @@
     <p>Temporarily prepend a new temporary directory to the library paths.</p>
     
 
-    <pre class="usage"><span class='fu'>with_temp_libpaths</span>(<span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_temp_libpaths</span>(<span class='no'>code</span>, <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"prefix"</span>)
 
-<span class='fu'>local_temp_libpaths</span>(<span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
+<span class='fu'>local_temp_libpaths</span>(<span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"prefix"</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -111,6 +117,11 @@
     <tr>
       <th>code</th>
       <td><p><code>[any]</code> Code to execute in the temporary environment</p></td>
+    </tr>
+    <tr>
+      <th>action</th>
+      <td><p><code>[character(1)]</code> should new values <code>"replace"</code>, <code>"prefix"</code> or
+<code>"suffix"</code> existing paths.</p></td>
     </tr>
     <tr>
       <th>.local_envir</th>
@@ -150,7 +161,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

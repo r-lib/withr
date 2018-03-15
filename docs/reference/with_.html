@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,13 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Create a new "with" or "local" function — local_" />
+
+<meta property="og:description" content="These are constructors for with_... or local_... functions.
+They are only needed if you want to alter some global state which is not
+covered by the existing with_... functions, see withr-package
+for an overview." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -104,9 +113,9 @@ covered by the existing <code>with_...</code> functions, see <a href='withr.html
 for an overview.</p>
     
 
-    <pre class="usage"><span class='fu'>local_</span>(<span class='no'>set</span>, <span class='kw'>reset</span> <span class='kw'>=</span> <span class='no'>set</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())
+    <pre class="usage"><span class='fu'>local_</span>(<span class='no'>set</span>, <span class='kw'>reset</span> <span class='kw'>=</span> <span class='no'>set</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>new</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>with_</span>(<span class='no'>set</span>, <span class='kw'>reset</span> <span class='kw'>=</span> <span class='no'>set</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>())</pre>
+<span class='fu'>with_</span>(<span class='no'>set</span>, <span class='kw'>reset</span> <span class='kw'>=</span> <span class='no'>set</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>new</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -128,6 +137,11 @@ be called as <code>reset(old)</code>.</p></td>
       <th>envir</th>
       <td><p><code>[environment]</code> Environment of the returned function.</p></td>
     </tr>
+    <tr>
+      <th>new</th>
+      <td><p><code>[logical(1)]</code> Replace the first argument of the <code>set</code> function
+by <code>new</code>? Set to <code>FALSE</code> if the <code>set</code> function only has optional arguments.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -137,7 +151,7 @@ be called as <code>reset(old)</code>.</p></td>
 <li><p><code>code</code>: Code to run in that state.</p></li>
 </ul><p>If there are more arguments to the function passed in <code>set</code> they are
 added to the returned function.  If <code>set</code> does not have arguments,
-the returned function only has a <code>code</code> argument.</p>
+or <code>new</code> is <code>FALSE</code>, the returned function does not have a <code>code</code> argument.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -154,7 +168,7 @@ function body.</p>
 #&gt;     on.exit(setwd(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7fac29f08540&gt;</div><div class='input'>
+#&gt; &lt;environment: 0x7fc53348fe68&gt;</div><div class='input'>
 <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>()
 <span class='no'>set_global_state</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>state</span>, <span class='no'>msg</span> <span class='kw'>=</span> <span class='st'>"Changing global state."</span>) {
   <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fu'>list</span>(<span class='no'>state</span>), <span class='no'>global_stack</span>)
@@ -172,7 +186,7 @@ function body.</p>
 #&gt;     on.exit(reset_global_state(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7fac29f08540&gt;</div></pre>
+#&gt; &lt;environment: 0x7fc53348fe68&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -195,7 +209,7 @@ function body.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

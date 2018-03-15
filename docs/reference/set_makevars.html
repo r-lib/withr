@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torture Garbage Collector — with_gctorture2 • withr</title>
+<title>Create a new <code>Makevars</code> file, by adding new variables — set_makevars • withr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -27,9 +27,9 @@
 <script src="../pkgdown.js"></script>
   
   
-<meta property="og:title" content="Torture Garbage Collector — with_gctorture2" />
+<meta property="og:title" content="Create a new <code>Makevars</code> file, by adding new variables — set_makevars" />
 
-<meta property="og:description" content="Temporarily turn gctorture2 on." />
+<meta property="og:description" content="You probably want with_makevars() instead of this function." />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -100,46 +100,42 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torture Garbage Collector</h1>
+    <h1>Create a new <code>Makevars</code> file, by adding new variables</h1>
     </div>
 
     
-    <p>Temporarily turn gctorture2 on.</p>
+    <p>You probably want <code><a href='with_makevars.html'>with_makevars()</a></code> instead of this function.</p>
     
 
-    <pre class="usage"><span class='fu'>with_gctorture2</span>(<span class='no'>new</span>, <span class='no'>code</span>, <span class='kw'>wait</span> <span class='kw'>=</span> <span class='no'>new</span>, <span class='kw'>inhibit_release</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>set_makevars</span>(<span class='no'>variables</span>, <span class='kw'>old_path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='st'>"~"</span>, <span class='st'>".R"</span>, <span class='st'>"Makevars"</span>),
+  <span class='kw'>new_path</span> <span class='kw'>=</span> <span class='fu'>tempfile</span>(), <span class='kw'>assignment</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>new</th>
-      <td><p><code>[integer]</code> run GC every 'step' allocations.</p></td>
+      <th>variables</th>
+      <td><p><code>[named character]</code> new variables and their values</p></td>
     </tr>
     <tr>
-      <th>code</th>
-      <td><p><code>[any]</code> Code to execute in the temporary environment</p></td>
+      <th>old_path</th>
+      <td><p><code>[character(1)]</code> location of existing <code>Makevars</code>
+file to modify.</p></td>
     </tr>
     <tr>
-      <th>wait</th>
-      <td><p>integer; number of allocations to wait before starting
-    GC torture.</p></td>
+      <th>new_path</th>
+      <td><p><code>[character(1)]</code> location of the new <code>Makevars</code> file</p></td>
     </tr>
     <tr>
-      <th>inhibit_release</th>
-      <td><p>logical; do not release free objects for
-    re-use: use with caution.</p></td>
+      <th>assignment</th>
+      <td><p><code>[character(1)]</code> assignment type to use.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>[any]</code> The results of the evaluation of the <code>code</code>
-  argument.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <p><code><a href='withr.html'>withr</a></code> for examples</p>
+    <p>Unlike <code><a href='with_makevars.html'>with_makevars()</a></code>, it does not activate the new <code>Makevars</code>
+file, i.e. it does not set the <code>R_MAKEVARS_USER</code> environment variable.</p>
     
 
   </div>
@@ -148,9 +144,7 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>

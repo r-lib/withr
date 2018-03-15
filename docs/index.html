@@ -8,8 +8,14 @@
 <title>Run Code 'With' Temporarily Modified Global State • withr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Run Code 'With' Temporarily Modified Global State">
+<meta property="og:description" content="A set of functions to run code 'with' safely and temporarily
+    modified global state. Many of these functions were originally a part of the
+    'devtools' package, this provides a simple package with limited dependencies
+    to provide access to these functions.">
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -114,42 +120,27 @@
 <code><a href="reference/with_file.html">with_file()</a></code> / <code><a href="reference/with_file.html">local_file()</a></code> - Create and clean up a normal file.</li>
 </ul>
 <p>There are also <code><a href="reference/with_.html">with_()</a></code> and <code><a href="reference/with_.html">local_()</a></code> functions to construct new <code>with_*</code> and <code>local_*</code> functions if needed.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</code></pre></div>
-<div class="output">
-<pre class="knitr r">#&gt; [1] ""
-</pre>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>))</code></pre></div>
-<div class="output">
-<pre class="knitr r">#&gt; [1] "2"
-</pre>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</code></pre></div>
-<div class="output">
-<pre class="knitr r">#&gt; [1] ""
-</pre>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"A"</span> =<span class="st"> </span><span class="dv">1</span>),
-  <span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"A"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="dt">action =</span> <span class="st">"suffix"</span>, <span class="kw">Sys.getenv</span>(<span class="st">"A"</span>))
-)</code></pre></div>
-<div class="output">
-<pre class="knitr r">#&gt; [1] "1 2"
-</pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; [1] ""</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>))</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; [1] "2"</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; [1] ""</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"A"</span> =<span class="st"> </span><span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="kw"><a href="reference/with_envvar.html">with_envvar</a></span>(<span class="kw">c</span>(<span class="st">"A"</span> =<span class="st"> </span><span class="dv">2</span>), <span class="dt">action =</span> <span class="st">"suffix"</span>, <span class="kw">Sys.getenv</span>(<span class="st">"A"</span>))</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; [1] "1 2"</span></a></code></pre></div>
 <div id="local-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#local-functions" class="anchor"></a>local functions</h2>
 <p>These functions are variants of the corresponding <code><a href="reference/with_.html">with_()</a></code> function, but rather than resetting the value at the end of the function call they reset when the current context goes out of scope. This is most useful for using within functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-  <span class="kw"><a href="reference/with_envvar.html">local_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>))
-  <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)
-}
-<span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</code></pre></div>
-<div class="output">
-<pre class="knitr r">#&gt; [1] ""
-</pre>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="reference/with_envvar.html">local_envvar</a></span>(<span class="kw">c</span>(<span class="st">"WITHR"</span> =<span class="st"> </span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">Sys.getenv</span>(<span class="st">"WITHR"</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; [1] ""</span></a></code></pre></div>
 </div>
 </div>
 <div id="see-also" class="section level1">
@@ -178,12 +169,12 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="http://jimhester.com">Jim Hester</a> <br><small class="roles"> Author, maintainer </small> </li>
-<li>Kirill Müller <br><small class="roles"> Author </small> </li>
-<li>Kevin Ushey <br><small class="roles"> Author </small> </li>
+<a href="http://jimhester.com">Jim Hester</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Kirill Müller <br><small class="roles"> Author </small>  </li>
+<li>Kevin Ushey <br><small class="roles"> Author </small>  </li>
 <li>
-<a href="http://hadley.nz">Hadley Wickham</a> <br><small class="roles"> Author </small> </li>
-<li>Winston Chang <br><small class="roles"> Author </small> </li>
+<a href="http://hadley.nz">Hadley Wickham</a> <br><small class="roles"> Author </small>  </li>
+<li>Winston Chang <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 <h2>Dev status</h2>
@@ -203,7 +194,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,7 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="All news" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -99,53 +102,57 @@
     </div>
 
     <div class="contents">
-    <div id="withr-2-1-0-9000" class="section level1">
-<h1 class="hasAnchor">
-<a href="#withr-2-1-0-9000" class="anchor"></a>withr 2.1.0.9000</h1>
+    <div class="section level1">
+<h1>withr 2.1.2</h1>
 <ul>
-<li>
-<code><a href="../reference/with_file.html">with_file()</a></code> function to automatically remove files.</li>
+<li><p><code><a href="../reference/set_makevars.html">set_makevars()</a></code> is now exported (<a href='http://github.com/r-lib/withr#readme/issues/68'>#68</a>, <a href='http://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
+<li><p><code><a href="../reference/with_temp_libpaths.html">with_temp_libpaths()</a></code> gains an <code>action</code> argument, to specify how the temporary library path will be added (<a href='http://github.com/r-lib/withr#readme/issues/66'>#66</a>, <a href='http://github.com/krlmlr'>@krlmlr</a>).</p></li>
 </ul>
 </div>
-    <div id="withr-2-1-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#withr-2-1-0" class="anchor"></a>withr 2.1.0</h1>
+    <div class="section level1">
+<h1>withr 2.1.1</h1>
+<ul>
+<li><p>Fixes test failures with testthat 2.0.0</p></li>
+<li><p><code><a href="../reference/with_file.html">with_file()</a></code> function to automatically remove files.</p></li>
+</ul>
+</div>
+    <div class="section level1">
+<h1>withr 2.1.0</h1>
 <ul>
 <li><p><code><a href="../reference/with_connection.html">with_connection()</a></code> function to automatically close R file connections.</p></li>
 <li><p><code><a href="../reference/with_db_connection.html">with_db_connection()</a></code> function to automatically disconnect from DBI database connections.</p></li>
-<li><p><code>with_gctorture2</code> command to run code with gctorture2, useful for testing (#47).</p></li>
-<li><p><code><a href="../reference/with_package.html">with_package()</a></code>, <code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">with_environment()</a></code> (and equivalent locals) functions added, to run code with a modified object search path (#38, #48).</p></li>
-<li><p>Add <code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> functions to create temporary files which are cleanup up afterwards. (#32)</p></li>
-<li><p>Remove the <code>code</code> argument from <code>local_</code> functions (#50).</p></li>
+<li><p><code>with_gctorture2</code> command to run code with gctorture2, useful for testing (<a href='http://github.com/r-lib/withr#readme/issues/47'>#47</a>).</p></li>
+<li>
+<code><a href="../reference/with_package.html">with_package()</a></code>, <code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">with_environment()</a></code> (and equivalent locals) functions added, to run code with a modified object search path (<a href='http://github.com/r-lib/withr#readme/issues/38'>#38</a>,
+<p><a href='http://github.com/r-lib/withr#readme/issues/48'>#48</a>).</p>
+</li>
+<li><p>Add <code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> functions to create temporary files which are cleanup up afterwards. (<a href='http://github.com/r-lib/withr#readme/issues/32'>#32</a>)</p></li>
+<li><p>Remove the <code>code</code> argument from <code>local_</code> functions (<a href='http://github.com/r-lib/withr#readme/issues/50'>#50</a>).</p></li>
 </ul>
 </div>
-    <div id="withr-2-0-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#withr-2-0-0" class="anchor"></a>withr 2.0.0</h1>
+    <div class="section level1">
+<h1>withr 2.0.0</h1>
 <ul>
 <li><p>Each <code>with_</code> function now has a <code>local_</code> variant, which reset at the end of their local scope, generally at the end of the function body.</p></li>
-<li><p>New functions <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> for running code with a given random seed (#45, @krlmlr).</p></li>
+<li><p>New functions <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> for running code with a given random seed (<a href='http://github.com/r-lib/withr#readme/issues/45'>#45</a>, <a href='http://github.com/krlmlr'>@krlmlr</a>).</p></li>
 </ul>
 </div>
-    <div id="withr-1-0-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#withr-1-0-2" class="anchor"></a>withr 1.0.2</h1>
+    <div class="section level1">
+<h1>withr 1.0.2</h1>
 <ul>
 <li>
 <code><a href="../reference/with_makevars.html">with_makevars()</a></code> gains an <code>assignment</code> argument to allow specifying additional assignment types.</li>
 </ul>
 </div>
-    <div id="withr-1-0-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#withr-1-0-1" class="anchor"></a>withr 1.0.1</h1>
+    <div class="section level1">
+<h1>withr 1.0.1</h1>
 <ul>
-<li>Relaxed R version requirement to 3.0.2 (#35, #39).</li>
-<li>New <code><a href="../reference/with_sink.html">with_output_sink()</a></code> and <code><a href="../reference/with_sink.html">with_message_sink()</a></code> (#24).</li>
+<li>Relaxed R version requirement to 3.0.2 (<a href='http://github.com/r-lib/withr#readme/issues/35'>#35</a>, <a href='http://github.com/r-lib/withr#readme/issues/39'>#39</a>).</li>
+<li>New <code><a href="../reference/with_sink.html">with_output_sink()</a></code> and <code><a href="../reference/with_sink.html">with_message_sink()</a></code> (<a href='http://github.com/r-lib/withr#readme/issues/24'>#24</a>).</li>
 </ul>
 </div>
-    <div id="withr-1-0-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#withr-1-0-0" class="anchor"></a>withr 1.0.0</h1>
+    <div class="section level1">
+<h1>withr 1.0.0</h1>
 <ul>
 <li>First Public Release</li>
 </ul>
@@ -157,12 +164,13 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#withr-2-1-0-9000">2.1.0.9000</a></li>
-        <li><a href="#withr-2-1-0">2.1.0</a></li>
-        <li><a href="#withr-2-0-0">2.0.0</a></li>
-        <li><a href="#withr-1-0-2">1.0.2</a></li>
-        <li><a href="#withr-1-0-1">1.0.1</a></li>
-        <li><a href="#withr-1-0-0">1.0.0</a></li>
+        <li><a href="#NA">2.1.2</a></li>
+        <li><a href="#NA">2.1.1</a></li>
+        <li><a href="#NA">2.1.0</a></li>
+        <li><a href="#NA">2.0.0</a></li>
+        <li><a href="#NA">1.0.2</a></li>
+        <li><a href="#NA">1.0.1</a></li>
+        <li><a href="#NA">1.0.0</a></li>
       </ul>
     </div>
   </div>
@@ -175,7 +183,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
