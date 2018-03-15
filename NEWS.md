@@ -1,4 +1,4 @@
-# withr 2.1.1.9000
+# withr 2.1.2
 
 - `set_makevars()` is now exported (#68, @gaborcsardi).
 
