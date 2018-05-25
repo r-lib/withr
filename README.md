@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Withr - Run Code ‘With’ Modified State
+# withr - run code ‘with’ modified state <img src="man/figures/logo.png" align="right" />
 
 [![Travis-CI Build
 Status](https://travis-ci.org/r-lib/withr.svg?branch=master)](https://travis-ci.org/r-lib/withr)
@@ -12,7 +12,7 @@ status](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https:
 [![CRAN
 Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
 
-A set of functions to run code ‘with’ safely and temporarily modified
+A set of functions to run code with safely and temporarily modified
 global state. There are two sets of functions, those prefixed with
 `with_` and those with `local_`. The former reset their state as soon as
 the `code` argument has been evaluated. The latter reset when they reach
