@@ -4,3 +4,4 @@
 withr.Rproj
 *.Rcheck/
 inst/doc
+docs
