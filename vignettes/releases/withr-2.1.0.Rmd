@@ -146,7 +146,7 @@ These functions open a new graphics device, run some code, then automatically
 close the device.
 
 ```{r}
-path <- file.path(Sys.glob("*withr*_files/figure-html"), "test.png")
+path <- "test.png"
 with_png(path, width = 400, height = 300, {
   plot(mtcars$hp, mtcars$mpg)
 })
