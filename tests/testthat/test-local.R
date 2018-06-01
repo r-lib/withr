@@ -51,6 +51,18 @@ test_that("local_options works", {
   expect_false(identical(getOption("zyxxyzyx"), "qwrbbl"))
 })
 
+test_that("local_options(error = ) works", {
+    f <- function(...) 1
+    oopt <- options("error")
+    on.exit(options(oopt))
+    options(error = f)
+    local({
+        local_options(list(error = function(...) 2))
+        expect_identical(2, eval(getOption("error")))
+    })
+    expect_identical(1, eval(getOption("error")))
+})
+
 test_that("local_libpaths works and resets library", {
   lib <- .libPaths()
   new_lib <- "."
