@@ -1,3 +1,8 @@
+# withr 2.1.2.9000
+
+- `with_options()` no longer uses `do.call()`, so optiosn are not evaluated on 
+  exit (#73, @mtmorgan).
+
 # withr 2.1.2
 
 - `set_makevars()` is now exported (#68, @gaborcsardi).
