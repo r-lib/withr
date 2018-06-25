@@ -63,17 +63,18 @@ with_envvar(c("A" = 1),
 )
 ```
 
-## local functions
+## Local functions
 These functions are variants of the corresponding `with_()` function, but
-rather than resetting the value at the end of the function call they reset when
-the current context goes out of scope. This is most useful for using within
-functions.
+instead of resetting the value at the end of the function call they reset when
+the current context goes out of scope. This is most useful within a function.
 
 ```{r}
 f <- function(x) {
   local_envvar(c("WITHR" = 2))
   Sys.getenv("WITHR")
 }
+
+f()
 Sys.getenv("WITHR")
 ```
 
