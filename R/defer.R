@@ -20,6 +20,12 @@
 #' executes the registered handler when the function associated with the
 #' requested environment finishes execution.
 #'
+#' Deferred events can be set on the global environment, primarily to facilitate
+#' the interactive development of code that is intended to be executed inside a
+#' function or test. A message alerts the user to the fact that an explicit
+#' `clear()` is the only way to trigger (and delete) deferred events on the
+#' global environment.
+#'
 #' @family local-related functions
 #' @export
 #' @author Kevin Ushey
@@ -49,9 +55,20 @@
 #'   local_file(path)
 #'   print(attributes(environment()))
 #' })
+#'
+#' # defer and trigger events on the global environment
+#' defer(print("one"))
+#' defer(print("two"))
+#' clear()
+#' clear()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  if (identical(envir, .GlobalEnv))
-    stop("attempt to defer event on global environment")
+  if (identical(envir, .GlobalEnv)) {
+    #stop("attempt to defer event on global environment")
+    message(
+      "Setting deferred event on global environment.\n",
+      "Execute (and clear) with `clear()`."
+    )
+  }
   priority <- match.arg(priority)
   front <- priority == "first"
   invisible(add_handler(envir, list(expr = substitute(expr), envir = parent.frame()), front))
@@ -66,6 +83,13 @@ defer_parent <- function(expr, priority = c("first", "last")) {
   ), envir = parent.frame())
 }
 
+#' @rdname defer
+#' @export
+clear <- function() {
+  execute_handlers(.GlobalEnv)
+  attr(.GlobalEnv, "handlers") <- NULL
+  invisible()
+}
 
 ## Handlers used for 'defer' calls. Attached as a list of expressions for the
 ## 'handlers' attribute on the environment, with 'on.exit' called to ensure
