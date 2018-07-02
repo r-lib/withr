@@ -62,15 +62,24 @@
 #' flush_global_deferred()
 #' flush_global_deferred()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  if (identical(envir, .GlobalEnv)) {
+  global <- identical(envir, .GlobalEnv)
+  if (global) {
     message(
       "Setting deferred event on global environment. ",
       "Execute with `flush_global_deferred()`."
     )
   }
   priority <- match.arg(priority)
-  front <- priority == "first"
-  invisible(add_handler(envir, list(expr = substitute(expr), envir = parent.frame()), front))
+  invisible(
+    add_handler(
+      envir,
+      handler = list(
+        expr = substitute(expr),
+        envir = if (global) NULL else parent.frame()
+      ),
+      front = priority == "first"
+    )
+  )
 }
 
 #' @rdname defer
