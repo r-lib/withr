@@ -3,14 +3,14 @@
 \name{defer}
 \alias{defer}
 \alias{defer_parent}
-\alias{flush_global_deferred}
+\alias{run_global_deferred}
 \title{Defer Evaluation of an Expression}
 \usage{
 defer(expr, envir = parent.frame(), priority = c("first", "last"))
 
 defer_parent(expr, priority = c("first", "last"))
 
-flush_global_deferred()
+run_global_deferred()
 }
 \arguments{
 \item{expr}{\code{[expression]}\cr An expression to be evaluated.}
@@ -38,7 +38,7 @@ requested environment finishes execution.
 Deferred events can be set on the global environment, primarily to facilitate
 the interactive development of code that is intended to be executed inside a
 function or test. A message alerts the user to the fact that an explicit
-\code{flush_global_deferred()} is the only way to trigger (and delete) deferred
+\code{run_global_deferred()} is the only way to trigger (and delete) deferred
 events on the global environment.
 }
 \examples{
@@ -71,8 +71,8 @@ local({
 # defer and trigger events on the global environment
 defer(print("one"))
 defer(print("two"))
-flush_global_deferred()
-flush_global_deferred()
+run_global_deferred()
+run_global_deferred()
 }
 \author{
 Kevin Ushey
