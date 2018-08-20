@@ -4,7 +4,7 @@
 \alias{set_makevars}
 \title{Create a new \code{Makevars} file, by adding new variables}
 \usage{
-set_makevars(variables, old_path = file.path("~", ".R", "Makevars"),
+set_makevars(variables, old_path = tools::makevars_user(),
   new_path = tempfile(), assignment = c("=", ":=", "?=", "+="))
 }
 \arguments{

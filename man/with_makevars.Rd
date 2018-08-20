@@ -4,8 +4,8 @@
 \alias{with_makevars}
 \title{Makevars variables}
 \usage{
-with_makevars(new, code, path = file.path("~", ".R", "Makevars"),
-  assignment = c("=", ":=", "?=", "+="))
+with_makevars(new, code, path = tools::makevars_user(), assignment = c("=",
+  ":=", "?=", "+="))
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New variables and their values}
