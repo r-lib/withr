@@ -1,5 +1,8 @@
 # withr 2.1.2.9000
 
+- `with_makevars()` now uses `tools::makevars_user()` to determine the default
+  user makevars file (#77, @siddharthab).
+
 - `with_options()` no longer uses `do.call()`, so optiosn are not evaluated on 
   exit (#73, @mtmorgan).
 
