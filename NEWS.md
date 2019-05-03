@@ -1,5 +1,8 @@
 # withr 2.1.2.9000
 
+- Add `with_rng_version()` and `local_rng_version()` functions to change
+  the version of the RNG (#90, @gaborcsardi).
+
 - `with_makevars()` now uses `tools::makevars_user()` to determine the default
   user makevars file (#77, @siddharthab).
 
