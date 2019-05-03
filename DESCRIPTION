@@ -54,6 +54,7 @@ Collate:
     'options.R'
     'par.R'
     'path.R'
+    'rng.R'
     'seed.R'
     'sink.R'
     'tempfile.R'
