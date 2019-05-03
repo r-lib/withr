@@ -21,7 +21,7 @@ local_libpaths(new, action = "replace", .local_envir = parent.frame())
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change library paths.
@@ -33,3 +33,4 @@ Temporarily change library paths.
 
 Other libpaths: \code{\link{with_temp_libpaths}}
 }
+\concept{libpaths}

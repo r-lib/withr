@@ -42,25 +42,27 @@ with_pdf(new, code, width, height, onefile, family, title, fonts, version,
   paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
   useKerning, fillOddEven, compress)
 
-local_pdf(new, width, height, onefile, family, title, fonts, version, paper,
-  encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats, useKerning,
-  fillOddEven, compress, .local_envir = parent.frame())
+local_pdf(new, width, height, onefile, family, title, fonts, version,
+  paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
+  useKerning, fillOddEven, compress, .local_envir = parent.frame())
 
 with_postscript(new, code, onefile, family, title, fonts, encoding, bg, fg,
-  width, height, horizontal, pointsize, paper, pagecentre, print.it, command,
-  colormodel, useKerning, fillOddEven)
+  width, height, horizontal, pointsize, paper, pagecentre, print.it,
+  command, colormodel, useKerning, fillOddEven)
 
-local_postscript(new, onefile, family, title, fonts, encoding, bg, fg, width,
-  height, horizontal, pointsize, paper, pagecentre, print.it, command,
-  colormodel, useKerning, fillOddEven, .local_envir = parent.frame())
+local_postscript(new, onefile, family, title, fonts, encoding, bg, fg,
+  width, height, horizontal, pointsize, paper, pagecentre, print.it,
+  command, colormodel, useKerning, fillOddEven,
+  .local_envir = parent.frame())
 
 with_svg(new, code, width = 7, height = 7, pointsize = 12,
   onefile = FALSE, family = "sans", bg = "white",
   antialias = c("default", "none", "gray", "subpixel"))
 
-local_svg(new, width = 7, height = 7, pointsize = 12, onefile = FALSE,
-  family = "sans", bg = "white", antialias = c("default", "none", "gray",
-  "subpixel"), .local_envir = parent.frame())
+local_svg(new, width = 7, height = 7, pointsize = 12,
+  onefile = FALSE, family = "sans", bg = "white",
+  antialias = c("default", "none", "gray", "subpixel"),
+  .local_envir = parent.frame())
 
 with_tiff(new, code, ...)
 
@@ -72,10 +74,11 @@ with_xfig(new, code, onefile = FALSE, encoding = "none",
   fg = "black", pagecentre = TRUE, defaultfont = FALSE,
   textspecial = FALSE)
 
-local_xfig(new, onefile = FALSE, encoding = "none", paper = "default",
-  horizontal = TRUE, width = 0, height = 0, family = "Helvetica",
-  pointsize = 12, bg = "transparent", fg = "black", pagecentre = TRUE,
-  defaultfont = FALSE, textspecial = FALSE, .local_envir = parent.frame())
+local_xfig(new, onefile = FALSE, encoding = "none",
+  paper = "default", horizontal = TRUE, width = 0, height = 0,
+  family = "Helvetica", pointsize = 12, bg = "transparent",
+  fg = "black", pagecentre = TRUE, defaultfont = FALSE,
+  textspecial = FALSE, .local_envir = parent.frame())
 
 with_png(new, code, ...)
 
@@ -194,7 +197,7 @@ length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily use a graphics device.
