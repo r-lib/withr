@@ -18,7 +18,7 @@ local_options(new, .local_envir = parent.frame())
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change global options.

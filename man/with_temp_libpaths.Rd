@@ -19,7 +19,7 @@ local_temp_libpaths(action = "prefix", .local_envir = parent.frame())
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily prepend a new temporary directory to the library paths.
@@ -31,3 +31,4 @@ Temporarily prepend a new temporary directory to the library paths.
 
 Other libpaths: \code{\link{with_libpaths}}
 }
+\concept{libpaths}

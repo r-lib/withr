@@ -27,7 +27,7 @@ local_tempfile(new, envir = parent.frame(), pattern = "file",
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily create a tempfile, which is automatically removed afterwards.

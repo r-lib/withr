@@ -35,7 +35,7 @@ to. Passing \code{NULL} will throw an error.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily divert output to a file via \code{\link[=sink]{sink()}}.  For

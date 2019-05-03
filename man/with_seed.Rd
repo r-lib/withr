@@ -16,7 +16,7 @@ with_preserve_seed(code)
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 \code{with_seed()} runs code with a specific random seed and resets it afterwards.

@@ -19,7 +19,7 @@ with_gctorture2(new, code, wait = new, inhibit_release = FALSE)
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily turn gctorture2 on.

@@ -10,13 +10,14 @@
 \title{Execute code with a modified search path}
 \usage{
 with_package(package, code, help, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
-  quietly = TRUE, verbose = getOption("verbose"))
+  character.only = TRUE, logical.return = FALSE,
+  warn.conflicts = FALSE, quietly = TRUE,
+  verbose = getOption("verbose"))
 
 local_package(package, help, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
-  quietly = TRUE, verbose = getOption("verbose"),
-  .local_envir = parent.frame())
+  character.only = TRUE, logical.return = FALSE,
+  warn.conflicts = FALSE, quietly = TRUE,
+  verbose = getOption("verbose"), .local_envir = parent.frame())
 
 with_namespace(package, code, warn.conflicts = FALSE)
 
@@ -77,7 +78,7 @@ local_environment(env, pos = 2L, name = format(env),
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 \code{with_package()} attaches a package to the search path, executes the code, then

@@ -4,8 +4,8 @@
 \alias{with_makevars}
 \title{Makevars variables}
 \usage{
-with_makevars(new, code, path = tools::makevars_user(), assignment = c("=",
-  ":=", "?=", "+="))
+with_makevars(new, code, path = tools::makevars_user(),
+  assignment = c("=", ":=", "?=", "+="))
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New variables and their values}
@@ -18,7 +18,7 @@ with_makevars(new, code, path = tools::makevars_user(), assignment = c("=",
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change contents of an existing \code{Makevars} file.
