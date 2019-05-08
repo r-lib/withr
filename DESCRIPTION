@@ -58,6 +58,7 @@ Collate:
     'seed.R'
     'sink.R'
     'tempfile.R'
+    'timezone.R'
     'torture.R'
     'utils.R'
     'with.R'

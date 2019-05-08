@@ -1,5 +1,8 @@
 # withr 2.1.2.9000
 
+- Add `with_timezone()` and `local_timezone()` functions to change the
+  time zone (#92, @gaborcsardi).
+
 - Add `with_rng_version()` and `local_rng_version()` functions to change
   the version of the RNG (#90, @gaborcsardi).
 
