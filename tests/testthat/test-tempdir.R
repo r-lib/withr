@@ -28,7 +28,7 @@ test_that("tempdir will leave the directory alone if clean = FALSE", {
   tmp <- with_tempdir({
     writeLines("Is it me you were looking for?", con = "hello.txt")
     getwd()
-  }, clean = TRUE)
+  }, clean = FALSE)
   expect_true(file.exists(tmp))
   expect_identical(dir(tmp), "hello.txt")
   expect_identical(readLines(file.path(tmp, "hello.txt")), 
