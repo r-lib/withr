@@ -1,8 +1,9 @@
 ## Test environments
-* OS X El Capitan, R 3.4.3
-* ubuntu 12.04 (on travis-ci), R 3.4.3, 3.3.3, 3.2.5, 3.1, R-devel
-* Windows Server 2012 R2 (x64), R 3.4.3
-* Rhub
+
+* local: darwin15.6.0-3.6.0
+* travis: 3.1, 3.2, 3.3, oldrel, release, devel
+* r-hub: windows-x86_64-devel, ubuntu-gcc-release, fedora-clang-devel
+* win-builder: windows-x86_64-devel
 
 ## R CMD check results
 There were no NOTEs, ERRORs or WARNINGs.

@@ -107,7 +107,9 @@ local_jpeg(new, ..., .local_envir = parent.frame())
     \code{"sans"}, \code{"serif"} and \code{"mono"}, or a character
     string specify a font family to be searched for in a
     system-dependent way.
-    See, the \sQuote{Cairo fonts} section in the help for \code{\link{X11}}.
+
+    On unix-alikes (incl.\\ Mac), see
+    the \sQuote{Cairo fonts} section in the help for \code{\link{X11}}.
   }
 
 \item{title}{title string to embed as the \samp{/Title} field in the
@@ -160,8 +162,8 @@ local_jpeg(new, ..., .local_envir = parent.frame())
     around font display problems in broken PDF viewers: although this
     font is one of the 14 guaranteed to be available in all PDF viewers,
     that guarantee is not always honoured.
-    See the \sQuote{Note} for a possible fix for some viewers.
-    }
+
+    On Unix-alikes (incl. Mac), see the \sQuote{Note} for a possible fix for some viewers.}
 
 \item{useKerning}{logical.  Should kerning corrections be included in
     setting text and calculating string widths?  Defaults to \code{TRUE}.}
