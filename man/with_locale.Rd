@@ -50,8 +50,8 @@ with_locale(new = c("LC_MONETARY" = "en_US"), Sys.localeconv())
 
 ## Ordering:
 x <- c("bernard", "bérénice", "béatrice", "boris")
-withr::with_locale(c(LC_COLLATE = "fr_FR"), sort(x))
-withr::with_locale(c(LC_COLLATE = "C"), sort(x))
+with_locale(c(LC_COLLATE = "fr_FR"), sort(x))
+with_locale(c(LC_COLLATE = "C"), sort(x))
 }
 }
 \seealso{
