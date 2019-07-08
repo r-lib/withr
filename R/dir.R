@@ -12,6 +12,10 @@ NULL
 #' @inheritParams with_collate
 #' @seealso [setwd()]
 #' @export
+#' @examples 
+#' getwd()
+#' 
+#' with_dir(tempdir(), getwd())
 with_dir <- with_(setwd)
 
 #' @rdname with_dir
