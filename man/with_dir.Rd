@@ -23,6 +23,15 @@ argument.
 \description{
 Temporarily change the current working directory.
 }
+\examples{
+getwd() # current working directory
+
+# change the current working directory to a temporary one and run getwd()
+with_dir(tempdir(), getwd())
+
+# once the function execution is completed the working directory is restored
+getwd()
+}
 \seealso{
 \code{\link{withr}} for examples
 

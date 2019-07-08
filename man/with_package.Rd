@@ -59,7 +59,8 @@ local_environment(env, pos = 2L, name = format(env),
 \item{warn.conflicts}{logical.  If \code{TRUE}, warnings are
     printed about \code{\link{conflicts}} from attaching the new
     package.  A conflict is a function masking a function,
-    or a non-function masking a non-function.
+    or a non-function masking a non-function. The default is \code{TRUE}
+    unless specified as \code{FALSE} in the \code{conflicts.policy} option.
   }
 
 \item{quietly}{a logical.  If \code{TRUE}, no message confirming
