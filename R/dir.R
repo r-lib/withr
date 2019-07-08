@@ -29,7 +29,7 @@ with_tempdir <- function(code, clean = TRUE) {
   tmp <- tempfile()
   dir.create(tmp)
   if (clean) {
-    on.exit(file.remove(tmp))
+    on.exit(unlink(tmp, recursive = TRUE), add = TRUE)
   } 
   withr::with_dir(tmp, code)
 }
