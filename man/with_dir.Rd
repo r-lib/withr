@@ -3,11 +3,14 @@
 \name{with_dir}
 \alias{with_dir}
 \alias{local_dir}
+\alias{with_tempdir}
 \title{Working directory}
 \usage{
 with_dir(new, code)
 
 local_dir(new, .local_envir = parent.frame())
+
+with_tempdir(code, clean = TRUE)
 }
 \arguments{
 \item{new}{\code{[character(1)]}\cr New working directory}
@@ -15,6 +18,9 @@ local_dir(new, .local_envir = parent.frame())
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+
+\item{clean}{\code{[logical(1)]}\cr A logical indicating if the temporary
+directory should be cleaned (\code{TRUE}, default) or left alone (\code{FALSE}).}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
