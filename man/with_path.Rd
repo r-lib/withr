@@ -27,9 +27,9 @@ argument.
 Temporarily change the system search path.
 }
 \examples{
-# modify temporarily the system environmnet PATH, adding your current directory
+# temporarily modify the system PATH, *replacing* the current path
 with_path(getwd(), Sys.getenv("PATH"))
-# adding your current directory to the end of system environmnet PATH
+# temporarily modify the system PATH, *appending* to the current path
 with_path(getwd(), Sys.getenv("PATH"), "suffix")
 }
 \seealso{
