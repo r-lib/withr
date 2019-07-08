@@ -30,6 +30,14 @@ Temporarily change system environment variables.
 if \code{NA} is used those environment variables will be unset.
 If there are any duplicated variable names only the last one is used.
 }
+\examples{
+with_envvar(new = c("GITHUB_PAT" = "abcdef"), Sys.getenv("GITHUB_PAT"))
+
+# with_envvar unsets variables after usage
+Sys.getenv("TEMP_SECRET")
+with_envvar(new = c("TEMP_SECRET" = "secret"), Sys.getenv("TEMP_SECRET"))
+Sys.getenv("TEMP_SECRET")
+}
 \seealso{
 \code{\link{withr}} for examples
 
