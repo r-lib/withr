@@ -26,7 +26,7 @@ set_path <- function(path, action = "prefix") {
 #' @inheritParams with_collate
 #' @seealso [Sys.setenv()]
 #' @examples
-#' # modify temporarily the system environmnet PATH, adding your current directory
+#' # temporarily modify the system PATH, *replacing* the current path
 #' with_path(getwd(), Sys.getenv("PATH"))
 #' # adding your current directory to the end of system environmnet PATH
 #' with_path(getwd(), Sys.getenv("PATH"), "suffix")
