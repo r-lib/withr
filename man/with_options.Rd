@@ -23,6 +23,20 @@ argument.
 \description{
 Temporarily change global options.
 }
+\examples{
+# number of significant digits to print
+getOption("digits")
+# modify temporarily the number of significant digits to print
+with_options(list(digits = 3), getOption("digits"))
+with_options(list(digits = 3), print(pi))
+
+# modify temporarily the character to be used as the decimal point
+getOption("digits")
+with_options(list(OutDec = ","), print(pi))
+
+# modify temporarily multiple options
+with_options(list(OutDec = ",", digits = 3), print(pi))
+}
 \seealso{
 \code{\link{withr}} for examples
 
