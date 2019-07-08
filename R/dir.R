@@ -24,7 +24,7 @@ local_dir <- local_(setwd)
 #' @export
 with_tempdir <- function(code, clean = TRUE) {
   if (length(clean) > 1 || !is.logical(clean)) {
-    stop("'clean' must be a single TRUE or FALSE")
+    stop("`clean` must be a single TRUE or FALSE", call. = FALSE)
   }
   tmp <- tempfile()
   dir.create(tmp)
