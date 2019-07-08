@@ -47,6 +47,30 @@ NULL
 #'   stopifnot(identical(state, old_state))
 #' }
 #' with_(set_global_state, reset_global_state)
+#'
+#' # with_par example:
+#'
+#' par("col" = "black")
+#' my_plot <- function(new) {
+#'   with_par(list(col = "red", pch = 19),
+#'            plot(mtcars$hp, mtcars$wt)
+#'   )
+#'   par("col")
+#' }
+#' my_plot()
+#'
+#' # another with_par example:
+#'
+#' par("mfrow" = c(1, 1))
+#'
+#' with_par(list(mfrow = c(2, 2), pch = 19),
+#'          for (i in c(1, 2)) {
+#'            for (j in c(1, 2)) {
+#'              plot(1:10, 1:10+i))
+#'            }
+#'          }
+#' )
+#' plot(1:10,2:11)
 #' @export
 with_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
 
