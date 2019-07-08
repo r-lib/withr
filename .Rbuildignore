@@ -16,3 +16,4 @@
 ^_pkgdown\.yml$
 ^CRAN-RELEASE$
 ^withr\.Rproj$
+^\.covrignore$
