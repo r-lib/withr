@@ -28,7 +28,8 @@ set_path <- function(path, action = "prefix") {
 #' @examples
 #' # temporarily modify the system PATH, *replacing* the current path
 #' with_path(getwd(), Sys.getenv("PATH"))
-#' # adding your current directory to the end of system environmnet PATH
+
+#' # temporarily modify the system PATH, *appending* to the current path
 #' with_path(getwd(), Sys.getenv("PATH"), "suffix")
 #' @export
 with_path <- with_(set_path, function(old) set_path(old, "replace"))
