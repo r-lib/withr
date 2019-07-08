@@ -26,6 +26,12 @@ argument.
 \description{
 Temporarily change the system search path.
 }
+\examples{
+# modify temporarily the system environmnet PATH, adding your current directory
+with_path(getwd(), Sys.getenv("PATH"))
+# adding your current directory to the end of system environmnet PATH
+with_path(getwd(), Sys.getenv("PATH"), "suffix")
+}
 \seealso{
 \code{\link{withr}} for examples
 
