@@ -10,7 +10,7 @@ NULL
 #' @template with
 #' @param new `[character(1)]`\cr New working directory
 #' @param clean `[logical(1)]`\cr A logical indicating if the temporary
-#'   directory should be cleaned (`TRUE`, default) or left alone (`FALSE`).
+#'   directory should be deleted after use (`TRUE`, default) or left alone (`FALSE`).
 #' @inheritParams with_collate
 #' @seealso [setwd()]
 #' @export
