@@ -1,7 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
-withr.Rproj
 *.Rcheck/
 inst/doc
 docs

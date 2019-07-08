@@ -1,11 +1,15 @@
-language: r
-sudo: false
-cache: packages
-r:
-  - 3.2
-  - oldrel
-  - release
-  - devel
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-after_success:
-  - test $TRAVIS_R_VERSION_STRING = "release" && Rscript -e 'devtools::install_github("jimhester/covr")' -e 'covr::codecov()'
+language: R
+cache: packages
+
+matrix:
+  include:
+  - r: devel
+  - r: release
+    after_success:
+    - Rscript -e 'covr::codecov()'
+  - r: oldrel
+  - r: 3.3
+  - r: 3.2
+  - r: 3.1
