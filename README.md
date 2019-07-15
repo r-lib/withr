@@ -12,11 +12,20 @@ status](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https:
 [![CRAN
 Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
 
-A set of functions to run code with safely and temporarily modified
-global state. There are two sets of functions, those prefixed with
-`with_` and those with `local_`. The former reset their state as soon as
-the `code` argument has been evaluated. The latter reset when they reach
-the end of their scope, usually at the end of a function body.
+## Overview
+
+withR makes working with global state in R safer and less error prone.
+Many functions in R modify global state, which makes programming
+difficult. withR allows you to do this temporarily, and safely. These
+functions set one of the global settings for duration of a block of
+code, then automatically reset it after the block is completed.
+
+## Installation
+
+``` r
+#Install the latest version with:
+install.packages("withr")
+```
 
 Many of these functions were originally a part of the
 [devtools](https://github.com/hadley/devtools) package, this provides a
@@ -55,6 +64,40 @@ functions.
     file.
   - `with_file()` / `local_file()` - Create and clean up a normal file.
 
+## Usage
+
+There are two sets of functions, those prefixed with `with_` and those
+with `local_`. The former reset their state as soon as the `code`
+argument has been evaluated. The latter reset when they reach the end of
+their scope, usually at the end of a function body.
+
+``` r
+par("col" = "black")
+my_plot <- function(new) {
+  with_par(list(col = "red", pch = 19),
+    plot(mtcars$hp, mtcars$wt)
+  )
+  par("col")
+}
+my_plot()
+```
+
+![](README-unnamed-chunk-3-1.png)<!-- -->
+
+    #> [1] "black"
+    par("col")
+    #> [1] "black"
+    
+    f <- function(x) {
+      local_envvar(c("WITHR" = 2))
+      Sys.getenv("WITHR")
+    }
+    
+    f()
+    #> [1] "2"
+    Sys.getenv("WITHR")
+    #> [1] ""
+
 There are also `with_()` and `local_()` functions to construct new
 `with_*` and `local_*` functions if needed.
 
@@ -70,25 +113,6 @@ with_envvar(c("A" = 1),
   with_envvar(c("A" = 2), action = "suffix", Sys.getenv("A"))
 )
 #> [1] "1 2"
-```
-
-## Local functions
-
-These functions are variants of the corresponding `with_()` function,
-but instead of resetting the value at the end of the function call they
-reset when the current context goes out of scope. This is most useful
-within a function.
-
-``` r
-f <- function(x) {
-  local_envvar(c("WITHR" = 2))
-  Sys.getenv("WITHR")
-}
-
-f()
-#> [1] "2"
-Sys.getenv("WITHR")
-#> [1] ""
 ```
 
 # See Also
