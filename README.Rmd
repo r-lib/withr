@@ -23,7 +23,16 @@ library(withr)
 [![CRAN Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
 
 ## Overview
-withR makes working with global state in R safer and less error prone. Many functions in R modify global state, which makes programming difficult. withR allows you to do this temporarily, and safely. These functions set one of the global settings for duration of a block of code, then automatically reset it after the block is completed.
+
+withr makes working with the global state, i.e. side effects, safer and less error-prone.
+
+Pure functions are easy to understand and reason about: they always map the same input to the same output and have no other impact on the workspace. In other words, pure functions have no *side effects*: they are not affected by, nor do they affect, the global state in any way apart from the value they return. An example is the `sum()` function.
+
+The behavior of some functions *is* affected by the global state. Consider the `read.csv()` function: it takes a filename as an input and returns the contents as an output. In this case, the output depends on the contents of the file; i.e. the output is affected by the global state. Functions like this deal with side effects.
+
+The purpose of the withr package is to help you manage side effects in your code. You may want to run code with secret information, such as an API key, that you store as an environment variable. You may also want to run code with certain options, with a given random-seed, or with a particular working-directory. 
+
+The withr package helps you manage these situations, and more, by providing functions to modify the global state temporarily, and safely. These functions modify one of the global settings for duration of a block of code, then automatically reset it after the block is completed.
 
 ## Installation
 
