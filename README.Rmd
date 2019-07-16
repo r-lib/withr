@@ -24,7 +24,7 @@ library(withr)
 
 ## Overview
 
-withr makes working with the global state, i.e. side effects, safer and less error-prone.
+withr makes working with the global state, i.e. side effects, safer and less error-prone. 
 
 Pure functions are easy to understand and reason about: they always map the same input to the same output and have no other impact on the workspace. In other words, pure functions have no *side effects*: they are not affected by, nor do they affect, the global state in any way apart from the value they return. An example is the `sum()` function.
 
