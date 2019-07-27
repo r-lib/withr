@@ -25,8 +25,6 @@ set_locale <- function(cats) {
 #' @seealso [Sys.setlocale()]
 #' @examples
 #'
-#' \dontrun{
-#'
 #' ## Change locale for time:
 #' df <- data.frame(
 #'   stringsAsFactors = FALSE,
@@ -49,7 +47,7 @@ set_locale <- function(cats) {
 #' x <- c("bernard", "bérénice", "béatrice", "boris")
 #' with_locale(c(LC_COLLATE = "fr_FR"), sort(x))
 #' with_locale(c(LC_COLLATE = "C"), sort(x))
-#' }
+#'
 #' @export
 with_locale <- with_(set_locale)
 

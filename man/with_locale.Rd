@@ -28,8 +28,6 @@ Setting the \code{LC_ALL} category is currently not implemented.
 }
 \examples{
 
-\dontrun{
-
 ## Change locale for time:
 df <- data.frame(
   stringsAsFactors = FALSE,
@@ -52,7 +50,7 @@ with_locale(new = c("LC_MONETARY" = "en_US"), Sys.localeconv())
 x <- c("bernard", "bérénice", "béatrice", "boris")
 with_locale(c(LC_COLLATE = "fr_FR"), sort(x))
 with_locale(c(LC_COLLATE = "C"), sort(x))
-}
+
 }
 \seealso{
 \code{\link{withr}} for examples
