@@ -24,6 +24,14 @@ argument.
 Temporarily change collation order by changing the value of the
 \code{LC_COLLATE} locale.
 }
+\examples{
+
+# Modify collation order:
+x <- c("bernard", "bérénice", "béatrice", "boris")
+with_collate("fr_FR", sort(x))
+with_collate("C", sort(x))
+
+}
 \seealso{
 \code{\link{withr}} for examples
 }
