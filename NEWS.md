@@ -11,7 +11,10 @@
 
 - `with_options()` no longer uses `do.call()`, so optiosn are not evaluated on 
   exit (#73, @mtmorgan).
-
+  
+- `local_tempfile()` and `with_tempfile()` now delete recursively directories on
+  exit (#84, @meta00).
+  
 # withr 2.1.2
 
 - `set_makevars()` is now exported (#68, @gaborcsardi).

@@ -14,7 +14,7 @@ with_tempfile <- function(new, code, envir = parent.frame(),
       tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext),
       envir = env)
   }
-  on.exit(unlink(mget(new, envir = env)))
+  on.exit(unlink(mget(new, envir = env), recursive = TRUE))
   eval(substitute(code), envir = env)
 }
 
@@ -27,5 +27,5 @@ local_tempfile <- function(new, envir = parent.frame(),
       tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext),
       envir = envir)
   }
-  defer(unlink(mget(new, envir = envir)), envir = envir)
+  defer(unlink(mget(new, envir = envir), recursive = TRUE), envir = envir)
 }
