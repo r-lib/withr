@@ -20,7 +20,7 @@ library(withr)
 # Whither withr?
 
 Many functions in R modify global state in some fashion. Some common examples
-are `par()` for graphics parameters, `dir()` to change the current directory
+are `par()` for graphics parameters, `setwd()` to change the current directory
 and `options()` to set a global option. Using these functions is handy
 when using R interactively, because you can set them early in your
 experimentation and they will remain set for the duration of the session.
