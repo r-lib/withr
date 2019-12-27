@@ -1,5 +1,8 @@
 # withr 2.1.2.9000
 
+- `with_preserve_seed()` now restores `.Random.seed` if it is not set
+  originally (#124).
+
 - Add `with_timezone()` and `local_timezone()` functions to change the
   time zone (#92, @gaborcsardi).
 

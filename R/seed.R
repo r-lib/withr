@@ -30,24 +30,22 @@ with_seed <- function(seed, code) {
 #'
 #' @export
 with_preserve_seed <- function(code) {
-  old_seed <- get_valid_seed()
-  on.exit(assign(".Random.seed", old_seed, globalenv()), add = TRUE)
+  old_seed <- get_seed()
+  if (is.null(old_seed)) {
+    on.exit(if (has_seed()) rm(".Random.seed", envir = globalenv()), add = TRUE)
+  } else {
+    on.exit(assign(".Random.seed", old_seed, globalenv()), add = TRUE)
+  }
+
   code
 }
 
-#' @importFrom stats runif
-get_valid_seed <- function() {
-  seed <- get_seed()
-  if (is.null(seed)) {
-    # Trigger initialisation of RNG
-    runif(1L)
-    seed <- get_seed()
-  }
-  seed
+has_seed <- function() {
+  exists(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)
 }
 
 get_seed <- function() {
-  if (!exists(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)) {
+  if (!has_seed()) {
     return(NULL)
   }
   get(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)
