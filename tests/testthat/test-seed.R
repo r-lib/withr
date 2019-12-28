@@ -14,3 +14,9 @@ test_that("with_seed works as expected", {
       with_seed(sample.int(.Machine$integer.max, 1), runif(1))
   )
 })
+
+test_that("with_preserve_seed preserves empty seed", {
+  rm_seed()
+  with_preserve_seed(runif(1))
+  expect_false(has_seed())
+})

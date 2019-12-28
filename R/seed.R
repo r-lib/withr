@@ -32,9 +32,9 @@ with_seed <- function(seed, code) {
 with_preserve_seed <- function(code) {
   old_seed <- get_seed()
   if (is.null(old_seed)) {
-    on.exit(if (has_seed()) rm(".Random.seed", envir = globalenv()), add = TRUE)
+    on.exit(rm_seed(), add = TRUE)
   } else {
-    on.exit(assign(".Random.seed", old_seed, globalenv()), add = TRUE)
+    on.exit(set_seed(old_seed), add = TRUE)
   }
 
   code
@@ -49,4 +49,15 @@ get_seed <- function() {
     return(NULL)
   }
   get(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)
+}
+
+set_seed <- function(seed) {
+  assign(".Random.seed", seed, globalenv())
+}
+
+rm_seed <- function() {
+  if (!has_seed()) {
+    return(NULL)
+  }
+  rm(".Random.seed", envir = globalenv())
 }
