@@ -14,7 +14,7 @@ test_that("with_envvar sets and unsets variables", {
   expect_false("set_env_testvar" %in% names(Sys.getenv()))
 })
 
-test_that("with_envar respects suffix and prefix", {
+test_that("with_envvar respects suffix and prefix", {
   nested <- function(op1, op2) {
     with_envvar(c(A = 1), action = op1,
       with_envvar(c(A = 2), action = op2,
