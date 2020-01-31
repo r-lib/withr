@@ -12,7 +12,6 @@
 with_package(
   package,
   code,
-  help,
   pos = 2,
   lib.loc = NULL,
   character.only = TRUE,
@@ -24,7 +23,6 @@ with_package(
 
 local_package(
   package,
-  help,
   pos = 2,
   lib.loc = NULL,
   character.only = TRUE,
@@ -59,11 +57,6 @@ local_environment(
 \item{package}{\code{[character(1)]}\cr package name to load.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
-
-\item{help}{the name of a package, given as a \link[base]{name} or
-    literal character string, or a character string, depending on
-    whether \code{character.only} is \code{FALSE} (default) or
-    \code{TRUE}.}
 
 \item{pos}{the position on the search list at which to attach the
     loaded namespace.  Can also be the name of a position on the current
