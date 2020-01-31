@@ -31,6 +31,20 @@ reset_options <- function(old_options) {
 #'
 #' # modify temporarily multiple options
 #' with_options(list(OutDec = ",", digits = 3), print(pi))
+#'
+#' # modify, within the scope of the function, the number of
+#' # significant digits to print
+#' print_3_digits <- function(x) {
+#'   # assign 3 to the option "digits" for the rest of this function
+#'   # after the function exits, the option will return to its previous
+#'   # value
+#'   local_options(list(digits = 3))
+#'   print(x)
+#' }
+#'
+#' print_3_digits(pi)  # returns 3.14
+#' print(pi)           # returns 3.141593
+
 #' @export
 with_options <- with_(set_options, reset_options)
 
