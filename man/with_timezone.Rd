@@ -10,7 +10,7 @@ with_timezone(tz, code)
 local_timezone(tz, .local_envir = parent.frame())
 }
 \arguments{
-\item{tz}{\code{[character(1)]} a valid time zone specification, note that
+\item{tz}{\verb{[character(1)]} a valid time zone specification, note that
 time zone names might be platform dependent.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}

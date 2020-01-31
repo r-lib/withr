@@ -3,7 +3,6 @@
 \docType{package}
 \name{withr}
 \alias{withr}
-\alias{withr-package}
 \title{Execute code in temporarily altered environment}
 \description{
 All functions prefixed by \code{with_} work as follows. First, a particular
@@ -17,8 +16,8 @@ function).
 \section{Arguments pattern}{
 
 \tabular{lll}{
-\code{new} \tab \code{[various]} \tab Values for setting \cr
-\code{code} \tab \code{[any]} \tab Code to execute in the temporary environment \cr
+\code{new} \tab \verb{[various]} \tab Values for setting \cr
+\code{code} \tab \verb{[any]} \tab Code to execute in the temporary environment \cr
 \code{...} \tab \tab Further arguments \cr
 }
 }

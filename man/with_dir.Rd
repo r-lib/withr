@@ -13,14 +13,14 @@ local_dir(new, .local_envir = parent.frame())
 with_tempdir(code, clean = TRUE)
 }
 \arguments{
-\item{new}{\code{[character(1)]}\cr New working directory}
+\item{new}{\verb{[character(1)]}\cr New working directory}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 
-\item{clean}{\code{[logical(1)]}\cr A logical indicating if the temporary
-directory should be cleaned (\code{TRUE}, default) or left alone (\code{FALSE}).}
+\item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
+directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
@@ -30,13 +30,9 @@ argument.
 Temporarily change the current working directory.
 }
 \examples{
-getwd() # current working directory
-
-# change the current working directory to a temporary one and run getwd()
-with_dir(tempdir(), getwd())
-
-# once the function execution is completed the working directory is restored
 getwd()
+
+with_dir(tempdir(), getwd())
 }
 \seealso{
 \code{\link{withr}} for examples

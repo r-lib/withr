@@ -10,7 +10,7 @@ with_rng_version(version, code)
 local_rng_version(version, .local_envir = parent.frame())
 }
 \arguments{
-\item{version}{\code{[character(1)]} an R version number, e.g.
+\item{version}{\verb{[character(1)]} an R version number, e.g.
 \code{"3.5.0"}, to switch to the RNG this version of R uses.
 See \code{\link[=RNGversion]{RNGversion()}}.}
 
