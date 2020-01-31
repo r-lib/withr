@@ -10,13 +10,13 @@ defer(expr, envir = parent.frame(), priority = c("first", "last"))
 defer_parent(expr, priority = c("first", "last"))
 }
 \arguments{
-\item{expr}{\code{[expression]}\cr An expression to be evaluated.}
+\item{expr}{\verb{[expression]}\cr An expression to be evaluated.}
 
-\item{envir}{\code{[environment]}\cr Attach exit handlers to this environment.
+\item{envir}{\verb{[environment]}\cr Attach exit handlers to this environment.
 Typically, this should be either the current environment or
 a parent frame (accessed through \code{\link[=parent.frame]{parent.frame()}}).}
 
-\item{priority}{\code{[character(1)]}\cr Specify whether this handler should
+\item{priority}{\verb{[character(1)]}\cr Specify whether this handler should
 be executed \code{"first"} or \code{"last"}, relative to any other
 registered handlers on this environment.}
 }

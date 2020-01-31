@@ -7,7 +7,7 @@
 with_gctorture2(new, code, wait = new, inhibit_release = FALSE)
 }
 \arguments{
-\item{new}{\code{[integer]}\cr run GC every 'step' allocations.}
+\item{new}{\verb{[integer]}\cr run GC every 'step' allocations.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 

@@ -10,7 +10,7 @@ with_seed(seed, code)
 with_preserve_seed(code)
 }
 \arguments{
-\item{seed}{\code{[integer(1)]}\cr The random seed to use to evaluate the code.}
+\item{seed}{\verb{[integer(1)]}\cr The random seed to use to evaluate the code.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }

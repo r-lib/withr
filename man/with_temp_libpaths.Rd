@@ -12,10 +12,10 @@ local_temp_libpaths(action = "prefix", .local_envir = parent.frame())
 \arguments{
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{action}{\code{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
+\item{action}{\verb{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths.}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
@@ -29,6 +29,7 @@ Temporarily prepend a new temporary directory to the library paths.
 
 \code{\link[=.libPaths]{.libPaths()}}
 
-Other libpaths: \code{\link{with_libpaths}}
+Other libpaths: 
+\code{\link{with_libpaths}()}
 }
 \concept{libpaths}
