@@ -1,5 +1,7 @@
 # withr 2.1.2.9000
 
+- Remove `help` argument from `with_package()` and `local_package()` (#94, @wendtke).
+
 - `with_preserve_seed()` now restores `.Random.seed` if it is not set
   originally (#124).
 
