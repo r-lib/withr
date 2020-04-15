@@ -4,6 +4,7 @@
 \alias{defer}
 \alias{defer_parent}
 \alias{run_global_deferred}
+\alias{clear_global_deferred}
 \title{Defer Evaluation of an Expression}
 \usage{
 defer(expr, envir = parent.frame(), priority = c("first", "last"))
@@ -11,6 +12,8 @@ defer(expr, envir = parent.frame(), priority = c("first", "last"))
 defer_parent(expr, priority = c("first", "last"))
 
 run_global_deferred()
+
+clear_global_deferred()
 }
 \arguments{
 \item{expr}{\verb{[expression]}\cr An expression to be evaluated.}
@@ -38,8 +41,8 @@ requested environment finishes execution.
 Deferred events can be set on the global environment, primarily to facilitate
 the interactive development of code that is intended to be executed inside a
 function or test. A message alerts the user to the fact that an explicit
-\code{run_global_deferred()} is the only way to trigger (and delete) deferred
-events on the global environment.
+\code{run_global_deferred()} is the only way to trigger these deferred events. Use
+\code{clear_global_deferred()} to clear them without evaluation.
 }
 \examples{
 # define a 'local' function that creates a file, and
@@ -72,9 +75,9 @@ local({
 defer(print("one"))
 defer(print("two"))
 run_global_deferred()
+
+defer(print("three"))
+clear_global_deferred()
 run_global_deferred()
-}
-\author{
-Kevin Ushey
 }
 \concept{local-related functions}

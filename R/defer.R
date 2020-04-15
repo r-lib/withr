@@ -23,8 +23,8 @@
 #' Deferred events can be set on the global environment, primarily to facilitate
 #' the interactive development of code that is intended to be executed inside a
 #' function or test. A message alerts the user to the fact that an explicit
-#' `run_global_deferred()` is the only way to trigger (and delete) deferred
-#' events on the global environment.
+#' `run_global_deferred()` is the only way to trigger these deferred events. Use
+#' `clear_global_deferred()` to clear them without evaluation.
 #'
 #' @family local-related functions
 #' @export
@@ -59,13 +59,17 @@
 #' defer(print("one"))
 #' defer(print("two"))
 #' run_global_deferred()
+#'
+#' defer(print("three"))
+#' clear_global_deferred()
 #' run_global_deferred()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   global <- identical(envir, .GlobalEnv)
   if (global) {
     message(
       "Setting deferred event on global environment. ",
-      "Execute with `run_global_deferred()`."
+      "Execute (and clear) with `run_global_deferred()` or ",
+      "clear with `clear_global_deferred()`."
     )
   }
   priority <- match.arg(priority)
@@ -94,6 +98,12 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 #' @export
 run_global_deferred <- function() {
   execute_handlers(.GlobalEnv)
+  clear_global_deferred()
+}
+
+#' @rdname defer
+#' @export
+clear_global_deferred <- function() {
   attr(.GlobalEnv, "handlers") <- NULL
   invisible()
 }
