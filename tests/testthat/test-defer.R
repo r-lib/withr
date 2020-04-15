@@ -19,7 +19,7 @@ test_that("defer_parent works", {
   expect_false(file.exists(path))
 })
 
-test_that("defer()'a global env facilities work", {
+test_that("defer()'s global env facilities work", {
   defer(print("one"), envir = globalenv())
   defer(print("two"), envir = globalenv())
 
