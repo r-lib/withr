@@ -65,21 +65,22 @@
 #' run_global_deferred()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   priority <- match.arg(priority)
-  global <- identical(envir, .GlobalEnv)
-  if (global) {
+  if (identical(envir, .GlobalEnv)) {
     message(
-      "Setting deferred event on global environment. ",
+      "Setting deferred event on global environment.\n",
       "Execute (and clear) with `run_global_deferred()` or ",
       "clear with `clear_global_deferred()`."
     )
   }
-  envir_is_parent <- identical(envir, parent.frame())
+  setting_on_self <- identical(envir, parent.frame())
   invisible(
     add_handler(
       envir,
       handler = list(
         expr = substitute(expr),
-        envir = if (global) NULL else parent.frame()
+        # avoid capturing an environment in its own handlers
+        # this is accounted for in execute_handlers()
+        envir = if (setting_on_self) NULL else parent.frame()
       ),
       front = priority == "first"
     )
@@ -133,7 +134,8 @@ set_handlers <- function(envir, handlers) {
 execute_handlers <- function(envir) {
   handlers <- get_handlers(envir)
   for (handler in handlers) {
-    tryCatch(eval(handler$expr, handler$envir), error = identity)
+    eval_envir <- if (is.null(handler$envir)) envir else handler$envir
+    tryCatch(eval(handler$expr, eval_envir), error = identity)
   }
 }
 
