@@ -18,12 +18,12 @@
 #' })
 #' }
 #' @export
-with_package <- function(package, code, help, pos = 2, lib.loc = NULL,
+with_package <- function(package, code, pos = 2, lib.loc = NULL,
   character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose")) {
 
   suppressPackageStartupMessages(
-    (get("library"))(package, help = help, pos = pos, lib.loc = lib.loc,
+    (get("library"))(package, pos = pos, lib.loc = lib.loc,
       character.only = character.only, logical.return = logical.return,
       warn.conflicts = warn.conflicts, quietly = quietly, verbose = verbose))
 
@@ -33,13 +33,13 @@ with_package <- function(package, code, help, pos = 2, lib.loc = NULL,
 
 #' @rdname with_package
 #' @export
-local_package <- function(package, help, pos = 2, lib.loc = NULL,
+local_package <- function(package, pos = 2, lib.loc = NULL,
   character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose"),
   .local_envir = parent.frame()) {
 
   suppressPackageStartupMessages(
-    (get("library"))(package, help = help, pos = pos, lib.loc = lib.loc,
+    (get("library"))(package, pos = pos, lib.loc = lib.loc,
       character.only = character.only, logical.return = logical.return,
       warn.conflicts = warn.conflicts, quietly = quietly, verbose = verbose))
 

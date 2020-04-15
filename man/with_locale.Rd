@@ -10,21 +10,47 @@ with_locale(new, code)
 local_locale(new, .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\code{[named character]}\cr New locale settings}
+\item{new}{\verb{[named character]}\cr New locale settings}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change locale settings.
 }
 \details{
 Setting the \code{LC_ALL} category is currently not implemented.
+}
+\examples{
+
+## Change locale for time:
+df <- data.frame(
+  stringsAsFactors = FALSE,
+  date = as.Date(c("2019-01-01", "2019-02-01")),
+  value = c(1, 2)
+)
+with_locale(new = c("LC_TIME" = "es_ES"), code = plot(df$date, df$value))
+## Compare with:
+#  plot(df$date, df$value)
+
+## Month names:
+with_locale(new = c("LC_TIME" = "en_GB"), format(ISOdate(2000, 1:12, 1), "\%B"))
+with_locale(new = c("LC_TIME" = "es_ES"), format(ISOdate(2000, 1:12, 1), "\%B"))
+
+## Change locale for currencies:
+with_locale(new = c("LC_MONETARY" = "it_IT"), Sys.localeconv())
+with_locale(new = c("LC_MONETARY" = "en_US"), Sys.localeconv())
+
+## Ordering:
+x <- c("bernard", "bérénice", "béatrice", "boris")
+with_locale(c(LC_COLLATE = "fr_FR"), sort(x))
+with_locale(c(LC_COLLATE = "C"), sort(x))
+
 }
 \seealso{
 \code{\link{withr}} for examples

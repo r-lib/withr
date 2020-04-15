@@ -10,21 +10,27 @@ with_path(new, code, action = "prefix")
 local_path(new, action = "prefix", .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\code{[character]}\cr New \code{PATH} entries}
+\item{new}{\verb{[character]}\cr New \code{PATH} entries}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{action}{\code{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
+\item{action}{\verb{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing paths}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change the system search path.
+}
+\examples{
+# temporarily modify the system PATH, *replacing* the current path
+with_path(getwd(), Sys.getenv("PATH"))
+# temporarily modify the system PATH, *appending* to the current path
+with_path(getwd(), Sys.getenv("PATH"), "suffix")
 }
 \seealso{
 \code{\link{withr}} for examples

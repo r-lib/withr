@@ -4,18 +4,22 @@
 \alias{set_makevars}
 \title{Create a new \code{Makevars} file, by adding new variables}
 \usage{
-set_makevars(variables, old_path = file.path("~", ".R", "Makevars"),
-  new_path = tempfile(), assignment = c("=", ":=", "?=", "+="))
+set_makevars(
+  variables,
+  old_path = tools::makevars_user(),
+  new_path = tempfile(),
+  assignment = c("=", ":=", "?=", "+=")
+)
 }
 \arguments{
-\item{variables}{\code{[named character]}\cr new variables and their values}
+\item{variables}{\verb{[named character]}\cr new variables and their values}
 
-\item{old_path}{\code{[character(1)]}\cr location of existing \code{Makevars}
+\item{old_path}{\verb{[character(1)]}\cr location of existing \code{Makevars}
 file to modify.}
 
-\item{new_path}{\code{[character(1)]}\cr location of the new \code{Makevars} file}
+\item{new_path}{\verb{[character(1)]}\cr location of the new \code{Makevars} file}
 
-\item{assignment}{\code{[character(1)]}\cr assignment type to use.}
+\item{assignment}{\verb{[character(1)]}\cr assignment type to use.}
 }
 \description{
 You probably want \code{\link[=with_makevars]{with_makevars()}} instead of this function.

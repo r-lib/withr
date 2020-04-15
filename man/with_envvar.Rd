@@ -10,18 +10,18 @@ with_envvar(new, code, action = "replace")
 local_envvar(new, action = "replace", .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\code{[named character]}\cr New environment variables}
+\item{new}{\verb{[named character]}\cr New environment variables}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{action}{should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing variables with the same name.}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change system environment variables.
@@ -29,6 +29,14 @@ Temporarily change system environment variables.
 \details{
 if \code{NA} is used those environment variables will be unset.
 If there are any duplicated variable names only the last one is used.
+}
+\examples{
+with_envvar(new = c("GITHUB_PAT" = "abcdef"), Sys.getenv("GITHUB_PAT"))
+
+# with_envvar unsets variables after usage
+Sys.getenv("TEMP_SECRET")
+with_envvar(new = c("TEMP_SECRET" = "secret"), Sys.getenv("TEMP_SECRET"))
+Sys.getenv("TEMP_SECRET")
 }
 \seealso{
 \code{\link{withr}} for examples

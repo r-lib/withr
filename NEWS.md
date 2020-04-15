@@ -1,8 +1,25 @@
 # withr 2.1.2.9000
 
+- Remove `help` argument from `with_package()` and `local_package()` (#94, @wendtke).
+
+- `with_preserve_seed()` now restores `.Random.seed` if it is not set
+  originally (#124).
+
+- Add `with_timezone()` and `local_timezone()` functions to change the
+  time zone (#92, @gaborcsardi).
+
+- Add `with_rng_version()` and `local_rng_version()` functions to change
+  the version of the RNG (#90, @gaborcsardi).
+
+- `with_makevars()` now uses `tools::makevars_user()` to determine the default
+  user makevars file (#77, @siddharthab).
+
 - `with_options()` no longer uses `do.call()`, so optiosn are not evaluated on 
   exit (#73, @mtmorgan).
-
+  
+- `local_tempfile()` and `with_tempfile()` now delete recursively directories on
+  exit (#84, @meta00).
+  
 # withr 2.1.2
 
 - `set_makevars()` is now exported (#68, @gaborcsardi).

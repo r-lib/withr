@@ -5,18 +5,29 @@
 \alias{local_tempfile}
 \title{Temporary files}
 \usage{
-with_tempfile(new, code, envir = parent.frame(), pattern = "file",
-  tmpdir = tempdir(), fileext = "")
+with_tempfile(
+  new,
+  code,
+  envir = parent.frame(),
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = ""
+)
 
-local_tempfile(new, envir = parent.frame(), pattern = "file",
-  tmpdir = tempdir(), fileext = "")
+local_tempfile(
+  new,
+  envir = parent.frame(),
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = ""
+)
 }
 \arguments{
-\item{new}{\code{[character vector]}\cr Names of temporary file handles to create.}
+\item{new}{\verb{[character vector]}\cr Names of temporary file handles to create.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{envir}{\code{[environment]}\cr Environment in which to define the temporary files.}
+\item{envir}{\verb{[environment]}\cr Environment in which to define the temporary files.}
 
 \item{pattern}{a non-empty character vector giving the initial part
     of the name.}
@@ -27,7 +38,7 @@ local_tempfile(new, envir = parent.frame(), pattern = "file",
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily create a tempfile, which is automatically removed afterwards.

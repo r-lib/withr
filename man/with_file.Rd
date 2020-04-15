@@ -10,15 +10,15 @@ with_file(file, code)
 local_file(file, .local_envir = parent.frame())
 }
 \arguments{
-\item{file}{\code{[named list]}\cr Files to create.}
+\item{file}{\verb{[named list]}\cr Files to create.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Create files, which are then automatically removed afterwards.

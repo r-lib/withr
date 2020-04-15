@@ -10,18 +10,45 @@ with_options(new, code)
 local_options(new, .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\code{[named list]}\cr New options and their values}
+\item{new}{\verb{[named list]}\cr New options and their values}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change global options.
+}
+\examples{
+# number of significant digits to print
+getOption("digits")
+# modify temporarily the number of significant digits to print
+with_options(list(digits = 3), getOption("digits"))
+with_options(list(digits = 3), print(pi))
+
+# modify temporarily the character to be used as the decimal point
+getOption("digits")
+with_options(list(OutDec = ","), print(pi))
+
+# modify temporarily multiple options
+with_options(list(OutDec = ",", digits = 3), print(pi))
+
+# modify, within the scope of the function, the number of
+# significant digits to print
+print_3_digits <- function(x) {
+  # assign 3 to the option "digits" for the rest of this function
+  # after the function exits, the option will return to its previous
+  # value
+  local_options(list(digits = 3))
+  print(x)
+}
+
+print_3_digits(pi)  # returns 3.14
+print(pi)           # returns 3.141593
 }
 \seealso{
 \code{\link{withr}} for examples

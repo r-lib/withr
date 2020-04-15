@@ -10,19 +10,27 @@ with_collate(new, code)
 local_collate(new, .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\code{[character(1)]}\cr New collation order}
+\item{new}{\verb{[character(1)]}\cr New collation order}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily change collation order by changing the value of the
 \code{LC_COLLATE} locale.
+}
+\examples{
+
+# Modify collation order:
+x <- c("bernard", "bérénice", "béatrice", "boris")
+with_collate("fr_FR", sort(x))
+with_collate("C", sort(x))
+
 }
 \seealso{
 \code{\link{withr}} for examples

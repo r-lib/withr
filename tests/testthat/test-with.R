@@ -14,7 +14,7 @@ test_that("with_envvar sets and unsets variables", {
   expect_false("set_env_testvar" %in% names(Sys.getenv()))
 })
 
-test_that("with_envar respects suffix and prefix", {
+test_that("with_envvar respects suffix and prefix", {
   nested <- function(op1, op2) {
     with_envvar(c(A = 1), action = op1,
       with_envvar(c(A = 2), action = op2,
@@ -260,19 +260,4 @@ test_that("with_par works as expected", {
   })
   expect_equal(par("pty"), old)
   dev.off()
-})
-
-test_that("with_seed works as expected", {
-  expect_identical(
-    with_preserve_seed(runif(10L)),
-    runif(10L))
-  expect_identical(
-    with_preserve_seed(runif(10L)),
-    with_preserve_seed(runif(10L)))
-  expect_identical(
-    with_seed(1L, runif(10L)),
-    with_seed(1L, runif(10L)))
-  expect_false(with_seed(1L, runif(1L)) == runif(1L))
-  expect_false(with_seed(sample.int(.Machine$integer.max, 1), runif(1L)) ==
-                 with_seed(sample.int(.Machine$integer.max, 1), runif(1L)))
 })

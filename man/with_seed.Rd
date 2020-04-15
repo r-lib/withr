@@ -10,13 +10,13 @@ with_seed(seed, code)
 with_preserve_seed(code)
 }
 \arguments{
-\item{seed}{\code{[integer(1)]}\cr The random seed to use to evaluate the code.}
+\item{seed}{\verb{[integer(1)]}\cr The random seed to use to evaluate the code.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 \code{with_seed()} runs code with a specific random seed and resets it afterwards.

@@ -38,44 +38,161 @@ with_cairo_ps(new, code, ...)
 
 local_cairo_ps(new, ..., .local_envir = parent.frame())
 
-with_pdf(new, code, width, height, onefile, family, title, fonts, version,
-  paper, encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats,
-  useKerning, fillOddEven, compress)
+with_pdf(
+  new,
+  code,
+  width,
+  height,
+  onefile,
+  family,
+  title,
+  fonts,
+  version,
+  paper,
+  encoding,
+  bg,
+  fg,
+  pointsize,
+  pagecentre,
+  colormodel,
+  useDingbats,
+  useKerning,
+  fillOddEven,
+  compress
+)
 
-local_pdf(new, width, height, onefile, family, title, fonts, version, paper,
-  encoding, bg, fg, pointsize, pagecentre, colormodel, useDingbats, useKerning,
-  fillOddEven, compress, .local_envir = parent.frame())
+local_pdf(
+  new,
+  width,
+  height,
+  onefile,
+  family,
+  title,
+  fonts,
+  version,
+  paper,
+  encoding,
+  bg,
+  fg,
+  pointsize,
+  pagecentre,
+  colormodel,
+  useDingbats,
+  useKerning,
+  fillOddEven,
+  compress,
+  .local_envir = parent.frame()
+)
 
-with_postscript(new, code, onefile, family, title, fonts, encoding, bg, fg,
-  width, height, horizontal, pointsize, paper, pagecentre, print.it, command,
-  colormodel, useKerning, fillOddEven)
+with_postscript(
+  new,
+  code,
+  onefile,
+  family,
+  title,
+  fonts,
+  encoding,
+  bg,
+  fg,
+  width,
+  height,
+  horizontal,
+  pointsize,
+  paper,
+  pagecentre,
+  print.it,
+  command,
+  colormodel,
+  useKerning,
+  fillOddEven
+)
 
-local_postscript(new, onefile, family, title, fonts, encoding, bg, fg, width,
-  height, horizontal, pointsize, paper, pagecentre, print.it, command,
-  colormodel, useKerning, fillOddEven, .local_envir = parent.frame())
+local_postscript(
+  new,
+  onefile,
+  family,
+  title,
+  fonts,
+  encoding,
+  bg,
+  fg,
+  width,
+  height,
+  horizontal,
+  pointsize,
+  paper,
+  pagecentre,
+  print.it,
+  command,
+  colormodel,
+  useKerning,
+  fillOddEven,
+  .local_envir = parent.frame()
+)
 
-with_svg(new, code, width = 7, height = 7, pointsize = 12,
-  onefile = FALSE, family = "sans", bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"))
+with_svg(
+  new,
+  code,
+  width = 7,
+  height = 7,
+  pointsize = 12,
+  onefile = FALSE,
+  family = "sans",
+  bg = "white",
+  antialias = c("default", "none", "gray", "subpixel")
+)
 
-local_svg(new, width = 7, height = 7, pointsize = 12, onefile = FALSE,
-  family = "sans", bg = "white", antialias = c("default", "none", "gray",
-  "subpixel"), .local_envir = parent.frame())
+local_svg(
+  new,
+  width = 7,
+  height = 7,
+  pointsize = 12,
+  onefile = FALSE,
+  family = "sans",
+  bg = "white",
+  antialias = c("default", "none", "gray", "subpixel"),
+  .local_envir = parent.frame()
+)
 
 with_tiff(new, code, ...)
 
 local_tiff(new, ..., .local_envir = parent.frame())
 
-with_xfig(new, code, onefile = FALSE, encoding = "none",
-  paper = "default", horizontal = TRUE, width = 0, height = 0,
-  family = "Helvetica", pointsize = 12, bg = "transparent",
-  fg = "black", pagecentre = TRUE, defaultfont = FALSE,
-  textspecial = FALSE)
+with_xfig(
+  new,
+  code,
+  onefile = FALSE,
+  encoding = "none",
+  paper = "default",
+  horizontal = TRUE,
+  width = 0,
+  height = 0,
+  family = "Helvetica",
+  pointsize = 12,
+  bg = "transparent",
+  fg = "black",
+  pagecentre = TRUE,
+  defaultfont = FALSE,
+  textspecial = FALSE
+)
 
-local_xfig(new, onefile = FALSE, encoding = "none", paper = "default",
-  horizontal = TRUE, width = 0, height = 0, family = "Helvetica",
-  pointsize = 12, bg = "transparent", fg = "black", pagecentre = TRUE,
-  defaultfont = FALSE, textspecial = FALSE, .local_envir = parent.frame())
+local_xfig(
+  new,
+  onefile = FALSE,
+  encoding = "none",
+  paper = "default",
+  horizontal = TRUE,
+  width = 0,
+  height = 0,
+  family = "Helvetica",
+  pointsize = 12,
+  bg = "transparent",
+  fg = "black",
+  pagecentre = TRUE,
+  defaultfont = FALSE,
+  textspecial = FALSE,
+  .local_envir = parent.frame()
+)
 
 with_png(new, code, ...)
 
@@ -92,7 +209,7 @@ local_jpeg(new, ..., .local_envir = parent.frame())
 
 \item{...}{Additional arguments passed to the graphics device.}
 
-\item{.local_envir}{\code{[environment]}\cr The environment to use for scoping.}
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 
 \item{width}{the width of the device in inches.}
 
@@ -104,7 +221,9 @@ local_jpeg(new, ..., .local_envir = parent.frame())
     \code{"sans"}, \code{"serif"} and \code{"mono"}, or a character
     string specify a font family to be searched for in a
     system-dependent way.
-    See, the \sQuote{Cairo fonts} section in the help for \code{\link{X11}}.
+
+    On unix-alikes (incl.\\ Mac), see
+    the \sQuote{Cairo fonts} section in the help for \code{\link[grDevices]{X11}}.
   }
 
 \item{title}{title string to embed as the \samp{/Title} field in the
@@ -132,7 +251,7 @@ local_jpeg(new, ..., .local_envir = parent.frame())
   }
 
 \item{encoding}{the name of an encoding file.  See
-    \code{\link{postscript}} for details.  Defaults to \code{"default"}.}
+    \code{\link[grDevices]{postscript}} for details.  Defaults to \code{"default"}.}
 
 \item{bg}{the initial background colour: can be overridden by setting
     par("bg").}
@@ -157,8 +276,8 @@ local_jpeg(new, ..., .local_envir = parent.frame())
     around font display problems in broken PDF viewers: although this
     font is one of the 14 guaranteed to be available in all PDF viewers,
     that guarantee is not always honoured.
-    See the \sQuote{Note} for a possible fix for some viewers.
-    }
+
+    On Unix-alikes (incl. Mac), see the \sQuote{Note} for a possible fix for some viewers.}
 
 \item{useKerning}{logical.  Should kerning corrections be included in
     setting text and calculating string widths?  Defaults to \code{TRUE}.}
@@ -194,7 +313,7 @@ length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
-  argument.
+argument.
 }
 \description{
 Temporarily use a graphics device.

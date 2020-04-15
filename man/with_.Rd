@@ -10,22 +10,22 @@ local_(set, reset = set, envir = parent.frame(), new = TRUE)
 with_(set, reset = set, envir = parent.frame(), new = TRUE)
 }
 \arguments{
-\item{set}{\code{[function(...)]}\cr Function used to set the state.
+\item{set}{\verb{[function(...)]}\cr Function used to set the state.
 The function can have arbitrarily many arguments, they will be replicated
 in the formals of the returned function.}
 
-\item{reset}{\code{[function(x)]}\cr Function used to reset the state.
+\item{reset}{\verb{[function(x)]}\cr Function used to reset the state.
 The first argument can be named arbitrarily, further arguments with default
 values, or a "dots" argument, are supported but not used: The function will
 be called as \code{reset(old)}.}
 
-\item{envir}{\code{[environment]}\cr Environment of the returned function.}
+\item{envir}{\verb{[environment]}\cr Environment of the returned function.}
 
-\item{new}{\code{[logical(1)]}\cr Replace the first argument of the \code{set} function
+\item{new}{\verb{[logical(1)]}\cr Replace the first argument of the \code{set} function
 by \code{new}? Set to \code{FALSE} if the \code{set} function only has optional arguments.}
 }
 \value{
-\code{[function(new, code, ...)]} A function with at least two arguments,
+\verb{[function(new, code, ...)]} A function with at least two arguments,
 \itemize{
 \item \code{new}: New state to use
 \item \code{code}: Code to run in that state.
