@@ -68,8 +68,8 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   if (identical(envir, .GlobalEnv)) {
     message(
       "Setting deferred event on global environment.\n",
-      "Execute (and clear) with `run_global_deferred()` or ",
-      "clear with `clear_global_deferred()`."
+      "Execute (and clear) with `run_global_deferred()` or \n",
+      "  just clear with `clear_global_deferred()`."
     )
   }
   setting_on_self <- identical(envir, parent.frame())
