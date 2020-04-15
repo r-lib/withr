@@ -121,16 +121,17 @@ set_handlers <- function(envir, handlers) {
 
 execute_handlers <- function(envir) {
   handlers <- get_handlers(envir)
-  for (handler in handlers)
+  for (handler in handlers) {
     tryCatch(eval(handler$expr, handler$envir), error = identity)
+  }
 }
 
 add_handler <- function(envir, handler, front) {
-
-  handlers <- if (front)
+  handlers <- if (front) {
     c(list(handler), get_handlers(envir))
-  else
+  } else {
     c(get_handlers(envir), list(handler))
+  }
 
   set_handlers(envir, handlers)
   handler
