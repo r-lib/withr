@@ -28,7 +28,6 @@
 #'
 #' @family local-related functions
 #' @export
-#' @author Kevin Ushey
 #' @examples
 #' # define a 'local' function that creates a file, and
 #' # removes it when the parent function has finished executing
