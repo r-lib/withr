@@ -18,3 +18,19 @@ test_that("defer_parent works", {
   # file is deleted as we leave 'local' scope
   expect_false(file.exists(path))
 })
+
+test_that("defer()'a global env facilities work", {
+  defer(print("one"), envir = globalenv())
+  defer(print("two"), envir = globalenv())
+
+  h <- attr(globalenv(), "handlers")
+  expect_length(h, 2)
+
+  expect_output(run_global_deferred(), "(one|two)")
+
+  defer(print("three"), envir = globalenv())
+  clear_global_deferred()
+
+  h <- attr(globalenv(), "handlers")
+  expect_null(h)
+})
