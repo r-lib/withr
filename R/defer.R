@@ -78,9 +78,9 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
       envir,
       handler = list(
         expr = substitute(expr),
-        # avoid capturing an environment in its own handlers
-        # this is accounted for in execute_handlers()
-        envir = if (setting_on_self) NULL else parent.frame()
+        # add one level of indirection when capturing an environment in its
+        # own handlers
+        envir = if (setting_on_self) new.env(parent = envir) else parent.frame()
       ),
       front = priority == "first"
     )
@@ -134,8 +134,7 @@ set_handlers <- function(envir, handlers) {
 execute_handlers <- function(envir) {
   handlers <- get_handlers(envir)
   for (handler in handlers) {
-    eval_envir <- if (is.null(handler$envir)) envir else handler$envir
-    tryCatch(eval(handler$expr, eval_envir), error = identity)
+    tryCatch(eval(handler$expr, handler$envir), error = identity)
   }
 }
 
