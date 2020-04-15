@@ -103,7 +103,7 @@ run_global_deferred <- function() {
 ## those handlers get executed on exit.
 
 get_handlers <- function(envir) {
-  as.list(attr(envir, "handlers"))
+  attr(envir, "handlers")
 }
 
 set_handlers <- function(envir, handlers) {
