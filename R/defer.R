@@ -64,6 +64,7 @@
 #' clear_global_deferred()
 #' run_global_deferred()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
+  priority <- match.arg(priority)
   global <- identical(envir, .GlobalEnv)
   if (global) {
     message(
@@ -72,7 +73,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
       "clear with `clear_global_deferred()`."
     )
   }
-  priority <- match.arg(priority)
+  envir_is_parent <- identical(envir, parent.frame())
   invisible(
     add_handler(
       envir,
