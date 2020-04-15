@@ -1,5 +1,10 @@
 # withr 2.1.2.9000
 
+- `defer()` can set deferred events on `.GlobalEnv` to facilitate the
+  interactive development of code inside a function or test. Helpers
+  `run_global_deferred()` (and `clear_global_deferred()`) provide a way to
+  run and clear (or just clear) these events (#76 @jennybc).
+
 - Remove `help` argument from `with_package()` and `local_package()` (#94, @wendtke).
 
 - `with_preserve_seed()` now restores `.Random.seed` if it is not set
