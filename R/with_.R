@@ -5,7 +5,7 @@ NULL
 #'
 #' These are constructors for `with_...` or `local_...` functions.
 #' They are only needed if you want to alter some global state which is not
-#' covered by the existing `with_...` functions, see \link{withr-package}
+#' covered by the existing `with_...` functions, see \link{withr}
 #' for an overview.
 #'
 #' The `with_...` functions reset the state immediately after the

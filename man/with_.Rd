@@ -37,7 +37,7 @@ or \code{new} is \code{FALSE}, the returned function does not have a \code{code}
 \description{
 These are constructors for \code{with_...} or \code{local_...} functions.
 They are only needed if you want to alter some global state which is not
-covered by the existing \code{with_...} functions, see \link{withr-package}
+covered by the existing \code{with_...} functions, see \link{withr}
 for an overview.
 }
 \details{
