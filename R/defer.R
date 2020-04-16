@@ -139,10 +139,10 @@ execute_handlers <- function(envir) {
 }
 
 add_handler <- function(envir, handler, front) {
-  handlers <- if (front) {
-    c(list(handler), get_handlers(envir))
+  if (front) {
+    handlers <- c(list(handler), get_handlers(envir))
   } else {
-    c(get_handlers(envir), list(handler))
+    handlers <- c(get_handlers(envir), list(handler))
   }
 
   set_handlers(envir, handlers)
