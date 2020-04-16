@@ -2,8 +2,8 @@
 
 - `defer()` can set deferred events on `.GlobalEnv` to facilitate the
   interactive development of code inside a function or test. Helpers
-  `run_global_deferred()` (and `clear_global_deferred()`) provide a way to
-  run and clear (or just clear) these events (#76 @jennybc).
+  `deferred_run()` (and `deferred_clear()`) provide a way to explicity run and
+  clear (or just clear) deferred events (#76 @jennybc).
 
 - Remove `help` argument from `with_package()` and `local_package()` (#94, @wendtke).
 

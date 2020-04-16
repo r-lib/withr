@@ -15,7 +15,7 @@
 #'
 #' @details
 #'
-#' `defer` works by attaching handlers to the requested environment (as an
+#' `defer()` works by attaching handlers to the requested environment (as an
 #' attribute called `"handlers"`), and registering an exit handler that
 #' executes the registered handler when the function associated with the
 #' requested environment finishes execution.
@@ -23,8 +23,9 @@
 #' Deferred events can be set on the global environment, primarily to facilitate
 #' the interactive development of code that is intended to be executed inside a
 #' function or test. A message alerts the user to the fact that an explicit
-#' `run_global_deferred()` is the only way to trigger these deferred events. Use
-#' `clear_global_deferred()` to clear them without evaluation.
+#' `deferred_run()` is the only way to trigger these deferred events. Use
+#' `deferred_clear()` to clear them without evaluation. The global environment
+#' scenario is the main motivation for these functions.
 #'
 #' @family local-related functions
 #' @export
@@ -58,18 +59,18 @@
 #' # defer and trigger events on the global environment
 #' defer(print("one"))
 #' defer(print("two"))
-#' run_global_deferred()
+#' deferred_run()
 #'
 #' defer(print("three"))
-#' clear_global_deferred()
-#' run_global_deferred()
+#' deferred_clear()
+#' deferred_run()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   priority <- match.arg(priority)
   if (identical(envir, .GlobalEnv) && is.null(get_handlers(envir))) {
     message(
       "Setting deferred event(s) on global environment.\n",
-      "  * Execute (and clear) with `run_global_deferred()`.\n",
-      "  * Clear (without executing) with `clear_global_deferred()`."
+      "  * Execute (and clear) with `deferred_run()`.\n",
+      "  * Clear (without executing) with `deferred_clear()`."
     )
   }
   setting_on_self <- identical(envir, parent.frame())
@@ -98,15 +99,15 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 
 #' @rdname defer
 #' @export
-run_global_deferred <- function() {
-  execute_handlers(.GlobalEnv)
-  clear_global_deferred()
+deferred_run <- function(envir = parent.frame()) {
+  execute_handlers(envir)
+  deferred_clear(envir)
 }
 
 #' @rdname defer
 #' @export
-clear_global_deferred <- function() {
-  attr(.GlobalEnv, "handlers") <- NULL
+deferred_clear <- function(envir = parent.frame()) {
+  attr(envir, "handlers") <- NULL
   invisible()
 }
 

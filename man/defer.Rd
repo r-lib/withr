@@ -3,17 +3,17 @@
 \name{defer}
 \alias{defer}
 \alias{defer_parent}
-\alias{run_global_deferred}
-\alias{clear_global_deferred}
+\alias{deferred_run}
+\alias{deferred_clear}
 \title{Defer Evaluation of an Expression}
 \usage{
 defer(expr, envir = parent.frame(), priority = c("first", "last"))
 
 defer_parent(expr, priority = c("first", "last"))
 
-run_global_deferred()
+deferred_run(envir = parent.frame())
 
-clear_global_deferred()
+deferred_clear(envir = parent.frame())
 }
 \arguments{
 \item{expr}{\verb{[expression]}\cr An expression to be evaluated.}
@@ -33,7 +33,7 @@ on the stack. This provides a nice mechanism for scoping side
 effects for the duration of a function's execution.
 }
 \details{
-\code{defer} works by attaching handlers to the requested environment (as an
+\code{defer()} works by attaching handlers to the requested environment (as an
 attribute called \code{"handlers"}), and registering an exit handler that
 executes the registered handler when the function associated with the
 requested environment finishes execution.
@@ -41,8 +41,9 @@ requested environment finishes execution.
 Deferred events can be set on the global environment, primarily to facilitate
 the interactive development of code that is intended to be executed inside a
 function or test. A message alerts the user to the fact that an explicit
-\code{run_global_deferred()} is the only way to trigger these deferred events. Use
-\code{clear_global_deferred()} to clear them without evaluation.
+\code{deferred_run()} is the only way to trigger these deferred events. Use
+\code{deferred_clear()} to clear them without evaluation. The global environment
+scenario is the main motivation for these functions.
 }
 \examples{
 # define a 'local' function that creates a file, and
@@ -74,10 +75,10 @@ local({
 # defer and trigger events on the global environment
 defer(print("one"))
 defer(print("two"))
-run_global_deferred()
+deferred_run()
 
 defer(print("three"))
-clear_global_deferred()
-run_global_deferred()
+deferred_clear()
+deferred_run()
 }
 \concept{local-related functions}
