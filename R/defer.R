@@ -73,16 +73,10 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
       "  * Clear (without executing) with `deferred_clear()`."
     )
   }
-  setting_on_self <- identical(envir, parent.frame())
   invisible(
     add_handler(
       envir,
-      handler = list(
-        expr = substitute(expr),
-        # add one level of indirection when capturing an environment in its
-        # own handlers
-        envir = if (setting_on_self) new.env(parent = envir) else parent.frame()
-      ),
+      handler = list(expr = substitute(expr), envir = parent.frame()),
       front = priority == "first"
     )
   )
