@@ -9,7 +9,8 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 knitr::opts_knit$set(root.dir = tempdir())
 library(withr)

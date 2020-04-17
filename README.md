@@ -102,7 +102,7 @@ my_plot <- function(new) {
 my_plot()
 ```
 
-![](README-unnamed-chunk-3-1.png)<!-- -->
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
     #> [1] "black"
     par("col")
