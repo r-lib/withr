@@ -7,7 +7,12 @@ pdf_dev <- wrap(grDevices::pdf, NULL, grDevices::dev.cur())
 
 postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
 
-svg_dev <- wrap(grDevices::svg, NULL, grDevices::dev.cur())
+svg_wrapper <- function(filename, width = 7, height = 7, pointsize = 12,
+  onefile = FALSE, family = "sans", bg = "white",
+  antialias = c("default", "none", "gray", "subpixel"), ...) {
+  grDevices::svg(filename, width, height, pointsize, onefile, family, bg, antialias, ...)
+}
+svg_dev <- wrap(svg_wrapper, NULL, grDevices::dev.cur())
 
 xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
 

@@ -139,7 +139,8 @@ with_svg(
   onefile = FALSE,
   family = "sans",
   bg = "white",
-  antialias = c("default", "none", "gray", "subpixel")
+  antialias = c("default", "none", "gray", "subpixel"),
+  ...
 )
 
 local_svg(
@@ -151,6 +152,7 @@ local_svg(
   family = "sans",
   bg = "white",
   antialias = c("default", "none", "gray", "subpixel"),
+  ...,
   .local_envir = parent.frame()
 )
 

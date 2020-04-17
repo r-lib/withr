@@ -58,4 +58,4 @@
 #'   Sys.getenv("WITHR")
 #' }
 #' Sys.getenv("WITHR")
-NULL
+"_PACKAGE"

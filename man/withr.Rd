@@ -3,6 +3,7 @@
 \docType{package}
 \name{withr}
 \alias{withr}
+\alias{withr-package}
 \title{Execute code in temporarily altered environment}
 \description{
 All functions prefixed by \code{with_} work as follows. First, a particular
@@ -73,4 +74,31 @@ f <- function(x) {
   Sys.getenv("WITHR")
 }
 Sys.getenv("WITHR")
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://withr.r-lib.org}
+  \item \url{http://github.com/r-lib/withr#readme}
+  \item Report bugs at \url{http://github.com/r-lib/withr/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Jim Hester \email{james.f.hester@gmail.com}
+
+Authors:
+\itemize{
+  \item Kirill Müller \email{krlmlr+r@mailbox.org}
+  \item Kevin Ushey \email{kevinushey@gmail.com}
+  \item Hadley Wickham \email{hadley@rstudio.com}
+  \item Winston Chang
+}
+
+Other contributors:
+\itemize{
+  \item Richard Cotton [contributor]
+  \item RStudio [copyright holder]
+}
+
 }
