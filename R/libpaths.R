@@ -29,6 +29,12 @@ set_temp_libpath <- function(action = "prefix") {
 #' @inheritParams with_collate
 #' @seealso [.libPaths()]
 #' @family libpaths
+#' @examples
+#' .libPaths()
+#' new_lib <- tempfile()
+#' dir.create(new_lib)
+#' with_libpaths(new_lib, print(.libPaths()))
+#' unlink(new_lib, recursive = TRUE)
 #' @export
 with_libpaths <- with_(set_libpaths, .libPaths)
 

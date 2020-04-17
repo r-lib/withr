@@ -26,6 +26,13 @@ argument.
 \description{
 Temporarily change library paths.
 }
+\examples{
+.libPaths()
+new_lib <- tempfile()
+dir.create(new_lib)
+with_libpaths(new_lib, print(.libPaths()))
+unlink(new_lib, recursive = TRUE)
+}
 \seealso{
 \code{\link{withr}} for examples
 
