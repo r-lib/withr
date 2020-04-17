@@ -25,6 +25,7 @@ NULL
 #' plot(mtcars$hp, mtcars$wt)
 #'
 #' par(old)
+with_par <- with_(graphics::par)
 
 #' @rdname with_par
 #' @export
