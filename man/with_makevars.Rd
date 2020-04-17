@@ -7,7 +7,7 @@
 with_makevars(
   new,
   code,
-  path = tools::makevars_user(),
+  path = makevars_user(),
   assignment = c("=", ":=", "?=", "+=")
 )
 }

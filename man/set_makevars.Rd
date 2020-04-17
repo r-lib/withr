@@ -6,7 +6,7 @@
 \usage{
 set_makevars(
   variables,
-  old_path = tools::makevars_user(),
+  old_path = makevars_user(),
   new_path = tempfile(),
   assignment = c("=", ":=", "?=", "+=")
 )
