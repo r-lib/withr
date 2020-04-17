@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Files which delete themselves — with_file • withr</title>
+<title>Time zone — with_timezone • withr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Files which delete themselves — with_file" />
-<meta property="og:description" content="Create files, which are then automatically removed afterwards." />
+<meta property="og:title" content="Time zone — with_timezone" />
+<meta property="og:description" content="Change the time zone, and restore it afterwards." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -130,25 +130,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Files which delete themselves</h1>
-    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/file.R'><code>R/file.R</code></a></small>
-    <div class="hidden name"><code>with_file.Rd</code></div>
+    <h1>Time zone</h1>
+    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/timezone.R'><code>R/timezone.R</code></a></small>
+    <div class="hidden name"><code>with_timezone.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create files, which are then automatically removed afterwards.</p>
+    <p>Change the time zone, and restore it afterwards.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_file</span>(<span class='no'>file</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_timezone</span>(<span class='no'>tz</span>, <span class='no'>code</span>)
 
-<span class='fu'>local_file</span>(<span class='no'>file</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_timezone</span>(<span class='no'>tz</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p><code>[named list]</code><br /> Files to create.</p></td>
+      <th>tz</th>
+      <td><p><code>[character(1)]</code> a valid time zone specification, note that
+time zone names might be platform dependent.</p></td>
     </tr>
     <tr>
       <th>code</th>
@@ -156,7 +157,7 @@
     </tr>
     <tr>
       <th>.local_envir</th>
-      <td><p><code>[environment]</code><br /> The environment to use for scoping.</p></td>
+      <td><p>The environment to apply the change to.</p></td>
     </tr>
     </table>
 
@@ -164,19 +165,29 @@
 
     <p><code>[any]</code><br /> The results of the evaluation of the <code>code</code>
 argument.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>with_time_zone()</code> runs the code with the specified time zone and
+resets it afterwards.</p>
+<p><code>local_time_zone()</code> changes the time zone for the caller
+execution environment.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p></div>
+    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p>
+<p><code><a href='https://rdrr.io/r/base/timezones.html'>Sys.timezone()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>with_file</span>(<span class='st'>"file1"</span>, {
-  <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"foo"</span>, <span class='st'>"file1"</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='st'>"file1"</span>)
-})
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-17 15:45:31 UTC"</div><div class='input'><span class='fu'>with_timezone</span>(<span class='st'>"Europe/Paris"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()))</div><div class='output co'>#&gt; [1] "2020-04-17 17:45:31 CEST"</div><div class='input'><span class='fu'>with_timezone</span>(<span class='st'>"US/Pacific"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()))</div><div class='output co'>#&gt; [1] "2020-04-17 08:45:31 PDT"</div><div class='input'>
+<span class='no'>fun1</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
+  <span class='fu'>local_timezone</span>(<span class='st'>"CET"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>())
+}
 
-<span class='fu'>with_file</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"file1"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"foo"</span>, <span class='st'>"file1"</span>)), {
-  <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='st'>"file1"</span>)
-})</div></pre>
+<span class='no'>fun2</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
+  <span class='fu'>local_timezone</span>(<span class='st'>"US/Pacific"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>())
+}
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-17 15:45:31 UTC"</div><div class='input'><span class='fu'>fun1</span>()</div><div class='output co'>#&gt; [1] "2020-04-17 17:45:32 CEST"</div><div class='input'><span class='fu'>fun2</span>()</div><div class='output co'>#&gt; [1] "2020-04-17 08:45:32 PDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-17 15:45:32 UTC"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

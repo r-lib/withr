@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Files which delete themselves — with_file • withr</title>
+<title>RNG version — with_rng_version • withr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Files which delete themselves — with_file" />
-<meta property="og:description" content="Create files, which are then automatically removed afterwards." />
+<meta property="og:title" content="RNG version — with_rng_version" />
+<meta property="og:description" content="Change the RNG version and restore it afterwards." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -130,25 +130,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Files which delete themselves</h1>
-    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/file.R'><code>R/file.R</code></a></small>
-    <div class="hidden name"><code>with_file.Rd</code></div>
+    <h1>RNG version</h1>
+    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/rng.R'><code>R/rng.R</code></a></small>
+    <div class="hidden name"><code>with_rng_version.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create files, which are then automatically removed afterwards.</p>
+    <p>Change the RNG version and restore it afterwards.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_file</span>(<span class='no'>file</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_rng_version</span>(<span class='no'>version</span>, <span class='no'>code</span>)
 
-<span class='fu'>local_file</span>(<span class='no'>file</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_rng_version</span>(<span class='no'>version</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p><code>[named list]</code><br /> Files to create.</p></td>
+      <th>version</th>
+      <td><p><code>[character(1)]</code> an R version number, e.g.
+<code>"3.5.0"</code>, to switch to the RNG this version of R uses.
+See <code><a href='https://rdrr.io/r/base/Random.html'>RNGversion()</a></code>.</p></td>
     </tr>
     <tr>
       <th>code</th>
@@ -156,7 +158,7 @@
     </tr>
     <tr>
       <th>.local_envir</th>
-      <td><p><code>[environment]</code><br /> The environment to use for scoping.</p></td>
+      <td><p>The environment to apply the change to.</p></td>
     </tr>
     </table>
 
@@ -164,19 +166,35 @@
 
     <p><code>[any]</code><br /> The results of the evaluation of the <code>code</code>
 argument.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>with_rng_version()</code> runs the code with the specified RNG version and
+resets it afterwards.</p>
+<p><code>local_rng_version()</code> changes the RNG version for the caller
+execution environment.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p></div>
+    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p>
+<p><code><a href='https://rdrr.io/r/base/Random.html'>RNGversion()</a></code>, <code><a href='https://rdrr.io/r/base/Random.html'>RNGkind()</a></code>, <code><a href='with_seed.html'>with_seed()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>with_file</span>(<span class='st'>"file1"</span>, {
-  <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"foo"</span>, <span class='st'>"file1"</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='st'>"file1"</span>)
-})
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>RNGkind</a></span>()</div><div class='output co'>#&gt; [1] "Mersenne-Twister" "Inversion"        "Rejection"       </div><div class='input'><span class='fu'>with_rng_version</span>(<span class='st'>"3.0.0"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>RNGkind</a></span>())</div><div class='output co'>#&gt; [1] "Mersenne-Twister" "Inversion"        "Rounding"        </div><div class='input'><span class='fu'>with_rng_version</span>(<span class='st'>"1.6.0"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>RNGkind</a></span>())</div><div class='output co'>#&gt; [1] "Marsaglia-Multicarry"   "Buggy Kinderman-Ramage" "Rounding"              </div><div class='input'>
+<span class='fu'>with_rng_version</span>(<span class='st'>"3.0.0"</span>,
+  <span class='fu'><a href='with_seed.html'>with_seed</a></span>(<span class='fl'>42</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>, <span class='fl'>3</span>)))</div><div class='output co'>#&gt; [1] 92 93 29</div><div class='input'>
+<span class='fu'>with_rng_version</span>(<span class='st'>"1.6.0"</span>,
+  <span class='fu'><a href='with_seed.html'>with_seed</a></span>(<span class='fl'>42</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>, <span class='fl'>3</span>)))</div><div class='output co'>#&gt; [1] 33 44 32</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>RNGkind</a></span>()</div><div class='output co'>#&gt; [1] "Mersenne-Twister" "Inversion"        "Rejection"       </div><div class='input'>
+<span class='no'>fun1</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
+  <span class='fu'>local_rng_version</span>(<span class='st'>"3.0.0"</span>)
+  <span class='fu'><a href='with_seed.html'>with_seed</a></span>(<span class='fl'>42</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>, <span class='fl'>3</span>))
+}
 
-<span class='fu'>with_file</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"file1"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"foo"</span>, <span class='st'>"file1"</span>)), {
-  <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='st'>"file1"</span>)
-})</div></pre>
+<span class='no'>fun2</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
+  <span class='fu'>local_rng_version</span>(<span class='st'>"1.6.0"</span>)
+  <span class='fu'><a href='with_seed.html'>with_seed</a></span>(<span class='fl'>42</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>, <span class='fl'>3</span>))
+}
+
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>RNGkind</a></span>()</div><div class='output co'>#&gt; [1] "Mersenne-Twister" "Inversion"        "Rejection"       </div><div class='input'><span class='fu'>fun1</span>()</div><div class='output co'>#&gt; [1] 92 93 29</div><div class='input'><span class='fu'>fun2</span>()</div><div class='output co'>#&gt; [1] 33 44 32</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>RNGkind</a></span>()</div><div class='output co'>#&gt; [1] "Mersenne-Twister" "Inversion"        "Rejection"       </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
