@@ -43,6 +43,11 @@ argument.
 \description{
 Temporarily create a tempfile, which is automatically removed afterwards.
 }
+\examples{
+# check how big iris would be if written as csv vs RDS
+with_tempfile("tf", {write.csv(iris, tf); file.size(tf)})
+with_tempfile("tf", {saveRDS(iris, tf); file.size(tf)})
+}
 \seealso{
 \code{\link{withr}} for examples
 }
