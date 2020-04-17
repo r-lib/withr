@@ -13,7 +13,18 @@ NULL
 #' @inheritParams with_collate
 #' @seealso [par()]
 #' @export
-with_par <- with_(graphics::par)
+#' @examples
+#' old <- par("col" = "black")
+#'
+#' # This will be in red
+#' with_par(list(col = "red", pch = 19),
+#'   plot(mtcars$hp, mtcars$wt)
+#' )
+#'
+#' # This will still be in black
+#' plot(mtcars$hp, mtcars$wt)
+#'
+#' par(old)
 
 #' @rdname with_par
 #' @export
