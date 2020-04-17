@@ -34,6 +34,12 @@ the new file.  Existing fields which are not included in \code{new} are
 appended unchanged.  Fields which exist in \code{Makevars} and in \code{new}
 are modified to use the value in \code{new}.
 }
+\examples{
+writeLines("void foo(int* bar) { *bar = 1; }\n", "foo.c")
+system("R CMD SHLIB --preclean -c foo.c")
+with_makevars(c(CFLAGS = "-O3"), system("R CMD SHLIB --preclean -c foo.c"))
+unlink(c("foo.c", "foo.so"))
+}
 \seealso{
 \code{\link{withr}} for examples
 }
