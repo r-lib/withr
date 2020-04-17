@@ -17,6 +17,8 @@
 #'   readLines(local_connection(file("foo", "r")))
 #' }
 #' read_foo()
+#'
+#' unlink("foo")
 #' @export
 with_connection <- function(con, code) {
 

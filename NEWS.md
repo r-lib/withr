@@ -3,7 +3,9 @@
 - `defer()` can set deferred events on `.GlobalEnv` to facilitate the
   interactive development of code inside a function or test. Helpers
   `deferred_run()` (and `deferred_clear()`) provide a way to explicity run and
-  clear (or just clear) deferred events (#76 @jennybc).
+  clear (or just clear) deferred events (#76, @jennybc).
+
+- `with_svg()` documentation now is consistent across R versions (#129)
 
 - Remove `help` argument from `with_package()` and `local_package()` (#94, @wendtke).
 

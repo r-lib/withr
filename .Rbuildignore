@@ -18,3 +18,4 @@
 ^CRAN-RELEASE$
 ^withr\.Rproj$
 ^\.covrignore$
+^\.github$

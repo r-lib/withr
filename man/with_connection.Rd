@@ -34,6 +34,8 @@ read_foo <- function() {
   readLines(local_connection(file("foo", "r")))
 }
 read_foo()
+
+unlink("foo")
 }
 \seealso{
 \code{\link{withr}} for examples
