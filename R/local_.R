@@ -28,7 +28,7 @@ local_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
   fun <- eval(bquote(function(args) {
     old <- .(set_call)
     defer(.(reset)(old), envir = .local_envir)
-    old
+    invisible(old)
   }, as.environment(list(set_call = set_call,
                          reset = if (missing(reset)) substitute(set) else substitute(reset)))))
 
