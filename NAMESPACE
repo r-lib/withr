@@ -2,6 +2,8 @@
 
 export(defer)
 export(defer_parent)
+export(deferred_clear)
+export(deferred_run)
 export(local_)
 export(local_bmp)
 export(local_cairo_pdf)

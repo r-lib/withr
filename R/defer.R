@@ -15,14 +15,20 @@
 #'
 #' @details
 #'
-#' `defer` works by attaching handlers to the requested environment (as an
+#' `defer()` works by attaching handlers to the requested environment (as an
 #' attribute called `"handlers"`), and registering an exit handler that
 #' executes the registered handler when the function associated with the
 #' requested environment finishes execution.
 #'
+#' Deferred events can be set on the global environment, primarily to facilitate
+#' the interactive development of code that is intended to be executed inside a
+#' function or test. A message alerts the user to the fact that an explicit
+#' `deferred_run()` is the only way to trigger these deferred events. Use
+#' `deferred_clear()` to clear them without evaluation. The global environment
+#' scenario is the main motivation for these functions.
+#'
 #' @family local-related functions
 #' @export
-#' @author Kevin Ushey
 #' @examples
 #' # define a 'local' function that creates a file, and
 #' # removes it when the parent function has finished executing
@@ -49,12 +55,31 @@
 #'   local_file(path)
 #'   print(attributes(environment()))
 #' })
+#'
+#' # defer and trigger events on the global environment
+#' defer(print("one"))
+#' defer(print("two"))
+#' deferred_run()
+#'
+#' defer(print("three"))
+#' deferred_clear()
+#' deferred_run()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  if (identical(envir, .GlobalEnv))
-    stop("attempt to defer event on global environment")
   priority <- match.arg(priority)
-  front <- priority == "first"
-  invisible(add_handler(envir, list(expr = substitute(expr), envir = parent.frame()), front))
+  if (identical(envir, .GlobalEnv) && is.null(get_handlers(envir))) {
+    message(
+      "Setting deferred event(s) on global environment.\n",
+      "  * Execute (and clear) with `deferred_run()`.\n",
+      "  * Clear (without executing) with `deferred_clear()`."
+    )
+  }
+  invisible(
+    add_handler(
+      envir,
+      handler = list(expr = substitute(expr), envir = parent.frame()),
+      front = priority == "first"
+    )
+  )
 }
 
 #' @rdname defer
@@ -66,13 +91,26 @@ defer_parent <- function(expr, priority = c("first", "last")) {
   ), envir = parent.frame())
 }
 
+#' @rdname defer
+#' @export
+deferred_run <- function(envir = parent.frame()) {
+  execute_handlers(envir)
+  deferred_clear(envir)
+}
+
+#' @rdname defer
+#' @export
+deferred_clear <- function(envir = parent.frame()) {
+  attr(envir, "handlers") <- NULL
+  invisible()
+}
 
 ## Handlers used for 'defer' calls. Attached as a list of expressions for the
 ## 'handlers' attribute on the environment, with 'on.exit' called to ensure
 ## those handlers get executed on exit.
 
 get_handlers <- function(envir) {
-  as.list(attr(envir, "handlers"))
+  attr(envir, "handlers")
 }
 
 set_handlers <- function(envir, handlers) {
@@ -90,16 +128,17 @@ set_handlers <- function(envir, handlers) {
 
 execute_handlers <- function(envir) {
   handlers <- get_handlers(envir)
-  for (handler in handlers)
+  for (handler in handlers) {
     tryCatch(eval(handler$expr, handler$envir), error = identity)
+  }
 }
 
 add_handler <- function(envir, handler, front) {
-
-  handlers <- if (front)
-    c(list(handler), get_handlers(envir))
-  else
-    c(get_handlers(envir), list(handler))
+  if (front) {
+    handlers <- c(list(handler), get_handlers(envir))
+  } else {
+    handlers <- c(get_handlers(envir), list(handler))
+  }
 
   set_handlers(envir, handlers)
   handler

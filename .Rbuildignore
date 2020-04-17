@@ -1,10 +1,11 @@
+^withr\.Rproj$
+^\.Rproj\.user$
 ^.*\.Rproj$
 ^.*\.tar\.gz$
 ^withr\.Rcheck$
 ^\.travis\.yml$
 ^\.lintr$
 ^appveyor\.yml$
-^\.Rproj\.user$
 ^man-roxygen$
 ^README\.Rmd$
 ^README-.*\.png$
