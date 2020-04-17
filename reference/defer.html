@@ -147,7 +147,11 @@ effects for the duration of a function's execution.</p>
 
     <pre class="usage"><span class='fu'>defer</span>(<span class='no'>expr</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), <span class='kw'>priority</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))
 
-<span class='fu'>defer_parent</span>(<span class='no'>expr</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))</pre>
+<span class='fu'>defer_parent</span>(<span class='no'>expr</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))
+
+<span class='fu'>deferred_run</span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+
+<span class='fu'>deferred_clear</span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,10 +176,16 @@ registered handlers on this environment.</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>defer</code> works by attaching handlers to the requested environment (as an
+    <p><code>defer()</code> works by attaching handlers to the requested environment (as an
 attribute called <code>"handlers"</code>), and registering an exit handler that
 executes the registered handler when the function associated with the
 requested environment finishes execution.</p>
+<p>Deferred events can be set on the global environment, primarily to facilitate
+the interactive development of code that is intended to be executed inside a
+function or test. A message alerts the user to the fact that an explicit
+<code>deferred_run()</code> is the only way to trigger these deferred events. Use
+<code>deferred_clear()</code> to clear them without evaluation. The global environment
+scenario is the main motivation for these functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># define a 'local' function that creates a file, and</span>
@@ -208,10 +218,16 @@ requested environment finishes execution.</p>
 #&gt; unlink(path)
 #&gt; 
 #&gt; $handlers[[1]]$envir
-#&gt; &lt;environment: 0x7f91420b0e10&gt;
+#&gt; &lt;environment: 0x7ff3607c8ff8&gt;
 #&gt; 
 #&gt; 
-#&gt; </div></pre>
+#&gt; </div><div class='input'>
+<span class='co'># defer and trigger events on the global environment</span>
+<span class='fu'>defer</span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>"one"</span>))</div><div class='output co'>#&gt; [1] "one"</div><div class='input'><span class='fu'>defer</span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>"two"</span>))
+<span class='fu'>deferred_run</span>()</div><div class='output co'>#&gt; [1] "two"
+#&gt; [1] "one"</div><div class='input'>
+<span class='fu'>defer</span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>"three"</span>))</div><div class='output co'>#&gt; [1] "three"</div><div class='input'><span class='fu'>deferred_clear</span>()
+<span class='fu'>deferred_run</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -138,6 +138,7 @@
 <a href="#withr-2129000" class="anchor"></a>withr 2.1.2.9000<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> can set deferred events on <code>.GlobalEnv</code> to facilitate the interactive development of code inside a function or test. Helpers <code><a href="../reference/defer.html">deferred_run()</a></code> (and <code><a href="../reference/defer.html">deferred_clear()</a></code>) provide a way to explicity run and clear (or just clear) deferred events (<a href='http://github.com/r-lib/withr/issues/76'>#76</a>, <a href='http://github.com/jennybc'>@jennybc</a>).</p></li>
 <li><p><code><a href="../reference/devices.html">with_svg()</a></code> documentation now is consistent across R versions (<a href='http://github.com/r-lib/withr/issues/129'>#129</a>)</p></li>
 <li><p>Remove <code>help</code> argument from <code><a href="../reference/with_package.html">with_package()</a></code> and <code><a href="../reference/with_package.html">local_package()</a></code> (<a href='http://github.com/r-lib/withr/issues/94'>#94</a>, <a href='http://github.com/wendtke'>@wendtke</a>).</p></li>
 <li><p><code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> now restores <code>.Random.seed</code> if it is not set originally (<a href='http://github.com/r-lib/withr/issues/124'>#124</a>).</p></li>
