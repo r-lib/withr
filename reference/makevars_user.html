@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a new <code>Makevars</code> file, by adding new variables — set_makevars • withr</title>
+<title>Shim for tools::makevars_user() — makevars_user • withr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Create a new <code>Makevars</code> file, by adding new variables — set_makevars" />
-<meta property="og:description" content="You probably want with_makevars() instead of this function." />
+<meta property="og:title" content="Shim for tools::makevars_user() — makevars_user" />
+<meta property="og:description" content="Shim for tools::makevars_user()" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -130,48 +130,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a new <code>Makevars</code> file, by adding new variables</h1>
-    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/makevars.R'><code>R/makevars.R</code></a></small>
-    <div class="hidden name"><code>set_makevars.Rd</code></div>
+    <h1>Shim for tools::makevars_user()</h1>
+    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>makevars_user.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>You probably want <code><a href='with_makevars.html'>with_makevars()</a></code> instead of this function.</p>
+    <p>Shim for tools::makevars_user()</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_makevars</span>(
-  <span class='no'>variables</span>,
-  <span class='kw'>old_path</span> <span class='kw'>=</span> <span class='fu'><a href='makevars_user.html'>makevars_user</a></span>(),
-  <span class='kw'>new_path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(),
-  <span class='kw'>assignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>makevars_user</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>variables</th>
-      <td><p><code>[named character]</code><br /> new variables and their values</p></td>
-    </tr>
-    <tr>
-      <th>old_path</th>
-      <td><p><code>[character(1)]</code><br /> location of existing <code>Makevars</code>
-file to modify.</p></td>
-    </tr>
-    <tr>
-      <th>new_path</th>
-      <td><p><code>[character(1)]</code><br /> location of the new <code>Makevars</code> file</p></td>
-    </tr>
-    <tr>
-      <th>assignment</th>
-      <td><p><code>[character(1)]</code><br /> assignment type to use.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Unlike <code><a href='with_makevars.html'>with_makevars()</a></code>, it does not activate the new <code>Makevars</code>
-file, i.e. it does not set the <code>R_MAKEVARS_USER</code> environment variable.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
