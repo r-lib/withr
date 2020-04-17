@@ -3,25 +3,27 @@
 
 # withr - run code ‘with’ modified state <img src="man/figures/logo.png" align="right" />
 
-[![Travis-CI Build
-Status](https://travis-ci.org/r-lib/withr.svg?branch=master)](https://travis-ci.org/r-lib/withr)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/r-lib/withr?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/withr)
-[![Coverage
-status](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/withr?branch=master)
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/r-lib/withr/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/withr/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/withr?branch=master)
 [![CRAN
 Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
+<!-- badges: end -->
 
 ## Overview
 
-withr makes working with the global state, i.e. side effects, safer and
-less error-prone.
+A set of functions to run code with safely and temporarily modified
+global state, withr makes working with the global state, i.e. side
+effects, less error-prone.
 
-Pure functions are easy to understand and reason about: they always map
-the same input to the same output and have no other impact on the
-workspace. In other words, pure functions have no *side effects*: they
-are not affected by, nor do they affect, the global state in any way
-apart from the value they return. An example is the `sum()` function.
+Pure functions, such as the `sum()` function, are easy to understand and
+reason about: they always map the same input to the same output and have
+no other impact on the workspace. In other words, pure functions have no
+*side effects*: they are not affected by, nor do they affect, the global
+state in any way apart from the value they return.
 
 The behavior of some functions *is* affected by the global state.
 Consider the `read.csv()` function: it takes a filename as an input and
@@ -52,37 +54,35 @@ Many of these functions were originally a part of the
 simple package with limited dependencies to provide access to these
 functions.
 
-  - `set_makevars()`
-  - `defer()`
-  - `defer_parent()`
   - `with_collate()` / `local_collate()` - collation order
-  - `with_connection()` / `local_connection()` - R connections.
-  - `with_db_connection()` / `local_db_connection()`
   - `with_dir()` / `local_dir()` - working directory
-  - `with_environment()` / `local_environment()`
   - `with_envvar()` / `local_envvar()` - environment variables
   - `with_libpaths()` / `local_libpaths()` - library paths
   - `with_locale()` / `local_locale()` - any locale setting
-  - `with_makevars()` / `local_makevars()` - Makevars variables
-  - `with_message_sink()` / `local_message_sink()`
+  - `with_makevars()` / `local_makevars()` / `set_makevars()` - makevars
+    variables
   - `with_options()` / `local_options()` - options
-  - `with_output_sink()` / `local_output_sink()`
   - `with_par()` / `local_par()` - graphics parameters
   - `with_path()` / `local_path()` - PATH environment variable
-  - `with_preserve_seed()`
-  - `with_rng_version()` / `local_rng_version()`
-  - `with_seed()`  
-  - `with_temp_libpaths()` / `local_temp_libpaths()`
-  - `with_timezone()` / `local_timezone()`
   - `with_*()` and `local_*()` functions for the built in R devices,
     `bmp`, `cairo_pdf`, `cairo_ps`, `pdf`, `postscript`, `svg`, `tiff`,
     `xfig`, `png`, `jpeg`.
+  - `with_connection()` / `local_connection()` - R file connections
+  - `with_db_connection()` / `local_db_connection()` - DB conections
   - `with_package()` / `local_package()`, `with_namespace()` /
     `local_namespace()` and `with_environment()` / `local_environment()`
     - to run code with modified object search paths.
-  - `with_tempfile()` / `local_tempfile()` - Create and clean up a temp
+  - `with_tempfile()` / `local_tempfile()` - create and clean up a temp
     file.
-  - `with_file()` / `local_file()` - Create and clean up a normal file.
+  - `with_file()` / `local_file()` - create and clean up a normal file.
+  - `with_message_sink()` / `local_message_sink()` - divert message
+  - `with_output_sink()` / `local_output_sink()` - divert output
+  - `with_preserve_seed()` / `with_seed()`- specify seeds
+  - `with_temp_libpaths()` / `local_temp_libpaths()` - library paths
+  - `defer()` / `defer_parent()` - defer
+  - `with_timezone()` / `local_timezone()` - timezones
+  - `with_rng_version()` / `local_rng_version()` - random number
+    generation version
 
 ## Usage
 
