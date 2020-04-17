@@ -33,6 +33,32 @@ describe("with_connection", {
     expect_equal(readLines(tmp), c("foo", "bar"))
     expect_equal(readLines(tmp2), c("baz", "qux"))
   })
+
+  it("works if there is an existing object with the same name", {
+    tmp <- tempfile()
+
+    con <- "foo"
+    with_connection(list(con = file(tmp, "w")), {
+      writeLines("foo", con)
+    })
+    expect_true(exists("con"))
+    expect_equal(readLines(tmp), "foo")
+  })
+
+  it("works if there is an existing connection with the same name", {
+    tmp <- tempfile()
+    tmp2 <- tempfile()
+
+    con <- file(tmp, "w")
+    writeLines("foo", tmp)
+    with_connection(list(con = file(tmp2, "w")), {
+      writeLines("bar", con)
+    })
+    close(con)
+
+    expect_equal(readLines(tmp), "foo")
+    expect_equal(readLines(tmp2), "bar")
+  })
 })
 
 describe("local_connection", {

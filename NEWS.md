@@ -4,6 +4,7 @@
   interactive development of code inside a function or test. Helpers
   `deferred_run()` (and `deferred_clear()`) provide a way to explicity run and
   clear (or just clear) deferred events (#76, @jennybc).
+- `with_connection()` now works when existing objects or connections exist with the same names (#120)
 
 - `with_svg()` documentation now is consistent across R versions (#129)
 

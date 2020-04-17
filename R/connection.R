@@ -24,13 +24,10 @@ with_connection <- function(con, code) {
 
   stopifnot(all(is.named(con)))
 
-  nme <- tempfile()
-  (get("attach", baseenv()))(con, name = nme, warn.conflicts = FALSE)
   on.exit({
     for (connection in con) close(connection)
-    detach(nme, character.only = TRUE)
   })
-  force(code)
+  eval(substitute(code), envir = con, enclos = parent.frame())
 }
 
 #' @rdname with_connection
