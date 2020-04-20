@@ -1,84 +1,157 @@
-# Platform
-
-|field    |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.4.3 (2017-11-30) |
-|os       |macOS Sierra 10.12.6         |
-|system   |x86_64, darwin15.6.0         |
-|ui       |X11                          |
-|language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|tz       |America/New_York             |
-|date     |2018-03-14                   |
-
-# Dependencies
-
-|package |old   |new   |Δ  |
-|:-------|:-----|:-----|:--|
-|withr   |2.1.1 |2.1.2 |*  |
-
 # Revdeps
 
-## Couldn't check (1)
+## Failed to check (2)
 
-|package                            |version |error |warning |note |
-|:----------------------------------|:-------|:-----|:-------|:----|
-|[DeepBlueR](problems.md#deepbluer) |1.2.10  |2     |        |     |
+|package                              |version |error |warning |note |
+|:------------------------------------|:-------|:-----|:-------|:----|
+|[RSQLServer](failures.md#rsqlserver) |NA      |1     |        |     |
+|[RSQLServer](failures.md#rsqlserver) |NA      |1     |        |     |
 
-## All (52)
+## All (143)
 
-|package                                  |version |error |warning |note |
-|:----------------------------------------|:-------|:-----|:-------|:----|
-|[batchtools](problems.md#batchtools)     |0.9.8   |      |        |2    |
-|bigrquery                                |0.4.1   |      |        |     |
-|callr                                    |2.0.2   |      |        |     |
-|[caret](problems.md#caret)               |6.0-78  |      |1       |1    |
-|cli                                      |1.0.0   |      |        |     |
-|covr                                     |3.0.1   |      |        |     |
-|cranlike                                 |1.0.1   |      |        |     |
-|crayon                                   |1.3.4   |      |        |     |
-|cyclocomp                                |1.1.0   |      |        |     |
-|DBItest                                  |1.5-2   |      |        |     |
-|debugme                                  |1.1.0   |      |        |     |
-|[DeepBlueR](problems.md#deepbluer)       |1.2.10  |2     |        |     |
-|desc                                     |1.1.1   |      |        |     |
-|devtools                                 |1.13.5  |      |        |     |
-|document                                 |3.0.0   |      |        |     |
-|[dplyr](problems.md#dplyr)               |0.7.4   |1     |        |2    |
-|[drake](problems.md#drake)               |5.0.0   |1     |        |     |
-|enc                                      |0.2.0   |      |        |     |
-|[fakemake](problems.md#fakemake)         |1.2.0   |1     |        |     |
-|flippant                                 |1.1.0   |      |        |     |
-|[fs](problems.md#fs)                     |1.2.0   |      |        |1    |
-|gdtools                                  |0.1.7   |      |        |     |
-|[ggExtra](problems.md#ggextra)           |0.7     |      |        |1    |
-|[harvestr](problems.md#harvestr)         |0.7.1   |      |1       |     |
-|IRdisplay                                |0.4.4   |      |        |     |
-|keyring                                  |1.0.0   |      |        |     |
-|knitrProgressBar                         |1.1.0   |      |        |     |
-|learnr                                   |0.9.2   |      |        |     |
-|liteq                                    |1.0.1   |      |        |     |
-|[miniCRAN](problems.md#minicran)         |0.2.11  |1     |        |     |
-|[pathological](problems.md#pathological) |0.1-2   |      |        |1    |
-|prettycode                               |1.0.1   |      |        |     |
-|[processx](problems.md#processx)         |2.0.0.1 |      |        |1    |
-|profile                                  |1.0     |      |        |     |
-|rcmdcheck                                |1.2.1   |      |        |     |
-|[readat](problems.md#readat)             |1.2.1   |      |        |1    |
-|remotes                                  |1.1.1   |      |        |     |
-|rhub                                     |1.0.2   |      |        |     |
-|[RPostgres](problems.md#rpostgres)       |1.0-4   |      |        |1    |
-|rprojroot                                |1.3-2   |      |        |     |
-|secret                                   |1.0.0   |      |        |     |
-|sessioninfo                              |1.0.0   |      |        |     |
-|[skimr](problems.md#skimr)               |1.0.1   |      |        |1    |
-|sparklyr                                 |0.7.0   |      |        |     |
-|[styler](problems.md#styler)             |1.0.1   |2     |        |     |
-|surveydata                               |0.2.0   |      |        |     |
-|tatoo                                    |1.1.0   |      |        |     |
-|testthat                                 |2.0.0   |      |        |     |
-|tibble                                   |1.4.2   |      |        |     |
-|usethis                                  |1.3.0   |      |        |     |
-|webshot                                  |0.5.0   |      |        |     |
-|zip                                      |1.0.0   |      |        |     |
+|package                                            |version    |error |warning |note |
+|:--------------------------------------------------|:----------|:-----|:-------|:----|
+|[anyLib](problems.md#anylib)                       |1.0.5      |      |        |1    |
+|baguette                                           |0.0.1      |      |        |     |
+|[batchtools](problems.md#batchtools)               |0.9.13     |1     |        |     |
+|bench                                              |1.1.1.9000 |      |        |     |
+|bigrquery                                          |1.2.0      |      |        |     |
+|[BiocManager](problems.md#biocmanager)             |1.30.10    |1     |        |     |
+|[cabinets](problems.md#cabinets)                   |0.4.0      |      |        |1    |
+|callr                                              |3.4.3      |      |        |     |
+|[caret](problems.md#caret)                         |6.0-84     |      |        |1    |
+|cli                                                |2.0.2      |      |        |     |
+|cliapp                                             |0.1.0      |      |        |     |
+|cloudml                                            |0.6.1      |      |        |     |
+|[conflr](problems.md#conflr)                       |0.1.1      |      |        |1    |
+|covr                                               |3.5.0      |      |        |     |
+|cranlike                                           |1.0.2      |      |        |     |
+|crayon                                             |1.3.4      |      |        |     |
+|crunch                                             |1.26.3     |      |        |     |
+|crunchy                                            |0.3.1      |      |        |     |
+|cyclocomp                                          |1.1.0      |      |        |     |
+|[datarobot](problems.md#datarobot)                 |2.17.0     |      |        |2    |
+|DBItest                                            |1.6.0.9002 |      |        |     |
+|dbplyr                                             |1.4.2      |      |        |     |
+|dccvalidator                                       |0.2.0      |      |        |     |
+|debugme                                            |1.1.0      |      |        |     |
+|desc                                               |1.2.0      |      |        |     |
+|details                                            |0.2.1      |      |        |     |
+|[detrendr](problems.md#detrendr)                   |0.6.5      |      |        |2    |
+|[devtools](problems.md#devtools)                   |2.2.2.9000 |1     |        |     |
+|dials                                              |0.0.4      |      |        |     |
+|discrim                                            |0.0.2      |      |        |     |
+|[dm](problems.md#dm)                               |0.1.1      |1     |        |1    |
+|document                                           |3.2.0      |      |        |     |
+|[dplyr](problems.md#dplyr)                         |0.8.5      |      |        |2    |
+|EdSurvey                                           |2.5.0      |      |        |     |
+|edwards97                                          |0.1.0      |      |        |     |
+|embed                                              |0.0.6      |      |        |     |
+|enc                                                |0.2.1      |      |        |     |
+|[encryptr](problems.md#encryptr)                   |0.1.3      |      |        |1    |
+|exampletestr                                       |1.6.1      |      |        |     |
+|[exuber](problems.md#exuber)                       |0.3.0      |      |        |1    |
+|fakemake                                           |1.7.1      |      |        |     |
+|fgeo.analyze                                       |1.1.13     |      |        |     |
+|filesstrings                                       |3.1.5      |      |        |     |
+|flippant                                           |1.1.0      |      |        |     |
+|[fs](problems.md#fs)                               |1.4.1      |1     |        |2    |
+|FSA                                                |0.8.30     |      |        |     |
+|fy                                                 |0.2.0      |      |        |     |
+|gargle                                             |0.4.0.9003 |      |        |     |
+|[ggExtra](problems.md#ggextra)                     |0.9        |      |        |1    |
+|[ggforce](problems.md#ggforce)                     |0.3.1      |      |        |2    |
+|[ggplot2](problems.md#ggplot2)                     |3.3.0.9000 |      |        |1    |
+|[ggridges](problems.md#ggridges)                   |0.5.1      |      |        |1    |
+|[ggspatial](problems.md#ggspatial)                 |1.0.3      |1     |        |     |
+|ggstance                                           |0.3.4      |      |        |     |
+|[ggthemes](problems.md#ggthemes)                   |4.2.0      |      |        |1    |
+|gh                                                 |1.1.0      |      |        |     |
+|glue                                               |1.4.0.9000 |      |        |     |
+|golem                                              |0.2.1      |      |        |     |
+|goodpractice                                       |1.0.2      |      |        |     |
+|grattan                                            |1.8.0.1    |      |        |     |
+|[htmltools](problems.md#htmltools)                 |0.4.0      |      |        |2    |
+|hutils                                             |1.5.1      |      |        |     |
+|[igraph](problems.md#igraph)                       |1.2.4.1    |1     |        |     |
+|[ijtiff](problems.md#ijtiff)                       |2.0.5      |1     |        |     |
+|[IOHanalyzer](problems.md#iohanalyzer)             |0.1.3      |      |        |3    |
+|[irace](problems.md#irace)                         |3.4.1      |1     |        |     |
+|IRdisplay                                          |0.7.0      |      |        |     |
+|jetpack                                            |0.4.3      |      |        |     |
+|[jwutil](problems.md#jwutil)                       |1.2.3      |      |        |1    |
+|keyring                                            |1.1.0      |      |        |     |
+|knitrProgressBar                                   |1.1.0      |      |        |     |
+|[languageserver](problems.md#languageserver)       |0.3.5      |      |        |1    |
+|learnr                                             |0.10.0     |      |        |     |
+|liteq                                              |1.1.0      |      |        |     |
+|miniCRAN                                           |0.2.12     |      |        |     |
+|[mlflow](problems.md#mlflow)                       |1.7.0      |1     |        |     |
+|mlr3pipelines                                      |0.1.3      |      |        |     |
+|[mudata2](problems.md#mudata2)                     |1.1.2      |1     |        |1    |
+|nandb                                              |2.0.6      |      |        |     |
+|natmanager                                         |0.4.0      |      |        |     |
+|orderly                                            |1.0.4      |      |        |     |
+|packager                                           |1.2.0      |      |        |     |
+|pak                                                |0.1.2.9000 |      |        |     |
+|parsedate                                          |1.2.0      |      |        |     |
+|pillar                                             |1.4.3.9001 |      |        |     |
+|[pins](problems.md#pins)                           |0.4.0      |      |        |1    |
+|pkgbuild                                           |1.0.6      |      |        |     |
+|pkgcache                                           |1.0.5.9001 |      |        |     |
+|[pkgdown](problems.md#pkgdown)                     |1.4.1.9000 |      |        |1    |
+|pkgload                                            |1.0.2      |      |        |     |
+|[pkgmaker](problems.md#pkgmaker)                   |0.31.1     |1     |        |     |
+|[pkgnet](problems.md#pkgnet)                       |0.4.1      |      |        |1    |
+|prettycode                                         |1.0.2      |      |        |     |
+|processx                                           |3.4.2      |      |        |     |
+|prodigenr                                          |0.5.0      |      |        |     |
+|[proffer](problems.md#proffer)                     |0.1.0      |1     |        |     |
+|[profile](problems.md#profile)                     |1.0        |1     |        |     |
+|progress                                           |1.2.2      |      |        |     |
+|rasciidoc                                          |2.1.1      |      |        |     |
+|[raws.profile](problems.md#rawsprofile)            |0.1.0      |      |        |1    |
+|[dataonderivatives](problems.md#dataonderivatives) |0.3.1      |1     |        |1    |
+|[RSQLServer](failures.md#rsqlserver)               |NA         |1     |        |     |
+|rcmdcheck                                          |1.3.3      |      |        |     |
+|[dataonderivatives](problems.md#dataonderivatives) |0.3.1      |1     |        |1    |
+|[RSQLServer](failures.md#rsqlserver)               |NA         |1     |        |     |
+|[rdoc](problems.md#rdoc)                           |0.1.0      |      |        |1    |
+|recipes                                            |0.1.9      |      |        |     |
+|remotes                                            |2.1.1      |      |        |     |
+|reprex                                             |0.3.0      |      |        |     |
+|RFishBC                                            |0.2.3      |      |        |     |
+|rhub                                               |1.1.1      |      |        |     |
+|rosm                                               |0.2.5      |      |        |     |
+|rotor                                              |0.2.4      |      |        |     |
+|[roxygen2md](problems.md#roxygen2md)               |1.0.0      |      |        |1    |
+|[RPostgres](problems.md#rpostgres)                 |1.2.0      |      |        |1    |
+|rprojroot                                          |1.3-2      |      |        |     |
+|[secret](problems.md#secret)                       |1.0.0      |1     |        |     |
+|sessioninfo                                        |1.1.1      |      |        |     |
+|shinytest                                          |1.3.1      |      |        |     |
+|[skimr](problems.md#skimr)                         |2.0        |      |        |1    |
+|sortable                                           |0.4.2      |      |        |     |
+|sparklyr                                           |1.0.1      |      |        |     |
+|stevedore                                          |0.9.3      |      |        |     |
+|styler                                             |1.3.2      |      |        |     |
+|[surveydata](problems.md#surveydata)               |0.2.4      |2     |        |     |
+|tatoo                                              |1.1.1      |      |        |     |
+|[testextra](problems.md#testextra)                 |0.1.0.1    |      |        |1    |
+|[testthat](problems.md#testthat)                   |2.3.2.9000 |      |        |1    |
+|[themis](problems.md#themis)                       |0.1.0      |      |        |1    |
+|tibble                                             |3.0.0      |      |        |     |
+|tidyselect                                         |1.0.0      |      |        |     |
+|[tikzDevice](problems.md#tikzdevice)               |0.12.3     |1     |        |     |
+|[usethis](problems.md#usethis)                     |1.6.0      |      |        |1    |
+|vaultr                                             |1.0.2      |      |        |     |
+|[vdiffr](problems.md#vdiffr)                       |0.3.1      |      |        |1    |
+|vegawidget                                         |0.3.1      |      |        |     |
+|[vroom](problems.md#vroom)                         |1.2.0      |      |        |2    |
+|webdriver                                          |1.0.5      |      |        |     |
+|whoami                                             |1.3.0      |      |        |     |
+|workflowr                                          |1.6.1      |      |        |     |
+|xpectr                                             |0.3.0      |      |        |     |
+|[ymlthis](problems.md#ymlthis)                     |0.1.2      |      |        |1    |
+|zip                                                |2.0.4      |      |        |     |
 
