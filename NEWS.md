@@ -1,9 +1,5 @@
 # withr 2.1.2.9000
 
-- Add `with_timezone()` and `local_timezone()` functions to change the time zone (#92, @gaborcsardi).
-
-- Add `with_rng_version()` and `local_rng_version()` functions to change the version of the RNG (#90, @gaborcsardi).
-
 - `defer()` can set deferred events on `.GlobalEnv` to facilitate the interactive development of code inside a function or test.
   Helpers `deferred_run()` (and `deferred_clear()`) provide a way to explicity run and clear (or just clear) deferred events (#76, @jennybc).
 
@@ -20,9 +16,13 @@
 - `with_preserve_seed()` now restores `.Random.seed` if it is not set
   originally (#124).
 
+- Add `with_rng_version()` and `local_rng_version()` functions to change the version of the RNG (#90, @gaborcsardi).
+
 - `with_svg()` documentation now is consistent across R versions (#129)
 
-- `local_tempfile()` and `with_tempfile()` now delete recursively directories on exit (#84, @meta00).
+- Add `with_timezone()` and `local_timezone()` functions to change the time zone (#92, @gaborcsardi).
+
+- `with_tempfile()` and `local_tempfile()` now delete recursively directories on exit (#84, @meta00).
 
 # withr 2.1.2
 
