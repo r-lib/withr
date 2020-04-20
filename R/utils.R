@@ -20,7 +20,7 @@ names2 <- function(x) {
 #' @keywords internal
 #' @export
 makevars_user <- function() {
-  if (getRversion() > "3.2") {
+  if (getRversion() >= "3.3") {
     return(tools::makevars_user())
   }
   # Below is tools::makevars_user() from R 3.6.2
