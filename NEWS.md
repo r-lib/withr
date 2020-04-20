@@ -1,3 +1,5 @@
+# withr 2.2.0
+
 # withr 2.1.2.9000
 
 - `defer()` can set deferred events on `.GlobalEnv` to facilitate the interactive development of code inside a function or test.
