@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0.9000</span>
       </span>
     </div>
 
@@ -177,7 +177,7 @@ execution environment.</p>
 <p><code><a href='https://rdrr.io/r/base/timezones.html'>Sys.timezone()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-20 21:22:10 UTC"</div><div class='input'><span class='fu'>with_timezone</span>(<span class='st'>"Europe/Paris"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()))</div><div class='output co'>#&gt; [1] "2020-04-20 23:22:10 CEST"</div><div class='input'><span class='fu'>with_timezone</span>(<span class='st'>"US/Pacific"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()))</div><div class='output co'>#&gt; [1] "2020-04-20 14:22:11 PDT"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-21 19:38:32 UTC"</div><div class='input'><span class='fu'>with_timezone</span>(<span class='st'>"Europe/Paris"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()))</div><div class='output co'>#&gt; [1] "2020-04-21 21:38:32 CEST"</div><div class='input'><span class='fu'>with_timezone</span>(<span class='st'>"US/Pacific"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()))</div><div class='output co'>#&gt; [1] "2020-04-21 12:38:32 PDT"</div><div class='input'>
 <span class='no'>fun1</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
   <span class='fu'>local_timezone</span>(<span class='st'>"CET"</span>)
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>())
@@ -187,7 +187,7 @@ execution environment.</p>
   <span class='fu'>local_timezone</span>(<span class='st'>"US/Pacific"</span>)
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>())
 }
-<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-20 21:22:11 UTC"</div><div class='input'><span class='fu'>fun1</span>()</div><div class='output co'>#&gt; [1] "2020-04-20 23:22:11 CEST"</div><div class='input'><span class='fu'>fun2</span>()</div><div class='output co'>#&gt; [1] "2020-04-20 14:22:11 PDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-20 21:22:11 UTC"</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-21 19:38:32 UTC"</div><div class='input'><span class='fu'>fun1</span>()</div><div class='output co'>#&gt; [1] "2020-04-21 21:38:32 CEST"</div><div class='input'><span class='fu'>fun2</span>()</div><div class='output co'>#&gt; [1] "2020-04-21 12:38:32 PDT"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()</div><div class='output co'>#&gt; [1] "2020-04-21 19:38:32 UTC"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
