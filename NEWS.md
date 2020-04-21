@@ -1,6 +1,6 @@
-# withr 2.2.0
+# withr (development version)
 
-# withr 2.1.2.9000
+# withr 2.2.0
 
 - `defer()` can set deferred events on `.GlobalEnv` to facilitate the interactive development of code inside a function or test.
   Helpers `deferred_run()` (and `deferred_clear()`) provide a way to explicity run and clear (or just clear) deferred events (#76, @jennybc).
