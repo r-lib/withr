@@ -112,7 +112,7 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
 <span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
   <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>)
 }
 <span class="fu">my_plot</span>()</pre></body></html></div>
@@ -123,7 +123,7 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
 <span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
   <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>)
 }
 <span class="fu">my_plot</span>()
@@ -135,7 +135,7 @@
 <span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
   <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
   <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>))
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
 }
 <span class="fu">my_plot</span>()
 <span class="co">#&gt; Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ</span>
@@ -155,7 +155,7 @@
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
 <span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
   <span class="fu"><a href="../../reference/with_par.html">with_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>),
-    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+    <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
   )
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
 }
@@ -168,7 +168,7 @@ par("col")
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
 <span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
   <span class="fu"><a href="../../reference/with_par.html">local_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>))
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
 }
 <span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr-2.1.0_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
@@ -186,7 +186,7 @@ par("col")
 <p>These functions open a new graphics device, run some code, then automatically close the device.</p>
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">path</span> <span class="kw">&lt;-</span> <span class="st">"test.png"</span>
 <span class="fu"><a href="../../reference/devices.html">with_png</a></span>(<span class="no">path</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">400</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">300</span>, {
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">mpg</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">mpg</span>)
 })</pre></body></html></div>
 <p><img src="test.png"></p>
 <p>Thanks to <a href="https://github.com/richierocks">Richard Cotton’s</a> great <a href="https://github.com/r-lib/withr/pull/37">pull request</a> for this feature!</p>
@@ -244,7 +244,7 @@ par("col")
   <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="st">"foo"</span>, <span class="no">file1</span>)
   <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="no">file1</span>)
 })
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpvl1cZ2/file7f35a312d90"</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpTkz4bJ/filea28dd19700"</span>
 <span class="co">#&gt; [1] "foo"</span></pre></body></html></div>
 </div>
 <div id="other-changes" class="section level2">
