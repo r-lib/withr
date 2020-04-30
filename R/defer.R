@@ -69,8 +69,8 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   if (identical(envir, .GlobalEnv) && is.null(get_handlers(envir))) {
     message(
       "Setting deferred event(s) on global environment.\n",
-      "  * Execute (and clear) with `deferred_run()`.\n",
-      "  * Clear (without executing) with `deferred_clear()`."
+      "  * Execute (and clear) with `withr::deferred_run()`.\n",
+      "  * Clear (without executing) with `withr::deferred_clear()`."
     )
   }
   invisible(
