@@ -60,6 +60,7 @@ Collate:
     'local_.R'
     'with_.R'
     'collate.R'
+    'compat-defer.R'
     'connection.R'
     'db.R'
     'defer.R'
