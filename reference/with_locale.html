@@ -139,9 +139,9 @@
     <p>Temporarily change locale settings.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_locale</span>(<span class='no'>new</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_locale</span>(<span class='kw'>new</span>, <span class='kw'>code</span>)
 
-<span class='fu'>local_locale</span>(<span class='no'>new</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_locale</span>(<span class='kw'>new</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,27 +169,27 @@ argument.</p>
     <p>Setting the <code>LC_ALL</code> category is currently not implemented.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p>
+    <div class='dont-index'><p><code>withr</code> for examples</p>
 <p><code><a href='https://rdrr.io/r/base/locales.html'>Sys.setlocale()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Change locale for time:</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2019-01-01"</span>, <span class='st'>"2019-02-01"</span>)),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>)
+<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  stringsAsFactors = <span class='fl'>FALSE</span>,
+  date = <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2019-01-01"</span>, <span class='st'>"2019-02-01"</span>)),
+  value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>)
 )
-<span class='fu'>with_locale</span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_TIME"</span> <span class='kw'>=</span> <span class='st'>"es_ES"</span>), <span class='kw'>code</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>df</span>$<span class='no'>date</span>, <span class='no'>df</span>$<span class='no'>value</span>))</div><div class='img'><img src='with_locale-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## Compare with:</span>
+<span class='fu'>with_locale</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_TIME"</span> = <span class='st'>"es_ES"</span>), code = <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>df</span><span class='op'>$</span><span class='kw'>date</span>, <span class='kw'>df</span><span class='op'>$</span><span class='kw'>value</span>))</div><div class='img'><img src='with_locale-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## Compare with:</span>
 <span class='co'>#  plot(df$date, df$value)</span>
 
 <span class='co'>## Month names:</span>
-<span class='fu'>with_locale</span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_TIME"</span> <span class='kw'>=</span> <span class='st'>"en_GB"</span>), <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/ISOdatetime.html'>ISOdate</a></span>(<span class='fl'>2000</span>, <span class='fl'>1</span>:<span class='fl'>12</span>, <span class='fl'>1</span>), <span class='st'>"%B"</span>))</div><div class='output co'>#&gt;  [1] "January"   "February"  "March"     "April"     "May"       "June"     
-#&gt;  [7] "July"      "August"    "September" "October"   "November"  "December" </div><div class='input'><span class='fu'>with_locale</span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_TIME"</span> <span class='kw'>=</span> <span class='st'>"es_ES"</span>), <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/ISOdatetime.html'>ISOdate</a></span>(<span class='fl'>2000</span>, <span class='fl'>1</span>:<span class='fl'>12</span>, <span class='fl'>1</span>), <span class='st'>"%B"</span>))</div><div class='output co'>#&gt;  [1] "enero"      "febrero"    "marzo"      "abril"      "mayo"      
+<span class='fu'>with_locale</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_TIME"</span> = <span class='st'>"en_GB"</span>), <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/ISOdatetime.html'>ISOdate</a></span>(<span class='fl'>2000</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, <span class='fl'>1</span>), <span class='st'>"%B"</span>))</div><div class='output co'>#&gt;  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+#&gt;  [7] "July"      "August"    "September" "October"   "November"  "December" </div><div class='input'><span class='fu'>with_locale</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_TIME"</span> = <span class='st'>"es_ES"</span>), <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/ISOdatetime.html'>ISOdate</a></span>(<span class='fl'>2000</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, <span class='fl'>1</span>), <span class='st'>"%B"</span>))</div><div class='output co'>#&gt;  [1] "enero"      "febrero"    "marzo"      "abril"      "mayo"      
 #&gt;  [6] "junio"      "julio"      "agosto"     "septiembre" "octubre"   
 #&gt; [11] "noviembre"  "diciembre" </div><div class='input'>
 <span class='co'>## Change locale for currencies:</span>
-<span class='fu'>with_locale</span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_MONETARY"</span> <span class='kw'>=</span> <span class='st'>"it_IT"</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.localeconv.html'>Sys.localeconv</a></span>())</div><div class='output co'>#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol 
+<span class='fu'>with_locale</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_MONETARY"</span> = <span class='st'>"it_IT"</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.localeconv.html'>Sys.localeconv</a></span>())</div><div class='output co'>#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol 
 #&gt;               "."                ""                ""            "EUR " 
 #&gt;   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping 
 #&gt;              "Eu"               ","               "."        "\003\003" 
@@ -198,7 +198,7 @@ argument.</p>
 #&gt;     p_cs_precedes    p_sep_by_space     n_cs_precedes    n_sep_by_space 
 #&gt;               "1"               "1"               "1"               "1" 
 #&gt;       p_sign_posn       n_sign_posn 
-#&gt;               "1"               "1" </div><div class='input'><span class='fu'>with_locale</span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_MONETARY"</span> <span class='kw'>=</span> <span class='st'>"en_US"</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.localeconv.html'>Sys.localeconv</a></span>())</div><div class='output co'>#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol 
+#&gt;               "1"               "1" </div><div class='input'><span class='fu'>with_locale</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"LC_MONETARY"</span> = <span class='st'>"en_US"</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.localeconv.html'>Sys.localeconv</a></span>())</div><div class='output co'>#&gt;     decimal_point     thousands_sep          grouping   int_curr_symbol 
 #&gt;               "."                ""                ""            "USD " 
 #&gt;   currency_symbol mon_decimal_point mon_thousands_sep      mon_grouping 
 #&gt;               "$"               "."               ","        "\003\003" 
@@ -209,9 +209,8 @@ argument.</p>
 #&gt;       p_sign_posn       n_sign_posn 
 #&gt;               "1"               "1" </div><div class='input'>
 <span class='co'>## Ordering:</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bernard"</span>, <span class='st'>"bérénice"</span>, <span class='st'>"béatrice"</span>, <span class='st'>"boris"</span>)
-<span class='fu'>with_locale</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>LC_COLLATE</span> <span class='kw'>=</span> <span class='st'>"fr_FR"</span>), <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; [1] "béatrice" "bérénice" "bernard"  "boris"   </div><div class='input'><span class='fu'>with_locale</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>LC_COLLATE</span> <span class='kw'>=</span> <span class='st'>"C"</span>), <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; [1] "bernard"  "boris"    "béatrice" "bérénice"</div><div class='input'>
-</div></pre>
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bernard"</span>, <span class='st'>"bérénice"</span>, <span class='st'>"béatrice"</span>, <span class='st'>"boris"</span>)
+<span class='fu'>with_locale</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(LC_COLLATE = <span class='st'>"fr_FR"</span>), <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='kw'>x</span>))</div><div class='output co'>#&gt; [1] "béatrice" "bérénice" "bernard"  "boris"   </div><div class='input'><span class='fu'>with_locale</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(LC_COLLATE = <span class='st'>"C"</span>), <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='kw'>x</span>))</div><div class='output co'>#&gt; [1] "bernard"  "boris"    "béatrice" "bérénice"</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

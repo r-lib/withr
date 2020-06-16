@@ -145,13 +145,13 @@ on the stack. This provides a nice mechanism for scoping side
 effects for the duration of a function's execution.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>defer</span>(<span class='no'>expr</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), <span class='kw'>priority</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))
+    <pre class="usage"><span class='fu'>defer</span>(<span class='kw'>expr</span>, envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), priority = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))
 
-<span class='fu'>defer_parent</span>(<span class='no'>expr</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))
+<span class='fu'>defer_parent</span>(<span class='kw'>expr</span>, priority = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first"</span>, <span class='st'>"last"</span>))
 
-<span class='fu'>deferred_run</span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>deferred_run</span>(envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
 
-<span class='fu'>deferred_clear</span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>deferred_clear</span>(envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,27 +190,27 @@ scenario is the main motivation for these functions.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># define a 'local' function that creates a file, and</span>
 <span class='co'># removes it when the parent function has finished executing</span>
-<span class='no'>local_file</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>path</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.create</a></span>(<span class='no'>path</span>)
-  <span class='fu'>defer_parent</span>(<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>path</span>))
+<span class='kw'>local_file</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>path</span>) {
+  <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.create</a></span>(<span class='kw'>path</span>)
+  <span class='fu'>defer_parent</span>(<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>path</span>))
 }
 
 <span class='co'># create tempfile path</span>
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+<span class='kw'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 
 <span class='co'># use 'local_file' in a function</span>
 <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>local</a></span>({
-  <span class='fu'><a href='with_file.html'>local_file</a></span>(<span class='no'>path</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='no'>path</span>))
+  <span class='fu'>local_file</span>(<span class='kw'>path</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='kw'>path</span>))
 })
 
 <span class='co'># file is deleted as we leave 'local' local</span>
-<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(!<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='no'>path</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(<span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='kw'>path</span>))
 
 <span class='co'># investigate how 'defer' modifies the</span>
 <span class='co'># executing function's environment</span>
 <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>local</a></span>({
-  <span class='fu'><a href='with_file.html'>local_file</a></span>(<span class='no'>path</span>)
+  <span class='fu'>local_file</span>(<span class='kw'>path</span>)
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>()))
 })</div><div class='output co'>#&gt; $handlers
 #&gt; $handlers[[1]]
@@ -218,7 +218,7 @@ scenario is the main motivation for these functions.</p>
 #&gt; unlink(path)
 #&gt; 
 #&gt; $handlers[[1]]$envir
-#&gt; &lt;environment: 0x7ffe8ce51e20&gt;
+#&gt; &lt;environment: 0x7f7f226ded10&gt;
 #&gt; 
 #&gt; 
 #&gt; </div><div class='input'>

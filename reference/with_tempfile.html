@@ -140,20 +140,20 @@
     </div>
 
     <pre class="usage"><span class='fu'>with_tempfile</span>(
-  <span class='no'>new</span>,
-  <span class='no'>code</span>,
-  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
-  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"file"</span>,
-  <span class='kw'>tmpdir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-  <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>""</span>
+  <span class='kw'>new</span>,
+  <span class='kw'>code</span>,
+  envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
+  pattern = <span class='st'>"file"</span>,
+  tmpdir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+  fileext = <span class='st'>""</span>
 )
 
 <span class='fu'>local_tempfile</span>(
-  <span class='no'>new</span>,
-  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
-  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"file"</span>,
-  <span class='kw'>tmpdir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-  <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>""</span>
+  <span class='kw'>new</span>,
+  envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
+  pattern = <span class='st'>"file"</span>,
+  tmpdir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+  fileext = <span class='st'>""</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -192,11 +192,11 @@
 argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p></div>
+    <div class='dont-index'><p><code>withr</code> for examples</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># check how big iris would be if written as csv vs RDS</span>
-<span class='fu'>with_tempfile</span>(<span class='st'>"tf"</span>, {<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='no'>iris</span>, <span class='no'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='no'>tf</span>)})</div><div class='output co'>#&gt; [1] 4821</div><div class='input'><span class='fu'>with_tempfile</span>(<span class='st'>"tf"</span>, {<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span>(<span class='no'>iris</span>, <span class='no'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='no'>tf</span>)})</div><div class='output co'>#&gt; [1] 1093</div></pre>
+<span class='fu'>with_tempfile</span>(<span class='st'>"tf"</span>, {<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='kw'>iris</span>, <span class='kw'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='kw'>tf</span>)})</div><div class='output co'>#&gt; [1] 4821</div><div class='input'><span class='fu'>with_tempfile</span>(<span class='st'>"tf"</span>, {<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span>(<span class='kw'>iris</span>, <span class='kw'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='kw'>tf</span>)})</div><div class='output co'>#&gt; [1] 1095</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

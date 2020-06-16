@@ -139,9 +139,9 @@
     <p>Temporarily prepend a new temporary directory to the library paths.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_temp_libpaths</span>(<span class='no'>code</span>, <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"prefix"</span>)
+    <pre class="usage"><span class='fu'>with_temp_libpaths</span>(<span class='kw'>code</span>, action = <span class='st'>"prefix"</span>)
 
-<span class='fu'>local_temp_libpaths</span>(<span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"prefix"</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_temp_libpaths</span>(action = <span class='st'>"prefix"</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,10 +167,10 @@
 argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p>
+    <div class='dont-index'><p><code>withr</code> for examples</p>
 <p><code><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths()</a></code></p>
 <p>Other libpaths: 
-<code><a href='with_libpaths.html'>with_libpaths</a>()</code></p></div>
+<code>with_libpaths()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

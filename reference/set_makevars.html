@@ -136,14 +136,14 @@
     </div>
 
     <div class="ref-description">
-    <p>You probably want <code><a href='with_makevars.html'>with_makevars()</a></code> instead of this function.</p>
+    <p>You probably want <code>with_makevars()</code> instead of this function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>set_makevars</span>(
-  <span class='no'>variables</span>,
-  <span class='kw'>old_path</span> <span class='kw'>=</span> <span class='fu'><a href='makevars_user.html'>makevars_user</a></span>(),
-  <span class='kw'>new_path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(),
-  <span class='kw'>assignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>)
+  <span class='kw'>variables</span>,
+  old_path = <span class='fu'>makevars_user</span>(),
+  new_path = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(),
+  assignment = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -170,7 +170,7 @@ file to modify.</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Unlike <code><a href='with_makevars.html'>with_makevars()</a></code>, it does not activate the new <code>Makevars</code>
+    <p>Unlike <code>with_makevars()</code>, it does not activate the new <code>Makevars</code>
 file, i.e. it does not set the <code>R_MAKEVARS_USER</code> environment variable.</p>
 
   </div>

@@ -140,10 +140,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>with_makevars</span>(
-  <span class='no'>new</span>,
-  <span class='no'>code</span>,
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='makevars_user.html'>makevars_user</a></span>(),
-  <span class='kw'>assignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>)
+  <span class='kw'>new</span>,
+  <span class='kw'>code</span>,
+  path = <span class='fu'>makevars_user</span>(),
+  assignment = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -180,12 +180,12 @@ appended unchanged.  Fields which exist in <code>Makevars</code> and in <code>ne
 are modified to use the value in <code>new</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p></div>
+    <div class='dont-index'><p><code>withr</code> for examples</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"void foo(int* bar) { *bar = 1; }\n"</span>, <span class='st'>"foo.c"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/system.html'>system</a></span>(<span class='st'>"R CMD SHLIB --preclean -c foo.c"</span>)
-<span class='fu'>with_makevars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>CFLAGS</span> <span class='kw'>=</span> <span class='st'>"-O3"</span>), <span class='fu'><a href='https://rdrr.io/r/base/system.html'>system</a></span>(<span class='st'>"R CMD SHLIB --preclean -c foo.c"</span>))
+<span class='fu'>with_makevars</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(CFLAGS = <span class='st'>"-O3"</span>), <span class='fu'><a href='https://rdrr.io/r/base/system.html'>system</a></span>(<span class='st'>"R CMD SHLIB --preclean -c foo.c"</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo.c"</span>, <span class='st'>"foo.so"</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
