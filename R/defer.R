@@ -1,6 +1,8 @@
 #' @include compat-defer.R
 NULL
 
+defer_ns <- environment(defer)
+
 #' Defer Evaluation of an Expression
 #'
 #' Similar to [on.exit()], but allows one to attach
