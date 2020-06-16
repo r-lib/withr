@@ -273,13 +273,14 @@ local_jpeg(new, ..., .local_envir = parent.frame())
     \sQuote{Color models}.}
 
 \item{useDingbats}{logical.  Should small circles be rendered
-    \emph{via} the Dingbats font?  Defaults to \code{TRUE}, which produces
-    smaller and better output.  Setting this to \code{FALSE} can work
-    around font display problems in broken PDF viewers: although this
+    \emph{via} the Dingbats font?  Defaults to \code{FALSE}.
+    If \code{TRUE}, this can produce smaller and better output, but
+    there can font display problems in broken PDF viewers: although this
     font is one of the 14 guaranteed to be available in all PDF viewers,
     that guarantee is not always honoured.
 
-    On Unix-alikes (incl. Mac), see the \sQuote{Note} for a possible fix for some viewers.}
+    For Unix-alikes (including macOS) see the \sQuote{Note} for a
+    possible fix for some viewers.}
 
 \item{useKerning}{logical.  Should kerning corrections be included in
     setting text and calculating string widths?  Defaults to \code{TRUE}.}
