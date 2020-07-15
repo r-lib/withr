@@ -1,5 +1,7 @@
 # withr (development version)
 
+- New `local_seed()` function and `local_preserve_seed()` functions to correspond to `with_seed()` and `with_preserve_seed()` (#139).
+
 - `local_tempfile()` argument `new` is deprecated, in favor of returning the path to the new tempfile.
   calls like `local_tempfile("xyz")` should be replaced with `xyx <- local_tempfile()` in your code (#141).
 

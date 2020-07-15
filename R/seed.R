@@ -24,6 +24,22 @@ with_seed <- function(seed, code) {
 }
 
 #' @rdname with_seed
+local_seed <- function(seed, .local_envir = parent.frame()) {
+  old_seed <- get_seed()
+  set.seed(seed)
+
+  defer({
+    if (is.null(old_seed)) {
+      on.exit(rm_seed(), add = TRUE)
+    } else {
+      on.exit(set_seed(old_seed), add = TRUE)
+    }
+  }, envir = .local_envir)
+
+  invisible(seed)
+}
+
+#' @rdname with_seed
 #' @description
 #' `with_preserve_seed()` runs code with the current random seed and resets it
 #'   afterwards.
@@ -38,6 +54,22 @@ with_preserve_seed <- function(code) {
   }
 
   code
+}
+
+#' @rdname with_seed
+#' @export
+local_preserve_seed <- function(.local_envir = parent.frame()) {
+  old_seed <- get_seed()
+
+  defer({
+    if (is.null(old_seed)) {
+      on.exit(rm_seed(), add = TRUE)
+    } else {
+      on.exit(set_seed(old_seed), add = TRUE)
+    }
+  }, envir = .local_envir)
+
+  invisible(old_seed)
 }
 
 has_seed <- function() {

@@ -2,12 +2,18 @@
 % Please edit documentation in R/seed.R
 \name{with_seed}
 \alias{with_seed}
+\alias{local_seed}
 \alias{with_preserve_seed}
+\alias{local_preserve_seed}
 \title{Random seed}
 \usage{
 with_seed(seed, code)
 
+local_seed(seed, .local_envir = parent.frame())
+
 with_preserve_seed(code)
+
+local_preserve_seed(.local_envir = parent.frame())
 }
 \arguments{
 \item{seed}{\verb{[integer(1)]}\cr The random seed to use to evaluate the code.}
