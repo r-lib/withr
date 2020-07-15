@@ -31,13 +31,13 @@ test_that("local_tempdir cleans up after itself", {
 })
 
 test_that("local_tempdir leaves the directory if `clean = FALSE`", {
-  cur <- getwd()
+  cur <- normalizePath(getwd())
   dir <- character()
   local({
     dir <<- local_tempdir(clean = FALSE)
-    expect_equal(getwd(), normalizePath(dir))
+    expect_equal(normalizePath(getwd()), normalizePath(dir))
   })
-  expect_equal(getwd(), cur)
+  expect_equal(normalizePath(getwd()), cur)
   expect_true(dir.exists(dir))
 
   unlink(dir, recursive = TRUE)
