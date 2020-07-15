@@ -1,5 +1,8 @@
 # withr (development version)
 
+- `local_tempfile()` argument `new` is deprecated, in favor of returning the path to the new tempfile.
+  calls like `local_tempfile("xyz")` should be replaced with `xyx <- local_tempfile()` in your code (#141).
+
 - New `local_tempdir()` function added to create a temp directory and change to it in a local block (#140)
 
 # withr 2.2.0
