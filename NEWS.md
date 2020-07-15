@@ -1,5 +1,7 @@
 # withr (development version)
 
+- New `local_tempdir()` function added to create a temp directory and change to it in a local block (#140)
+
 # withr 2.2.0
 
 - `defer()` can set deferred events on `.GlobalEnv` to facilitate the interactive development of code inside a function or test.

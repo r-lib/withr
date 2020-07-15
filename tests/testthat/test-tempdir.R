@@ -18,3 +18,27 @@ test_that("tempdir will leave the directory alone if clean = FALSE", {
 
   expect_equal(readLines(file.path(tmp, "hello.txt")), "x")
 })
+
+test_that("local_tempdir cleans up after itself", {
+  cur <- getwd()
+  dir <- character()
+  local({
+    dir <<- local_tempdir()
+    expect_equal(getwd(), normalizePath(dir))
+  })
+  expect_equal(getwd(), cur)
+  expect_false(dir.exists(dir))
+})
+
+test_that("local_tempdir leaves the directory if `clean = FALSE`", {
+  cur <- getwd()
+  dir <- character()
+  local({
+    dir <<- local_tempdir(clean = FALSE)
+    expect_equal(getwd(), normalizePath(dir))
+  })
+  expect_equal(getwd(), cur)
+  expect_true(dir.exists(dir))
+
+  unlink(dir, recursive = TRUE)
+})

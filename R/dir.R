@@ -34,6 +34,29 @@ with_tempdir <- function(code, clean = TRUE) {
   dir.create(tmp)
   if (clean) {
     on.exit(unlink(tmp, recursive = TRUE), add = TRUE)
-  } 
+  }
   withr::with_dir(tmp, code)
+}
+
+#' @rdname local_tempdir
+#' @export
+local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
+                           fileext = "", .local_envir = parent.frame(), clean = TRUE) {
+  if (length(clean) > 1 || !is.logical(clean)) {
+    stop("`clean` must be a single TRUE or FALSE", call. = FALSE)
+  }
+
+  path <- tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext)
+
+  dir.create(path, recursive = TRUE)
+  old_dir <- setwd(path)
+
+    defer({
+      if (isTRUE(clean)) {
+        unlink(path, recursive = TRUE)
+      }
+      setwd(old_dir)
+    }, envir = .local_envir)
+
+  invisible(path)
 }
