@@ -14,9 +14,9 @@ NULL
 #' @inheritParams with_collate
 #' @seealso [setwd()]
 #' @export
-#' @examples 
+#' @examples
 #' getwd()
-#' 
+#'
 #' with_dir(tempdir(), getwd())
 with_dir <- with_(setwd)
 
@@ -38,10 +38,11 @@ with_tempdir <- function(code, clean = TRUE) {
   withr::with_dir(tmp, code)
 }
 
-#' @rdname local_tempdir
+#' @rdname with_dir
+#' @inheritParams with_tempfile
 #' @export
 local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
-                           fileext = "", .local_envir = parent.frame(), clean = TRUE) {
+                          fileext = "", .local_envir = parent.frame(), clean = TRUE) {
   if (length(clean) > 1 || !is.logical(clean)) {
     stop("`clean` must be a single TRUE or FALSE", call. = FALSE)
   }
