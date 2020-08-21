@@ -2,13 +2,13 @@
 #'
 #' Temporarily create a tempfile, which is automatically removed afterwards.
 #' @template with
-#' @param new `[character vector]`\cr (Deprecated) Names of temporary file handles to create.
+#' @param new `[character vector]`\cr (Deprecated for `local_tempfile()`) Names of temporary file handles to create.
 #' @param envir `[environment]`\cr Environment in which to define the temporary files.
 #' @inheritParams base::tempfile
 #' @examples
 #' # check how big iris would be if written as csv vs RDS
-#' tf <- with_tempfile({write.csv(iris, tf); file.size(tf)})
-#' tf <- with_tempfile({saveRDS(iris, tf); file.size(tf)})
+#' tf <- with_tempfile("tf", {write.csv(iris, tf); file.size(tf)})
+#' tf <- with_tempfile("tf", {saveRDS(iris, tf); file.size(tf)})
 #' @export
 with_tempfile <- function(new, code, envir = parent.frame(),
   pattern = "file", tmpdir = tempdir(), fileext = "") {

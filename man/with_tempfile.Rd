@@ -23,7 +23,7 @@ local_tempfile(
 )
 }
 \arguments{
-\item{new}{\verb{[character vector]}\cr (Deprecated) Names of temporary file handles to create.}
+\item{new}{\verb{[character vector]}\cr (Deprecated for \code{local_tempfile()}) Names of temporary file handles to create.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
@@ -45,8 +45,8 @@ Temporarily create a tempfile, which is automatically removed afterwards.
 }
 \examples{
 # check how big iris would be if written as csv vs RDS
-tf <- with_tempfile({write.csv(iris, tf); file.size(tf)})
-tf <- with_tempfile({saveRDS(iris, tf); file.size(tf)})
+tf <- with_tempfile("tf", {write.csv(iris, tf); file.size(tf)})
+tf <- with_tempfile("tf", {saveRDS(iris, tf); file.size(tf)})
 }
 \seealso{
 \code{\link{withr}} for examples
