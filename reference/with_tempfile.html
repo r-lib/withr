@@ -161,7 +161,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>new</th>
-      <td><p><code>[character vector]</code><br /> (Deprecated) Names of temporary file handles to create.</p></td>
+      <td><p><code>[character vector]</code><br /> (Deprecated for <code>local_tempfile()</code>) Names of temporary file handles to create.</p></td>
     </tr>
     <tr>
       <th>code</th>
@@ -196,7 +196,8 @@ argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># check how big iris would be if written as csv vs RDS</span>
-<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'>with_tempfile</span>({<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='no'>iris</span>, <span class='no'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='no'>tf</span>)})</div><div class='output co'>#&gt; <span class='error'>Error in write.table(iris, tf, col.names = NA, sep = ",", dec = ".", qmethod = "double"): object 'tf' not found</span></div><div class='input'><span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'>with_tempfile</span>({<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span>(<span class='no'>iris</span>, <span class='no'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='no'>tf</span>)})</div><div class='output co'>#&gt; <span class='error'>Error in saveRDS(iris, tf): object 'tf' not found</span></div></pre>
+<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'>with_tempfile</span>(<span class='st'>"tf"</span>, {<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='no'>iris</span>, <span class='no'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='no'>tf</span>)})
+<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'>with_tempfile</span>(<span class='st'>"tf"</span>, {<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span>(<span class='no'>iris</span>, <span class='no'>tf</span>); <span class='fu'><a href='https://rdrr.io/r/base/file.info.html'>file.size</a></span>(<span class='no'>tf</span>)})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
