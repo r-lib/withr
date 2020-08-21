@@ -204,17 +204,17 @@ par("col")
 }
 <span class="fu">read_temp</span>()
 <span class="co">#&gt; [1] "foo" "bar"</span></pre></body></html></div>
-<p><code><a href="../../reference/with_db_connection.html">with_db_connection()</a></code> provides <a href="http://rstats-db.github.io/DBI">DBI</a> connections to databases which automatically call <code><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">DBI::dbDisconnect()</a></code>. Here we create a new <a href="https://www.sqlite.org/">SQLite</a> database, connect to it with <code><a href="../../reference/with_db_connection.html">with_db_connection()</a></code>, and write a new table to it. We then create another connection with <code><a href="../../reference/with_db_connection.html">local_db_connection()</a></code> and read from the table.</p>
+<p><code><a href="../../reference/with_db_connection.html">with_db_connection()</a></code> provides <a href="http://rstats-db.github.io/DBI">DBI</a> connections to databases which automatically call <code><a href="https://rdrr.io/pkg/DBI/man/dbDisconnect.html">DBI::dbDisconnect()</a></code>. Here we create a new <a href="https://www.sqlite.org/">SQLite</a> database, connect to it with <code><a href="../../reference/with_db_connection.html">with_db_connection()</a></code>, and write a new table to it. We then create another connection with <code><a href="../../reference/with_db_connection.html">local_db_connection()</a></code> and read from the table.</p>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">db</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>()
 <span class="fu"><a href="../../reference/with_db_connection.html">with_db_connection</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">con</span> <span class="kw">=</span> <span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span>(<span class="kw pkg">RSQLite</span><span class="kw ns">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="no">db</span>)), {
-    <span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span>(<span class="no">con</span>, <span class="st">"mtcars"</span>, <span class="no">mtcars</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">con</span> <span class="kw">=</span> <span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/DBI/man/dbConnect.html">dbConnect</a></span>(<span class="kw pkg">RSQLite</span><span class="kw ns">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="no">db</span>)), {
+    <span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/DBI/man/dbWriteTable.html">dbWriteTable</a></span>(<span class="no">con</span>, <span class="st">"mtcars"</span>, <span class="no">mtcars</span>)
 })
 <span class="co">#&gt; Loading required namespace: DBI</span>
 
 <span class="no">head_db_table</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">...</span>) {
-  <span class="no">con</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/with_db_connection.html">local_db_connection</a></span>(<span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span>(<span class="kw pkg">RSQLite</span><span class="kw ns">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="no">db</span>))
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span>(<span class="no">con</span>, <span class="st">"mtcars"</span>), <span class="no">...</span>)
+  <span class="no">con</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/with_db_connection.html">local_db_connection</a></span>(<span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/DBI/man/dbConnect.html">dbConnect</a></span>(<span class="kw pkg">RSQLite</span><span class="kw ns">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="no">db</span>))
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/DBI/man/dbReadTable.html">dbReadTable</a></span>(<span class="no">con</span>, <span class="st">"mtcars"</span>), <span class="no">...</span>)
 }
 <span class="fu">head_db_table</span>()
 <span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
@@ -244,7 +244,7 @@ par("col")
   <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="st">"foo"</span>, <span class="no">file1</span>)
   <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="no">file1</span>)
 })
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpa33oZz/file7e141e67d06"</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpHP6QOP/file80b2cf9a92a"</span>
 <span class="co">#&gt; [1] "foo"</span></pre></body></html></div>
 </div>
 <div id="other-changes" class="section level2">
