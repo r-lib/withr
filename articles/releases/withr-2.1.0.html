@@ -86,7 +86,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="withr-2.1.0_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>withr 2.1.0</h1>
@@ -103,93 +103,77 @@
     
 <p><a href="http://withr.r-lib.org/news/index.html">withr 2.1.0</a> is now available on CRAN! <a href="http://withr.r-lib.org">withr</a> makes working with global state in R safer and less error prone. It has only base package dependencies so is easily included in packages.</p>
 <p>Install the latest version with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"withr"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"withr"</span>)</pre></body></html></div>
 <div id="whither-withr" class="section level1">
 <h1 class="hasAnchor">
 <a href="#whither-withr" class="anchor"></a>Whither withr?</h1>
 <p>Many functions in R modify global state in some fashion. Some common examples are <code><a href="https://rdrr.io/r/graphics/par.html">par()</a></code> for graphics parameters, <code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code> to change the current directory and <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> to set a global option. Using these functions is handy when using R interactively, because you can set them early in your experimentation and they will remain set for the duration of the session. However this makes programming with these settings difficult, because they make your function impure by modifying a global state. Therefore you should always strive to reset the previous state when the function exits.</p>
 <p>One common idiom for dealing with this problem is to save the current state, make your change, then restore the previous state.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="kw">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">old</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>)
 }
-<span class="fu">my_plot</span>()
-</pre></div>
+<span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr-2.1.0_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
-<span class="co">#&gt; [1] "black"</span>
-</pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
+<span class="co">#&gt; [1] "black"</span></pre></body></html></div>
 <p>However this approach can fail if there’s an error before you are able to reset the options.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="kw">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hpp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">old</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>)
 }
 <span class="fu">my_plot</span>()
 <span class="co">#&gt; Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
-<span class="co">#&gt; [1] "red"</span>
-</pre></div>
+<span class="co">#&gt; [1] "red"</span></pre></body></html></div>
 <p>Using the base function <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> is a robust solution to this problem. <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> will run the code when the function is exited, regardless of whether it exits normally or with an error.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="kw">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">old</span>))
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hpp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
 }
 <span class="fu">my_plot</span>()
 <span class="co">#&gt; Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
 <span class="co">#&gt; [1] "black"</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(test = <span class="fl">1</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">test</span> <span class="kw">=</span> <span class="fl">1</span>)
 {
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"test"</span>))
-  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(test = <span class="fl">2</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">test</span> <span class="kw">=</span> <span class="fl">2</span>))
 }
 <span class="co">#&gt; [1] 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"test"</span>)
-<span class="co">#&gt; [1] 2</span>
-</pre></div>
+<span class="co">#&gt; [1] 2</span></pre></body></html></div>
 <p>However this solution is somewhat cumbersome to work with. You need to remember to use an <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> call after each stateful call. In addition by default each <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> action will overwrite any previous <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> action in the same function unless you use the <code>add = TRUE</code> option. <code>add = TRUE</code> also adds additional code to the <em>end</em> of existing code, which means the code is not run in the <a href="https://en.wikipedia.org/wiki/FIFO_and_LIFO_accounting">Last-In, First-Out</a> order you would generally prefer. It is also not possible to have this cleanup code performed before the function has finished.</p>
 <p><a href="http://withr.r-lib.org">withr</a> is a solution to these issues. It defines a <a href="http://withr.r-lib.org/#withr---run-code-with-modified-state">large set of functions</a> for dealing with global settings in R, such as <code><a href="../../reference/with_par.html">with_par()</a></code>. These functions set one of the global settings for the duration of a block of code, then automatically reset it after the block is completed.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="fu"><a href="../../reference/with_par.html">with_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>),
-    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="fu"><a href="../../reference/with_par.html">with_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>),
+    <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
   )
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
 }
-<span class="fu">my_plot</span>()
-</pre></div>
+<span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr-2.1.0_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <pre><code><a href="https://rdrr.io/r/graphics/par.html">#&gt; [1] "black"
 par("col")
 #&gt; [1] "black"</a></code></pre>
 <p>In addition to the <code>with_*</code> functions there are <code>local_*</code> variants whose effects last until the end of the function they are included in. These work similar to <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>, but you can set the options in one call rather than two.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="fu"><a href="../../reference/with_par.html">local_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>))
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="fu"><a href="../../reference/with_par.html">local_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
 }
-<span class="fu">my_plot</span>()
-</pre></div>
+<span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr-2.1.0_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
-<span class="co">#&gt; [1] "black"</span>
-</pre></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
+<span class="co">#&gt; [1] "black"</span></pre></body></html></div>
 </div>
 <div id="new-features" class="section level1">
 <h1 class="hasAnchor">
@@ -200,12 +184,10 @@ par("col")
 <a href="#graphics-devices" class="anchor"></a>Graphics devices</h2>
 <p>There are now a comprehensive set of functions to deal with R’s builtin <a href="http://withr.r-lib.org/reference/devices.html">graphics devices</a>.</p>
 <p>These functions open a new graphics device, run some code, then automatically close the device.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">path</span> <span class="op">&lt;-</span> <span class="st">"test.png"</span>
-<span class="fu"><a href="../../reference/devices.html">with_png</a></span>(<span class="kw">path</span>, width = <span class="fl">400</span>, height = <span class="fl">300</span>, {
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">mpg</span>)
-})
-</pre></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">path</span> <span class="kw">&lt;-</span> <span class="st">"test.png"</span>
+<span class="fu"><a href="../../reference/devices.html">with_png</a></span>(<span class="no">path</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">400</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">300</span>, {
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">mpg</span>)
+})</pre></body></html></div>
 <p><img src="test.png"></p>
 <p>Thanks to <a href="https://github.com/richierocks">Richard Cotton’s</a> great <a href="https://github.com/r-lib/withr/pull/37">pull request</a> for this feature!</p>
 </div>
@@ -213,29 +195,26 @@ par("col")
 <h2 class="hasAnchor">
 <a href="#connections" class="anchor"></a>Connections</h2>
 <p>There are two new functions for cleaning up connections in R. <code><a href="../../reference/with_connection.html">with_connection()</a></code> allows you to automatically close R’s file connections. Here we create a writable file connection, write some lines to it with <code><a href="../../reference/with_connection.html">with_connection()</a></code>, then open a read-only connection and read the file using <code><a href="../../reference/with_connection.html">local_connection()</a></code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../../reference/with_connection.html">with_connection</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(con = <span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span>(<span class="st">"temp"</span>, <span class="st">"w"</span>)), {
-  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"foo"</span>, <span class="st">"bar"</span>), <span class="kw">con</span>)
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../../reference/with_connection.html">with_connection</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">con</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span>(<span class="st">"temp"</span>, <span class="st">"w"</span>)), {
+  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"foo"</span>, <span class="st">"bar"</span>), <span class="no">con</span>)
 })
-<span class="kw">read_temp</span> <span class="op">&lt;-</span> <span class="fu">function</span>() {
-  <span class="kw">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/with_connection.html">local_connection</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span>(<span class="st">"temp"</span>, <span class="st">"r"</span>))
-  <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="kw">con</span>)
+<span class="no">read_temp</span> <span class="kw">&lt;-</span> <span class="kw">function</span>() {
+  <span class="no">con</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/with_connection.html">local_connection</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span>(<span class="st">"temp"</span>, <span class="st">"r"</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="no">con</span>)
 }
 <span class="fu">read_temp</span>()
-<span class="co">#&gt; [1] "foo" "bar"</span>
-</pre></div>
+<span class="co">#&gt; [1] "foo" "bar"</span></pre></body></html></div>
 <p><code><a href="../../reference/with_db_connection.html">with_db_connection()</a></code> provides <a href="http://rstats-db.github.io/DBI">DBI</a> connections to databases which automatically call <code><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">DBI::dbDisconnect()</a></code>. Here we create a new <a href="https://www.sqlite.org/">SQLite</a> database, connect to it with <code><a href="../../reference/with_db_connection.html">with_db_connection()</a></code>, and write a new table to it. We then create another connection with <code><a href="../../reference/with_db_connection.html">local_db_connection()</a></code> and read from the table.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>()
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">db</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>()
 <span class="fu"><a href="../../reference/with_db_connection.html">with_db_connection</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(con = <span class="kw">DBI</span>::<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span>(<span class="kw">RSQLite</span>::<span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="kw">db</span>)), {
-    <span class="kw">DBI</span>::<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span>(<span class="kw">con</span>, <span class="st">"mtcars"</span>, <span class="kw">mtcars</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">con</span> <span class="kw">=</span> <span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span>(<span class="kw pkg">RSQLite</span><span class="kw ns">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="no">db</span>)), {
+    <span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable</a></span>(<span class="no">con</span>, <span class="st">"mtcars"</span>, <span class="no">mtcars</span>)
 })
 <span class="co">#&gt; Loading required namespace: DBI</span>
 
-<span class="kw">head_db_table</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">...</span>) {
-  <span class="kw">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/with_db_connection.html">local_db_connection</a></span>(<span class="kw">DBI</span>::<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span>(<span class="kw">RSQLite</span>::<span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="kw">db</span>))
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">DBI</span>::<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span>(<span class="kw">con</span>, <span class="st">"mtcars"</span>), <span class="kw">...</span>)
+<span class="no">head_db_table</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">...</span>) {
+  <span class="no">con</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/with_db_connection.html">local_db_connection</a></span>(<span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span>(<span class="kw pkg">RSQLite</span><span class="kw ns">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span>(), <span class="no">db</span>))
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw pkg">DBI</span><span class="kw ns">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html">dbReadTable</a></span>(<span class="no">con</span>, <span class="st">"mtcars"</span>), <span class="no">...</span>)
 }
 <span class="fu">head_db_table</span>()
 <span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
@@ -245,33 +224,28 @@ par("col")
 <span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
 <span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
 <span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="kw">db</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="no">db</span>)</pre></body></html></div>
 </div>
 <div id="packages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#packages" class="anchor"></a>Packages</h2>
 <p><code><a href="../../reference/with_package.html">with_package()</a></code> allows you to temporarily attach a package.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../../reference/with_package.html">with_package</a></span>(<span class="st">"lattice"</span>, {
-  <span class="fu">xyplot</span>(<span class="kw">y</span> <span class="op">~</span> <span class="kw">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(x = <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, y = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span>(<span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>)))
-})
-</pre></div>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../../reference/with_package.html">with_package</a></span>(<span class="st">"lattice"</span>, {
+  <span class="fu">xyplot</span>(<span class="no">y</span> ~ <span class="no">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> -<span class="fl">2</span>:<span class="fl">2</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span>(-<span class="fl">2</span>:<span class="fl">2</span>)))
+})</pre></body></html></div>
 <p><img src="withr-2.1.0_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
 <div id="tempfiles" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tempfiles" class="anchor"></a>Tempfiles</h2>
 <p><code><a href="../../reference/with_tempfile.html">with_tempfile()</a></code> handy for creating a new temporary files that are removed, often useful when writing tests.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="../../reference/with_tempfile.html">with_tempfile</a></span>(<span class="st">"file1"</span>, {
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">file1</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="st">"foo"</span>, <span class="kw">file1</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="kw">file1</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../../reference/with_tempfile.html">with_tempfile</a></span>(<span class="st">"file1"</span>, {
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">file1</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="st">"foo"</span>, <span class="no">file1</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="no">file1</span>)
 })
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpyULxzl/file94140a20c3"</span>
-<span class="co">#&gt; [1] "foo"</span>
-</pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpltqe2a/fileaf85dc85faa"</span>
+<span class="co">#&gt; [1] "foo"</span></pre></body></html></div>
 </div>
 <div id="other-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -298,7 +272,7 @@ par("col")
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

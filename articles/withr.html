@@ -85,13 +85,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="withr_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>withr</h1>
                         <h4 class="author">Jim Hester</h4>
             
-            <h4 class="date">2020-06-16</h4>
+            <h4 class="date">2020-08-21</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/r-lib/withr/blob/master/vignettes/withr.Rmd"><code>vignettes/withr.Rmd</code></a></small>
       <div class="hidden name"><code>withr.Rmd</code></div>
@@ -105,85 +105,71 @@
 <a href="#whither-withr" class="anchor"></a>Whither withr?</h1>
 <p>Many functions in R modify global state in some fashion. Some common examples are <code><a href="https://rdrr.io/r/graphics/par.html">par()</a></code> for graphics parameters, <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> to change the current directory and <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> to set a global option. Using these functions is handy when using R interactively, because you can set them early in your experimentation and they will remain set for the duration of the session. However this makes programming with these settings difficult, because they make your function impure by modifying a global state. Therefore you should always strive to reset the previous state when the function exits.</p>
 <p>One common idiom for dealing with this problem is to save the current state, make your change, then restore the previous state.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="kw">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">old</span>)
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>)
 }
-<span class="fu">my_plot</span>()
-</pre></div>
+<span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
-<span class="co">#&gt; [1] "black"</span>
-</pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
+<span class="co">#&gt; [1] "black"</span></pre></body></html></div>
 <p>However this approach can fail if there’s an error before you are able to reset the options.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="kw">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hpp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">old</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>)
 }
 <span class="fu">my_plot</span>()
 <span class="co">#&gt; Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
-<span class="co">#&gt; [1] "red"</span>
-</pre></div>
+<span class="co">#&gt; [1] "red"</span></pre></body></html></div>
 <p>Using the base function <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> is a robust solution to this problem. <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> will run the code when the function is exited, regardless of whether it exits normally or with an error.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="kw">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">old</span>))
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hpp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="no">old</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">old</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hpp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
 }
 <span class="fu">my_plot</span>()
 <span class="co">#&gt; Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
 <span class="co">#&gt; [1] "black"</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(test = <span class="fl">1</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">test</span> <span class="kw">=</span> <span class="fl">1</span>)
 {
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"test"</span>))
-  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(test = <span class="fl">2</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">test</span> <span class="kw">=</span> <span class="fl">2</span>))
 }
 <span class="co">#&gt; [1] 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"test"</span>)
-<span class="co">#&gt; [1] 2</span>
-</pre></div>
+<span class="co">#&gt; [1] 2</span></pre></body></html></div>
 <p>However this solution is somewhat cumbersome to work with. You need to remember to use an <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> call after each stateful call. In addition by default each <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> action will overwrite any previous <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> action in the same function unless you use the <code>add = TRUE</code> option. <code>add = TRUE</code> also adds additional code to the <em>end</em> of existing code, which means the code is not run in the <a href="https://en.wikipedia.org/wiki/FIFO_and_LIFO_accounting">Last-In, First-Out</a> order you would generally prefer. It is also not possible to have this cleanup code performed before the function has finished.</p>
 <p><a href="http://withr.r-lib.org">withr</a> is a solution to these issues. It defines a <a href="http://withr.r-lib.org/#withr---run-code-with-modified-state">large set of functions</a> for dealing with global settings in R, such as <code><a href="../reference/with_par.html">with_par()</a></code>. These functions set one of the global settings for the duration of a block of code, then automatically reset it after the block is completed.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="fu"><a href="../reference/with_par.html">with_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>),
-    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="fu"><a href="../reference/with_par.html">with_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>),
+    <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
   )
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
 }
-<span class="fu">my_plot</span>()
-</pre></div>
+<span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <pre><code><a href="https://rdrr.io/r/graphics/par.html">#&gt; [1] "black"
 par("col")
 #&gt; [1] "black"</a></code></pre>
 <p>In addition to the <code>with_*</code> functions there are <code>local_*</code> variants whose effects last until the end of the function they are included in. These work similar to <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>, but you can set the options in one call rather than two.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> = <span class="st">"black"</span>)
-<span class="kw">my_plot</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">new</span>) {
-  <span class="fu"><a href="../reference/with_par.html">local_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="st">"red"</span>, pch = <span class="fl">19</span>))
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">mtcars</span><span class="op">$</span><span class="kw">hp</span>, <span class="kw">mtcars</span><span class="op">$</span><span class="kw">wt</span>)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span> <span class="kw">=</span> <span class="st">"black"</span>)
+<span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">new</span>) {
+  <span class="fu"><a href="../reference/with_par.html">local_par</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>))
+  <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">mtcars</span>$<span class="no">hp</span>, <span class="no">mtcars</span>$<span class="no">wt</span>)
 }
-<span class="fu">my_plot</span>()
-</pre></div>
+<span class="fu">my_plot</span>()</pre></body></html></div>
 <p><img src="withr_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
-<span class="co">#&gt; [1] "black"</span>
-</pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"col"</span>)
+<span class="co">#&gt; [1] "black"</span></pre></body></html></div>
 </div>
   </div>
 
@@ -202,7 +188,7 @@ par("col")
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

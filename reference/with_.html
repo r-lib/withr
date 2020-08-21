@@ -141,13 +141,13 @@ for an overview." />
     <div class="ref-description">
     <p>These are constructors for <code>with_...</code> or <code>local_...</code> functions.
 They are only needed if you want to alter some global state which is not
-covered by the existing <code>with_...</code> functions, see withr
+covered by the existing <code>with_...</code> functions, see <a href='withr.html'>withr</a>
 for an overview.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>local_</span>(<span class='kw'>set</span>, reset = <span class='kw'>set</span>, envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), new = <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>local_</span>(<span class='no'>set</span>, <span class='kw'>reset</span> <span class='kw'>=</span> <span class='no'>set</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), <span class='kw'>new</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>with_</span>(<span class='kw'>set</span>, reset = <span class='kw'>set</span>, envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), new = <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>with_</span>(<span class='no'>set</span>, <span class='kw'>reset</span> <span class='kw'>=</span> <span class='no'>set</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), <span class='kw'>new</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,31 +192,31 @@ reset their arguments after they go out of scope, usually at the end of the
 function body.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>with_</span>(<span class='kw'>setwd</span>)</div><div class='output co'>#&gt; function (new, code) 
+    <pre class="examples"><div class='input'><span class='fu'>with_</span>(<span class='no'>setwd</span>)</div><div class='output co'>#&gt; function (new, code) 
 #&gt; {
 #&gt;     old &lt;- setwd(dir = new)
 #&gt;     on.exit(setwd(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7f7f23470c58&gt;</div><div class='input'>
-<span class='kw'>global_stack</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
-<span class='kw'>set_global_state</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>state</span>, <span class='kw'>msg</span> = <span class='st'>"Changing global state."</span>) {
-  <span class='kw'>global_stack</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>state</span>), <span class='kw'>global_stack</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='kw'>msg</span>)
-  <span class='kw'>state</span>
+#&gt; &lt;environment: 0x7fbdf4ebd228&gt;</div><div class='input'>
+<span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
+<span class='no'>set_global_state</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>state</span>, <span class='no'>msg</span> <span class='kw'>=</span> <span class='st'>"Changing global state."</span>) {
+  <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>state</span>), <span class='no'>global_stack</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='no'>msg</span>)
+  <span class='no'>state</span>
 }
-<span class='kw'>reset_global_state</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>state</span>) {
-  <span class='kw'>old_state</span> <span class='op'>&lt;-</span> <span class='kw'>global_stack</span>[[<span class='fl'>1</span>]]
-  <span class='kw'>global_stack</span> <span class='op'>&lt;-</span> <span class='kw'>global_stack</span>[<span class='op'>-</span><span class='fl'>1</span>]
-  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='kw'>state</span>, <span class='kw'>old_state</span>))
+<span class='no'>reset_global_state</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>state</span>) {
+  <span class='no'>old_state</span> <span class='kw'>&lt;-</span> <span class='no'>global_stack</span><span class='kw'>[[</span><span class='fl'>1</span>]]
+  <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='no'>global_stack</span>[-<span class='fl'>1</span>]
+  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='no'>state</span>, <span class='no'>old_state</span>))
 }
-<span class='fu'>with_</span>(<span class='kw'>set_global_state</span>, <span class='kw'>reset_global_state</span>)</div><div class='output co'>#&gt; function (new, code, msg = "Changing global state.") 
+<span class='fu'>with_</span>(<span class='no'>set_global_state</span>, <span class='no'>reset_global_state</span>)</div><div class='output co'>#&gt; function (new, code, msg = "Changing global state.") 
 #&gt; {
 #&gt;     old &lt;- set_global_state(state = new, msg = msg)
 #&gt;     on.exit(reset_global_state(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7f7f23470c58&gt;</div></pre>
+#&gt; &lt;environment: 0x7fbdf4ebd228&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -232,7 +232,7 @@ function body.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

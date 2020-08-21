@@ -174,16 +174,16 @@ function).</p>
     
 
 <ul>
-<li><p><code>with_collate()</code>: collation order</p></li>
-<li><p><code>with_dir()</code>: working directory</p></li>
-<li><p><code>with_envvar()</code>: environment variables</p></li>
-<li><p><code>with_libpaths()</code>: library paths, replacing current libpaths</p></li>
-<li><p><code>with_locale()</code>: any locale setting</p></li>
-<li><p><code>with_makevars()</code>: Makevars variables</p></li>
-<li><p><code>with_options()</code>: options</p></li>
-<li><p><code>with_par()</code>: graphics parameters</p></li>
-<li><p><code>with_path()</code>: <code>PATH</code> environment variable</p></li>
-<li><p><code>with_sink()</code>: output redirection</p></li>
+<li><p><code><a href='with_collate.html'>with_collate()</a></code>: collation order</p></li>
+<li><p><code><a href='with_dir.html'>with_dir()</a></code>: working directory</p></li>
+<li><p><code><a href='with_envvar.html'>with_envvar()</a></code>: environment variables</p></li>
+<li><p><code><a href='with_libpaths.html'>with_libpaths()</a></code>: library paths, replacing current libpaths</p></li>
+<li><p><code><a href='with_locale.html'>with_locale()</a></code>: any locale setting</p></li>
+<li><p><code><a href='with_makevars.html'>with_makevars()</a></code>: Makevars variables</p></li>
+<li><p><code><a href='with_options.html'>with_options()</a></code>: options</p></li>
+<li><p><code><a href='with_par.html'>with_par()</a></code>: graphics parameters</p></li>
+<li><p><code><a href='with_path.html'>with_path()</a></code>: <code>PATH</code> environment variable</p></li>
+<li><p><code><a href='with_sink.html'>with_sink()</a></code>: output redirection</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="creating-new-with-functions"><a class="anchor" href="#creating-new-with-functions"></a>Creating new "with" functions</h2>
@@ -191,7 +191,7 @@ function).</p>
     
 
 <p>All <code>with_</code> functions are created by a helper function,
-<code>with_()</code>.  This functions accepts two arguments:
+<code><a href='with_.html'>with_()</a></code>.  This functions accepts two arguments:
 a setter function and an optional resetter function.  The setter function is
 expected to change the global state and return an "undo instruction".
 This undo instruction is then passed to the resetter function, which changes
@@ -206,32 +206,16 @@ naturally as resetter.</p>
 </ul>
 
 </div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p><strong>Maintainer</strong>: Jim Hester <a href='mailto:james.f.hester@gmail.com'>james.f.hester@gmail.com</a></p>
-<p>Authors:</p><ul>
-<li><p>Kirill Müller <a href='mailto:krlmlr+r@mailbox.org'>krlmlr+r@mailbox.org</a></p></li>
-<li><p>Kevin Ushey <a href='mailto:kevinushey@gmail.com'>kevinushey@gmail.com</a></p></li>
-<li><p>Hadley Wickham <a href='mailto:hadley@rstudio.com'>hadley@rstudio.com</a></p></li>
-<li><p>Winston Chang</p></li>
-</ul>
-
-<p>Other contributors:</p><ul>
-<li><p>Richard Cotton [contributor]</p></li>
-<li><p>RStudio [copyright holder]</p></li>
-</ul>
-
-
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpDRXMtu/file8851788c4f0/reference"</div><div class='input'><span class='fu'>with_dir</span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>())</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpDRXMtu"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpDRXMtu/file8851788c4f0/reference"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)</div><div class='output co'>#&gt; [1] ""</div><div class='input'><span class='fu'>with_envvar</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"WITHR"</span> = <span class='fl'>2</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>))</div><div class='output co'>#&gt; [1] "2"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)</div><div class='output co'>#&gt; [1] ""</div><div class='input'>
-<span class='fu'>with_envvar</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span> = <span class='fl'>1</span>),
-  <span class='fu'>with_envvar</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span> = <span class='fl'>2</span>), action = <span class='st'>"suffix"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"A"</span>))
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6h8Uzt/filea177c4c98da/reference"</div><div class='input'><span class='fu'><a href='with_dir.html'>with_dir</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>())</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6h8Uzt"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6h8Uzt/filea177c4c98da/reference"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)</div><div class='output co'>#&gt; [1] ""</div><div class='input'><span class='fu'><a href='with_envvar.html'>with_envvar</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"WITHR"</span> <span class='kw'>=</span> <span class='fl'>2</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>))</div><div class='output co'>#&gt; [1] "2"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)</div><div class='output co'>#&gt; [1] ""</div><div class='input'>
+<span class='fu'><a href='with_envvar.html'>with_envvar</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span> <span class='kw'>=</span> <span class='fl'>1</span>),
+  <span class='fu'><a href='with_envvar.html'>with_envvar</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span> <span class='kw'>=</span> <span class='fl'>2</span>), <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"suffix"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"A"</span>))
 )</div><div class='output co'>#&gt; [1] "1 2"</div><div class='input'>
 <span class='co'># local variants are best used within other functions</span>
-<span class='kw'>f</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>x</span>) {
-  <span class='fu'>local_envvar</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"WITHR"</span> = <span class='fl'>2</span>))
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
+  <span class='fu'><a href='with_envvar.html'>local_envvar</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"WITHR"</span> <span class='kw'>=</span> <span class='fl'>2</span>))
   <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)
 }
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)</div><div class='output co'>#&gt; [1] ""</div></pre>
@@ -250,7 +234,7 @@ naturally as resetter.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
