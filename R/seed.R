@@ -4,6 +4,7 @@
 #'
 #' @template with
 #' @param seed `[integer(1)]`\cr The random seed to use to evaluate the code.
+#' @param .local_envir `[environment]`\cr The environment to use for scoping.
 #' @examples
 #' # Same random values:
 #' with_preserve_seed(runif(5))

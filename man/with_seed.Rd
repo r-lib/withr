@@ -19,6 +19,8 @@ local_preserve_seed(.local_envir = parent.frame())
 \item{seed}{\verb{[integer(1)]}\cr The random seed to use to evaluate the code.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
