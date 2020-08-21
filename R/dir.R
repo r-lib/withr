@@ -53,10 +53,10 @@ local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
   old_dir <- setwd(path)
 
     defer({
+      setwd(old_dir)
       if (isTRUE(clean)) {
         unlink(path, recursive = TRUE)
       }
-      setwd(old_dir)
     }, envir = .local_envir)
 
   invisible(path)
