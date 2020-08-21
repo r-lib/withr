@@ -20,13 +20,13 @@ test_that("tempdir will leave the directory alone if clean = FALSE", {
 })
 
 test_that("local_tempdir cleans up after itself", {
-  cur <- getwd()
+  cur <- normalizePath(getwd())
   dir <- character()
   local({
     dir <<- local_tempdir()
-    expect_equal(getwd(), normalizePath(dir))
+    expect_equal(normalizePath(getwd()), normalizePath(dir))
   })
-  expect_equal(getwd(), cur)
+  expect_equal(normalizePath(getwd()), cur)
   expect_false(dir.exists(dir))
 })
 
