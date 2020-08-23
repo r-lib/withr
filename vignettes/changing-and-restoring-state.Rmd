@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 library(withr)
 ```
 
+<!-- This vignette uses a git-diff-friendly convention of ONE LINE PER SENTENCE. -->
+
 This article explains the type of problem withr solves and shows typical patterns of usage.
 It also compares withr's functionality to the `on.exit()` function from base R.
 
@@ -86,7 +88,8 @@ pi
 `on.exit()` also works when you exit the function abnormally, i.e. due to error.
 This is why official tools, like `on.exit()`, are a better choice than any do-it-yourself solution to this problem.
 
-`on.exit()` is a very useful function, but it's not very flexible. The withr package provides an extensible `on.exit()`-inspired toolkit.
+`on.exit()` is a very useful function, but it's not very flexible.
+The withr package provides an extensible `on.exit()`-inspired toolkit.
 
 ## `defer()` is the foundation of withr
 
@@ -113,7 +116,8 @@ pi
 1. Control over the environment the deferred events are associated with
 1. Ability to work with the global environment
 
-Here we focus on using withr inside your functions. See the blog post [Self-cleaning test fixtures](https://www.tidyverse.org/blog/2020/04/self-cleaning-test-fixtures/) or the testthat vignette [Test fixtures](https://testthat.r-lib.org/articles/test-fixtures.html) for how to use withr inside tests.
+Here we focus on using withr inside your functions.
+See the blog post [Self-cleaning test fixtures](https://www.tidyverse.org/blog/2020/04/self-cleaning-test-fixtures/) or the testthat vignette [Test fixtures](https://testthat.r-lib.org/articles/test-fixtures.html) for how to use withr inside tests.
 
 ## Last-in, first-out
 
@@ -143,7 +147,8 @@ on_exit_last_one_wins <- function() {
 on_exit_last_one_wins()
 ```
 
-Oops, we still have our socks on! The last-in, first-out, stack-like behaviour of `defer()` tends to be what you want in most applications.
+Oops, we still have our socks on!
+The last-in, first-out, stack-like behaviour of `defer()` tends to be what you want in most applications.
 
 To get such behaviour with `on.exit()`, remember to call it with `add = TRUE, after = FALSE`[^on-exit-after].
 
@@ -301,7 +306,8 @@ Why would you want this?
 
 The answer is: for development purposes.
 
-If you are developing functions or tests that use withr, it's very useful to be able to execute that code interactively, without error, and with the ability to trigger the deferred events. It's hard to develop with functions that work one way inside a function, but another way in the global environment (or, worse, throw an error).
+If you are developing functions or tests that use withr, it's very useful to be able to execute that code interactively, without error, and with the ability to trigger the deferred events.
+It's hard to develop with functions that work one way inside a function, but another way in the global environment (or, worse, throw an error).
 
 Here's how `defer()` (and all functions based on it) works in an interactive session.
 
@@ -316,7 +322,7 @@ defer(print("hi"))
 pi
 #> [1] 3.141593
 
-# this adds a deferred event, but does not re-message
+# this adds another deferred event, but does not re-message
 local_digits(3)
 
 pi
