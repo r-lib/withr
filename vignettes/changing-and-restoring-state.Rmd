@@ -154,7 +154,7 @@ To get such behaviour with `on.exit()`, remember to call it with `add = TRUE, af
 
 [^on-exit-after]: Note: the `after` argument of `on.exit()` first appeared in R 3.5.0.
 
-```{r}
+```{r, eval = getRversion() >= "3.5.0"}
 on_exit_stack <- function() {
   cat("put on socks\n")
   on.exit(cat("take off socks\n"), add = TRUE, after = FALSE)
