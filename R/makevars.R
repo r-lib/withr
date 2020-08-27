@@ -84,6 +84,7 @@ with_makevars <- function(new, code, path = makevars_user(), assignment = c("=",
   })
 }
 
+#' @export
 local_makevars <- function(new, path = makevars_user(), assignment = c("=", ":=", "?=", "+="), .local_envir = parent.frame()) {
   assignment <- match.arg(assignment)
   makevars_file <- tempfile()
