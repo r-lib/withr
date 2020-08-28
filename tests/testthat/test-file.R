@@ -62,4 +62,16 @@ describe("local_file", {
     expect_no_output(f())
     expect_false(file.exists("file1"))
   })
+
+  it("can delete directories", {
+    path <- character()
+    f <- function() {
+      path <<- local_file(tempfile())
+      dir.create(path)
+      file.create(file.path(path, "foo"))
+      expect_true(file.exists(path))
+    }
+    expect_no_output(f())
+    expect_false(file.exists(path))
+  })
 })

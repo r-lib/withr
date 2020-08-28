@@ -19,7 +19,7 @@ with_file <- function(file, code) {
   file_nms <- names2(file)
   unnamed <- file_nms == ""
   file_nms[unnamed] <- as.character(file[unnamed])
-  on.exit(unlink(file_nms))
+  on.exit(unlink(file_nms, recursive = TRUE))
   eval.parent(code)
 
   invisible(file)
@@ -31,7 +31,7 @@ local_file <- function(file, .local_envir = parent.frame()) {
   file_nms <- names2(file)
   unnamed <- file_nms == ""
   file_nms[unnamed] <- as.character(file[unnamed])
-  defer(unlink(file_nms), envir = .local_envir)
+  defer(unlink(file_nms, recursive = TRUE), envir = .local_envir)
 
   invisible(file)
 }
