@@ -48,7 +48,7 @@
 
 <meta property="og:title" content="Library paths — with_libpaths" />
 <meta property="og:description" content="Temporarily change library paths." />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:image" content="https://withr.r-lib.org/logo.png" />
 
 
 
@@ -62,6 +62,16 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115082821-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115082821-1');
+</script>
 
 
   </head>
@@ -87,10 +97,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -101,7 +117,7 @@
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
-      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+      <a href="https://www.tidyverse.org/blog/2017/11/withr-2.1.0/">Version 2.1.0</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -180,7 +196,7 @@ argument.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()</div><div class='output co'>#&gt; [1] "/Users/runner/work/_temp/Library"                              
 #&gt; [2] "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"</div><div class='input'><span class='no'>new_lib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>new_lib</span>)
-<span class='fu'>with_libpaths</span>(<span class='no'>new_lib</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()))</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp0IUYJi/file6a65eded2f0"
+<span class='fu'>with_libpaths</span>(<span class='no'>new_lib</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()))</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKXXtPV/filef6751cfa38e"
 #&gt; [2] "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"                     </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>new_lib</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

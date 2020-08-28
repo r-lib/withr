@@ -51,7 +51,7 @@
 They are only needed if you want to alter some global state which is not
 covered by the existing with_... functions, see withr
 for an overview." />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:image" content="https://withr.r-lib.org/logo.png" />
 
 
 
@@ -65,6 +65,16 @@ for an overview." />
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115082821-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115082821-1');
+</script>
 
 
   </head>
@@ -90,10 +100,16 @@ for an overview." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -104,7 +120,7 @@ for an overview." />
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
-      <a href="../articles/releases/withr-2.1.0.html">Version 2.1.0</a>
+      <a href="https://www.tidyverse.org/blog/2017/11/withr-2.1.0/">Version 2.1.0</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -198,7 +214,7 @@ function body.</p>
 #&gt;     on.exit(setwd(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7fe71ce3afd8&gt;</div><div class='input'>
+#&gt; &lt;environment: 0x7fbc23cb47e0&gt;</div><div class='input'>
 <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
 <span class='no'>set_global_state</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>state</span>, <span class='no'>msg</span> <span class='kw'>=</span> <span class='st'>"Changing global state."</span>) {
   <span class='no'>global_stack</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>state</span>), <span class='no'>global_stack</span>)
@@ -216,7 +232,7 @@ function body.</p>
 #&gt;     on.exit(reset_global_state(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7fe71ce3afd8&gt;</div></pre>
+#&gt; &lt;environment: 0x7fbc23cb47e0&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
