@@ -19,3 +19,4 @@
 ^withr\.Rproj$
 ^\.covrignore$
 ^\.github$
+^pkgdown$
