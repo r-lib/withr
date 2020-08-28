@@ -196,7 +196,7 @@ argument.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()</div><div class='output co'>#&gt; [1] "/Users/runner/work/_temp/Library"                              
 #&gt; [2] "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"</div><div class='input'><span class='no'>new_lib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='no'>new_lib</span>)
-<span class='fu'>with_libpaths</span>(<span class='no'>new_lib</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()))</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpwJ2xVY/file5e3514a91de"
+<span class='fu'>with_libpaths</span>(<span class='no'>new_lib</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()))</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpI9COFv/file71c4ea486dd"
 #&gt; [2] "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"                     </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>new_lib</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
