@@ -68,6 +68,7 @@ set_makevars <- function(variables,
 #' @param new `[named character]`\cr New variables and their values
 #' @param path `[character(1)]`\cr location of existing `Makevars` file to modify.
 #' @param assignment `[character(1)]`\cr assignment type to use.
+#' @inheritParams with_collate
 #' @examples
 #' writeLines("void foo(int* bar) { *bar = 1; }\n", "foo.c")
 #' system("R CMD SHLIB --preclean -c foo.c")
@@ -84,6 +85,7 @@ with_makevars <- function(new, code, path = makevars_user(), assignment = c("=",
   })
 }
 
+#' @rdname with_makevars
 #' @export
 local_makevars <- function(new, path = makevars_user(), assignment = c("=", ":=", "?=", "+="), .local_envir = parent.frame()) {
   assignment <- match.arg(assignment)

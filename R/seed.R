@@ -3,6 +3,7 @@
 #' `with_seed()` runs code with a specific random seed and resets it afterwards.
 #'
 #' @template with
+#' @inheritParams with_collate
 #' @param seed `[integer(1)]`\cr The random seed to use to evaluate the code.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
 #' @examples

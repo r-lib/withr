@@ -2,6 +2,7 @@
 % Please edit documentation in R/makevars.R
 \name{with_makevars}
 \alias{with_makevars}
+\alias{local_makevars}
 \title{Makevars variables}
 \usage{
 with_makevars(
@@ -9,6 +10,13 @@ with_makevars(
   code,
   path = makevars_user(),
   assignment = c("=", ":=", "?=", "+=")
+)
+
+local_makevars(
+  new,
+  path = makevars_user(),
+  assignment = c("=", ":=", "?=", "+="),
+  .local_envir = parent.frame()
 )
 }
 \arguments{
@@ -19,6 +27,8 @@ with_makevars(
 \item{path}{\verb{[character(1)]}\cr location of existing \code{Makevars} file to modify.}
 
 \item{assignment}{\verb{[character(1)]}\cr assignment type to use.}
+
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
