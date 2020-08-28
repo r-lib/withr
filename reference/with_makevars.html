@@ -160,6 +160,13 @@
   <span class='no'>code</span>,
   <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='makevars_user.html'>makevars_user</a></span>(),
   <span class='kw'>assignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>)
+)
+
+<span class='fu'>local_makevars</span>(
+  <span class='no'>new</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='makevars_user.html'>makevars_user</a></span>(),
+  <span class='kw'>assignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>, <span class='st'>":="</span>, <span class='st'>"?="</span>, <span class='st'>"+="</span>),
+  <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -180,6 +187,10 @@
     <tr>
       <th>assignment</th>
       <td><p><code>[character(1)]</code><br /> assignment type to use.</p></td>
+    </tr>
+    <tr>
+      <th>.local_envir</th>
+      <td><p><code>[environment]</code><br /> The environment to use for scoping.</p></td>
     </tr>
     </table>
 
