@@ -50,13 +50,10 @@ local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
   path <- tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext)
 
   dir.create(path, recursive = TRUE)
-  old_dir <- setwd(path)
 
-    defer({
-      if (isTRUE(clean)) {
-        unlink(path, recursive = TRUE)
-      }
-    }, envir = .local_envir)
+  if (isTRUE(clean)) {
+    defer(unlink(path, recursive = TRUE), envir = .local_envir)
+  }
 
   invisible(path)
 }
