@@ -45,8 +45,17 @@ set_handlers <- function(envir, handlers) {
 
 execute_handlers <- function(envir) {
   handlers <- get_handlers(envir)
+  errors <- list()
   for (handler in handlers) {
-    tryCatch(eval(handler$expr, handler$envir), error = identity)
+    tryCatch(eval(handler$expr, handler$envir),
+      error = function(e) {
+        errors[[length(errors) + 1]] <<- e
+      }
+    )
+  }
+
+  for (error in errors) {
+    stop(error)
   }
 }
 
