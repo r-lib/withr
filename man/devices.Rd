@@ -28,15 +28,15 @@
 \usage{
 with_bmp(new, code, ...)
 
-local_bmp(new, ..., .local_envir = parent.frame())
+local_bmp(new = list(), ..., .local_envir = parent.frame())
 
 with_cairo_pdf(new, code, ...)
 
-local_cairo_pdf(new, ..., .local_envir = parent.frame())
+local_cairo_pdf(new = list(), ..., .local_envir = parent.frame())
 
 with_cairo_ps(new, code, ...)
 
-local_cairo_ps(new, ..., .local_envir = parent.frame())
+local_cairo_ps(new = list(), ..., .local_envir = parent.frame())
 
 with_pdf(
   new,
@@ -62,7 +62,7 @@ with_pdf(
 )
 
 local_pdf(
-  new,
+  new = list(),
   width,
   height,
   onefile,
@@ -108,7 +108,7 @@ with_postscript(
 )
 
 local_postscript(
-  new,
+  new = list(),
   onefile,
   family,
   title,
@@ -144,7 +144,7 @@ with_svg(
 )
 
 local_svg(
-  new,
+  new = list(),
   width = 7,
   height = 7,
   pointsize = 12,
@@ -158,7 +158,7 @@ local_svg(
 
 with_tiff(new, code, ...)
 
-local_tiff(new, ..., .local_envir = parent.frame())
+local_tiff(new = list(), ..., .local_envir = parent.frame())
 
 with_xfig(
   new,
@@ -179,7 +179,7 @@ with_xfig(
 )
 
 local_xfig(
-  new,
+  new = list(),
   onefile = FALSE,
   encoding = "none",
   paper = "default",
@@ -198,11 +198,11 @@ local_xfig(
 
 with_png(new, code, ...)
 
-local_png(new, ..., .local_envir = parent.frame())
+local_png(new = list(), ..., .local_envir = parent.frame())
 
 with_jpeg(new, code, ...)
 
-local_jpeg(new, ..., .local_envir = parent.frame())
+local_jpeg(new = list(), ..., .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}

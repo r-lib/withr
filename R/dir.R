@@ -58,5 +58,5 @@ local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
       }
     }, envir = .local_envir)
 
-  invisible(path)
+  path
 }

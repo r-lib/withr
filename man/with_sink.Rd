@@ -11,7 +11,7 @@
 with_output_sink(new, code, append = FALSE, split = FALSE)
 
 local_output_sink(
-  new,
+  new = list(),
   append = FALSE,
   split = FALSE,
   .local_envir = parent.frame()
@@ -19,7 +19,7 @@ local_output_sink(
 
 with_message_sink(new, code, append = FALSE)
 
-local_message_sink(new, append = FALSE, .local_envir = parent.frame())
+local_message_sink(new = list(), append = FALSE, .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\verb{[character(1)|connection]}\cr

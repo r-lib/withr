@@ -5,7 +5,7 @@
 \alias{with_}
 \title{Create a new "with" or "local" function}
 \usage{
-local_(set, reset = set, envir = parent.frame(), new = TRUE)
+local_(set, reset = set, envir = parent.frame(), new = TRUE, dots = FALSE)
 
 with_(set, reset = set, envir = parent.frame(), new = TRUE)
 }

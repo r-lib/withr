@@ -7,14 +7,21 @@
 \usage{
 with_par(new, code, no.readonly = FALSE)
 
-local_par(new, no.readonly = FALSE, .local_envir = parent.frame())
+local_par(
+  .new = list(),
+  ...,
+  no.readonly = FALSE,
+  .local_envir = parent.frame()
+)
 }
 \arguments{
-\item{new}{\verb{[named list]}\cr New graphics parameters and their values}
+\item{new, .new}{\verb{[named list]}\cr New graphics parameters and their values}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{no.readonly}{\verb{[logical(1)]}\cr see \code{\link[=par]{par()}} documentation.}
+
+\item{...}{Additional graphics parameters and their values.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

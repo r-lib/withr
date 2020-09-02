@@ -7,15 +7,22 @@
 \usage{
 with_envvar(new, code, action = "replace")
 
-local_envvar(new, action = "replace", .local_envir = parent.frame())
+local_envvar(
+  .new = list(),
+  ...,
+  action = "replace",
+  .local_envir = parent.frame()
+)
 }
 \arguments{
-\item{new}{\verb{[named character]}\cr New environment variables}
+\item{new, .new}{\verb{[named character]}\cr New environment variables}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{action}{should new values \code{"replace"}, \code{"prefix"} or
 \code{"suffix"} existing variables with the same name.}
+
+\item{...}{Named arguments with new environment variables.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

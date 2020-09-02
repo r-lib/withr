@@ -2,7 +2,8 @@
 #'
 #' Create files, which are then automatically removed afterwards.
 #' @template with
-#' @param file `[named list]`\cr Files to create.
+#' @param file,.file `[named list]`\cr Files to create.
+#' @param ... Additional (possibly named) arguments of files to create.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
 #' @examples
 #' with_file("file1", {
@@ -27,11 +28,14 @@ with_file <- function(file, code) {
 
 #' @rdname with_file
 #' @export
-local_file <- function(file, .local_envir = parent.frame()) {
-  file_nms <- names2(file)
+local_file <- function(.file, ..., .local_envir = parent.frame()) {
+  .file <- utils::modifyList(as.list(.file), list(...))
+  .file <- as_character(.file)
+
+  file_nms <- names2(.file)
   unnamed <- file_nms == ""
-  file_nms[unnamed] <- as.character(file[unnamed])
+  file_nms[unnamed] <- as.character(.file[unnamed])
   defer(unlink(file_nms, recursive = TRUE), envir = .local_envir)
 
-  invisible(file)
+  invisible(.file)
 }

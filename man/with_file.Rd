@@ -7,12 +7,14 @@
 \usage{
 with_file(file, code)
 
-local_file(file, .local_envir = parent.frame())
+local_file(.file, ..., .local_envir = parent.frame())
 }
 \arguments{
-\item{file}{\verb{[named list]}\cr Files to create.}
+\item{file, .file}{\verb{[named list]}\cr Files to create.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{...}{Additional (possibly named) arguments of files to create.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

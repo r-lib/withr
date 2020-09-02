@@ -1,5 +1,7 @@
 # withr (development version)
 
+- `local_*()` now take dots (`...`), which can simplify calls, e.g. you can now use `lcoal_options(foo = "bar")` rather than `local_options(c(foo = "bar"))`.
+
 - `defer()` now throws an error if an error occurs in the deferred expression (#148)
 
 - `with_file()` and `local_file()` can now work if the file is actually a directory (#144).

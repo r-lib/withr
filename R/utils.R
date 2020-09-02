@@ -50,3 +50,10 @@ makevars_user <- function() {
   }
   m
 }
+
+as_character <- function(x) {
+  nms <- names(x)
+  res <- as.character(x)
+  names(res) <- nms
+  res
+}

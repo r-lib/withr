@@ -5,6 +5,7 @@ get_path <- function() {
 }
 
 set_path <- function(path, action = "prefix") {
+  path <- as_character(path)
   path <- normalizePath(path, mustWork = FALSE)
 
   old <- get_path()
