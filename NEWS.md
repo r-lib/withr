@@ -1,5 +1,7 @@
 # withr (development version)
 
+- `defer()` now throws an error if an error occurs in the deferred expression (#148)
+
 - `with_file()` and `local_file()` can now work if the file is actually a directory (#144).
 
 - New `local_seed()` function and `local_preserve_seed()` functions to correspond to `with_seed()` and `with_preserve_seed()` (#139).
