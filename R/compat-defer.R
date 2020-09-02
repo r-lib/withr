@@ -49,9 +49,6 @@ execute_handlers <- function(envir) {
   for (handler in handlers) {
     tryCatch(eval(handler$expr, handler$envir),
       error = function(e) {
-        if (!is.null(e$call)) {
-          e$call <- handler$expr
-        }
         errors[[length(errors) + 1]] <<- e
       }
     )
