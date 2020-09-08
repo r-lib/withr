@@ -155,20 +155,24 @@
     <p>Temporarily change global options.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_options</span>(<span class='no'>new</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_options</span>(<span class='kw'>new</span>, <span class='kw'>code</span>)
 
-<span class='fu'>local_options</span>(<span class='no'>new</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_options</span>(.new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>new</th>
+      <th>new, .new</th>
       <td><p><code>[named list]</code><br /> New options and their values</p></td>
     </tr>
     <tr>
       <th>code</th>
       <td><p><code>[any]</code><br /> Code to execute in the temporary environment</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional options and their values</p></td>
     </tr>
     <tr>
       <th>.local_envir</th>
@@ -187,23 +191,31 @@ argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># number of significant digits to print</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>)</div><div class='output co'>#&gt; [1] 7</div><div class='input'><span class='co'># modify temporarily the number of significant digits to print</span>
-<span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>))</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pi</span>))</div><div class='output co'>#&gt; [1] 3.14</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>)
+</div><div class='output co'>#&gt; [1] 7</div><div class='input'><span class='co'># modify temporarily the number of significant digits to print</span>
+<span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(digits = <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>))
+</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(digits = <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pi</span>))
+</div><div class='output co'>#&gt; [1] 3.14</div><div class='input'>
 <span class='co'># modify temporarily the character to be used as the decimal point</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>)</div><div class='output co'>#&gt; [1] 7</div><div class='input'><span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>OutDec</span> <span class='kw'>=</span> <span class='st'>","</span>), <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pi</span>))</div><div class='output co'>#&gt; [1] 3,141593</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>)
+</div><div class='output co'>#&gt; [1] 7</div><div class='input'><span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(OutDec = <span class='st'>","</span>), <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pi</span>))
+</div><div class='output co'>#&gt; [1] 3,141593</div><div class='input'>
 <span class='co'># modify temporarily multiple options</span>
-<span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>OutDec</span> <span class='kw'>=</span> <span class='st'>","</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pi</span>))</div><div class='output co'>#&gt; [1] 3,14</div><div class='input'>
+<span class='fu'>with_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(OutDec = <span class='st'>","</span>, digits = <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pi</span>))
+</div><div class='output co'>#&gt; [1] 3,14</div><div class='input'>
 <span class='co'># modify, within the scope of the function, the number of</span>
 <span class='co'># significant digits to print</span>
-<span class='no'>print_3_digits</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
+<span class='kw'>print_3_digits</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>x</span>) {
   <span class='co'># assign 3 to the option "digits" for the rest of this function</span>
   <span class='co'># after the function exits, the option will return to its previous</span>
   <span class='co'># value</span>
-  <span class='fu'>local_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>))
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)
+  <span class='fu'>local_options</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(digits = <span class='fl'>3</span>))
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>)
 }
 
-<span class='fu'>print_3_digits</span>(<span class='no'>pi</span>)  <span class='co'># returns 3.14</span></div><div class='output co'>#&gt; [1] 3.14</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>pi</span>)           <span class='co'># returns 3.141593</span></div><div class='output co'>#&gt; [1] 3.141593</div></pre>
+<span class='fu'>print_3_digits</span>(<span class='kw'>pi</span>)  <span class='co'># returns 3.14</span>
+</div><div class='output co'>#&gt; [1] 3.14</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>pi</span>)           <span class='co'># returns 3.141593</span>
+</div><div class='output co'>#&gt; [1] 3.141593</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -219,7 +231,7 @@ argument.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

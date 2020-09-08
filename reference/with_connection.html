@@ -155,9 +155,9 @@
     <p>R file connections which are automatically closed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_connection</span>(<span class='no'>con</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_connection</span>(<span class='kw'>con</span>, <span class='kw'>code</span>)
 
-<span class='fu'>local_connection</span>(<span class='no'>con</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_connection</span>(<span class='kw'>con</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,15 +187,17 @@ argument.</p>
     <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>with_connection</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='st'>"foo"</span>, <span class='st'>"w"</span>)), {
-  <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>), <span class='no'>con</span>)
+    <pre class="examples"><div class='input'><span class='fu'>with_connection</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(con = <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='st'>"foo"</span>, <span class='st'>"w"</span>)), {
+  <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>), <span class='kw'>con</span>)
 })
 
-<span class='no'>read_foo</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
+<span class='kw'>read_foo</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>() {
   <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='fu'>local_connection</span>(<span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='st'>"foo"</span>, <span class='st'>"r"</span>)))
 }
-<span class='fu'>read_foo</span>()</div><div class='output co'>#&gt; [1] "foo" "bar"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"foo"</span>)</div></pre>
+<span class='fu'>read_foo</span>()
+</div><div class='output co'>#&gt; [1] "foo" "bar"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"foo"</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +213,7 @@ argument.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

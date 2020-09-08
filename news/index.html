@@ -154,6 +154,7 @@
 <a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code>local_*()</code> now take dots (<code>...</code>), which can simplify calls, e.g. you can now use <code><a href="../reference/with_options.html">local_options(foo = "bar")</a></code> rather than <code><a href="../reference/with_options.html">local_options(c(foo = "bar"))</a></code>.</p></li>
 <li><p><code><a href="../reference/defer.html">defer()</a></code> now throws an error if an error occurs in the deferred expression (<a href='http://github.com/r-lib/withr/issues/148'>#148</a>)</p></li>
 <li><p><code><a href="../reference/with_file.html">with_file()</a></code> and <code><a href="../reference/with_file.html">local_file()</a></code> can now work if the file is actually a directory (<a href='http://github.com/r-lib/withr/issues/144'>#144</a>).</p></li>
 <li><p>New <code><a href="../reference/with_seed.html">local_seed()</a></code> function and <code><a href="../reference/with_seed.html">local_preserve_seed()</a></code> functions to correspond to <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> (<a href='http://github.com/r-lib/withr/issues/139'>#139</a>).</p></li>
@@ -265,7 +266,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

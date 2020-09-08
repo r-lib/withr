@@ -155,20 +155,24 @@
     <p>Create files, which are then automatically removed afterwards.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_file</span>(<span class='no'>file</span>, <span class='no'>code</span>)
+    <pre class="usage"><span class='fu'>with_file</span>(<span class='kw'>file</span>, <span class='kw'>code</span>)
 
-<span class='fu'>local_file</span>(<span class='no'>file</span>, <span class='kw'>.local_envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_file</span>(<span class='kw'>.file</span>, <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
+      <th>file, .file</th>
       <td><p><code>[named list]</code><br /> Files to create.</p></td>
     </tr>
     <tr>
       <th>code</th>
       <td><p><code>[any]</code><br /> Code to execute in the temporary environment</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional (possibly named) arguments of files to create.</p></td>
     </tr>
     <tr>
       <th>.local_envir</th>
@@ -190,9 +194,10 @@ argument.</p>
   <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='st'>"file1"</span>)
 })
 
-<span class='fu'>with_file</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"file1"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"foo"</span>, <span class='st'>"file1"</span>)), {
+<span class='fu'>with_file</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"file1"</span> = <span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='st'>"foo"</span>, <span class='st'>"file1"</span>)), {
   <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='st'>"file1"</span>)
-})</div></pre>
+})
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -208,7 +213,7 @@ argument.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
