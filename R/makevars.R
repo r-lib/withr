@@ -65,9 +65,10 @@ set_makevars <- function(variables,
 #' are modified to use the value in `new`.
 #'
 #' @template with
-#' @param new `[named character]`\cr New variables and their values
-#' @param path `[character(1)]`\cr location of existing `Makevars` file to modify.
-#' @param assignment `[character(1)]`\cr assignment type to use.
+#' @param new,.new `[named character]`\cr New variables and their values
+#' @param path,.path `[character(1)]`\cr location of existing `Makevars` file to modify.
+#' @param ... Additional new variables and their values.
+#' @param assignment,.assignment `[character(1)]`\cr assignment type to use.
 #' @inheritParams with_collate
 #' @examples
 #' writeLines("void foo(int* bar) { *bar = 1; }\n", "foo.c")
@@ -87,10 +88,13 @@ with_makevars <- function(new, code, path = makevars_user(), assignment = c("=",
 
 #' @rdname with_makevars
 #' @export
-local_makevars <- function(new, path = makevars_user(), assignment = c("=", ":=", "?=", "+="), .local_envir = parent.frame()) {
-  assignment <- match.arg(assignment)
+local_makevars <- function(.new = list(), ..., .path = makevars_user(), .assignment = c("=", ":=", "?=", "+="), .local_envir = parent.frame()) {
+  .new <- utils::modifyList(as.list(.new), list(...))
+  .new <- as_character(.new)
+
+  .assignment <- match.arg(.assignment)
   makevars_file <- tempfile()
   defer(unlink(makevars_file), envir = .local_envir)
   local_envvar(c(R_MAKEVARS_USER = makevars_file), .local_envir = .local_envir)
-  set_makevars(new, path, makevars_file, assignment = assignment)
+  invisible(set_makevars(.new, .path, makevars_file, assignment = .assignment))
 }

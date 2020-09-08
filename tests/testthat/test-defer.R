@@ -46,19 +46,21 @@ test_that("defer()'s global env facilities work", {
   expect_null(h)
 })
 
-#test_that("defer executes all handlers even if there is an error in one of them", {
+test_that("defer executes all handlers even if there is an error in one of them", {
 
-  #options("test_option" = 1)
-  #f <- function() {
-    #defer(stop("hi"))
-    #defer(options("test_option" = 2))
-  #}
+  old <- options("test_option" = 1)
+  on.exit(options(old), add = TRUE)
 
-  #expect_equal(getOption("test_option"), 1)
+  f <- function() {
+    defer(stop("hi"))
+    defer(options("test_option" = 2))
+  }
 
-  #expect_error(f(), "hi")
+  expect_equal(getOption("test_option"), 1)
 
-  #expect_equal(getOption("test_option"), 2)
+  err <- tryCatch(f(), error = identity)
 
-  #options("test_option" = NULL)
-#})
+  expect_equal(conditionMessage(err), "hi")
+
+  expect_equal(getOption("test_option"), 2)
+})

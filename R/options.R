@@ -15,7 +15,8 @@ reset_options <- function(old_options) {
 #' Temporarily change global options.
 #'
 #' @template with
-#' @param new `[named list]`\cr New options and their values
+#' @param new,.new `[named list]`\cr New options and their values
+#' @param ... Additional options and their values
 #' @inheritParams with_collate
 #' @seealso [options()]
 #' @examples
@@ -50,4 +51,4 @@ with_options <- with_(set_options, reset_options)
 
 #' @rdname with_options
 #' @export
-local_options <- local_(set_options, reset_options)
+local_options <- local_(set_options, reset_options, dots = TRUE)

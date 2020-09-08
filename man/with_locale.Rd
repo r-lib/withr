@@ -7,12 +7,14 @@
 \usage{
 with_locale(new, code)
 
-local_locale(new, .local_envir = parent.frame())
+local_locale(.new = list(), ..., .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\verb{[named character]}\cr New locale settings}
+\item{new, .new}{\verb{[named character]}\cr New locale settings}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{...}{Additional arguments with locale settings.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

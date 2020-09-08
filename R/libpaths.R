@@ -3,6 +3,7 @@
 # lib ------------------------------------------------------------------------
 
 set_libpaths <- function(paths, action = "replace") {
+  paths <- as_character(paths)
   paths <- normalizePath(paths, mustWork = TRUE)
 
   old <- .libPaths()

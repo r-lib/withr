@@ -9,7 +9,7 @@
 \usage{
 with_dir(new, code)
 
-local_dir(new, .local_envir = parent.frame())
+local_dir(new = list(), .local_envir = parent.frame())
 
 with_tempdir(code, clean = TRUE)
 

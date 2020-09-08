@@ -7,12 +7,14 @@
 \usage{
 with_options(new, code)
 
-local_options(new, .local_envir = parent.frame())
+local_options(.new = list(), ..., .local_envir = parent.frame())
 }
 \arguments{
-\item{new}{\verb{[named list]}\cr New options and their values}
+\item{new, .new}{\verb{[named list]}\cr New options and their values}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{...}{Additional options and their values}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

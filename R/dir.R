@@ -55,5 +55,5 @@ local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
     defer(unlink(path, recursive = TRUE), envir = .local_envir)
   }
 
-  invisible(path)
+  path
 }

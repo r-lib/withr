@@ -33,7 +33,8 @@ set_envvar <- function(envs, action = "replace") {
 #' Temporarily change system environment variables.
 #'
 #' @template with
-#' @param new `[named character]`\cr New environment variables
+#' @param new,.new `[named character]`\cr New environment variables
+#' @param ... Named arguments with new environment variables.
 #' @param action should new values `"replace"`, `"prefix"` or
 #'   `"suffix"` existing variables with the same name.
 #' @inheritParams with_collate
@@ -52,4 +53,4 @@ with_envvar <- with_(set_envvar)
 
 #' @rdname with_envvar
 #' @export
-local_envvar <- local_(set_envvar)
+local_envvar <- local_(set_envvar, dots = TRUE)

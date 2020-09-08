@@ -188,7 +188,7 @@ test_that("local_makevars works and resets the Makevars file", {
   writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
   new <- c(CFLAGS = "-O0")
   local({
-    local_makevars(new, path = current)
+    local_makevars(new, .path = current)
     expect_equal("CFLAGS=-O0", readLines(Sys.getenv("R_MAKEVARS_USER")))
   })
   expect_equal("CFLAGS=-03", readLines(current))
@@ -200,7 +200,7 @@ test_that("local_makevars changes only the defined variables", {
   writeLines(con = current_name, current, sep = "\n")
   new <- c(CFLAGS = "-O0")
   local({
-    local_makevars(new, path = current_name)
+    local_makevars(new, .path = current_name)
     expect_equal(c("CFLAGS=-O0", "LDFLAGS=-lz"), readLines(Sys.getenv("R_MAKEVARS_USER")))
   })
   expect_equal(current, readLines(current_name))
@@ -211,7 +211,7 @@ test_that("local_makevars works with alternative assignments", {
   writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
   new <- c(CFLAGS = "-O0")
   local({
-    local_makevars(new, path = current, assignment = "+=")
+    local_makevars(new, .path = current, .assignment = "+=")
     expect_equal("CFLAGS+=-O0", readLines(Sys.getenv("R_MAKEVARS_USER")))
   })
   expect_equal("CFLAGS=-03", readLines(current))

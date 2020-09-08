@@ -1,7 +1,8 @@
 # locale ---------------------------------------------------------------------
 
 set_locale <- function(cats) {
-  stopifnot(is.named(cats), is.character(cats))
+  cats <- as_character(cats)
+  stopifnot(is.named(cats))
 
   if ("LC_ALL" %in% names(cats)) {
     stop("Setting LC_ALL category not implemented.", call. = FALSE)
@@ -20,7 +21,8 @@ set_locale <- function(cats) {
 #' Setting the `LC_ALL` category is currently not implemented.
 #'
 #' @template with
-#' @param new `[named character]`\cr New locale settings
+#' @param new,.new `[named character]`\cr New locale settings
+#' @param ... Additional arguments with locale settings.
 #' @inheritParams with_collate
 #' @seealso [Sys.setlocale()]
 #' @examples
@@ -53,4 +55,4 @@ with_locale <- with_(set_locale)
 
 #' @rdname with_locale
 #' @export
-local_locale <- local_(set_locale)
+local_locale <- local_(set_locale, dots = TRUE)

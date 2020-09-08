@@ -8,8 +8,9 @@ NULL
 #' Temporarily change graphics parameters.
 #'
 #' @template with
-#' @param new `[named list]`\cr New graphics parameters and their values
+#' @param new,.new `[named list]`\cr New graphics parameters and their values
 #' @param no.readonly `[logical(1)]`\cr see [par()] documentation.
+#' @param ... Additional graphics parameters and their values.
 #' @inheritParams with_collate
 #' @seealso [par()]
 #' @export
@@ -29,4 +30,4 @@ with_par <- with_(graphics::par)
 
 #' @rdname with_par
 #' @export
-local_par <- local_(graphics::par)
+local_par <- local_(graphics::par, dots = TRUE)
