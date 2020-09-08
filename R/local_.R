@@ -28,6 +28,8 @@ local_ <- function(set, reset = set, envir = parent.frame(), new = TRUE, dots = 
 
   set_call <- as.call(c(substitute(set), called_fmls))
 
+  reset <- if (missing(reset)) substitute(set) else substitute(reset)
+
   if (dots) {
     modify_call <- quote(.new <- utils::modifyList(as.list(.new), list(...)))
 
@@ -36,16 +38,15 @@ local_ <- function(set, reset = set, envir = parent.frame(), new = TRUE, dots = 
         old <- .(set_call)
         defer(.(reset)(old), envir = .local_envir)
         invisible(old)
-      }, list(set_call = set_call,
-              reset = if (missing(reset)) substitute(set) else substitute(reset),
-              modify_call = modify_call)))
+      }
+    ))
   } else {
     fun <- eval(bquote(function(args) {
         old <- .(set_call)
         defer(.(reset)(old), envir = .local_envir)
         invisible(old)
-      }, list(set_call = set_call,
-              reset = if (missing(reset)) substitute(set) else substitute(reset))))
+      }
+    ))
   }
 
   # substitute does not work on arguments, so we need to fix them manually

@@ -73,12 +73,14 @@ with_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
 
   set_call <- as.call(c(substitute(set), called_fmls))
 
+  reset <-  if (missing(reset)) substitute(set) else substitute(reset)
+
   fun <- eval(bquote(function(args) {
     old <- .(set_call)
     on.exit(.(reset)(old))
     force(code)
-  }, as.environment(list(set_call = set_call,
-          reset = if (missing(reset)) substitute(set) else substitute(reset)))))
+    }
+  ))
 
   # substitute does not work on arguments, so we need to fix them manually
   formals(fun) <- fun_args
