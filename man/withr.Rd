@@ -78,9 +78,9 @@ Sys.getenv("WITHR")
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://withr.r-lib.org}
-  \item \url{http://github.com/r-lib/withr#readme}
-  \item Report bugs at \url{http://github.com/r-lib/withr/issues}
+  \item \url{https://withr.r-lib.org}
+  \item \url{https://github.com/r-lib/withr#readme}
+  \item Report bugs at \url{https://github.com/r-lib/withr/issues}
 }
 
 }

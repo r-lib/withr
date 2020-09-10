@@ -10,7 +10,7 @@ status](https://github.com/r-lib/withr/workflows/R-CMD-check/badge.svg)](https:/
 [![Codecov test
 coverage](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/withr?branch=master)
 [![CRAN
-Version](http://www.r-pkg.org/badges/version/withr)](http://www.r-pkg.org/pkg/withr)
+Version](https://www.r-pkg.org/badges/version/withr)](https://www.r-pkg.org/pkg/withr)
 <!-- badges: end -->
 
 ## Overview
@@ -50,7 +50,7 @@ install.packages("withr")
 ```
 
 Many of these functions were originally a part of the
-[devtools](https://github.com/hadley/devtools) package, this provides a
+[devtools](https://github.com/r-lib/devtools) package, this provides a
 simple package with limited dependencies to provide access to these
 functions.
 
