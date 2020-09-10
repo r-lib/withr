@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/r-lib/withr/">
+  <a href="https://github.com/r-lib/withr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -147,7 +147,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Temporary files</h1>
-    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/tempfile.R'><code>R/tempfile.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/withr/blob/master/R/tempfile.R'><code>R/tempfile.R</code></a></small>
     <div class="hidden name"><code>with_tempfile.Rd</code></div>
     </div>
 
@@ -170,6 +170,22 @@
   pattern = <span class='st'>"file"</span>,
   tmpdir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
   fileext = <span class='st'>""</span>
+)
+
+<span class='fu'>with_tempdir</span>(
+  <span class='kw'>code</span>,
+  clean = <span class='fl'>TRUE</span>,
+  pattern = <span class='st'>"file"</span>,
+  tmpdir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+  fileext = <span class='st'>""</span>
+)
+
+<span class='fu'>local_tempdir</span>(
+  pattern = <span class='st'>"file"</span>,
+  tmpdir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+  fileext = <span class='st'>""</span>,
+  .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
+  clean = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -199,6 +215,15 @@
     <tr>
       <th>fileext</th>
       <td><p>a non-empty character vector giving the file extension</p></td>
+    </tr>
+    <tr>
+      <th>clean</th>
+      <td><p><code>[logical(1)]</code><br /> A logical indicating if the temporary
+directory should be deleted after use (<code>TRUE</code>, default) or left alone (<code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>.local_envir</th>
+      <td><p><code>[environment]</code><br /> The environment to use for scoping.</p></td>
     </tr>
     </table>
 

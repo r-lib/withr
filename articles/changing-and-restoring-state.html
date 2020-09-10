@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="http://github.com/r-lib/withr/">
+  <a href="https://github.com/r-lib/withr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +103,7 @@
       <h1 data-toc-skip>Changing and restoring state</h1>
             
       
-      <small class="dont-index">Source: <a href="http://github.com/r-lib/withr/blob/master/vignettes/changing-and-restoring-state.Rmd"><code>vignettes/changing-and-restoring-state.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/withr/blob/master/vignettes/changing-and-restoring-state.Rmd"><code>vignettes/changing-and-restoring-state.Rmd</code></a></small>
       <div class="hidden name"><code>changing-and-restoring-state.Rmd</code></div>
 
     </div>
@@ -111,7 +111,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://withr.r-lib.org">withr</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://withr.r-lib.org">withr</a></span>)
 </pre></div>
 <!-- This vignette uses a git-diff-friendly convention of ONE LINE PER SENTENCE. -->
 <p>This article explains the type of problem withr solves and shows typical patterns of usage. It also compares withr’s functionality to the <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> function from base R.</p>
@@ -394,7 +394,7 @@
 <p>If you are developing functions or tests that use withr, it’s very useful to be able to execute that code interactively, without error, and with the ability to trigger the deferred events. It’s hard to develop with functions that work one way inside a function, but another way in the global environment (or, worse, throw an error).</p>
 <p>Here’s how <code><a href="../reference/defer.html">defer()</a></code> (and all functions based on it) works in an interactive session.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://withr.r-lib.org">withr</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://withr.r-lib.org">withr</a></span>)
 
 <span class="fu"><a href="../reference/defer.html">defer</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"hi"</span>))
 <span class="co">#&gt; Setting deferred event(s) on global environment.</span>

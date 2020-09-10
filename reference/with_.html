@@ -93,7 +93,7 @@ for an overview." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@ for an overview." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/r-lib/withr/">
+  <a href="https://github.com/r-lib/withr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -150,7 +150,7 @@ for an overview." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a new "with" or "local" function</h1>
-    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/local_.R'><code>R/local_.R</code></a>, <a href='http://github.com/r-lib/withr/blob/master/R/with_.R'><code>R/with_.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/withr/blob/master/R/local_.R'><code>R/local_.R</code></a>, <a href='https://github.com/r-lib/withr/blob/master/R/with_.R'><code>R/with_.R</code></a></small>
     <div class="hidden name"><code>with_.Rd</code></div>
     </div>
 
@@ -215,7 +215,7 @@ function body.</p>
 #&gt;     on.exit(setwd(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7f8ca3f2fac8&gt;</div><div class='input'>
+#&gt; &lt;environment: 0x7f98dfab4bc8&gt;</div><div class='input'>
 <span class='kw'>global_stack</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
 <span class='kw'>set_global_state</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>state</span>, <span class='kw'>msg</span> = <span class='st'>"Changing global state."</span>) {
   <span class='kw'>global_stack</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>state</span>), <span class='kw'>global_stack</span>)
@@ -234,7 +234,7 @@ function body.</p>
 #&gt;     on.exit(reset_global_state(old))
 #&gt;     force(code)
 #&gt; }
-#&gt; &lt;environment: 0x7f8ca3f2fac8&gt;</div></pre>
+#&gt; &lt;environment: 0x7f98dfab4bc8&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -96,7 +96,7 @@ function)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@ function)." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/r-lib/withr/">
+  <a href="https://github.com/r-lib/withr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -153,7 +153,7 @@ function)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Execute code in temporarily altered environment</h1>
-    <small class="dont-index">Source: <a href='http://github.com/r-lib/withr/blob/master/R/with.R'><code>R/with.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/withr/blob/master/R/with.R'><code>R/with.R</code></a></small>
     <div class="hidden name"><code>withr.Rd</code></div>
     </div>
 
@@ -216,9 +216,9 @@ naturally as resetter.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='http://withr.r-lib.org'>http://withr.r-lib.org</a></p></li>
-<li><p><a href='http://github.com/r-lib/withr#readme'>http://github.com/r-lib/withr#readme</a></p></li>
-<li><p>Report bugs at <a href='http://github.com/r-lib/withr/issues'>http://github.com/r-lib/withr/issues</a></p></li>
+<li><p><a href='https://withr.r-lib.org'>https://withr.r-lib.org</a></p></li>
+<li><p><a href='https://github.com/r-lib/withr#readme'>https://github.com/r-lib/withr#readme</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/r-lib/withr/issues'>https://github.com/r-lib/withr/issues</a></p></li>
 </ul>
 
 </div>
@@ -242,9 +242,9 @@ naturally as resetter.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
-</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpq4sYIa/file7967721e7b9/reference"</div><div class='input'><span class='fu'><a href='with_dir.html'>with_dir</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>())
-</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpq4sYIa"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
-</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpq4sYIa/file7967721e7b9/reference"</div><div class='input'>
+</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpWdT1kx/file13767d4d0483/reference"</div><div class='input'><span class='fu'><a href='with_dir.html'>with_dir</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>())
+</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpWdT1kx"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
+</div><div class='output co'>#&gt; [1] "/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpWdT1kx/file13767d4d0483/reference"</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)
 </div><div class='output co'>#&gt; [1] ""</div><div class='input'><span class='fu'><a href='with_envvar.html'>with_envvar</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"WITHR"</span> = <span class='fl'>2</span>), <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>))
 </div><div class='output co'>#&gt; [1] "2"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"WITHR"</span>)

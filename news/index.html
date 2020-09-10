@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -127,7 +127,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/r-lib/withr/">
+  <a href="https://github.com/r-lib/withr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -146,38 +146,55 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='http://github.com/r-lib/withr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/r-lib/withr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="withr-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
+    <div id="withr-230" class="section level1">
+<h1 class="page-header" data-toc-text="2.3.0">
+<a href="#withr-230" class="anchor"></a>withr 2.3.0<small> Unreleased </small>
 </h1>
+<div id="deprecations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#deprecations" class="anchor"></a>Deprecations</h2>
 <ul>
-<li><p><code>local_*()</code> now take dots (<code>...</code>), which can simplify calls, e.g. you can now use <code><a href="../reference/with_options.html">local_options(foo = "bar")</a></code> rather than <code><a href="../reference/with_options.html">local_options(c(foo = "bar"))</a></code>.</p></li>
-<li><p><code><a href="../reference/defer.html">defer()</a></code> now throws an error if an error occurs in the deferred expression (<a href='http://github.com/r-lib/withr/issues/148'>#148</a>)</p></li>
-<li><p><code><a href="../reference/with_file.html">with_file()</a></code> and <code><a href="../reference/with_file.html">local_file()</a></code> can now work if the file is actually a directory (<a href='http://github.com/r-lib/withr/issues/144'>#144</a>).</p></li>
-<li><p>New <code><a href="../reference/with_seed.html">local_seed()</a></code> function and <code><a href="../reference/with_seed.html">local_preserve_seed()</a></code> functions to correspond to <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> (<a href='http://github.com/r-lib/withr/issues/139'>#139</a>).</p></li>
-<li><p><code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> argument <code>new</code> is deprecated, in favor of returning the path to the new tempfile. calls like <code><a href="../reference/with_tempfile.html">local_tempfile("xyz")</a></code> should be replaced with <code>xyx &lt;- local_tempfile()</code> in your code (<a href='http://github.com/r-lib/withr/issues/141'>#141</a>).</p></li>
-<li><p>New <code><a href="../reference/with_dir.html">local_tempdir()</a></code> function added to create a temp directory and change to it in a local block (<a href='http://github.com/r-lib/withr/issues/140'>#140</a>)</p></li>
+<li>
+<code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> argument <code>new</code> is deprecated, in favor of returning the path to the new tempfile. calls like <code><a href="../reference/with_tempfile.html">local_tempfile("xyz")</a></code> should be replaced with <code>xyx &lt;- local_tempfile()</code> in your code (<a href='https://github.com/r-lib/withr/issues/141'>#141</a>).</li>
 </ul>
+</div>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li><p>New <code><a href="../reference/with_seed.html">local_seed()</a></code> function and <code><a href="../reference/with_seed.html">local_preserve_seed()</a></code> functions to correspond to <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> (<a href='https://github.com/r-lib/withr/issues/139'>#139</a>).</p></li>
+<li><p>New <code><a href="../reference/with_tempfile.html">local_tempdir()</a></code> function added to create a temp directory (<a href='https://github.com/r-lib/withr/issues/140'>#140</a>)</p></li>
+<li><p><code>local_*()</code> functions now take dots (<code>...</code>), which can simplify calls in some cases, e.g. you can now use <code><a href="../reference/with_options.html">local_options(foo = "bar")</a></code> rather than <code><a href="../reference/with_options.html">local_options(c(foo = "bar"))</a></code>.</p></li>
+</ul>
+</div>
+<div id="minor-improvements-and-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-improvements-and-fixes" class="anchor"></a>Minor improvements and fixes</h2>
+<ul>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> now throws an error if an error occurs in the deferred expression (<a href='https://github.com/r-lib/withr/issues/148'>#148</a>)</p></li>
+<li><p><code><a href="../reference/with_file.html">with_file()</a></code> and <code><a href="../reference/with_file.html">local_file()</a></code> can now work if the file is actually a directory (<a href='https://github.com/r-lib/withr/issues/144'>#144</a>).</p></li>
+</ul>
+</div>
 </div>
     <div id="withr-220" class="section level1">
 <h1 class="page-header" data-toc-text="2.2.0">
 <a href="#withr-220" class="anchor"></a>withr 2.2.0<small> 2020-04-20 </small>
 </h1>
 <ul>
-<li><p><code><a href="../reference/defer.html">defer()</a></code> can set deferred events on <code>.GlobalEnv</code> to facilitate the interactive development of code inside a function or test. Helpers <code><a href="../reference/defer.html">deferred_run()</a></code> (and <code><a href="../reference/defer.html">deferred_clear()</a></code>) provide a way to explicity run and clear (or just clear) deferred events (<a href='http://github.com/r-lib/withr/issues/76'>#76</a>, <a href='http://github.com/jennybc'>@jennybc</a>).</p></li>
-<li><p><code><a href="../reference/with_connection.html">with_connection()</a></code> now works when existing objects or connections exist with the same names (<a href='http://github.com/r-lib/withr/issues/120'>#120</a>)</p></li>
-<li><p><code><a href="../reference/with_makevars.html">with_makevars()</a></code> now uses <code><a href="https://rdrr.io/r/tools/makevars.html">tools::makevars_user()</a></code> to determine the default user makevars file (<a href='http://github.com/r-lib/withr/issues/77'>#77</a>, <a href='http://github.com/siddharthab'>@siddharthab</a>).</p></li>
-<li><p><code><a href="../reference/with_options.html">with_options()</a></code> no longer uses <code><a href="https://rdrr.io/r/base/do.call.html">do.call()</a></code>, so optiosn are not evaluated on exit (<a href='http://github.com/r-lib/withr/issues/73'>#73</a>, <a href='http://github.com/mtmorgan'>@mtmorgan</a>).</p></li>
-<li><p><code><a href="../reference/with_package.html">with_package()</a></code> no longer has the <code>help</code> argument (<a href='http://github.com/r-lib/withr/issues/94'>#94</a>, <a href='http://github.com/wendtke'>@wendtke</a>).</p></li>
-<li><p><code><a href="../reference/with_package.html">with_package()</a></code> now does not try to detach the package if it is already attached before calling <code><a href="../reference/with_package.html">with_package()</a></code> (<a href='http://github.com/r-lib/withr/issues/107'>#107</a>)</p></li>
-<li><p><code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> now restores <code>.Random.seed</code> if it is not set originally (<a href='http://github.com/r-lib/withr/issues/124'>#124</a>).</p></li>
-<li><p>Add <code><a href="../reference/with_rng_version.html">with_rng_version()</a></code> and <code><a href="../reference/with_rng_version.html">local_rng_version()</a></code> functions to change the version of the RNG (<a href='http://github.com/r-lib/withr/issues/90'>#90</a>, <a href='http://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
-<li><p><code><a href="../reference/devices.html">with_svg()</a></code> documentation now is consistent across R versions (<a href='http://github.com/r-lib/withr/issues/129'>#129</a>)</p></li>
-<li><p>Add <code><a href="../reference/with_timezone.html">with_timezone()</a></code> and <code><a href="../reference/with_timezone.html">local_timezone()</a></code> functions to change the time zone (<a href='http://github.com/r-lib/withr/issues/92'>#92</a>, <a href='http://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
-<li><p><code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> now delete recursively directories on exit (<a href='http://github.com/r-lib/withr/issues/84'>#84</a>, <a href='http://github.com/meta00'>@meta00</a>).</p></li>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> can set deferred events on <code>.GlobalEnv</code> to facilitate the interactive development of code inside a function or test. Helpers <code><a href="../reference/defer.html">deferred_run()</a></code> (and <code><a href="../reference/defer.html">deferred_clear()</a></code>) provide a way to explicity run and clear (or just clear) deferred events (<a href='https://github.com/r-lib/withr/issues/76'>#76</a>, <a href='https://github.com/jennybc'>@jennybc</a>).</p></li>
+<li><p><code><a href="../reference/with_connection.html">with_connection()</a></code> now works when existing objects or connections exist with the same names (<a href='https://github.com/r-lib/withr/issues/120'>#120</a>)</p></li>
+<li><p><code><a href="../reference/with_makevars.html">with_makevars()</a></code> now uses <code><a href="https://rdrr.io/r/tools/makevars.html">tools::makevars_user()</a></code> to determine the default user makevars file (<a href='https://github.com/r-lib/withr/issues/77'>#77</a>, <a href='https://github.com/siddharthab'>@siddharthab</a>).</p></li>
+<li><p><code><a href="../reference/with_options.html">with_options()</a></code> no longer uses <code><a href="https://rdrr.io/r/base/do.call.html">do.call()</a></code>, so optiosn are not evaluated on exit (<a href='https://github.com/r-lib/withr/issues/73'>#73</a>, <a href='https://github.com/mtmorgan'>@mtmorgan</a>).</p></li>
+<li><p><code><a href="../reference/with_package.html">with_package()</a></code> no longer has the <code>help</code> argument (<a href='https://github.com/r-lib/withr/issues/94'>#94</a>, <a href='https://github.com/wendtke'>@wendtke</a>).</p></li>
+<li><p><code><a href="../reference/with_package.html">with_package()</a></code> now does not try to detach the package if it is already attached before calling <code><a href="../reference/with_package.html">with_package()</a></code> (<a href='https://github.com/r-lib/withr/issues/107'>#107</a>)</p></li>
+<li><p><code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> now restores <code>.Random.seed</code> if it is not set originally (<a href='https://github.com/r-lib/withr/issues/124'>#124</a>).</p></li>
+<li><p>Add <code><a href="../reference/with_rng_version.html">with_rng_version()</a></code> and <code><a href="../reference/with_rng_version.html">local_rng_version()</a></code> functions to change the version of the RNG (<a href='https://github.com/r-lib/withr/issues/90'>#90</a>, <a href='https://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
+<li><p><code><a href="../reference/devices.html">with_svg()</a></code> documentation now is consistent across R versions (<a href='https://github.com/r-lib/withr/issues/129'>#129</a>)</p></li>
+<li><p>Add <code><a href="../reference/with_timezone.html">with_timezone()</a></code> and <code><a href="../reference/with_timezone.html">local_timezone()</a></code> functions to change the time zone (<a href='https://github.com/r-lib/withr/issues/92'>#92</a>, <a href='https://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
+<li><p><code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> now delete recursively directories on exit (<a href='https://github.com/r-lib/withr/issues/84'>#84</a>, <a href='https://github.com/meta00'>@meta00</a>).</p></li>
 </ul>
 </div>
     <div id="withr-212" class="section level1">
@@ -185,8 +202,8 @@
 <a href="#withr-212" class="anchor"></a>withr 2.1.2<small> 2018-03-15 </small>
 </h1>
 <ul>
-<li><p><code><a href="../reference/set_makevars.html">set_makevars()</a></code> is now exported (<a href='http://github.com/r-lib/withr/issues/68'>#68</a>, <a href='http://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
-<li><p><code><a href="../reference/with_temp_libpaths.html">with_temp_libpaths()</a></code> gains an <code>action</code> argument, to specify how the temporary library path will be added (<a href='http://github.com/r-lib/withr/issues/66'>#66</a>, <a href='http://github.com/krlmlr'>@krlmlr</a>).</p></li>
+<li><p><code><a href="../reference/set_makevars.html">set_makevars()</a></code> is now exported (<a href='https://github.com/r-lib/withr/issues/68'>#68</a>, <a href='https://github.com/gaborcsardi'>@gaborcsardi</a>).</p></li>
+<li><p><code><a href="../reference/with_temp_libpaths.html">with_temp_libpaths()</a></code> gains an <code>action</code> argument, to specify how the temporary library path will be added (<a href='https://github.com/r-lib/withr/issues/66'>#66</a>, <a href='https://github.com/krlmlr'>@krlmlr</a>).</p></li>
 </ul>
 </div>
     <div id="withr-211" class="section level1">
@@ -205,13 +222,13 @@
 <ul>
 <li><p><code><a href="../reference/with_connection.html">with_connection()</a></code> function to automatically close R file connections.</p></li>
 <li><p><code><a href="../reference/with_db_connection.html">with_db_connection()</a></code> function to automatically disconnect from DBI database connections.</p></li>
-<li><p><code>with_gctorture2</code> command to run code with gctorture2, useful for testing (<a href='http://github.com/r-lib/withr/issues/47'>#47</a>).</p></li>
+<li><p><code>with_gctorture2</code> command to run code with gctorture2, useful for testing (<a href='https://github.com/r-lib/withr/issues/47'>#47</a>).</p></li>
 <li>
-<p><code><a href="../reference/with_package.html">with_package()</a></code>, <code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">with_environment()</a></code> (and equivalent locals) functions added, to run code with a modified object search path (<a href='http://github.com/r-lib/withr/issues/38'>#38</a>,</p>
-<p><a href='http://github.com/r-lib/withr/issues/48'>#48</a>).</p>
+<p><code><a href="../reference/with_package.html">with_package()</a></code>, <code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">with_environment()</a></code> (and equivalent locals) functions added, to run code with a modified object search path (<a href='https://github.com/r-lib/withr/issues/38'>#38</a>,</p>
+<p><a href='https://github.com/r-lib/withr/issues/48'>#48</a>).</p>
 </li>
-<li><p>Add <code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> functions to create temporary files which are cleanup up afterwards. (<a href='http://github.com/r-lib/withr/issues/32'>#32</a>)</p></li>
-<li><p>Remove the <code>code</code> argument from <code>local_</code> functions (<a href='http://github.com/r-lib/withr/issues/50'>#50</a>).</p></li>
+<li><p>Add <code><a href="../reference/with_tempfile.html">with_tempfile()</a></code> and <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> functions to create temporary files which are cleanup up afterwards. (<a href='https://github.com/r-lib/withr/issues/32'>#32</a>)</p></li>
+<li><p>Remove the <code>code</code> argument from <code>local_</code> functions (<a href='https://github.com/r-lib/withr/issues/50'>#50</a>).</p></li>
 </ul>
 </div>
     <div id="withr-200" class="section level1">
@@ -220,7 +237,7 @@
 </h1>
 <ul>
 <li><p>Each <code>with_</code> function now has a <code>local_</code> variant, which reset at the end of their local scope, generally at the end of the function body.</p></li>
-<li><p>New functions <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> for running code with a given random seed (<a href='http://github.com/r-lib/withr/issues/45'>#45</a>, <a href='http://github.com/krlmlr'>@krlmlr</a>).</p></li>
+<li><p>New functions <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> for running code with a given random seed (<a href='https://github.com/r-lib/withr/issues/45'>#45</a>, <a href='https://github.com/krlmlr'>@krlmlr</a>).</p></li>
 </ul>
 </div>
     <div id="withr-102" class="section level1">
@@ -237,8 +254,8 @@
 <a href="#withr-101" class="anchor"></a>withr 1.0.1<small> 2016-02-04 </small>
 </h1>
 <ul>
-<li>Relaxed R version requirement to 3.0.2 (<a href='http://github.com/r-lib/withr/issues/35'>#35</a>, <a href='http://github.com/r-lib/withr/issues/39'>#39</a>).</li>
-<li>New <code><a href="../reference/with_sink.html">with_output_sink()</a></code> and <code><a href="../reference/with_sink.html">with_message_sink()</a></code> (<a href='http://github.com/r-lib/withr/issues/24'>#24</a>).</li>
+<li>Relaxed R version requirement to 3.0.2 (<a href='https://github.com/r-lib/withr/issues/35'>#35</a>, <a href='https://github.com/r-lib/withr/issues/39'>#39</a>).</li>
+<li>New <code><a href="../reference/with_sink.html">with_output_sink()</a></code> and <code><a href="../reference/with_sink.html">with_message_sink()</a></code> (<a href='https://github.com/r-lib/withr/issues/24'>#24</a>).</li>
 </ul>
 </div>
     <div id="withr-100" class="section level1">
