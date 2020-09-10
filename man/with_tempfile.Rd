@@ -3,6 +3,8 @@
 \name{with_tempfile}
 \alias{with_tempfile}
 \alias{local_tempfile}
+\alias{with_tempdir}
+\alias{local_tempdir}
 \title{Temporary files}
 \usage{
 with_tempfile(
@@ -21,6 +23,22 @@ local_tempfile(
   tmpdir = tempdir(),
   fileext = ""
 )
+
+with_tempdir(
+  code,
+  clean = TRUE,
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = ""
+)
+
+local_tempdir(
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = "",
+  .local_envir = parent.frame(),
+  clean = TRUE
+)
 }
 \arguments{
 \item{new}{\verb{[character vector]}\cr (Deprecated for \code{local_tempfile()}) Names of temporary file handles to create.}
@@ -35,6 +53,11 @@ local_tempfile(
 \item{tmpdir}{a non-empty character vector giving the directory name}
 
 \item{fileext}{a non-empty character vector giving the file extension}
+
+\item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
+directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}
+
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}

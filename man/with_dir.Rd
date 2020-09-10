@@ -3,23 +3,11 @@
 \name{with_dir}
 \alias{with_dir}
 \alias{local_dir}
-\alias{with_tempdir}
-\alias{local_tempdir}
 \title{Working directory}
 \usage{
 with_dir(new, code)
 
 local_dir(new = list(), .local_envir = parent.frame())
-
-with_tempdir(code, clean = TRUE)
-
-local_tempdir(
-  pattern = "file",
-  tmpdir = tempdir(),
-  fileext = "",
-  .local_envir = parent.frame(),
-  clean = TRUE
-)
 }
 \arguments{
 \item{new}{\verb{[character(1)]}\cr New working directory}
@@ -27,16 +15,6 @@ local_tempdir(
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
-
-\item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
-directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}
-
-\item{pattern}{a non-empty character vector giving the initial part
-    of the name.}
-
-\item{tmpdir}{a non-empty character vector giving the directory name}
-
-\item{fileext}{a non-empty character vector giving the file extension}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
