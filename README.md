@@ -137,4 +137,4 @@ with_envvar(c("A" = 1),
 
 # See Also
 
-  - [Devtools](https://github.com/hadley/devtools)
+  - [Devtools](https://github.com/r-lib/devtools)
