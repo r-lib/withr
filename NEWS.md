@@ -1,17 +1,23 @@
 # withr (development version)
 
-- `local_*()` now take dots (`...`), which can simplify calls, e.g. you can now use `local_options(foo = "bar")` rather than `local_options(c(foo = "bar"))`.
-
-- `defer()` now throws an error if an error occurs in the deferred expression (#148)
-
-- `with_file()` and `local_file()` can now work if the file is actually a directory (#144).
-
-- New `local_seed()` function and `local_preserve_seed()` functions to correspond to `with_seed()` and `with_preserve_seed()` (#139).
+## Deprecations
 
 - `local_tempfile()` argument `new` is deprecated, in favor of returning the path to the new tempfile.
   calls like `local_tempfile("xyz")` should be replaced with `xyx <- local_tempfile()` in your code (#141).
 
-- New `local_tempdir()` function added to create a temp directory and change to it in a local block (#140)
+## New features
+
+- New `local_seed()` function and `local_preserve_seed()` functions to correspond to `with_seed()` and `with_preserve_seed()` (#139).
+
+- New `local_tempdir()` function added to create a temp directory (#140)
+
+- `local_*()` functions now take dots (`...`), which can simplify calls in some cases, e.g. you can now use `local_options(foo = "bar")` rather than `local_options(c(foo = "bar"))`.
+
+## Minor improvements and fixes
+
+- `defer()` now throws an error if an error occurs in the deferred expression (#148)
+
+- `with_file()` and `local_file()` can now work if the file is actually a directory (#144).
 
 # withr 2.2.0
 
