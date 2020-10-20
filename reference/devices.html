@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0.9000</span>
       </span>
     </div>
 
@@ -155,183 +155,183 @@
     <p>Temporarily use a graphics device.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_bmp</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>with_bmp</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>local_bmp</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>local_bmp</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>with_cairo_pdf</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, <span class='kw'>...</span>)
+<span class='fu'>with_cairo_pdf</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>local_cairo_pdf</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>local_cairo_pdf</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>with_cairo_ps</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, <span class='kw'>...</span>)
+<span class='fu'>with_cairo_ps</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>local_cairo_ps</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>local_cairo_ps</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>with_pdf</span>(
-  <span class='kw'>new</span>,
-  <span class='kw'>code</span>,
-  <span class='kw'>width</span>,
-  <span class='kw'>height</span>,
-  <span class='kw'>onefile</span>,
-  <span class='kw'>family</span>,
-  <span class='kw'>title</span>,
-  <span class='kw'>fonts</span>,
-  <span class='kw'>version</span>,
-  <span class='kw'>paper</span>,
-  <span class='kw'>encoding</span>,
-  <span class='kw'>bg</span>,
-  <span class='kw'>fg</span>,
-  <span class='kw'>pointsize</span>,
-  <span class='kw'>pagecentre</span>,
-  <span class='kw'>colormodel</span>,
-  <span class='kw'>useDingbats</span>,
-  <span class='kw'>useKerning</span>,
-  <span class='kw'>fillOddEven</span>,
-  <span class='kw'>compress</span>
-)
+<span class='fu'>with_pdf</span><span class='op'>(</span>
+  <span class='va'>new</span>,
+  <span class='va'>code</span>,
+  <span class='va'>width</span>,
+  <span class='va'>height</span>,
+  <span class='va'>onefile</span>,
+  <span class='va'>family</span>,
+  <span class='va'>title</span>,
+  <span class='va'>fonts</span>,
+  <span class='va'>version</span>,
+  <span class='va'>paper</span>,
+  <span class='va'>encoding</span>,
+  <span class='va'>bg</span>,
+  <span class='va'>fg</span>,
+  <span class='va'>pointsize</span>,
+  <span class='va'>pagecentre</span>,
+  <span class='va'>colormodel</span>,
+  <span class='va'>useDingbats</span>,
+  <span class='va'>useKerning</span>,
+  <span class='va'>fillOddEven</span>,
+  <span class='va'>compress</span>
+<span class='op'>)</span>
 
-<span class='fu'>local_pdf</span>(
-  new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>width</span>,
-  <span class='kw'>height</span>,
-  <span class='kw'>onefile</span>,
-  <span class='kw'>family</span>,
-  <span class='kw'>title</span>,
-  <span class='kw'>fonts</span>,
-  <span class='kw'>version</span>,
-  <span class='kw'>paper</span>,
-  <span class='kw'>encoding</span>,
-  <span class='kw'>bg</span>,
-  <span class='kw'>fg</span>,
-  <span class='kw'>pointsize</span>,
-  <span class='kw'>pagecentre</span>,
-  <span class='kw'>colormodel</span>,
-  <span class='kw'>useDingbats</span>,
-  <span class='kw'>useKerning</span>,
-  <span class='kw'>fillOddEven</span>,
-  <span class='kw'>compress</span>,
-  .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>local_pdf</span><span class='op'>(</span>
+  new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>width</span>,
+  <span class='va'>height</span>,
+  <span class='va'>onefile</span>,
+  <span class='va'>family</span>,
+  <span class='va'>title</span>,
+  <span class='va'>fonts</span>,
+  <span class='va'>version</span>,
+  <span class='va'>paper</span>,
+  <span class='va'>encoding</span>,
+  <span class='va'>bg</span>,
+  <span class='va'>fg</span>,
+  <span class='va'>pointsize</span>,
+  <span class='va'>pagecentre</span>,
+  <span class='va'>colormodel</span>,
+  <span class='va'>useDingbats</span>,
+  <span class='va'>useKerning</span>,
+  <span class='va'>fillOddEven</span>,
+  <span class='va'>compress</span>,
+  .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>with_postscript</span>(
-  <span class='kw'>new</span>,
-  <span class='kw'>code</span>,
-  <span class='kw'>onefile</span>,
-  <span class='kw'>family</span>,
-  <span class='kw'>title</span>,
-  <span class='kw'>fonts</span>,
-  <span class='kw'>encoding</span>,
-  <span class='kw'>bg</span>,
-  <span class='kw'>fg</span>,
-  <span class='kw'>width</span>,
-  <span class='kw'>height</span>,
-  <span class='kw'>horizontal</span>,
-  <span class='kw'>pointsize</span>,
-  <span class='kw'>paper</span>,
-  <span class='kw'>pagecentre</span>,
-  <span class='kw'>print.it</span>,
-  <span class='kw'>command</span>,
-  <span class='kw'>colormodel</span>,
-  <span class='kw'>useKerning</span>,
-  <span class='kw'>fillOddEven</span>
-)
+<span class='fu'>with_postscript</span><span class='op'>(</span>
+  <span class='va'>new</span>,
+  <span class='va'>code</span>,
+  <span class='va'>onefile</span>,
+  <span class='va'>family</span>,
+  <span class='va'>title</span>,
+  <span class='va'>fonts</span>,
+  <span class='va'>encoding</span>,
+  <span class='va'>bg</span>,
+  <span class='va'>fg</span>,
+  <span class='va'>width</span>,
+  <span class='va'>height</span>,
+  <span class='va'>horizontal</span>,
+  <span class='va'>pointsize</span>,
+  <span class='va'>paper</span>,
+  <span class='va'>pagecentre</span>,
+  <span class='va'>print.it</span>,
+  <span class='va'>command</span>,
+  <span class='va'>colormodel</span>,
+  <span class='va'>useKerning</span>,
+  <span class='va'>fillOddEven</span>
+<span class='op'>)</span>
 
-<span class='fu'>local_postscript</span>(
-  new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>onefile</span>,
-  <span class='kw'>family</span>,
-  <span class='kw'>title</span>,
-  <span class='kw'>fonts</span>,
-  <span class='kw'>encoding</span>,
-  <span class='kw'>bg</span>,
-  <span class='kw'>fg</span>,
-  <span class='kw'>width</span>,
-  <span class='kw'>height</span>,
-  <span class='kw'>horizontal</span>,
-  <span class='kw'>pointsize</span>,
-  <span class='kw'>paper</span>,
-  <span class='kw'>pagecentre</span>,
-  <span class='kw'>print.it</span>,
-  <span class='kw'>command</span>,
-  <span class='kw'>colormodel</span>,
-  <span class='kw'>useKerning</span>,
-  <span class='kw'>fillOddEven</span>,
-  .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>local_postscript</span><span class='op'>(</span>
+  new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>onefile</span>,
+  <span class='va'>family</span>,
+  <span class='va'>title</span>,
+  <span class='va'>fonts</span>,
+  <span class='va'>encoding</span>,
+  <span class='va'>bg</span>,
+  <span class='va'>fg</span>,
+  <span class='va'>width</span>,
+  <span class='va'>height</span>,
+  <span class='va'>horizontal</span>,
+  <span class='va'>pointsize</span>,
+  <span class='va'>paper</span>,
+  <span class='va'>pagecentre</span>,
+  <span class='va'>print.it</span>,
+  <span class='va'>command</span>,
+  <span class='va'>colormodel</span>,
+  <span class='va'>useKerning</span>,
+  <span class='va'>fillOddEven</span>,
+  .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>with_svg</span>(
-  <span class='kw'>new</span>,
-  <span class='kw'>code</span>,
-  width = <span class='fl'>7</span>,
-  height = <span class='fl'>7</span>,
-  pointsize = <span class='fl'>12</span>,
-  onefile = <span class='fl'>FALSE</span>,
-  family = <span class='st'>"sans"</span>,
-  bg = <span class='st'>"white"</span>,
-  antialias = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span>),
-  <span class='kw'>...</span>
-)
+<span class='fu'>with_svg</span><span class='op'>(</span>
+  <span class='va'>new</span>,
+  <span class='va'>code</span>,
+  width <span class='op'>=</span> <span class='fl'>7</span>,
+  height <span class='op'>=</span> <span class='fl'>7</span>,
+  pointsize <span class='op'>=</span> <span class='fl'>12</span>,
+  onefile <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  family <span class='op'>=</span> <span class='st'>"sans"</span>,
+  bg <span class='op'>=</span> <span class='st'>"white"</span>,
+  antialias <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>local_svg</span>(
-  new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  width = <span class='fl'>7</span>,
-  height = <span class='fl'>7</span>,
-  pointsize = <span class='fl'>12</span>,
-  onefile = <span class='fl'>FALSE</span>,
-  family = <span class='st'>"sans"</span>,
-  bg = <span class='st'>"white"</span>,
-  antialias = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span>),
-  <span class='kw'>...</span>,
-  .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>local_svg</span><span class='op'>(</span>
+  new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  width <span class='op'>=</span> <span class='fl'>7</span>,
+  height <span class='op'>=</span> <span class='fl'>7</span>,
+  pointsize <span class='op'>=</span> <span class='fl'>12</span>,
+  onefile <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  family <span class='op'>=</span> <span class='st'>"sans"</span>,
+  bg <span class='op'>=</span> <span class='st'>"white"</span>,
+  antialias <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"default"</span>, <span class='st'>"none"</span>, <span class='st'>"gray"</span>, <span class='st'>"subpixel"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>with_tiff</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, <span class='kw'>...</span>)
+<span class='fu'>with_tiff</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>local_tiff</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>local_tiff</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>with_xfig</span>(
-  <span class='kw'>new</span>,
-  <span class='kw'>code</span>,
-  onefile = <span class='fl'>FALSE</span>,
-  encoding = <span class='st'>"none"</span>,
-  paper = <span class='st'>"default"</span>,
-  horizontal = <span class='fl'>TRUE</span>,
-  width = <span class='fl'>0</span>,
-  height = <span class='fl'>0</span>,
-  family = <span class='st'>"Helvetica"</span>,
-  pointsize = <span class='fl'>12</span>,
-  bg = <span class='st'>"transparent"</span>,
-  fg = <span class='st'>"black"</span>,
-  pagecentre = <span class='fl'>TRUE</span>,
-  defaultfont = <span class='fl'>FALSE</span>,
-  textspecial = <span class='fl'>FALSE</span>
-)
+<span class='fu'>with_xfig</span><span class='op'>(</span>
+  <span class='va'>new</span>,
+  <span class='va'>code</span>,
+  onefile <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  encoding <span class='op'>=</span> <span class='st'>"none"</span>,
+  paper <span class='op'>=</span> <span class='st'>"default"</span>,
+  horizontal <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  width <span class='op'>=</span> <span class='fl'>0</span>,
+  height <span class='op'>=</span> <span class='fl'>0</span>,
+  family <span class='op'>=</span> <span class='st'>"Helvetica"</span>,
+  pointsize <span class='op'>=</span> <span class='fl'>12</span>,
+  bg <span class='op'>=</span> <span class='st'>"transparent"</span>,
+  fg <span class='op'>=</span> <span class='st'>"black"</span>,
+  pagecentre <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  defaultfont <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  textspecial <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>local_xfig</span>(
-  new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  onefile = <span class='fl'>FALSE</span>,
-  encoding = <span class='st'>"none"</span>,
-  paper = <span class='st'>"default"</span>,
-  horizontal = <span class='fl'>TRUE</span>,
-  width = <span class='fl'>0</span>,
-  height = <span class='fl'>0</span>,
-  family = <span class='st'>"Helvetica"</span>,
-  pointsize = <span class='fl'>12</span>,
-  bg = <span class='st'>"transparent"</span>,
-  fg = <span class='st'>"black"</span>,
-  pagecentre = <span class='fl'>TRUE</span>,
-  defaultfont = <span class='fl'>FALSE</span>,
-  textspecial = <span class='fl'>FALSE</span>,
-  .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>local_xfig</span><span class='op'>(</span>
+  new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  onefile <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  encoding <span class='op'>=</span> <span class='st'>"none"</span>,
+  paper <span class='op'>=</span> <span class='st'>"default"</span>,
+  horizontal <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  width <span class='op'>=</span> <span class='fl'>0</span>,
+  height <span class='op'>=</span> <span class='fl'>0</span>,
+  family <span class='op'>=</span> <span class='st'>"Helvetica"</span>,
+  pointsize <span class='op'>=</span> <span class='fl'>12</span>,
+  bg <span class='op'>=</span> <span class='st'>"transparent"</span>,
+  fg <span class='op'>=</span> <span class='st'>"black"</span>,
+  pagecentre <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  defaultfont <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  textspecial <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>with_png</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, <span class='kw'>...</span>)
+<span class='fu'>with_png</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>local_png</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())
+<span class='fu'>local_png</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>with_jpeg</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, <span class='kw'>...</span>)
+<span class='fu'>with_jpeg</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>local_jpeg</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_jpeg</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -525,14 +525,14 @@ argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># dimensions are in inches</span>
-<span class='fu'>with_pdf</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"test.pdf"</span>), width = <span class='fl'>7</span>, height = <span class='fl'>5</span>,
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>5</span>))
-)
+<span class='fu'>with_pdf</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"test.pdf"</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>7</span>, height <span class='op'>=</span> <span class='fl'>5</span>,
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'># dimensions are in pixels</span>
-<span class='fu'>with_png</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"test.png"</span>), width = <span class='fl'>800</span>, height = <span class='fl'>600</span>,
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>5</span>))
-)
+<span class='fu'>with_png</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"test.png"</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>800</span>, height <span class='op'>=</span> <span class='fl'>600</span>,
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -549,7 +549,7 @@ argument.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

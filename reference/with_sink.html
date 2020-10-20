@@ -92,7 +92,7 @@ active." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0.9000</span>
       </span>
     </div>
 
@@ -159,18 +159,18 @@ sinks of type <code>message</code>, an error is raised if such a sink is already
 active.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_output_sink</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, append = <span class='fl'>FALSE</span>, split = <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>with_output_sink</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, append <span class='op'>=</span> <span class='cn'>FALSE</span>, split <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>local_output_sink</span>(
-  new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  append = <span class='fl'>FALSE</span>,
-  split = <span class='fl'>FALSE</span>,
-  .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>()
-)
+<span class='fu'>local_output_sink</span><span class='op'>(</span>
+  new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  append <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  split <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>with_message_sink</span>(<span class='kw'>new</span>, <span class='kw'>code</span>, append = <span class='fl'>FALSE</span>)
+<span class='fu'>with_message_sink</span><span class='op'>(</span><span class='va'>new</span>, <span class='va'>code</span>, append <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>local_message_sink</span>(new = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), append = <span class='fl'>FALSE</span>, .local_envir = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>())</pre>
+<span class='fu'>local_message_sink</span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, append <span class='op'>=</span> <span class='cn'>FALSE</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,7 +226,7 @@ argument.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
