@@ -1,5 +1,7 @@
 # withr (development version)
 
+- `local_seed()` is now exported (#153)
+
 # withr 2.3.0
 
 ## Deprecations
