@@ -25,6 +25,7 @@ with_seed <- function(seed, code) {
 }
 
 #' @rdname with_seed
+#' @export
 local_seed <- function(seed, .local_envir = parent.frame()) {
   old_seed <- get_seed()
   set.seed(seed)
