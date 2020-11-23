@@ -97,7 +97,8 @@
 
       
 
-      </header><script src="changing-and-restoring-state_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="changing-and-restoring-state_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="changing-and-restoring-state_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="changing-and-restoring-state_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Changing and restoring state</h1>
@@ -110,8 +111,8 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://withr.r-lib.org">withr</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://withr.r-lib.org">withr</a></span><span class="op">)</span></code></pre></div>
 <!-- This vignette uses a git-diff-friendly convention of ONE LINE PER SENTENCE. -->
 <p>This article explains the type of problem withr solves and shows typical patterns of usage. It also compares withr’s functionality to the <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> function from base R.</p>
 <div id="its-dangerous-to-change-state" class="section level2">
@@ -119,8 +120,8 @@
 <a href="#its-dangerous-to-change-state" class="anchor"></a>It’s dangerous to change state</h2>
 <p>Whenever possible, it is desirable to write so-called <strong>pure</strong> functions. The property we focus on here is that the function should not change the surrounding R landscape, i.e. it should not change things like the search path, global options, or the working directory. If the behaviour of <em>other</em> functions differs before and after running your function, you’ve modified the landscape. Changing the landscape is bad because it makes code much harder to understand.</p>
 <p>Here’s a <code>sloppy()</code> function that prints a number with a specific number of significant digits, by adjusting R’s global “digits” option.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">sloppy</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sloppy</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="op">}</span>
@@ -132,7 +133,7 @@
 <span class="co">#&gt; [1] 3.1</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.1</span></pre></div>
+<span class="co">#&gt; [1] 3.1</span></code></pre></div>
 <p>Notice how <code>pi</code> prints differently before and after the call to <code>sloppy()</code>? Calling <code>sloppy()</code> has a side effect: it changes the “digits” option globally, not just within its own scope of operations. This is what we want to avoid.</p>
 <p><em>Don’t worry, we’re restoring global state (specifically, the “digits” option) behind the scenes here.</em></p>
 <p>Sometimes you cannot avoid modifying the state of the world, in which case you just have to make sure that you put things back the way you found them. This is what the withr package is for.</p>
@@ -143,8 +144,8 @@
 </h2>
 <p>The first function to know about is base R’s <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>. Inside your function body, every time you do something that should be undone <strong>on exit</strong>, you immediately register the cleanup code with <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit(expr, add = TRUE)</a></code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><code>neat()</code> is an improvement over <code>sloppy()</code>, because it uses <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> to ensure that the “digits” option is restored to its original value.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">neat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -157,7 +158,7 @@
 <span class="co">#&gt; [1] 3.1</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.141593</span></pre></div>
+<span class="co">#&gt; [1] 3.141593</span></code></pre></div>
 <p><code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> also works when you exit the function abnormally, i.e. due to error. This is why official tools, like <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>, are a better choice than any do-it-yourself solution to this problem.</p>
 <p><code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> is a very useful function, but it’s not very flexible. The withr package provides an extensible <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>-inspired toolkit.</p>
 </div>
@@ -165,8 +166,8 @@
 <h2 class="hasAnchor">
 <a href="#defer-is-the-foundation-of-withr" class="anchor"></a><code>defer()</code> is the foundation of withr</h2>
 <p><code><a href="../reference/defer.html">defer()</a></code> is the core function of withr and is very much like <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>, i.e. it schedules the execution of arbitrary code when the current function exits:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">neater</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neater</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span>
   <span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -179,7 +180,7 @@
 <span class="co">#&gt; [1] 3.1</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.141593</span></pre></div>
+<span class="co">#&gt; [1] 3.141593</span></code></pre></div>
 <p><code><a href="../reference/defer.html">withr::defer()</a></code> is basically a drop-in substitute for <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>, but with three key differences we explore below:</p>
 <ol style="list-style-type: decimal">
 <li>Different default behaviour around the effect of a series of two or more calls</li>
@@ -192,8 +193,8 @@
 <h2 class="hasAnchor">
 <a href="#last-in-first-out" class="anchor"></a>Last-in, first-out</h2>
 <p>If you make more than one call to <code><a href="../reference/defer.html">defer()</a></code>, by default, it <strong>adds</strong> expressions to the <strong>top</strong> of the stack of deferred actions.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">defer_stack</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">defer_stack</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"put on socks\n"</span><span class="op">)</span>
   <span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"take off socks\n"</span><span class="op">)</span><span class="op">)</span>
   
@@ -204,10 +205,10 @@
 <span class="co">#&gt; put on socks</span>
 <span class="co">#&gt; put on shoes</span>
 <span class="co">#&gt; take off shoes</span>
-<span class="co">#&gt; take off socks</span></pre></div>
+<span class="co">#&gt; take off socks</span></code></pre></div>
 <p>In contrast, by default, a subsequent call to <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> <strong>overwrites</strong> the deferred actions registered in the previous call.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">on_exit_last_one_wins</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">on_exit_last_one_wins</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"put on socks\n"</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"take off socks\n"</span><span class="op">)</span><span class="op">)</span>
   
@@ -217,11 +218,11 @@
 <span class="fu">on_exit_last_one_wins</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; put on socks</span>
 <span class="co">#&gt; put on shoes</span>
-<span class="co">#&gt; take off shoes</span></pre></div>
+<span class="co">#&gt; take off shoes</span></code></pre></div>
 <p>Oops, we still have our socks on! The last-in, first-out, stack-like behaviour of <code><a href="../reference/defer.html">defer()</a></code> tends to be what you want in most applications.</p>
 <p>To get such behaviour with <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>, remember to call it with <code>add = TRUE, after = FALSE</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">on_exit_stack</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">on_exit_stack</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"put on socks\n"</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"take off socks\n"</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, after <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
   
@@ -232,10 +233,10 @@
 <span class="co">#&gt; put on socks</span>
 <span class="co">#&gt; put on shoes</span>
 <span class="co">#&gt; take off shoes</span>
-<span class="co">#&gt; take off socks</span></pre></div>
+<span class="co">#&gt; take off socks</span></code></pre></div>
 <p>Conversely, if you want <code><a href="../reference/defer.html">defer()</a></code> to have first-in, first-out behaviour, specify <code>priority = "last"</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">defer_queue</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">defer_queue</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Adam gets in line for ice cream\n"</span><span class="op">)</span>
   <span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Adam gets ice cream\n"</span><span class="op">)</span>, priority <span class="op">=</span> <span class="st">"last"</span><span class="op">)</span>
 
@@ -246,29 +247,29 @@
 <span class="co">#&gt; Adam gets in line for ice cream</span>
 <span class="co">#&gt; Beth gets in line for ice cream</span>
 <span class="co">#&gt; Adam gets ice cream</span>
-<span class="co">#&gt; Beth gets ice cream</span></pre></div>
+<span class="co">#&gt; Beth gets ice cream</span></code></pre></div>
 </div>
 <div id="local-functions-and-with-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#local-functions-and-with-functions" class="anchor"></a>“Local” functions (and “with” functions)</h2>
 <p>Both <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> and <code><a href="../reference/defer.html">withr::defer()</a></code> schedule actions to be executed when a certain environment goes out of scope, most typically the execution environment of a function. But the <code>envir</code> argument of <code><a href="../reference/defer.html">withr::defer()</a></code> lets you specify a <em>different</em> environment, which makes it possible to create customised <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> extensions.</p>
 <p>Let’s look at the <code>neater()</code> function again.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">neater</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neater</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span> <span class="co"># record orig. "digits" &amp; change "digits"</span>
   <span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span><span class="op">)</span>                 <span class="co"># schedule restoration of "digits"</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 <p>The first two lines are typical <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> maneuvers where, in some order, you record an original state, arrange for its eventual restoration, and change it. In real life, this can be much more involved and you might want to wrap this logic up into a helper function. You can’t wrap <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> in this way, because there’s no way to reach back up into the correct parent frame and schedule cleanup there. But with <code><a href="../reference/defer.html">defer()</a></code>, we can! Here is such a custom helper, called <code>local_digits()</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">local_digits</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sig_digits</span>, <span class="va">envir</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">local_digits</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sig_digits</span>, <span class="va">envir</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span>
   <span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span>, envir <span class="op">=</span> <span class="va">envir</span><span class="op">)</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 <p>We can use <code>local_digits()</code> to keep any manipulation of <code>digits</code> local to a function.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">neato</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neato</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu">local_digits</span><span class="op">(</span><span class="va">digits</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="op">}</span>
@@ -280,10 +281,10 @@
 <span class="co">#&gt; [1] 3.1</span>
 
 <span class="fu">neato</span><span class="op">(</span><span class="va">pi</span>, <span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3.142</span></pre></div>
+<span class="co">#&gt; [1] 3.142</span></code></pre></div>
 <p>You can even call <code>local_digits()</code> multiple times inside a function. Each call to <code>local_digits()</code> is in effect until the next or until the function exits, which ever comes first.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="va">neatful</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neatful</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu">local_digits</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="fu">local_digits</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
@@ -295,7 +296,7 @@
 <span class="fu">neatful</span><span class="op">(</span><span class="va">pi</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3</span>
 <span class="co">#&gt; [1] 3.14</span>
-<span class="co">#&gt; [1] 3.1416</span></pre></div>
+<span class="co">#&gt; [1] 3.1416</span></code></pre></div>
 <p>Certain state changes, such as modifying global options, come up so often that withr offers pre-made helpers. These helpers come in two forms: <code>local_*()</code> functions, like the one we just made, and <code>with_*()</code> functions, which we explain below. Here are the state change helpers in withr that you are most likely to find useful:</p>
 <table class="table">
 <thead><tr class="header">
@@ -330,8 +331,8 @@
 </tbody>
 </table>
 <p>We didn’t really need to write our own <code>local_digits()</code> helper, because the built-in <code><a href="../reference/with_options.html">withr::local_options()</a></code> also gets the job done:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">neatest</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neatest</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="../reference/with_options.html">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="op">}</span>
@@ -343,29 +344,29 @@
 <span class="co">#&gt; [1] 3.1</span>
 
 <span class="fu">neatest</span><span class="op">(</span><span class="va">pi</span>, <span class="fl">4</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3.142</span></pre></div>
+<span class="co">#&gt; [1] 3.142</span></code></pre></div>
 <p>The <code>local_*()</code> functions target a slightly different use case from the <code>with_*()</code> functions, which are inspired by base R’s <code><a href="https://rdrr.io/r/base/with.html">with()</a></code> function:</p>
 <ul>
 <li>
 <p><code>with_*()</code> functions are best for executing a small snippet of code with a modified state</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">neat_with</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neat_with</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># imagine lots of code here</span>
   <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="../reference/with_options.html">with_options</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="op">)</span>
   <span class="co"># ... and a lot more code here</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 </li>
 <li>
 <p><code>local_*()</code> functions are best for modifying state “from now until the function exits”</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">neat_local</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">neat_local</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="../reference/with_options.html">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="va">sig_digits</span><span class="op">)</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="co"># imagine lots of code here</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 </li>
 </ul>
 <p>It’s best to minimize the footprint of your state modifications. Therefore, use <code>with_*()</code> functions where you can. But when this forces you to put lots of (indented) code inside <code>with_*()</code>, e.g. most of your function’s body, then it’s better to use <code>local_*()</code>.</p>
@@ -378,8 +379,8 @@
 <p>The answer is: for development purposes.</p>
 <p>If you are developing functions or tests that use withr, it’s very useful to be able to execute that code interactively, without error, and with the ability to trigger the deferred events. It’s hard to develop with functions that work one way inside a function, but another way in the global environment (or, worse, throw an error).</p>
 <p>Here’s how <code><a href="../reference/defer.html">defer()</a></code> (and all functions based on it) works in an interactive session.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://withr.r-lib.org">withr</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://withr.r-lib.org">withr</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"hi"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Setting deferred event(s) on global environment.</span>
@@ -399,7 +400,7 @@
 <span class="co">#&gt; [1] "hi"</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.141593</span></pre></div>
+<span class="co">#&gt; [1] 3.141593</span></code></pre></div>
 <p>When you defer events on the global environment, you get a message that alerts you to the situation. If you add subsequent events, the message is <em>not</em> repeated. Since the global environment isn’t perishable, like a test environment is, you have to call <code><a href="../reference/defer.html">deferred_run()</a></code> explicitly to execute the deferred events. You can also clear them, without running, with <code><a href="../reference/defer.html">deferred_clear()</a></code>.</p>
 </div>
 <div class="footnotes">
