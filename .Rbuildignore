@@ -20,3 +20,4 @@
 ^\.covrignore$
 ^\.github$
 ^pkgdown$
+^LICENSE\.md$

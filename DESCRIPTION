@@ -34,7 +34,7 @@ Description: A set of functions to run code 'with' safely and
     originally a part of the 'devtools' package, this provides a simple
     package with limited dependencies to provide access to these
     functions.
-License: GPL (>= 2)
+License: MIT + file LICENSE
 URL: https://withr.r-lib.org,
     https://github.com/r-lib/withr#readme
 BugReports: https://github.com/r-lib/withr/issues

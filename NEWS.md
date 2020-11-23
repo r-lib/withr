@@ -2,6 +2,8 @@
 
 - `local_seed()` is now exported (#153)
 
+- withr is now licensed as MIT (#154).
+
 # withr 2.3.0
 
 ## Deprecations
