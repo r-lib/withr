@@ -97,7 +97,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -128,7 +128,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/withr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -154,6 +154,7 @@
 <a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p>Tests for <code><a href="../reference/devices.html">with_cairo_pdf()</a></code> and <code><a href="../reference/devices.html">with_cairo_ps()</a></code> have been removed, as they fail if Cairo is not available, such as with M1 macOS systems (<a href='https://github.com/r-lib/withr/issues/158'>#158</a>)</p></li>
 <li><p><code><a href="../reference/with_seed.html">local_seed()</a></code> is now exported (<a href='https://github.com/r-lib/withr/issues/153'>#153</a>)</p></li>
 <li><p>withr is now licensed as MIT (<a href='https://github.com/r-lib/withr/issues/154'>#154</a>).</p></li>
 </ul>
