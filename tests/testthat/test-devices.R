@@ -8,8 +8,8 @@ test_that("with_*device* functions create a plot file", {
   plot_dir <- tempfile("withr-test-plots-")
   dir.create(plot_dir)
 
-  fn_names <- c("with_bmp", "with_cairo_pdf", "with_cairo_ps", "with_jpeg",
-    "with_pdf", "with_png", "with_svg", "with_tiff", "with_xfig")
+  fn_names <- c("with_bmp", "with_jpeg", "with_pdf", "with_png", "with_svg",
+    "with_tiff", "with_xfig")
 
   fns <- mget(fn_names, envir = asNamespace("withr"))
   extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "svg", "tiff", "xfig")
@@ -40,8 +40,8 @@ test_that("local_device functions create a plot file", {
   plot_dir <- tempfile("withr-test-plots-local-")
   dir.create(plot_dir)
 
-  fn_names <- c("local_bmp", "local_cairo_pdf", "local_cairo_ps", "local_jpeg",
-    "local_pdf", "local_png", "local_svg", "local_tiff", "local_xfig")
+  fn_names <- c("local_bmp", "local_jpeg", "local_pdf", "local_png",
+    "local_svg", "local_tiff", "local_xfig")
 
   fns <- mget(fn_names, envir = asNamespace("withr"))
   extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "svg", "tiff", "xfig")

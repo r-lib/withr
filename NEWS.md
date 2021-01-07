@@ -1,5 +1,7 @@
 # withr (development version)
 
+- Tests for `with_cairo_pdf()` and `with_cairo_ps()` have been removed, as they fail if Cairo is not available, such as with M1 macOS systems (#158)
+
 - `local_seed()` is now exported (#153)
 
 - withr is now licensed as MIT (#154).
