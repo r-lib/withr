@@ -12,18 +12,6 @@ Issues with CRAN packages are summarised below.
 
 Full Summary at: https://github.com/r-lib/withr/tree/master/revdep#readme
 
-### New problems
-(This reports the first line of each new failure)
-
-* callr
-  checking tests ... ERROR
-
-* cliapp
-  checking examples ... ERROR
-  checking tests ... ERROR
-
-Both of these problems were due to a bug in the cliapp package, reported and fixed by https://github.com/r-lib/cliapp/pull/15
-
 ### Failed to check
 
 * batchtools (NA)
