@@ -1,4 +1,4 @@
-# withr (development version)
+# withr 2.4.0
 
 - withr is now licensed as MIT (#154).
 
