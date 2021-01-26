@@ -1,4 +1,4 @@
-# withr (development version)
+# withr 2.4.1
 
 - Tests which require `capabilities("cairo")` are now skipped.
 
