@@ -1,6 +1,6 @@
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
-Version: 2.4.1
+Version: 2.4.1.9000
 Authors@R: 
     c(person(given = "Jim",
              family = "Hester",
