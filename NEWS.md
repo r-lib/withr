@@ -1,5 +1,7 @@
 # withr (development version)
 
+- `with_environment()` now passing `pos` and `warn.conflicts` to `attach()`, as intended (#161)
+
 # withr 2.4.1
 
 - Tests which require `capabilities("cairo")` are now skipped.

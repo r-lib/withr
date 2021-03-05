@@ -72,9 +72,8 @@ local_namespace <- function(package, .local_envir = parent.frame(), warn.conflic
 #' @rdname with_package
 #' @inheritParams base::attach
 #' @export
-with_environment <- function(env, code, pos = 2L, name = format(env),
-  warn.conflicts = FALSE) {
-  (get("attach"))(env, name = name)
+with_environment <- function(env, code, pos = 2L, name = format(env), warn.conflicts = FALSE) {
+  (get("attach"))(env, name = name, pos = pos, warn.conflicts = warn.conflicts)
   on.exit(detach(name, character.only = TRUE))
   force(code)
 }
@@ -83,6 +82,6 @@ with_environment <- function(env, code, pos = 2L, name = format(env),
 #' @export
 local_environment <- function(env, pos = 2L, name = format(env),
   warn.conflicts = FALSE, .local_envir = parent.frame()) {
-  (get("attach"))(env, name = name)
+  (get("attach"))(env, name = name, pos = pos, warn.conflicts = warn.conflicts)
   defer(detach(name, character.only = TRUE), envir = .local_envir)
 }
