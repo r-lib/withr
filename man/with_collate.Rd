@@ -27,7 +27,7 @@ Temporarily change collation order by changing the value of the
 \examples{
 
 # Modify collation order:
-x <- c("bernard", "bérénice", "béatrice", "boris")
+x <- c("bernard", "bÃ©rÃ©nice", "bÃ©atrice", "boris")
 with_collate("fr_FR", sort(x))
 with_collate("C", sort(x))
 

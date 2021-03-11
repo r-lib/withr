@@ -7,9 +7,21 @@
 \alias{local_preserve_seed}
 \title{Random seed}
 \usage{
-with_seed(seed, code)
+with_seed(
+  seed,
+  code,
+  .rng_kind = "default",
+  .rng_normal_kind = "default",
+  .rng_sample_kind = "default"
+)
 
-local_seed(seed, .local_envir = parent.frame())
+local_seed(
+  seed,
+  .local_envir = parent.frame(),
+  .rng_kind = "default",
+  .rng_normal_kind = "default",
+  .rng_sample_kind = "default"
+)
 
 with_preserve_seed(code)
 

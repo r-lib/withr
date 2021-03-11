@@ -49,7 +49,7 @@ with_locale(new = c("LC_MONETARY" = "it_IT"), Sys.localeconv())
 with_locale(new = c("LC_MONETARY" = "en_US"), Sys.localeconv())
 
 ## Ordering:
-x <- c("bernard", "bérénice", "béatrice", "boris")
+x <- c("bernard", "bÃ©rÃ©nice", "bÃ©atrice", "boris")
 with_locale(c(LC_COLLATE = "fr_FR"), sort(x))
 with_locale(c(LC_COLLATE = "C"), sort(x))
 
