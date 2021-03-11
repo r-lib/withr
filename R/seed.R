@@ -16,19 +16,23 @@
 #' with_seed(seed, runif(5))
 #' with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
 #' @export
-with_seed <- function(seed, code) {
+with_seed <- function(seed, code, .rng_kind = "default", .rng_normal_kind = "default", .rng_sample_kind = "default") {
   force(seed)
+  force(.rng_kind)
+  force(.rng_normal_kind)
+  force(.rng_sample_kind)
   with_preserve_seed({
-    set.seed(seed)
+    set.seed(seed = seed, kind = .rng_kind, normal.kind = .rng_normal_kind, sample.kind = .rng_sample_kind)
     code
   })
 }
 
 #' @rdname with_seed
 #' @export
-local_seed <- function(seed, .local_envir = parent.frame()) {
+local_seed <- function(seed, .local_envir = parent.frame(), .rng_kind = "default", .rng_normal_kind = "default",
+                       .rng_sample_kind = "default") {
   old_seed <- get_seed()
-  set.seed(seed)
+  set.seed(seed = seed, kind = .rng_kind, normal.kind = .rng_normal_kind, sample.kind = .rng_sample_kind)
 
   defer({
     if (is.null(old_seed)) {
@@ -82,16 +86,27 @@ get_seed <- function() {
   if (!has_seed()) {
     return(NULL)
   }
-  get(".Random.seed", globalenv(), mode = "integer", inherits = FALSE)
+  list(
+    random_seed = get(".Random.seed", globalenv(), mode = "integer", inherits = FALSE),
+    rng_kind = RNGkind()
+  )
 }
 
 set_seed <- function(seed) {
-  assign(".Random.seed", seed, globalenv())
+  # Ensure RNGkind() and Normal RNG state is properly reset (cf. #162)
+  set.seed(
+    seed = NULL,
+    kind = seed$rng_kind[1L],
+    normal.kind = seed$rng_kind[2L],
+    sample.kind = seed$rng_kind[3L]
+  )
+  assign(".Random.seed", seed$random_seed, globalenv())
 }
 
 rm_seed <- function() {
   if (!has_seed()) {
     return(NULL)
   }
+  set.seed(seed = NULL) # also reset Normal RNG state (cf. #162)
   rm(".Random.seed", envir = globalenv())
 }

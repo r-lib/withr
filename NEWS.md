@@ -1,6 +1,9 @@
 # withr (development version)
 
-- `with_environment()` now passing `pos` and `warn.conflicts` to `attach()`, as intended (#161)
+- `with_environment()` now passing `pos` and `warn.conflicts` to `attach()`, as intended (#161).
+
+- `with_seed()` now also sets the RNG via new arguments `.rng_kind`, `.rng_normal_kind` and `.rng_sample_kind`
+  (#162, @AshesITR).
 
 # withr 2.4.1
 
