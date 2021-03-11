@@ -5,6 +5,9 @@
 #' @template with
 #' @param seed `[integer(1)]`\cr The random seed to use to evaluate the code.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
+#' @param .rng_kind `[character(1)]`\cr Kind of (uniform) RNG to use.
+#' @param .rng_normal_kind `[character(1)]`\cr Kind of normal RNG to use.
+#' @param .rng_sample_kind `[character(1)]`\cr Kind of RNG to use for sampling.
 #' @examples
 #' # Same random values:
 #' with_preserve_seed(runif(5))
@@ -22,7 +25,7 @@ with_seed <- function(seed, code, .rng_kind = "default", .rng_normal_kind = "def
   force(.rng_normal_kind)
   force(.rng_sample_kind)
   with_preserve_seed({
-    set.seed(seed = seed, kind = .rng_kind, normal.kind = .rng_normal_kind, sample.kind = .rng_sample_kind)
+    set_seed(list(seed = seed, rng_kind = c(.rng_kind, .rng_normal_kind, .rng_sample_kind)))
     code
   })
 }
@@ -32,7 +35,7 @@ with_seed <- function(seed, code, .rng_kind = "default", .rng_normal_kind = "def
 local_seed <- function(seed, .local_envir = parent.frame(), .rng_kind = "default", .rng_normal_kind = "default",
                        .rng_sample_kind = "default") {
   old_seed <- get_seed()
-  set.seed(seed = seed, kind = .rng_kind, normal.kind = .rng_normal_kind, sample.kind = .rng_sample_kind)
+  set_seed(list(seed = seed, rng_kind = c(.rng_kind, .rng_normal_kind, .rng_sample_kind)))
 
   defer({
     if (is.null(old_seed)) {
@@ -94,13 +97,15 @@ get_seed <- function() {
 
 set_seed <- function(seed) {
   # Ensure RNGkind() and Normal RNG state is properly reset (cf. #162)
-  set.seed(
-    seed = NULL,
-    kind = seed$rng_kind[1L],
-    normal.kind = seed$rng_kind[2L],
-    sample.kind = seed$rng_kind[3L]
-  )
-  assign(".Random.seed", seed$random_seed, globalenv())
+  if (getRversion() < "3.6") {
+    seed$rng_kind <- seed$rng_kind[1L:2L]
+  }
+  if (is.null(seed$seed)) {
+    do.call(set.seed, args = c(list(NULL), as.list(seed$rng_kind)))
+    assign(".Random.seed", seed$random_seed, globalenv())
+  } else {
+    do.call(set.seed, args = as.list(c(seed$seed, seed$rng_kind)))
+  }
 }
 
 rm_seed <- function() {
