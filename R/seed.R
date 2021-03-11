@@ -101,10 +101,11 @@ set_seed <- function(seed) {
     seed$rng_kind <- seed$rng_kind[1L:2L]
   }
   if (is.null(seed$seed)) {
-    do.call(set.seed, args = c(list(NULL), as.list(seed$rng_kind)))
+    do.call(RNGkind, args = as.list(seed$rng_kind))
     assign(".Random.seed", seed$random_seed, globalenv())
   } else {
-    do.call(set.seed, args = as.list(c(seed$seed, seed$rng_kind)))
+    do.call(RNGkind, args = as.list(seed$rng_kind))
+    set.seed(seed$seed)
   }
 }
 
