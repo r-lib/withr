@@ -56,6 +56,8 @@ test_that("local_device functions create a plot file", {
   extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "tiff", "xfig", "svg", "pdf", "ps")
 
   for (i in seq_along(fns)) {
+    skip_if_needs_cairo(fn_names[[i]])
+
     filename <- file.path(plot_dir, paste0("test-", fn_names[i], ".", extensions[i]))
     info <- paste0("function = ", fn_names[i], "; filename = ", filename)
     (function(i) {
