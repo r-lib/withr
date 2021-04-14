@@ -159,9 +159,21 @@ afterwards." />
 afterwards.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_seed</span><span class='op'>(</span><span class='va'>seed</span>, <span class='va'>code</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>with_seed</span><span class='op'>(</span>
+  <span class='va'>seed</span>,
+  <span class='va'>code</span>,
+  .rng_kind <span class='op'>=</span> <span class='st'>"default"</span>,
+  .rng_normal_kind <span class='op'>=</span> <span class='st'>"default"</span>,
+  .rng_sample_kind <span class='op'>=</span> <span class='st'>"default"</span>
+<span class='op'>)</span>
 
-<span class='fu'>local_seed</span><span class='op'>(</span><span class='va'>seed</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>local_seed</span><span class='op'>(</span>
+  <span class='va'>seed</span>,
+  .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>,
+  .rng_kind <span class='op'>=</span> <span class='st'>"default"</span>,
+  .rng_normal_kind <span class='op'>=</span> <span class='st'>"default"</span>,
+  .rng_sample_kind <span class='op'>=</span> <span class='st'>"default"</span>
+<span class='op'>)</span>
 
 <span class='fu'>with_preserve_seed</span><span class='op'>(</span><span class='va'>code</span><span class='op'>)</span>
 
@@ -177,6 +189,18 @@ afterwards.</p>
     <tr>
       <th>code</th>
       <td><p><code>[any]</code><br /> Code to execute in the temporary environment</p></td>
+    </tr>
+    <tr>
+      <th>.rng_kind</th>
+      <td><p><code>[character(1)]</code><br /> Kind of (uniform) RNG to use.</p></td>
+    </tr>
+    <tr>
+      <th>.rng_normal_kind</th>
+      <td><p><code>[character(1)]</code><br /> Kind of normal RNG to use.</p></td>
+    </tr>
+    <tr>
+      <th>.rng_sample_kind</th>
+      <td><p><code>[character(1)]</code><br /> Kind of RNG to use for sampling.</p></td>
     </tr>
     <tr>
       <th>.local_envir</th>

@@ -154,14 +154,11 @@
 <a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code><a href="../reference/with_package.html">with_environment()</a></code> now passing <code>pos</code> and <code>warn.conflicts</code> to <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code>, as intended (<a href='https://github.com/r-lib/withr/issues/161'>#161</a>).</p></li>
+<li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now also sets the RNG via new arguments <code>.rng_kind</code>, <code>.rng_normal_kind</code> and <code>.rng_sample_kind</code> (<a href='https://github.com/r-lib/withr/issues/162'>#162</a>, <a href='https://github.com/AshesITR'>@AshesITR</a>).</p></li>
 <li><p><code><a href="../reference/with_timezone.html">with_timezone()</a></code> now works after recent changes to <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code> in R-devel (<a href='https://github.com/r-lib/withr/issues/165'>#165</a>)</p></li>
-<li><p><code><a href="../reference/with_package.html">with_environment()</a></code> now passing <code>pos</code> and <code>warn.conflicts</code> to <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code>, as intended (<a href='https://github.com/r-lib/withr/issues/161'>#161</a>)</p></li>
 </ul>
-</div>
-    <div id="withr-241" class="section level1">
-<h1 class="page-header" data-toc-text="2.4.1">
-<a href="#withr-241" class="anchor"></a>withr 2.4.1<small> 2021-01-26 </small>
-</h1>
+<p>withr 2.4.1</p>
 <ul>
 <li>Tests which require <code><a href="https://rdrr.io/r/base/capabilities.html">capabilities("cairo")</a></code> are now skipped.</li>
 </ul>
