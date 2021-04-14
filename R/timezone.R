@@ -20,10 +20,7 @@
 #' with_timezone("US/Pacific", print(Sys.time()))
 #'
 with_timezone <- function(tz, code) {
-  old <- get0(".sys.timezone", baseenv(), mode = "character",
-              inherits = FALSE, ifnotfound = NA_character_)
-  on.exit(assign(".sys.timezone", old, envir = baseenv()), add = TRUE)
-  assign(".sys.timezone", NA, envir = baseenv())
+  reset_timezone()
   with_envvar(c(TZ = tz), code)
 }
 
@@ -45,11 +42,23 @@ with_timezone <- function(tz, code) {
 #' fun2()
 #' Sys.time()
 local_timezone <- function(tz, .local_envir = parent.frame()) {
-  old <- get0(".sys.timezone", baseenv(), mode = "character",
-              inherits = FALSE, ifnotfound = NA_character_)
-  withr::defer(
-     assign(".sys.timezone", old, envir = baseenv()),
-     envir = .local_envir)
-  assign(".sys.timezone", NA, envir = baseenv())
+  reset_timezone(envir = .local_envir)
   local_envvar(c(TZ = tz), .local_envir = .local_envir)
+}
+
+reset_timezone <- function(envir = parent.frame()) {
+  base_env <- baseenv()
+  old <- get0(".sys.timezone", base_env, mode = "character",
+              inherits = FALSE, ifnotfound = NA_character_)
+  is_locked <- bindingIsLocked(".sys.timezone", env = base_env)
+  if (is_locked) {
+    base_env$unlockBinding(".sys.timezone", env = base_env)
+  }
+  defer({
+    assign(".sys.timezone", old, envir = base_env)
+    if (is_locked) {
+      lockBinding(".sys.timezone", env = base_env)
+    }
+  }, envir = envir)
+  assign(".sys.timezone", NA, envir = base_env)
 }
