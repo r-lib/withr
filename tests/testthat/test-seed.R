@@ -83,3 +83,47 @@ test_that("local_preserve_seed preserves empty seed", {
   })
   expect_false(has_seed())
 })
+
+test_that("RNGkind is also respected", {
+  my_seed <- sample.int(.Machine$integer.max, 1)
+  set.seed(my_seed)
+  reference <- runif(10)
+
+  other_rng_kind <- "L'Ecuyer-CMRG"
+  RNGkind(other_rng_kind)
+  expect_equal(with_seed(my_seed, runif(10)), reference)
+  expect_equal(RNGkind()[1L], other_rng_kind)
+  RNGkind("default")
+  expect_equal(with_seed(my_seed, runif(10)), reference)
+
+  RNGkind(other_rng_kind)
+  set.seed(my_seed)
+  other_reference <- runif(10)
+  expect_equal(with_seed(my_seed, runif(10), .rng_kind = other_rng_kind), other_reference)
+  RNGkind("default")
+
+  set.seed(my_seed)
+  reference <- rnorm(10)
+  expect_equal(with_seed(my_seed, rnorm(10)), reference)
+  RNGkind(normal.kind = "Box-Muller")
+  set.seed(my_seed)
+  other_reference <- rnorm(10)
+  expect_equal(with_seed(my_seed, rnorm(10)), reference)
+
+  expect_equal(
+    with_preserve_seed(rnorm(10)),
+    with_preserve_seed(rnorm(10))
+  )
+
+  # Beware: Box-Muller generates pairs, that state is lost across set.seed()!
+  rnorm(1)
+  expect_failure(expect_equal(
+    with_preserve_seed(rnorm(10)),
+    with_preserve_seed(rnorm(10))
+  ))
+
+  expect_equal(with_seed(my_seed, rnorm(10)), reference)
+  expect_equal(with_seed(my_seed, rnorm(10), .rng_normal_kind = "Box-Muller"), other_reference)
+  expect_equal(with_seed(my_seed, rnorm(10), .rng_normal_kind = "Box-Muller"), other_reference)
+  RNGkind(normal.kind = "default")
+})

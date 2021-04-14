@@ -7,9 +7,21 @@
 \alias{local_preserve_seed}
 \title{Random seed}
 \usage{
-with_seed(seed, code)
+with_seed(
+  seed,
+  code,
+  .rng_kind = "default",
+  .rng_normal_kind = "default",
+  .rng_sample_kind = "default"
+)
 
-local_seed(seed, .local_envir = parent.frame())
+local_seed(
+  seed,
+  .local_envir = parent.frame(),
+  .rng_kind = "default",
+  .rng_normal_kind = "default",
+  .rng_sample_kind = "default"
+)
 
 with_preserve_seed(code)
 
@@ -19,6 +31,12 @@ local_preserve_seed(.local_envir = parent.frame())
 \item{seed}{\verb{[integer(1)]}\cr The random seed to use to evaluate the code.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
+
+\item{.rng_kind}{\verb{[character(1)]}\cr Kind of (uniform) RNG to use.}
+
+\item{.rng_normal_kind}{\verb{[character(1)]}\cr Kind of normal RNG to use.}
+
+\item{.rng_sample_kind}{\verb{[character(1)]}\cr Kind of RNG to use for sampling.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

@@ -85,7 +85,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jim Hester \email{james.f.hester@gmail.com}
+\strong{Maintainer}: Jim Hester \email{jim.hester@rstudio.com}
 
 Authors:
 \itemize{
