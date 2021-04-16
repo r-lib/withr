@@ -1,4 +1,4 @@
-# withr (development version)
+# withr 2.4.2
 
 - `local_options()` now lets you set an option to `NULL` as intended (#156)
 
