@@ -4,6 +4,9 @@
 
 - `with_seed()` now also sets the RNG via new arguments `.rng_kind`, `.rng_normal_kind` and `.rng_sample_kind`
   (#162, @AshesITR).
+- `local_options()` now lets you set an option to `NULL` as intended (#156)
+
+- `with_timezone()` now works after recent changes to `Sys.timezone()` in R-devel (#165)
 
 - `with_timezone()` now works after recent changes to `Sys.timezone()` in R-devel (#165)
 

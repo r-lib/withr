@@ -7,7 +7,7 @@ set_options <- function(new_options) {
 }
 
 reset_options <- function(old_options) {
-    options(old_options)
+  options(old_options)
 }
 
 #' Options

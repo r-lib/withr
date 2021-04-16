@@ -57,3 +57,10 @@ as_character <- function(x) {
   names(res) <- nms
   res
 }
+
+list_combine <- function(rhs, lhs) {
+  for (nme in names(lhs)) {
+    rhs[nme] <- lhs[nme]
+  }
+  rhs
+}

@@ -31,7 +31,7 @@ local_ <- function(set, reset = set, envir = parent.frame(), new = TRUE, dots = 
   reset <- if (missing(reset)) substitute(set) else substitute(reset)
 
   if (dots) {
-    modify_call <- quote(.new <- utils::modifyList(as.list(.new), list(...)))
+    modify_call <- quote(.new <- list_combine(as.list(.new), list(...)))
 
     fun <- eval(bquote(function(args) {
         .(modify_call)
