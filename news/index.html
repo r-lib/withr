@@ -154,10 +154,10 @@
 <a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> argument <code>envir</code> is deprecated, in favor of <code>.local_envir</code>. All withr functions except <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> used <code>.local_envir</code> to specify environments, so this makes this function consistent with the rest. (<a href='https://github.com/r-lib/withr/issues/157'>#157</a>)</p></li>
 <li><p><code><a href="../reference/with_package.html">with_environment()</a></code> now passing <code>pos</code> and <code>warn.conflicts</code> to <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code>, as intended (<a href='https://github.com/r-lib/withr/issues/161'>#161</a>).</p></li>
 <li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now also sets the RNG via new arguments <code>.rng_kind</code>, <code>.rng_normal_kind</code> and <code>.rng_sample_kind</code> (<a href='https://github.com/r-lib/withr/issues/162'>#162</a>, <a href='https://github.com/AshesITR'>@AshesITR</a>).</p></li>
 <li><p><code><a href="../reference/with_options.html">local_options()</a></code> now lets you set an option to <code>NULL</code> as intended (<a href='https://github.com/r-lib/withr/issues/156'>#156</a>)</p></li>
-<li><p><code><a href="../reference/with_timezone.html">with_timezone()</a></code> now works after recent changes to <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code> in R-devel (<a href='https://github.com/r-lib/withr/issues/165'>#165</a>)</p></li>
 <li><p><code><a href="../reference/with_timezone.html">with_timezone()</a></code> now works after recent changes to <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code> in R-devel (<a href='https://github.com/r-lib/withr/issues/165'>#165</a>)</p></li>
 </ul>
 <p>withr 2.4.1</p>
