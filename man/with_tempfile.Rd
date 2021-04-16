@@ -11,6 +11,7 @@ with_tempfile(
   new,
   code,
   envir = parent.frame(),
+  .local_envir = parent.frame(),
   pattern = "file",
   tmpdir = tempdir(),
   fileext = ""
@@ -19,6 +20,7 @@ with_tempfile(
 local_tempfile(
   new = NULL,
   envir = parent.frame(),
+  .local_envir = parent.frame(),
   pattern = "file",
   tmpdir = tempdir(),
   fileext = ""
@@ -45,7 +47,9 @@ local_tempdir(
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{envir}{\verb{[environment]}\cr Environment in which to define the temporary files.}
+\item{envir}{\verb{[environment]}\cr Deprecated in favor of \code{.local_envir}.}
+
+\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 
 \item{pattern}{a non-empty character vector giving the initial part
     of the name.}
@@ -56,8 +60,6 @@ local_tempdir(
 
 \item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
 directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}
-
-\item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
