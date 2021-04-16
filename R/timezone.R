@@ -60,5 +60,5 @@ reset_timezone <- function(envir = parent.frame()) {
       lockBinding(".sys.timezone", env = base_env)
     }
   }, envir = envir)
-  assign(".sys.timezone", NA, envir = base_env)
+  assign(".sys.timezone", NA_character_, envir = base_env)
 }
