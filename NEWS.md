@@ -1,5 +1,7 @@
 # withr (development version)
 
+- `local_options()` now lets you set an option to `NULL` as intended (#156)
+
 - `local_tempfile()` argument `envir` is deprecated, in favor of `.local_envir`.
   All withr functions except `local_tempfile()` used `.local_envir` to specify environments, so this makes this function consistent with the rest. (#157)
 
@@ -8,11 +10,9 @@
 - `with_seed()` now also sets the RNG via new arguments `.rng_kind`, `.rng_normal_kind` and `.rng_sample_kind`
   (#162, @AshesITR).
 
-- `local_options()` now lets you set an option to `NULL` as intended (#156)
-
 - `with_timezone()` now works after recent changes to `Sys.timezone()` in R-devel (#165)
 
-withr 2.4.1
+# withr 2.4.1
 
 - Tests which require `capabilities("cairo")` are now skipped.
 
