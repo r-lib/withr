@@ -7,6 +7,9 @@ set_envvar <- function(envs, action = "replace") {
   stopifnot(is.character(action), length(action) == 1)
   action <- match.arg(action, c("replace", "prefix", "suffix"))
 
+  # if any envs are null make them NA instead
+  envs[vlapply(envs, is.null)] <- NA
+
   # if there are duplicated entries keep only the last one
   envs <- envs[!duplicated(names(envs), fromLast = TRUE)]
 
