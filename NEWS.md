@@ -1,5 +1,7 @@
 # withr (development version)
 
+* `with_seed()` now caches the check for R version, so is now faster (#170)
+
 * `with_makevars()` and `local_makevars()` now eagerly evaluate the `path` argument (#169)
 
 # withr 2.4.2
