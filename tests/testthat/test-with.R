@@ -148,7 +148,7 @@ test_that("with_collate works and resets collate", {
 
 test_that("with_makevars works and resets the Makevars file", {
   current <- tempfile()
-  writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
+  writeLines(con = current, c("CFLAGS=-O3"), sep = "\n")
   new <- c(CFLAGS = "-O0")
   with_makevars(
     new, path = current,
@@ -156,12 +156,12 @@ test_that("with_makevars works and resets the Makevars file", {
       expect_equal("CFLAGS=-O0", readLines(Sys.getenv("R_MAKEVARS_USER")))
     }
   )
-  expect_equal("CFLAGS=-03", readLines(current))
+  expect_equal("CFLAGS=-O3", readLines(current))
 })
 
 test_that("with_makevars changes only the defined variables", {
   current_name <- tempfile()
-  current <- c("CFLAGS=-03", "LDFLAGS=-lz")
+  current <- c("CFLAGS=-O3", "LDFLAGS=-lz")
   writeLines(con = current_name, current, sep = "\n")
   new <- c(CFLAGS = "-O0")
   with_makevars(
@@ -175,7 +175,7 @@ test_that("with_makevars changes only the defined variables", {
 
 test_that("with_makevars works with alternative assignments", {
   current <- tempfile()
-  writeLines(con = current, c("CFLAGS=-03"), sep = "\n")
+  writeLines(con = current, c("CFLAGS=-O3"), sep = "\n")
   new <- c(CFLAGS = "-O0")
   with_makevars(
     new, path = current, assignment = "+=",
@@ -183,7 +183,22 @@ test_that("with_makevars works with alternative assignments", {
       expect_equal("CFLAGS+=-O0", readLines(Sys.getenv("R_MAKEVARS_USER")))
     }
   )
-  expect_equal("CFLAGS=-03", readLines(current))
+  expect_equal("CFLAGS=-O3", readLines(current))
+})
+
+test_that("with_makevars uses the existing R_MAKEVARS_USER by default", {
+  tf <- tempfile()
+  local_envvar("R_MAKEVARS_USER" = tf)
+  on.exit(unlink(tf))
+  writeLines(con = tf, c("CFLAGS=-O3", "CXXFLAGS=-O3"), sep = "\n")
+  new <- c(CFLAGS = "-O0")
+  with_makevars(
+    new,
+    {
+      expect_equal(readLines(Sys.getenv("R_MAKEVARS_USER")), c("CFLAGS=-O0", "CXXFLAGS=-O3"))
+    }
+  )
+  expect_equal(readLines(tf), c("CFLAGS=-O3", "CXXFLAGS=-O3"))
 })
 
 test_that("set_makevars works as expected", {

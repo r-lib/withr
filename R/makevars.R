@@ -80,6 +80,7 @@ with_makevars <- function(new, code, path = makevars_user(), assignment = c("=",
   assignment <- match.arg(assignment)
   makevars_file <- tempfile()
   on.exit(unlink(makevars_file), add = TRUE)
+  force(path)
   with_envvar(c(R_MAKEVARS_USER = makevars_file), {
     set_makevars(new, path, makevars_file, assignment = assignment)
     force(code)
@@ -95,6 +96,7 @@ local_makevars <- function(.new = list(), ..., .path = makevars_user(), .assignm
   .assignment <- match.arg(.assignment)
   makevars_file <- tempfile()
   defer(unlink(makevars_file), envir = .local_envir)
+  force(.path)
   local_envvar(c(R_MAKEVARS_USER = makevars_file), .local_envir = .local_envir)
   invisible(set_makevars(.new, .path, makevars_file, assignment = .assignment))
 }
