@@ -13,9 +13,11 @@ defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", 
   if (identical(envir, .GlobalEnv) && is.null(get_handlers(envir))) {
     message(
       "Setting deferred event(s) on global environment.\n",
+      "  * Will be run automatically when session ends\n",
       "  * Execute (and clear) with `withr::deferred_run()`.\n",
       "  * Clear (without executing) with `withr::deferred_clear()`."
     )
+    reg.finalizer(envir, function(env) deferred_run(env), onexit = TRUE)
   }
   invisible(
     add_handler(
