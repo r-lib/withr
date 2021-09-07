@@ -53,8 +53,8 @@ jobs:
           extra-packages: rcmdcheck
 
       - name: Install xquartz
-         if: runner.os == 'macOS'
-         run: brew install --cask xquartz
+        if: runner.os == 'macOS'
+        run: brew install --cask xquartz
 
       - name: Check
         env:
