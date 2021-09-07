@@ -25,7 +25,7 @@
 #' unlink(db)
 #' @export
 with_db_connection <- function(con, code) {
-  requireNamespace("DBI")
+  requireNamespace("DBI", quietly = TRUE)
 
   stopifnot(all(is.named(con)))
   stopifnot(all(vlapply(con, methods::is, "DBIConnection")))
@@ -42,7 +42,7 @@ with_db_connection <- function(con, code) {
 #' @rdname with_db_connection
 #' @export
 local_db_connection <- function(con, .local_envir = parent.frame()) {
-  requireNamespace("DBI")
+  requireNamespace("DBI", quietly = TRUE)
   stopifnot(methods::is(con, "DBIConnection"))
 
   defer(DBI::dbDisconnect(con), envir = .local_envir)
