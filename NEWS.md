@@ -1,5 +1,9 @@
 # withr (development version)
 
+* Handlers registered with the global environment (as happens when `local_()` 
+  is run at the top-level, outside a function) are now automatically run
+  when the R session ends.
+
 * `with_seed()` now caches the check for R version, so is now faster (#170)
 
 * `with_makevars()` and `local_makevars()` now eagerly evaluate the `path` argument (#169)
