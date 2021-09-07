@@ -1,5 +1,3 @@
-context("file")
-
 describe("with_file", {
   it("can use unnamed arguments", {
     with_file("file1", {

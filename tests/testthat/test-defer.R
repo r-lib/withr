@@ -1,5 +1,3 @@
-context("defer")
-
 test_that("defer_parent works", {
   local_file <- function(path) {
     file.create(path)

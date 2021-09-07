@@ -1,5 +1,3 @@
-context("connection")
-
 describe("with_connection", {
   it("errors if connection is not named", {
     expect_error({

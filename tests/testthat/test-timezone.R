@@ -1,5 +1,3 @@
-context("timezone")
-
 describe("with_timezone", {
   it("changes the time zone", {
     expect_equal(with_timezone("CET", Sys.timezone()), "CET")

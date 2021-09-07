@@ -1,5 +1,3 @@
-context("devices")
-
 needs_cairo <- function(fn) fn %in% c("with_cairo_pdf", "with_cairo_ps", "with_svg", "local_cairo_pdf", "local_cairo_ps", "local_svg")
 skip_if_needs_cairo <- function(fn) {
   if (!capabilities("cairo") && needs_cairo(fn)) {
