@@ -1,6 +1,3 @@
-context("wrap")
-
-
 test_that("wrap works", {
   v <- c(0, 0, 0)
   set <- function(x) v[2] <<- x

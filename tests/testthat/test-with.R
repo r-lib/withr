@@ -1,5 +1,3 @@
-context("With")
-
 test_that("with_options works", {
   expect_false(identical(getOption("scipen"), 999))
   expect_equal(with_options(c(scipen=999), getOption("scipen")), 999)

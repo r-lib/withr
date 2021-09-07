@@ -1,5 +1,3 @@
-context("db")
-
 describe("with_db_connection", {
   #it("errors if connection is not named", {
     #expect_error({

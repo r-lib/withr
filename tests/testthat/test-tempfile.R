@@ -1,5 +1,3 @@
-context("tempfile")
-
 test_that("with_tempfile works", {
 
   f1 <- character()
