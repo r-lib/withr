@@ -44,7 +44,8 @@ Imports:
     graphics,
     grDevices,
     stats
-Suggests: 
+Suggests:
+    callr,
     covr,
     DBI,
     knitr,
