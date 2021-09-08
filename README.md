@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/r-lib/withr/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/withr/actions)
+[![R-CMD-check](https://github.com/r-lib/withr/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/withr/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/withr?branch=master)
 [![CRAN
@@ -54,34 +53,35 @@ Many of these functions were originally a part of the
 simple package with limited dependencies to provide access to these
 functions.
 
-  - `with_collate()` / `local_collate()` - collation order
-  - `with_dir()` / `local_dir()` - working directory
-  - `with_envvar()` / `local_envvar()` - environment variables
-  - `with_libpaths()` / `local_libpaths()` - library paths
-  - `with_locale()` / `local_locale()` - any locale setting
-  - `with_makevars()` / `local_makevars()` / `set_makevars()` - makevars
+-   `with_collate()` / `local_collate()` - collation order
+-   `with_dir()` / `local_dir()` - working directory
+-   `with_envvar()` / `local_envvar()` - environment variables
+-   `with_libpaths()` / `local_libpaths()` - library paths
+-   `with_locale()` / `local_locale()` - any locale setting
+-   `with_makevars()` / `local_makevars()` / `set_makevars()` - makevars
     variables
-  - `with_options()` / `local_options()` - options
-  - `with_par()` / `local_par()` - graphics parameters
-  - `with_path()` / `local_path()` - PATH environment variable
-  - `with_*()` and `local_*()` functions for the built in R devices,
+-   `with_options()` / `local_options()` - options
+-   `with_par()` / `local_par()` - graphics parameters
+-   `with_path()` / `local_path()` - PATH environment variable
+-   `with_*()` and `local_*()` functions for the built in R devices,
     `bmp`, `cairo_pdf`, `cairo_ps`, `pdf`, `postscript`, `svg`, `tiff`,
     `xfig`, `png`, `jpeg`.
-  - `with_connection()` / `local_connection()` - R file connections
-  - `with_db_connection()` / `local_db_connection()` - DB conections
-  - `with_package()` / `local_package()`, `with_namespace()` /
-    `local_namespace()` and `with_environment()` / `local_environment()`
-    - to run code with modified object search paths.
-  - `with_tempfile()` / `local_tempfile()` - create and clean up a temp
+-   `with_connection()` / `local_connection()` - R file connections
+-   `with_db_connection()` / `local_db_connection()` - DB conections
+-   `with_package()` / `local_package()`, `with_namespace()` /
+    `local_namespace()` and `with_environment()` /
+    `local_environment()` - to run code with modified object search
+    paths.
+-   `with_tempfile()` / `local_tempfile()` - create and clean up a temp
     file.
-  - `with_file()` / `local_file()` - create and clean up a normal file.
-  - `with_message_sink()` / `local_message_sink()` - divert message
-  - `with_output_sink()` / `local_output_sink()` - divert output
-  - `with_preserve_seed()` / `with_seed()`- specify seeds
-  - `with_temp_libpaths()` / `local_temp_libpaths()` - library paths
-  - `defer()` / `defer_parent()` - defer
-  - `with_timezone()` / `local_timezone()` - timezones
-  - `with_rng_version()` / `local_rng_version()` - random number
+-   `with_file()` / `local_file()` - create and clean up a normal file.
+-   `with_message_sink()` / `local_message_sink()` - divert message
+-   `with_output_sink()` / `local_output_sink()` - divert output
+-   `with_preserve_seed()` / `with_seed()`- specify seeds
+-   `with_temp_libpaths()` / `local_temp_libpaths()` - library paths
+-   `defer()` / `defer_parent()` - defer
+-   `with_timezone()` / `local_timezone()` - timezones
+-   `with_rng_version()` / `local_rng_version()` - random number
     generation version
 
 ## Usage
@@ -107,12 +107,12 @@ my_plot()
     #> [1] "black"
     par("col")
     #> [1] "black"
-    
+
     f <- function(x) {
       local_envvar(c("WITHR" = 2))
       Sys.getenv("WITHR")
     }
-    
+
     f()
     #> [1] "2"
     Sys.getenv("WITHR")
@@ -137,4 +137,4 @@ with_envvar(c("A" = 1),
 
 # See Also
 
-  - [Devtools](https://github.com/r-lib/devtools)
+-   [Devtools](https://github.com/r-lib/devtools)

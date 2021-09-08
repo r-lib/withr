@@ -1,5 +1,3 @@
-context("local")
-
 test_that("local_options works", {
   expect_false(getOption("scipen") == 999)
   local({

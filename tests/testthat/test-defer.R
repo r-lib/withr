@@ -1,5 +1,3 @@
-context("defer")
-
 test_that("defer_parent works", {
   local_file <- function(path) {
     file.create(path)
@@ -23,10 +21,7 @@ test_that("defer()'s global env facilities work", {
   expect_null(get_handlers(globalenv()))
   Sys.setenv(abcdefg = "abcdefg")
 
-  expect_message(
-    defer(print("howdy"), envir = globalenv()),
-    "Setting deferred event"
-  )
+  expect_snapshot(defer(print("howdy"), envir = globalenv()))
   expect_message(
     local_envvar(c(abcdefg = "tuvwxyz"), .local_envir = globalenv()),
     NA
@@ -39,7 +34,7 @@ test_that("defer()'s global env facilities work", {
   expect_output(deferred_run(globalenv()), "howdy")
   expect_equal(Sys.getenv("abcdefg"), "abcdefg")
 
-  defer(print("never going to happen"), envir = globalenv())
+  expect_message(defer(print("never going to happen"), envir = globalenv()))
   deferred_clear(globalenv())
 
   h <- get_handlers(globalenv())

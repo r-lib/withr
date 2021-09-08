@@ -1,5 +1,3 @@
-context("rng")
-
 describe("with_rng_version", {
   it("changes the RNG", {
     cur <- RNGkind()

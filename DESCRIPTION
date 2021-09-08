@@ -53,7 +53,7 @@ Suggests:
     methods,
     rmarkdown,
     RSQLite,
-    testthat (>= 2.1.0)
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
@@ -87,3 +87,4 @@ Collate:
     'torture.R'
     'utils.R'
     'with.R'
+Config/testthat/edition: 3

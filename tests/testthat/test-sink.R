@@ -1,5 +1,3 @@
-context("With sink")
-
 test_that("with_output_sink works as expected", {
   tmp <- tempfile()
   on.exit(unlink(tmp), add = TRUE)

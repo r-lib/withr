@@ -1,5 +1,3 @@
-context("namespace")
-
 test_that("with_package works", {
 
   # tools package not attached to the search path
