@@ -1,9 +1,7 @@
 test_that("can temporary change language", {
-  expect_snapshot(error = TRUE, {
-    with_language("en", mean[[1]])
-    with_language("fr", mean[[1]])
-    with_language("es", mean[[1]])
-  })
+  expect_error(with_language("en", mean[[1]]), "not subsettable")
+  expect_error(with_language("fr", mean[[1]]), "non indi\u00e7able")
+  expect_error(with_language("es", mean[[1]]), "no es subconjunto")
 })
 
 test_that("warns if LANG=C", {
