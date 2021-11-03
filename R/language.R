@@ -13,11 +13,13 @@
 #' with_language("es", try(mean[[1]]))
 #'
 with_language <- function(lang, code) {
-  with_envvar(list(LANGUAGE = lang), code)
+  local_language(lang)
+  code
 }
 
 #' @export
 #' @rdname with_language
 local_language <- function(lang, .local_envir = parent.frame()) {
-  local_envvar(list(LANGUAGE = lang), .local_envir = .local_envir)
+  local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
+  local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
 }
