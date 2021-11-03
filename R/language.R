@@ -1,4 +1,4 @@
-#' Langugage
+#' Language
 #'
 #' Temporarily change language used for translations.
 #'
@@ -20,13 +20,22 @@ with_language <- function(lang, code) {
 #' @export
 #' @rdname with_language
 local_language <- function(lang, .local_envir = parent.frame()) {
+  # Note: The variable LANGUAGE is ignored if the locale is set to ‘C’.
+  # In other words, you have to first enable localization, by setting LANG
+  # (or LC_ALL) to a value other than ‘C’, before you can use a language
+  # priority list through the LANGUAGE variable.
+  # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
   if (identical(Sys.getenv("LANG"), "C")) {
     warning("Can't change language when envvar LANG='C'")
   }
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
   if (Sys.info()[["sysname"]] != "Windows") {
-    # Set locale to reset cache
+    # Reset cache to avoid gettext() retrieving cached value from a previous
+    # language. I think this works because Sys.setlocale() calls setlocale()
+    # which https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931456 claims
+    # resets the cache. So if there's some OS/setup that this technique fails
+    # on, we might try bindtextdomain() instead or as well.
     local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
   }
 }

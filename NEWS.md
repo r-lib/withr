@@ -1,6 +1,6 @@
 # withr (development version)
 
-* New `with_language()` and `local_language()` to temporary control the
+* New `with_language()` and `local_language()` to temporarily control the
   language used for translations.
 
 * `with_seed()` now caches the check for R version, so is now faster (#170)

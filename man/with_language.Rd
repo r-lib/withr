@@ -3,7 +3,7 @@
 \name{with_language}
 \alias{with_language}
 \alias{local_language}
-\title{Langugage}
+\title{Language}
 \usage{
 with_language(lang, code)
 
