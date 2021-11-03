@@ -20,11 +20,13 @@ with_language <- function(lang, code) {
 #' @export
 #' @rdname with_language
 local_language <- function(lang, .local_envir = parent.frame()) {
+  if (identical(Sys.getenv("LANG"), "C")) {
+    warning("Can't change language when envvar LANG='C'")
+  }
+
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
   if (Sys.info()[["sysname"]] != "Windows") {
     # Set locale to reset cache
     local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
   }
-
-
 }
