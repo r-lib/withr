@@ -1,5 +1,8 @@
 # withr (development version)
 
+* New `with_language()` and `local_language()` to temporary control the
+  language used for translations.
+
 * `with_seed()` now caches the check for R version, so is now faster (#170)
 
 * `with_makevars()` and `local_makevars()` now eagerly evaluate the `path` argument (#169)
