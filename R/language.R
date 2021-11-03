@@ -21,5 +21,10 @@ with_language <- function(lang, code) {
 #' @rdname with_language
 local_language <- function(lang, .local_envir = parent.frame()) {
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
-  local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
+  if (Sys.info()[["sysname"]] != "Windows") {
+    # Set locale to reset cache
+    local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
+  }
+
+
 }
