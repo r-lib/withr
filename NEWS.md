@@ -1,5 +1,9 @@
 # withr (development version)
 
+* Handlers registered with the global environment (as happens when `local_()` 
+  is run at the top-level, outside a function) are now automatically run
+  when the R session ends (#173).
+
 * New `with_language()` and `local_language()` to temporarily control the
   language used for translations (#180).
 
