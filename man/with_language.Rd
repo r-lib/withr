@@ -12,7 +12,7 @@ local_language(lang, .local_envir = parent.frame())
 \arguments{
 \item{lang}{A BCP47 language code like "en" (English), "fr" (French),
 "fr_CA" (French Canadian). Formally, this is a lower case two letter
-\link{ISO 639 country code}(https://en.wikipedia.o rg/wiki/List_of_ISO_639-1_codes),
+\href{https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes}{ISO 639 country code},
 optionally followed by a "_" and an upper case two letter
 \href{https://en.wikipedia.org/wiki/ISO_3166-2}{ISO 3166 region code}.}
 
