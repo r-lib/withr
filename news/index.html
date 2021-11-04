@@ -154,6 +154,7 @@
 <a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p>Handlers registered with the global environment (as happens when <code><a href="../reference/local_.html">local_()</a></code> is run at the top-level, outside a function) are now automatically run when the R session ends (<a href='https://github.com/r-lib/withr/issues/173'>#173</a>).</p></li>
 <li><p>New <code><a href="../reference/with_language.html">with_language()</a></code> and <code><a href="../reference/with_language.html">local_language()</a></code> to temporarily control the language used for translations (<a href='https://github.com/r-lib/withr/issues/180'>#180</a>).</p></li>
 <li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now caches the check for R version, so is now faster (<a href='https://github.com/r-lib/withr/issues/170'>#170</a>)</p></li>
 <li><p><code><a href="../reference/with_makevars.html">with_makevars()</a></code> and <code><a href="../reference/with_makevars.html">local_makevars()</a></code> now eagerly evaluate the <code>path</code> argument (<a href='https://github.com/r-lib/withr/issues/169'>#169</a>)</p></li>
