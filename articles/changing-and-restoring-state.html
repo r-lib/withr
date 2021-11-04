@@ -141,7 +141,7 @@
 <h2 class="hasAnchor">
 <a href="#the-base-solution-on-exit" class="anchor"></a>The base solution: <code>on.exit()</code>
 </h2>
-<p>The first function to know about is base R’s <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>. Inside your function body, every time you do something that should be undone <strong>on exit</strong>, you immediately register the cleanup code with <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit(expr, add = TRUE)</a></code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>The first function to know about is base R’s <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code>. Inside your function body, every time you do something that should be undone <strong>on exit</strong>, you immediately register the cleanup code with <code>on.exit(expr, add = TRUE)</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p><code>neat()</code> is an improvement over <code>sloppy()</code>, because it uses <code><a href="https://rdrr.io/r/base/on.exit.html">on.exit()</a></code> to ensure that the “digits” option is restored to its original value.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">neat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">sig_digits</span><span class="op">)</span> <span class="op">{</span>

@@ -154,6 +154,7 @@
 <a href="#withr-development-version" class="anchor"></a>withr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p>New <code><a href="../reference/with_language.html">with_language()</a></code> and <code><a href="../reference/with_language.html">local_language()</a></code> to temporarily control the language used for translations (<a href='https://github.com/r-lib/withr/issues/180'>#180</a>).</p></li>
 <li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now caches the check for R version, so is now faster (<a href='https://github.com/r-lib/withr/issues/170'>#170</a>)</p></li>
 <li><p><code><a href="../reference/with_makevars.html">with_makevars()</a></code> and <code><a href="../reference/with_makevars.html">local_makevars()</a></code> now eagerly evaluate the <code>path</code> argument (<a href='https://github.com/r-lib/withr/issues/169'>#169</a>)</p></li>
 </ul>
@@ -175,7 +176,7 @@
 <a href="#withr-241" class="anchor"></a>withr 2.4.1<small> 2021-01-26 </small>
 </h1>
 <ul>
-<li>Tests which require <code><a href="https://rdrr.io/r/base/capabilities.html">capabilities("cairo")</a></code> are now skipped.</li>
+<li>Tests which require <code>capabilities("cairo")</code> are now skipped.</li>
 </ul>
 </div>
     <div id="withr-240" class="section level1">
@@ -197,7 +198,7 @@
 <a href="#deprecations" class="anchor"></a>Deprecations</h2>
 <ul>
 <li>
-<code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> argument <code>new</code> is deprecated, in favor of returning the path to the new tempfile. calls like <code><a href="../reference/with_tempfile.html">local_tempfile("xyz")</a></code> should be replaced with <code>xyx &lt;- local_tempfile()</code> in your code (<a href='https://github.com/r-lib/withr/issues/141'>#141</a>).</li>
+<code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> argument <code>new</code> is deprecated, in favor of returning the path to the new tempfile. calls like <code>local_tempfile("xyz")</code> should be replaced with <code>xyx &lt;- local_tempfile()</code> in your code (<a href='https://github.com/r-lib/withr/issues/141'>#141</a>).</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
@@ -206,7 +207,7 @@
 <ul>
 <li><p>New <code><a href="../reference/with_seed.html">local_seed()</a></code> function and <code><a href="../reference/with_seed.html">local_preserve_seed()</a></code> functions to correspond to <code><a href="../reference/with_seed.html">with_seed()</a></code> and <code><a href="../reference/with_seed.html">with_preserve_seed()</a></code> (<a href='https://github.com/r-lib/withr/issues/139'>#139</a>).</p></li>
 <li><p>New <code><a href="../reference/with_tempfile.html">local_tempdir()</a></code> function added to create a temp directory (<a href='https://github.com/r-lib/withr/issues/140'>#140</a>)</p></li>
-<li><p><code>local_*()</code> functions now take dots (<code>...</code>), which can simplify calls in some cases, e.g. you can now use <code><a href="../reference/with_options.html">local_options(foo = "bar")</a></code> rather than <code><a href="../reference/with_options.html">local_options(c(foo = "bar"))</a></code>.</p></li>
+<li><p><code>local_*()</code> functions now take dots (<code>...</code>), which can simplify calls in some cases, e.g. you can now use <code>local_options(foo = "bar")</code> rather than <code>local_options(c(foo = "bar"))</code>.</p></li>
 </ul>
 </div>
 <div id="minor-improvements-and-fixes" class="section level2">

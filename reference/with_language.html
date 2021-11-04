@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Time zone — with_timezone • withr</title>
+<title>Language — with_language • withr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Time zone — with_timezone" />
-<meta property="og:description" content="Change the time zone, and restore it afterwards." />
+<meta property="og:title" content="Language — with_language" />
+<meta property="og:description" content="Temporarily change the language used for translations." />
 <meta property="og:image" content="https://withr.r-lib.org/logo.png" />
 
 
@@ -146,26 +146,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Time zone</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/withr/blob/master/R/timezone.R'><code>R/timezone.R</code></a></small>
-    <div class="hidden name"><code>with_timezone.Rd</code></div>
+    <h1>Language</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/withr/blob/master/R/language.R'><code>R/language.R</code></a></small>
+    <div class="hidden name"><code>with_language.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Change the time zone, and restore it afterwards.</p>
+    <p>Temporarily change the language used for translations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>with_timezone</span><span class='op'>(</span><span class='va'>tz</span>, <span class='va'>code</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>with_language</span><span class='op'>(</span><span class='va'>lang</span>, <span class='va'>code</span><span class='op'>)</span>
 
-<span class='fu'>local_timezone</span><span class='op'>(</span><span class='va'>tz</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>local_language</span><span class='op'>(</span><span class='va'>lang</span>, .local_envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tz</th>
-      <td><p><code>[character(1)]</code> a valid time zone specification, note that
-time zone names might be platform dependent.</p></td>
+      <th>lang</th>
+      <td><p>A BCP47 language code like "en" (English), "fr" (French),
+"fr_CA" (French Canadian). Formally, this is a lower case two letter
+<a href='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'>ISO 639 country code</a>,
+optionally followed by a "_" and an upper case two letter
+<a href='https://en.wikipedia.org/wiki/ISO_3166-2'>ISO 3166 region code</a>.</p></td>
     </tr>
     <tr>
       <th>code</th>
@@ -173,50 +176,18 @@ time zone names might be platform dependent.</p></td>
     </tr>
     <tr>
       <th>.local_envir</th>
-      <td><p>The environment to apply the change to.</p></td>
+      <td><p><code>[environment]</code><br /> The environment to use for scoping.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>[any]</code><br /> The results of the evaluation of the <code>code</code>
-argument.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>with_time_zone()</code> runs the code with the specified time zone and
-resets it afterwards.</p>
-<p><code>local_time_zone()</code> changes the time zone for the caller
-execution environment.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='withr.html'>withr</a></code> for examples</p>
-<p><code><a href='https://rdrr.io/r/base/timezones.html'>Sys.timezone()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 13:02:42 UTC"</span>
-<span class='r-in'><span class='fu'>with_timezone</span><span class='op'>(</span><span class='st'>"Europe/Paris"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 14:02:42 CET"</span>
-<span class='r-in'><span class='fu'>with_timezone</span><span class='op'>(</span><span class='st'>"US/Pacific"</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 06:02:42 PDT"</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>fun1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'>  <span class='fu'>local_timezone</span><span class='op'>(</span><span class='st'>"CET"</span><span class='op'>)</span></span>
-<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>fun2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'>  <span class='fu'>local_timezone</span><span class='op'>(</span><span class='st'>"US/Pacific"</span><span class='op'>)</span></span>
-<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 13:02:42 UTC"</span>
-<span class='r-in'><span class='fu'>fun1</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 14:02:42 CET"</span>
-<span class='r-in'><span class='fu'>fun2</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 06:02:42 PDT"</span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "2021-11-04 13:02:42 UTC"</span>
+    <pre class="examples"><span class='r-in'><span class='fu'>with_language</span><span class='op'>(</span><span class='st'>"en"</span>, <span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Error in mean[[1]] : object of type 'closure' is not subsettable</span>
+<span class='r-in'><span class='fu'>with_language</span><span class='op'>(</span><span class='st'>"fr"</span>, <span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Error in mean[[1]] : objet de type 'closure' non indiçable</span>
+<span class='r-in'><span class='fu'>with_language</span><span class='op'>(</span><span class='st'>"es"</span>, <span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Error in mean[[1]] : objeto de tipo 'closure' no es subconjunto</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

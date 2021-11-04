@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   changing-and-restoring-state: changing-and-restoring-state.html
-last_built: 2021-09-08T14:15Z
+last_built: 2021-11-04T13:02Z
 urls:
   reference: https://withr.r-lib.org/reference
   article: https://withr.r-lib.org/articles
