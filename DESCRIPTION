@@ -58,7 +58,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate: 
     'local_.R'
     'with_.R'
@@ -72,6 +72,7 @@ Collate:
     'dir.R'
     'env.R'
     'file.R'
+    'language.R'
     'libpaths.R'
     'locale.R'
     'makevars.R'
