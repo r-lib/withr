@@ -20,13 +20,17 @@ with_language <- function(lang, code) {
 #' @export
 #' @rdname with_language
 local_language <- function(lang, .local_envir = parent.frame()) {
+  if (!has_nls()) {
+    warning("Changing language has no effect when R installed without NLS")
+  }
+
   # Note: The variable LANGUAGE is ignored if the locale is set to ‘C’.
   # In other words, you have to first enable localization, by setting LANG
   # (or LC_ALL) to a value other than ‘C’, before you can use a language
   # priority list through the LANGUAGE variable.
   # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
   if (identical(Sys.getenv("LANG"), "C")) {
-    warning("Can't change language when envvar LANG='C'")
+    warning("Changing language has no effect when envvar LANG='C'")
   }
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
@@ -39,3 +43,5 @@ local_language <- function(lang, .local_envir = parent.frame()) {
     local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
   }
 }
+
+has_nls <- function() capabilities("NLS")[[1]]
