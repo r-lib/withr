@@ -42,7 +42,7 @@ test_that("defer()'s global env facilities work", {
 })
 
 test_that("defered actions in global env are run on exit", {
-  path <- tempfile()
+  path <- local_tempfile()
   callr::r(
     function(path) {
       withr::defer(writeLines("a", path), env = globalenv())
