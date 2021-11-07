@@ -41,6 +41,17 @@ test_that("defer()'s global env facilities work", {
   expect_null(h)
 })
 
+test_that("defered actions in global env are run on exit", {
+  path <- local_tempfile()
+  callr::r(
+    function(path) {
+      withr::defer(writeLines("a", path), env = globalenv())
+    },
+    list(path = path)
+  )
+  expect_equal(readLines(path), "a")
+})
+
 test_that("defer executes all handlers even if there is an error in one of them", {
 
   old <- options("test_option" = 1)
