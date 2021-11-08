@@ -5,7 +5,7 @@
 #' @param lang A BCP47 language code like "en" (English), "fr" (French),
 #'   "fr_CA" (French Canadian). Formally, this is a lower case two letter
 #'   [ISO 639 country code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes),
-#'   optionally followed by a "_" and an upper case two letter
+#'   optionally followed by "_" or "-" and an upper case two letter
 #'   [ISO 3166 region code](https://en.wikipedia.org/wiki/ISO_3166-2).
 #' @inheritParams with_collate
 #' @export
@@ -21,6 +21,12 @@ with_language <- function(lang, code) {
 #' @export
 #' @rdname with_language
 local_language <- function(lang, .local_envir = parent.frame()) {
+  if (!is.character(lang) || length(lang) != 1) {
+    stop("`lang` must be a string")
+  }
+  # https://stackoverflow.com/questions/6152321
+  lang <- gsub("-", "_", lang, fixed = TRUE)
+
   if (!has_nls()) {
     warning("Changing language has no effect when R installed without NLS")
   }
