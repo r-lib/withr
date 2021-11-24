@@ -7,7 +7,7 @@
 
 [![R-CMD-check](https://github.com/r-lib/withr/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/withr/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/r-lib/withr/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/withr?branch=master)
+coverage](https://codecov.io/gh/r-lib/withr/branch/main/graph/badge.svg)](https://codecov.io/gh/r-lib/withr?branch=main)
 [![CRAN
 Version](https://www.r-pkg.org/badges/version/withr)](https://www.r-pkg.org/pkg/withr)
 <!-- badges: end -->
