@@ -21,3 +21,4 @@
 ^\.github$
 ^pkgdown$
 ^LICENSE\.md$
+^MAINTENANCE\.md$
