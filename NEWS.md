@@ -1,4 +1,4 @@
-# withr (development version)
+# withr 2.4.3
 
 * Lionel Henry is the new maintainer.
 
