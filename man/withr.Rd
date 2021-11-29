@@ -85,10 +85,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jim Hester \email{jim.hester@rstudio.com}
+\strong{Maintainer}: Lionel Henry \email{lionel@rstudio.com}
 
 Authors:
 \itemize{
+  \item Jim Hester
   \item Kirill Müller \email{krlmlr+r@mailbox.org}
   \item Kevin Ushey \email{kevinushey@gmail.com}
   \item Hadley Wickham \email{hadley@rstudio.com}
