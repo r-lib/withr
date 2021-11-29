@@ -4,8 +4,11 @@ Version: 2.4.2.9000
 Authors@R: 
     c(person(given = "Jim",
              family = "Hester",
+             role = "aut"),
+      person(given = "Lionel",
+             family = "Henry",
              role = c("aut", "cre"),
-             email = "jim.hester@rstudio.com"),
+             email = "lionel@rstudio.com"),
       person(given = "Kirill",
              family = "Müller",
              role = "aut",

@@ -1,5 +1,7 @@
 # withr (development version)
 
+* Lionel Henry is the new maintainer.
+
 * Handlers registered with the global environment (as happens when `local_()` 
   is run at the top-level, outside a function) are now automatically run
   when the R session ends (#173).
