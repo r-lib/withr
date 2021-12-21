@@ -55,7 +55,7 @@ local_package <- function(package, pos = 2, lib.loc = NULL,
 with_namespace <- function(package, code, warn.conflicts = FALSE) {
   ns <- asNamespace(package)
   name <- format(ns)
-  (get("attach"))(ns, name = name, warn.conflicts = FALSE)
+  (get("attach"))(ns, name = name, warn.conflicts = warn.conflicts)
   on.exit(detach(name, character.only = TRUE))
   force(code)
 }
@@ -65,7 +65,7 @@ with_namespace <- function(package, code, warn.conflicts = FALSE) {
 local_namespace <- function(package, .local_envir = parent.frame(), warn.conflicts = FALSE) {
   ns <- asNamespace(package)
   name <- format(ns)
-  (get("attach"))(ns, name = name, warn.conflicts = FALSE)
+  (get("attach"))(ns, name = name, warn.conflicts = warn.conflicts)
   defer(detach(name, character.only = TRUE), envir = .local_envir)
 }
 
