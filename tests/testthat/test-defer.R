@@ -19,6 +19,7 @@ test_that("defer_parent works", {
 
 test_that("defer()'s global env facilities work", {
   expect_null(get_handlers(globalenv()))
+  local_options(rlang_interactive = TRUE)
   Sys.setenv(abcdefg = "abcdefg")
 
   expect_snapshot(defer(print("howdy"), envir = globalenv()))
