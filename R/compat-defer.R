@@ -11,12 +11,14 @@ local({
 defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   priority <- match.arg(priority)
   if (identical(envir, .GlobalEnv) && is.null(get_handlers(envir))) {
-    message(
-      "Setting deferred event(s) on global environment.\n",
-      "  * Will be run automatically when session ends\n",
-      "  * Execute (and clear) with `withr::deferred_run()`.\n",
-      "  * Clear (without executing) with `withr::deferred_clear()`."
-    )
+    if (interactive()) {
+      message(
+        "Setting deferred event(s) on global environment.\n",
+        "  * Will be run automatically when session ends\n",
+        "  * Execute (and clear) with `withr::deferred_run()`.\n",
+        "  * Clear (without executing) with `withr::deferred_clear()`."
+      )
+    }
     reg.finalizer(envir, function(env) deferred_run(env), onexit = TRUE)
   }
   invisible(
@@ -35,7 +37,7 @@ get_handlers <- function(envir) {
 set_handlers <- function(envir, handlers) {
   has_handlers <- "handlers" %in% names(attributes(envir))
   attr(envir, "handlers") <- handlers
-  if (!has_handlers) {
+  if (!has_handlers && !is_knitting()) {
     call <- make_call(execute_handlers, envir)
 
     # We have to use do.call here instead of eval because of the way on.exit
@@ -74,6 +76,10 @@ add_handler <- function(envir, handler, front) {
 
 make_call <- function(...) {
   as.call(list(...))
+}
+
+is_knitting <- function() {
+  identical(getOption("knitr.in.progress"), TRUE)
 }
 
 }) # defer() namespace
