@@ -30,8 +30,9 @@ with_tempfile <- function(new, code, envir = parent.frame(), .local_envir = pare
 }
 
 #' @rdname with_tempfile
+#' @param lines Optionally, supply lines to be fed into
 #' @export
-local_tempfile <- function(new = NULL, envir = parent.frame(), .local_envir = parent.frame(),
+local_tempfile <- function(new = NULL, lines = NULL, envir = parent.frame(), .local_envir = parent.frame(),
   pattern = "file", tmpdir = tempdir(), fileext = "") {
   if (!missing(envir)) {
     .Deprecated(msg = "`envir` argument of local_tempfile() is deprecated.\n  Use `local_tempfile(.local_envir=)` instead.")
@@ -39,6 +40,10 @@ local_tempfile <- function(new = NULL, envir = parent.frame(), .local_envir = pa
   }
   if (is.null(new)) {
     path <- tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext)
+    if (!is.null(lines)) {
+      writeLines(lines, path)
+    }
+
     defer(unlink(path, recursive = TRUE), envir = .local_envir)
     return(path)
   }

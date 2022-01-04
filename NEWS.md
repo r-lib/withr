@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `local_tempfile()` gains a lines argument so, if desired, you can pre-fill
+  the temporary file with some data.
+
 # withr 2.4.3
 
 * Lionel Henry is the new maintainer.
