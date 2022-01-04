@@ -53,6 +53,27 @@ test_that("defered actions in global env are run on exit", {
   expect_equal(readLines(path), "a")
 })
 
+test_that("defered actions in Rmd are run on exit", {
+  rmd <- local_tempfile(fileext = ".Rmd")
+  path <- local_tempfile()
+  writeLines(rmd, text = c(
+    "---",
+    "title: test",
+    "---",
+    "```{r}",
+    paste0("withr::defer(writeLines('a', '", path, "'))"),
+    "```"
+  ))
+  callr::r(function(path) rmarkdown::render(path), list(path = rmd))
+  expect_equal(readLines(path), "a")
+
+  # And check when run from globalenv
+  unlink(path)
+  callr::r(function(path) rmarkdown::render(path, envir = globalenv()), list(path = rmd))
+  expect_equal(readLines(path), "a")
+
+})
+
 test_that("defer executes all handlers even if there is an error in one of them", {
 
   old <- options("test_option" = 1)
