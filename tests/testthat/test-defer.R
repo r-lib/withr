@@ -61,7 +61,7 @@ test_that("defered actions in Rmd are run on exit", {
     "title: test",
     "---",
     "```{r}",
-    paste0("withr::defer(writeLines('a', '", path, "'))"),
+    paste0("withr::defer(writeLines('a', ", encodeString(path, quote = "'"), "))"),
     "```"
   ))
   callr::r(function(path) rmarkdown::render(path), list(path = rmd))
