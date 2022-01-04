@@ -11,7 +11,7 @@ local({
 defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   priority <- match.arg(priority)
   if (identical(envir, .GlobalEnv) && is.null(get_handlers(envir))) {
-    if (interactive()) {
+    if (!is_knitting()) {
       message(
         "Setting deferred event(s) on global environment.\n",
         "  * Will be run automatically when session ends\n",
