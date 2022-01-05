@@ -1,5 +1,9 @@
 # withr (development version)
 
+* `defer()` now works as expected when run inside of a `.Rmd`. Note that it will
+  be executed at the very end of the session, after the output has been 
+  collected, so you won't see any printed side-effects (#187).
+
 # withr 2.4.3
 
 * Lionel Henry is the new maintainer.
