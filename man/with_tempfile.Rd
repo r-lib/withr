@@ -19,6 +19,7 @@ with_tempfile(
 
 local_tempfile(
   new = NULL,
+  lines = NULL,
   envir = parent.frame(),
   .local_envir = parent.frame(),
   pattern = "file",
@@ -57,6 +58,8 @@ local_tempdir(
 \item{tmpdir}{a non-empty character vector giving the directory name}
 
 \item{fileext}{a non-empty character vector giving the file extension}
+
+\item{lines}{Optionally, supply lines to be fed into}
 
 \item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
 directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}
