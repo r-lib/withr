@@ -19,6 +19,7 @@ test_that("defer_parent works", {
 
 test_that("defer()'s global env facilities work", {
   expect_null(get_handlers(globalenv()))
+  local_options(rlang_interactive = TRUE)
   Sys.setenv(abcdefg = "abcdefg")
 
   expect_snapshot(defer(print("howdy"), envir = globalenv()))
@@ -50,6 +51,27 @@ test_that("defered actions in global env are run on exit", {
     list(path = path)
   )
   expect_equal(readLines(path), "a")
+})
+
+test_that("defered actions in Rmd are run on exit", {
+  rmd <- local_tempfile(fileext = ".Rmd")
+  path <- local_tempfile()
+  writeLines(rmd, text = c(
+    "---",
+    "title: test",
+    "---",
+    "```{r}",
+    paste0("withr::defer(writeLines('a', ", encodeString(path, quote = "'"), "))"),
+    "```"
+  ))
+  callr::r(function(path) rmarkdown::render(path), list(path = rmd))
+  expect_equal(readLines(path), "a")
+
+  # And check when run from globalenv
+  unlink(path)
+  callr::r(function(path) rmarkdown::render(path, envir = globalenv()), list(path = rmd))
+  expect_equal(readLines(path), "a")
+
 })
 
 test_that("defer executes all handlers even if there is an error in one of them", {
