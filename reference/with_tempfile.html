@@ -92,6 +92,7 @@
 
 <span class="fu">local_tempfile</span><span class="op">(</span>
   new <span class="op">=</span> <span class="cn">NULL</span>,
+  lines <span class="op">=</span> <span class="cn">NULL</span>,
   envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>,
   .local_envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>,
   pattern <span class="op">=</span> <span class="st">"file"</span>,
@@ -133,6 +134,8 @@
 <dd><p>a non-empty character vector giving the directory name</p></dd>
 <dt>fileext</dt>
 <dd><p>a non-empty character vector giving the file extension</p></dd>
+<dt>lines</dt>
+<dd><p>Optionally, supply lines to be fed into</p></dd>
 <dt>clean</dt>
 <dd><p><code>[logical(1)]</code><br> A logical indicating if the temporary
 directory should be deleted after use (<code>TRUE</code>, default) or left alone (<code>FALSE</code>).</p></dd>

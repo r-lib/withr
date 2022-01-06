@@ -76,8 +76,8 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="withr-development-version">withr (development version)<a class="anchor" aria-label="anchor" href="#withr-development-version"></a></h2>
-<ul><li>
-<code><a href="../reference/defer.html">defer()</a></code> now works as expected when run inside of a <code>.Rmd</code>. Note that it will be executed at the very end of the session, after the output has been collected, so you won’t see any printed side-effects (<a href="https://github.com/r-lib/withr/issues/187" class="external-link">#187</a>).</li>
+<ul><li><p><code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> gains a lines argument so, if desired, you can pre-fill the temporary file with some data.</p></li>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> now works as expected when run inside of a <code>.Rmd</code>. Note that it will be executed at the very end of the session, after the output has been collected, so you won’t see any printed side-effects (<a href="https://github.com/r-lib/withr/issues/187" class="external-link">#187</a>).</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.4.3" id="withr-243">withr 2.4.3<small>2021-11-30</small><a class="anchor" aria-label="anchor" href="#withr-243"></a></h2>
