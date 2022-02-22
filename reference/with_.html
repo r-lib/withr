@@ -86,9 +86,17 @@ for an overview.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">local_</span><span class="op">(</span><span class="va">set</span>, reset <span class="op">=</span> <span class="va">set</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, new <span class="op">=</span> <span class="cn">TRUE</span>, dots <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">local_</span><span class="op">(</span>
+  <span class="va">set</span>,
+  reset <span class="op">=</span> <span class="va">set</span>,
+  get <span class="op">=</span> <span class="cn">NULL</span>,
+  <span class="va">...</span>,
+  envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>,
+  new <span class="op">=</span> <span class="cn">TRUE</span>,
+  dots <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="fu">with_</span><span class="op">(</span><span class="va">set</span>, reset <span class="op">=</span> <span class="va">set</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, new <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="fu">with_</span><span class="op">(</span><span class="va">set</span>, reset <span class="op">=</span> <span class="va">set</span>, get <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, new <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -102,6 +110,15 @@ in the formals of the returned function.</p></dd>
 The first argument can be named arbitrarily, further arguments with default
 values, or a "dots" argument, are supported but not used: The function will
 be called as <code>reset(old)</code>.</p></dd>
+<dt>get</dt>
+<dd><p><code>function(...)</code><br> Optionally, a getter function. If
+supplied, the <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> restoration is set up <em>before</em> calling
+<code>set</code>. This is more robust in edge cases.</p>
+<p>For technical reasons, this getter function must have the same
+interface as <code>set</code>, which means it is passed the new values as
+well. These can be safely ignored.</p></dd>
+<dt>...</dt>
+<dd><p>These dots are for future extensions and must be empty.</p></dd>
 <dt>envir</dt>
 <dd><p><code>[environment]</code><br> Environment of the returned function.</p></dd>
 <dt>new</dt>
@@ -133,7 +150,7 @@ function body.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     on.exit(setwd(old))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     force(code)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5609bce62a08&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55658cc2b190&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">global_stack</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">set_global_state</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span>, <span class="va">msg</span> <span class="op">=</span> <span class="st">"Changing global state."</span><span class="op">)</span> <span class="op">{</span></span>
@@ -153,7 +170,7 @@ function body.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     on.exit(reset_global_state(old))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     force(code)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5609bce62a08&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55658cc2b190&gt;</span>
 </code></pre></div>
     </div>
   </div>
@@ -164,11 +181,11 @@ function body.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, Lionel Henry, Kirill Müller, Kevin Ushey, <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>, Winston Chang.</p>
+  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, Lionel Henry, Kirill Müller, Kevin Ushey, Hadley Wickham, Winston Chang.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>
