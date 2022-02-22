@@ -2,6 +2,7 @@
 
 # collate --------------------------------------------------------------------
 
+get_collate <- function(locale) get_locale(c(LC_COLLATE = locale))[[1]]
 set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
 
 #' Collation Order
@@ -20,8 +21,8 @@ set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
 #' with_collate("C", sort(x))
 #'
 #' @export
-with_collate <- with_(set_collate)
+with_collate <- with_(set_collate, get = get_collate)
 
 #' @rdname with_collate
 #' @export
-local_collate <- local_(set_collate)
+local_collate <- local_(set_collate, get = get_collate)

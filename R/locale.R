@@ -1,6 +1,19 @@
 # locale ---------------------------------------------------------------------
 
+get_locale <- function(cats) {
+  as_locale_cats(cats)
+  vapply(names(cats), Sys.getlocale, character(1))
+}
+
 set_locale <- function(cats) {
+  cats <- as_locale_cats(cats)
+  old <- get_locale(cats)
+
+  mapply(Sys.setlocale, names(cats), cats)
+  invisible(old)
+}
+
+as_locale_cats <- function(cats) {
   cats <- as_character(cats)
   stopifnot(is.named(cats))
 
@@ -8,10 +21,7 @@ set_locale <- function(cats) {
     stop("Setting LC_ALL category not implemented.", call. = FALSE)
   }
 
-  old <- vapply(names(cats), Sys.getlocale, character(1))
-
-  mapply(Sys.setlocale, names(cats), cats)
-  invisible(old)
+  cats
 }
 
 #' Locale settings
@@ -51,8 +61,8 @@ set_locale <- function(cats) {
 #' with_locale(c(LC_COLLATE = "C"), sort(x))
 #'
 #' @export
-with_locale <- with_(set_locale)
+with_locale <- with_(set_locale, get = get_locale)
 
 #' @rdname with_locale
 #' @export
-local_locale <- local_(set_locale, dots = TRUE)
+local_locale <- local_(set_locale, get = get_locale, dots = TRUE)

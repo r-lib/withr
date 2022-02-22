@@ -243,3 +243,29 @@ test_that("with_par works as expected", {
   expect_equal(par("pty"), old)
   dev.off()
 })
+
+test_that("supplying a getter to `with_()` shields against early exits", {
+  my_get <- function(x) {
+    out <- as.list(state)[names(x)]
+    names(out) <- names(x)
+    out
+  }
+  my_set <- function(x) {
+    old <- my_get(x)
+
+    mapply(function(nm, val) state[[nm]] <- val, names(x), x)
+    rlang::signal("", "my_cnd")
+
+    invisible(old)
+  }
+
+  state <- new.env()
+  my_with_unsafe <- withr::with_(my_set)
+  my_with_safe <- withr::with_(my_set, get = my_get)
+
+  expect_safe_and_unsafe_unwinding(
+    state,
+    my_with_unsafe,
+    my_with_safe
+  )
+})

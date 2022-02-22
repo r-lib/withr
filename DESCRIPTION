@@ -54,6 +54,7 @@ Suggests:
     knitr,
     lattice,
     methods,
+    rlang,
     rmarkdown,
     RSQLite,
     testthat (>= 3.0.0)

@@ -216,3 +216,60 @@ test_that("local_par works as expected", {
   expect_equal(par("pty"), old)
   dev.off()
 })
+
+test_that("supplying a getter to `local_()` shields against early exits", {
+  my_get <- function(x) {
+    out <- as.list(state)[names(x)]
+    names(out) <- names(x)
+    out
+  }
+  my_set <- function(x) {
+    old <- my_get(x)
+
+    mapply(function(nm, val) state[[nm]] <- val, names(x), x)
+    rlang::signal("", "my_cnd")
+
+    invisible(old)
+  }
+
+  state <- new.env()
+  my_local_unsafe <- withr::local_(my_set)
+  my_local_safe <- withr::local_(my_set, get = my_get)
+
+  my_with_unsafe <- function(new, expr) {
+    my_local_unsafe(new)
+    expr
+  }
+  my_with_safe <- function(new, expr) {
+    my_local_safe(new)
+    expr
+  }
+
+  expect_safe_and_unsafe_unwinding(
+    state,
+    my_with_unsafe,
+    my_with_safe
+  )
+
+
+  # `...` code path
+
+  state <- new.env()
+  my_local_unsafe <- withr::local_(my_set, dots = TRUE)
+  my_local_safe <- withr::local_(my_set, get = my_get, dots = TRUE)
+
+  my_with_unsafe <- function(new, expr) {
+    my_local_unsafe(new)
+    expr
+  }
+  my_with_safe <- function(new, expr) {
+    my_local_safe(new)
+    expr
+  }
+
+  expect_safe_and_unsafe_unwinding(
+    state,
+    my_with_unsafe,
+    my_with_safe
+  )
+})

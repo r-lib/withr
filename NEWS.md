@@ -1,5 +1,33 @@
 # withr (development version)
 
+* `with_locale()`, `local_locale()`, `with_collate()`, and
+  `local_collate()` are now robust to early exits.
+
+* `with_()` and `local_()` gain a `get` argument. Supply a getter
+  function to create `with` and `local` functions that are robust to
+  early exits.
+
+  When supplied, this restoration pattern is used:
+
+  ```
+  old <- get()
+  on.exit(set(old))
+  set(new)
+  action()
+  ```
+
+  Instead of:
+
+  ```
+  old <- set(new)
+  on.exit(set(old))
+  action()
+  ```
+
+  This ensures proper restoration of the old state when an early exit
+  occurs during `set()` (for instance when a deprecation warning is
+  caught, see #191).
+
 * `local_tempfile()` gains a lines argument so, if desired, you can pre-fill
   the temporary file with some data.
 
