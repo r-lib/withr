@@ -13,6 +13,8 @@ NULL
 #' reset their arguments after they go out of scope, usually at the end of the
 #' function body.
 #'
+#' @inheritParams rlang::args_dots_empty
+#'
 #' @param set `[function(...)]`\cr Function used to set the state.
 #'   The function can have arbitrarily many arguments, they will be replicated
 #'   in the formals of the returned function.
@@ -20,6 +22,13 @@ NULL
 #'   The first argument can be named arbitrarily, further arguments with default
 #'   values, or a "dots" argument, are supported but not used: The function will
 #'   be called as `reset(old)`.
+#' @param get `function(...)`\cr Optionally, a getter function. If
+#'   supplied, the `on.exit()` restoration is set up _before_ calling
+#'   `set`. This is more robust in edge cases.
+#'
+#'   For technical reasons, this getter function must have the same
+#'   interface as `set`, which means it is passed the new values as
+#'   well. These can be safely ignored.
 #' @param envir `[environment]`\cr Environment of the returned function.
 #' @param new `[logical(1)]`\cr Replace the first argument of the `set` function
 #'  by `new`? Set to `FALSE` if the `set` function only has optional arguments.
@@ -48,7 +57,15 @@ NULL
 #' }
 #' with_(set_global_state, reset_global_state)
 #' @export
-with_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
+with_ <- function(set,
+                  reset = set,
+                  get = NULL,
+                  ...,
+                  envir = parent.frame(),
+                  new = TRUE) {
+  if (!missing(...)) {
+    stop("`...` must be empty.")
+  }
 
   fmls <- formals(set)
 
@@ -72,19 +89,26 @@ with_ <- function(set, reset = set, envir = parent.frame(), new = TRUE) {
   }
 
   set_call <- as.call(c(substitute(set), called_fmls))
-
   reset <-  if (missing(reset)) substitute(set) else substitute(reset)
 
-  fun <- eval(bquote(function(args) {
-    old <- .(set_call)
-    on.exit(.(reset)(old))
-    force(code)
-    }
-  ))
+  if (is.null(get)) {
+    fun <- eval(bquote(function(args) {
+      old <- .(set_call)
+      on.exit(.(reset)(old))
+      force(code)
+    }))
+  } else {
+    get_call <- as.call(c(substitute(get), called_fmls))
+    fun <- eval(bquote(function(args) {
+      old <- .(get_call)
+      on.exit(.(reset)(old))
+      .(set_call)
+      force(code)
+    }))
+  }
 
   # substitute does not work on arguments, so we need to fix them manually
   formals(fun) <- fun_args
-
   environment(fun) <- envir
 
   fun
