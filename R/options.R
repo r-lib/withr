@@ -2,10 +2,12 @@
 
 # options --------------------------------------------------------------------
 
+get_options <- function(new_options) {
+  do.call(options, as.list(names(new_options)))
+}
 set_options <- function(new_options) {
   do.call(options, as.list(new_options))
 }
-
 reset_options <- function(old_options) {
   options(old_options)
 }
@@ -47,8 +49,16 @@ reset_options <- function(old_options) {
 #' print(pi)           # returns 3.141593
 
 #' @export
-with_options <- with_(set_options, reset_options)
+with_options <- with_(
+  set_options,
+  reset_options
+)
 
 #' @rdname with_options
 #' @export
-local_options <- local_(set_options, reset_options, dots = TRUE)
+local_options <- local_(
+  set_options,
+  reset_options,
+  get = get_options,
+  dots = TRUE
+)

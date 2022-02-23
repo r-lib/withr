@@ -32,18 +32,29 @@ with_seed <- function(seed, code, .rng_kind = "default", .rng_normal_kind = "def
 
 #' @rdname with_seed
 #' @export
-local_seed <- function(seed, .local_envir = parent.frame(), .rng_kind = "default", .rng_normal_kind = "default",
+local_seed <- function(seed,
+                       .local_envir = parent.frame(),
+                       .rng_kind = "default",
+                       .rng_normal_kind = "default",
                        .rng_sample_kind = "default") {
   old_seed <- get_seed()
-  set_seed(list(seed = seed, rng_kind = c(.rng_kind, .rng_normal_kind, .rng_sample_kind)))
 
-  defer({
+  defer(envir = .local_envir, {
     if (is.null(old_seed)) {
       on.exit(rm_seed(), add = TRUE)
     } else {
       on.exit(set_seed(old_seed), add = TRUE)
     }
-  }, envir = .local_envir)
+  })
+
+  set_seed(list(
+    seed = seed,
+    rng_kind = c(
+      .rng_kind,
+      .rng_normal_kind,
+      .rng_sample_kind
+    )
+  ))
 
   invisible(seed)
 }
