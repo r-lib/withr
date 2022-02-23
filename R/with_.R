@@ -70,8 +70,13 @@ with_ <- function(set,
   fmls <- formals(set)
 
   if (length(fmls) > 0L) {
-    # called pass all extra formals on
+    # Called pass all extra formals on
     called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
+
+    # Special case for dots. If `set()` and/or `get()` take dots, it
+    # is assumed they implement `options()`-like semantic: a list
+    # passed as first argument is automatically spliced in the dots.
+    names(called_fmls)[names(called_fmls) == "..."] <- ""
 
     if (new) {
       # rename first formal to new
