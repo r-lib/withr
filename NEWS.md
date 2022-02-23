@@ -1,5 +1,8 @@
 # withr (development version)
 
+* Local evaluations in the `globalenv()` (as opposed to top-level
+  ones) are now unwound in the same way as regular environments.
+
 * These `with_` and `local_` functions are now robust to early exits (see next bullet):
 
   - `_locale()`
@@ -38,9 +41,11 @@
 * `local_tempfile()` gains a lines argument so, if desired, you can pre-fill
   the temporary file with some data.
 
-* `defer()` now works as expected when run inside of a `.Rmd`. Note that it will
-  be executed at the very end of the session, after the output has been 
-  collected, so you won't see any printed side-effects (#187).
+* `defer()` all `local_` functions now work when run inside of a
+  `.Rmd`. Note that they are executed at the very end of the session,
+  after the output has been collected, so you won't see any printed
+  side-effects (#187). The same applies with interactive knitting,
+  e.g. in notebooks. They are only executed when R exits.
 
 # withr 2.4.3
 
