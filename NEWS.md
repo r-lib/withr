@@ -8,6 +8,7 @@
   - `_options()`
   - `_par()`
   - `_path()`
+  - `_seed()`
 
 * `with_()` and `local_()` gain a `get` argument. Supply a getter
   function to create `with` and `local` functions that are robust to
