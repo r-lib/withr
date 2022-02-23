@@ -40,18 +40,11 @@ set_handlers <- function(envir, handlers) {
 }
 
 setup_handlers <- function(envir) {
-  in_knitr <- in_knitr(envir)
-
-  if (in_knitr || is_top_level_global_env(envir)) {
-    # for global environment we use reg.finalizer()
+  if (in_knitr(envir) || is_top_level_global_env(envir)) {
+    # For session scopes we use reg.finalizer()
     if (is_interactive()) {
-      if (in_knitr) {
-        ctxt <- "for the knitr document"
-      } else {
-        ctxt <- "on the global environment"
-      }
       message(
-        sprintf("Setting deferred event(s) %s.\n", ctxt),
+        sprintf("Setting deferred event(s) on the global environment.\n"),
         "  * Will be run automatically when session ends\n",
         "  * Execute (and clear) with `withr::deferred_run()`.\n",
         "  * Clear (without executing) with `withr::deferred_clear()`."
