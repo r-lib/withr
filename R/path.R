@@ -1,6 +1,6 @@
 # path -----------------------------------------------------------------------
 
-get_path <- function() {
+get_path <- function(...) {
   strsplit(Sys.getenv("PATH"), .Platform$path.sep)[[1]]
 }
 
@@ -33,8 +33,16 @@ set_path <- function(path, action = "prefix") {
 #' # temporarily modify the system PATH, *appending* to the current path
 #' with_path(getwd(), Sys.getenv("PATH"), "suffix")
 #' @export
-with_path <- with_(set_path, function(old) set_path(old, "replace"))
+with_path <- with_(
+  set_path,
+  reset = function(old) set_path(old, "replace"),
+  get = get_path
+)
 
 #' @rdname with_path
 #' @export
-local_path <- local_(set_path, function(old) set_path(old, "replace"))
+local_path <- local_(
+  set_path,
+  reset = function(old) set_path(old, "replace"),
+  get = get_path
+)
