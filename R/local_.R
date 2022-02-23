@@ -40,40 +40,26 @@ local_ <- function(set,
 
   if (dots) {
     modify_call <- quote(.new <- list_combine(as.list(.new), list(...)))
-
-    if (is.null(get)) {
-      fun <- eval(bquote(function(args) {
-        .(modify_call)
-        old <- .(set_call)
-        defer(.(reset)(old), envir = .local_envir)
-        invisible(old)
-      }))
-    } else {
-      get_call <- as.call(c(substitute(get), called_fmls))
-      fun <- eval(bquote(function(args) {
-        .(modify_call)
-        old <- .(get_call)
-        defer(.(reset)(old), envir = .local_envir)
-        .(set_call)
-        invisible(old)
-      }))
-    }
   } else {
-    if (is.null(get)) {
-      fun <- eval(bquote(function(args) {
-        old <- .(set_call)
-        defer(.(reset)(old), envir = .local_envir)
-        invisible(old)
-      }))
-    } else {
-      get_call <- as.call(c(substitute(get), called_fmls))
-      fun <- eval(bquote(function(args) {
-        old <- .(get_call)
-        defer(.(reset)(old), envir = .local_envir)
-        .(set_call)
-        invisible(old)
-      }))
-    }
+    modify_call <- NULL
+  }
+
+  if (is.null(get)) {
+    fun <- eval(bquote(function(args) {
+      .(modify_call)
+      old <- .(set_call)
+      defer(.(reset)(old), envir = .local_envir)
+      invisible(old)
+    }))
+  } else {
+    get_call <- as.call(c(substitute(get), called_fmls))
+    fun <- eval(bquote(function(args) {
+      .(modify_call)
+      old <- .(get_call)
+      defer(.(reset)(old), envir = .local_envir)
+      .(set_call)
+      invisible(old)
+    }))
   }
 
   # substitute does not work on arguments, so we need to fix them manually
