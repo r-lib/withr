@@ -76,7 +76,16 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="withr-development-version">withr (development version)<a class="anchor" aria-label="anchor" href="#withr-development-version"></a></h2>
-<ul><li><p><code><a href="../reference/with_locale.html">with_locale()</a></code>, <code><a href="../reference/with_locale.html">local_locale()</a></code>, <code><a href="../reference/with_collate.html">with_collate()</a></code>, and <code><a href="../reference/with_collate.html">local_collate()</a></code> are now robust to early exits.</p></li>
+<ul><li>
+<p>These <code>with_</code> and <code>local_</code> functions are now robust to early exits (see next bullet):</p>
+<ul><li><code>_locale()</code></li>
+<li><code>_envvar()</code></li>
+<li><code>_libpaths()</code></li>
+<li><code>_options()</code></li>
+<li><code>_par()</code></li>
+<li><code>_path()</code></li>
+<li><code>_seed()</code></li>
+</ul></li>
 <li>
 <p><code><a href="../reference/with_.html">with_()</a></code> and <code><a href="../reference/with_.html">local_()</a></code> gain a <code>get</code> argument. Supply a getter function to create <code>with</code> and <code>local</code> functions that are robust to early exits.</p>
 <p>When supplied, this restoration pattern is used:</p>
