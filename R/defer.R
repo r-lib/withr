@@ -95,7 +95,7 @@ deferred_run <- function(envir = parent.frame()) {
 #' @rdname defer
 #' @export
 deferred_clear <- function(envir = parent.frame()) {
-  attr(envir, "handlers") <- NULL
+  attr(envir, "withr_handlers") <- NULL
   invisible()
 }
 

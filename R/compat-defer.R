@@ -36,7 +36,7 @@ set_handlers <- function(envir, handlers) {
     setup_handlers(envir)
   }
 
-  attr(envir, "handlers") <- handlers
+  attr(envir, "withr_handlers") <- handlers
 }
 
 setup_handlers <- function(envir) {
@@ -63,7 +63,7 @@ setup_handlers <- function(envir) {
 }
 
 get_handlers <- function(envir) {
-  attr(envir, "handlers")
+  attr(envir, "withr_handlers")
 }
 
 execute_handlers <- function(envir) {
