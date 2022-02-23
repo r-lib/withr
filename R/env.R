@@ -1,17 +1,19 @@
 # env ------------------------------------------------------------------------
 
-set_envvar <- function(envs, action = "replace") {
-  if (length(envs) == 0) return()
+get_envvar <- function(envs, action = "replace") {
+  envs <- as_envvars(envs)
+  Sys.getenv(names(envs), names = TRUE, unset = NA)
+}
 
-  stopifnot(is.named(envs))
+set_envvar <- function(envs, action = "replace") {
+  envs <- as_envvars(envs)
+
   stopifnot(is.character(action), length(action) == 1)
   action <- match.arg(action, c("replace", "prefix", "suffix"))
 
-  # if any envs are null make them NA instead
-  envs[vlapply(envs, is.null)] <- NA
-
-  # if there are duplicated entries keep only the last one
-  envs <- envs[!duplicated(names(envs), fromLast = TRUE)]
+  if (length(envs) == 0) {
+    return()
+  }
 
   old <- Sys.getenv(names(envs), names = TRUE, unset = NA)
   set <- !is.na(envs)
@@ -29,6 +31,22 @@ set_envvar <- function(envs, action = "replace") {
   if (any(!set)) Sys.unsetenv(names(envs)[!set])
 
   invisible(old)
+}
+
+as_envvars <- function(envs) {
+  if (length(envs) == 0) {
+    return(envs)
+  }
+
+  stopifnot(is.named(envs))
+
+  # if any envs are null make them NA instead
+  envs[vlapply(envs, is.null)] <- NA
+
+  # if there are duplicated entries keep only the last one
+  envs <- envs[!duplicated(names(envs), fromLast = TRUE)]
+
+  envs
 }
 
 #' Environment variables
@@ -52,8 +70,8 @@ set_envvar <- function(envs, action = "replace") {
 #' with_envvar(new = c("TEMP_SECRET" = "secret"), Sys.getenv("TEMP_SECRET"))
 #' Sys.getenv("TEMP_SECRET")
 #' @export
-with_envvar <- with_(set_envvar)
+with_envvar <- with_(set_envvar, get = get_envvar)
 
 #' @rdname with_envvar
 #' @export
-local_envvar <- local_(set_envvar, dots = TRUE)
+local_envvar <- local_(set_envvar, get = get_envvar, dots = TRUE)

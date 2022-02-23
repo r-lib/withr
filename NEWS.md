@@ -1,7 +1,9 @@
 # withr (development version)
 
-* `with_locale()`, `local_locale()`, `with_collate()`, and
-  `local_collate()` are now robust to early exits.
+* These `with_` and `local_` functions are now robust to early exits (see next bullet):
+
+  - `_locale()`
+  - `_envvar()`
 
 * `with_()` and `local_()` gain a `get` argument. Supply a getter
   function to create `with` and `local` functions that are robust to
