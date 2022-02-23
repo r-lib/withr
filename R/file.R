@@ -21,7 +21,7 @@ with_file <- function(file, code) {
   unnamed <- file_nms == ""
   file_nms[unnamed] <- as.character(file[unnamed])
   on.exit(unlink(file_nms, recursive = TRUE))
-  eval.parent(code)
+  force(code)
 
   invisible(file)
 }
