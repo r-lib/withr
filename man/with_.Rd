@@ -27,7 +27,7 @@ The first argument can be named arbitrarily, further arguments with default
 values, or a "dots" argument, are supported but not used: The function will
 be called as \code{reset(old)}.}
 
-\item{get}{\verb{function(...)}\cr Optionally, a getter function. If
+\item{get}{\verb{[function(...)]}\cr Optionally, a getter function. If
 supplied, the \code{on.exit()} restoration is set up \emph{before} calling
 \code{set}. This is more robust in edge cases.
 

@@ -22,7 +22,7 @@ NULL
 #'   The first argument can be named arbitrarily, further arguments with default
 #'   values, or a "dots" argument, are supported but not used: The function will
 #'   be called as `reset(old)`.
-#' @param get `function(...)`\cr Optionally, a getter function. If
+#' @param get `[function(...)]`\cr Optionally, a getter function. If
 #'   supplied, the `on.exit()` restoration is set up _before_ calling
 #'   `set`. This is more robust in edge cases.
 #'
