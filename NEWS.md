@@ -4,6 +4,7 @@
 
   - `_locale()`
   - `_envvar()`
+  - `_libpaths()`
 
 * `with_()` and `local_()` gain a `get` argument. Supply a getter
   function to create `with` and `local` functions that are robust to

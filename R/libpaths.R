@@ -13,6 +13,10 @@ set_libpaths <- function(paths, action = "replace") {
   invisible(old)
 }
 
+get_libpaths <- function(...) {
+  .libPaths()
+}
+
 set_temp_libpath <- function(action = "prefix") {
   paths <- tempfile("temp_libpath")
   dir.create(paths)
@@ -37,11 +41,11 @@ set_temp_libpath <- function(action = "prefix") {
 #' with_libpaths(new_lib, print(.libPaths()))
 #' unlink(new_lib, recursive = TRUE)
 #' @export
-with_libpaths <- with_(set_libpaths, .libPaths)
+with_libpaths <- with_(set_libpaths, .libPaths, get = get_libpaths)
 
 #' @rdname with_libpaths
 #' @export
-local_libpaths <- local_(set_libpaths, .libPaths)
+local_libpaths <- local_(set_libpaths, .libPaths, get = get_libpaths)
 
 #' Library paths
 #'
@@ -52,8 +56,18 @@ local_libpaths <- local_(set_libpaths, .libPaths)
 #' @inheritParams with_libpaths
 #' @family libpaths
 #' @export
-with_temp_libpaths <- with_(set_temp_libpath, .libPaths, new = FALSE)
+with_temp_libpaths <- with_(
+  set_temp_libpath,
+  .libPaths,
+  get = get_libpaths,
+  new = FALSE
+)
 
 #' @rdname with_temp_libpaths
 #' @export
-local_temp_libpaths <- local_(set_temp_libpath, .libPaths, new = FALSE)
+local_temp_libpaths <- local_(
+  set_temp_libpath,
+  .libPaths,
+  get = get_libpaths,
+  new = FALSE
+)
