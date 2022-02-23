@@ -64,3 +64,12 @@ list_combine <- function(rhs, lhs) {
   }
   rhs
 }
+
+# Helper to implement `options()`-like splicing
+auto_splice <- function(x) {
+  if (length(x) == 1 && is.null(names(x)) && is.list(x[[1]])) {
+    x[[1]]
+  } else {
+    x
+  }
+}

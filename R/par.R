@@ -3,6 +3,23 @@ NULL
 
 # par ------------------------------------------------------------------------
 
+get_par <- function(...) {
+  new <- auto_splice(list(...))
+  out <- do.call(graphics::par, as.list(names(new)))
+
+  # `par()` doesn't wrap in a list if input is length 1
+  if (length(new) == 1) {
+    out <- list(out)
+    names(out) <- names(new)
+  }
+
+  out
+}
+
+# `get_par()` must have exactly the same signature as `par()` to be
+# compatible with `with_()` and `local_()`
+formals(get_par) <- formals(graphics::par)
+
 #' Graphics parameters
 #'
 #' Temporarily change graphics parameters.
@@ -26,8 +43,8 @@ NULL
 #' plot(mtcars$hp, mtcars$wt)
 #'
 #' par(old)
-with_par <- with_(graphics::par)
+with_par <- with_(graphics::par, get = get_par)
 
 #' @rdname with_par
 #' @export
-local_par <- local_(graphics::par, dots = TRUE)
+local_par <- local_(graphics::par, get = get_par, dots = TRUE)
