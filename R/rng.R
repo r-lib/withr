@@ -65,6 +65,10 @@ on_load(
 )
 
 restore_rng_kind <- function(kind) {
+  # Silence static analysis linting about `RNGkind()` signature on old
+  # R versions
+  RNGkind <- get("RNGkind")
+
   RNGkind(kind[[1]], normal.kind = kind[[2]])
 
   # No sample argument on old R versions
