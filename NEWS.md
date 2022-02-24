@@ -1,5 +1,7 @@
 # withr (development version)
 
+* `with_seed()` now preserves the current values of `RNGkind()` (#167).
+
 * `with_collate()` is no longer affected by the `LC_COLLATE`
   environment variable set to "C" (#179).
 

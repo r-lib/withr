@@ -10,17 +10,17 @@
 with_seed(
   seed,
   code,
-  .rng_kind = "default",
-  .rng_normal_kind = "default",
-  .rng_sample_kind = "default"
+  .rng_kind = NULL,
+  .rng_normal_kind = NULL,
+  .rng_sample_kind = NULL
 )
 
 local_seed(
   seed,
   .local_envir = parent.frame(),
-  .rng_kind = "default",
-  .rng_normal_kind = "default",
-  .rng_sample_kind = "default"
+  .rng_kind = NULL,
+  .rng_normal_kind = NULL,
+  .rng_sample_kind = NULL
 )
 
 with_preserve_seed(code)

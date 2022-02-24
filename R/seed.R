@@ -21,11 +21,10 @@
 #' @export
 with_seed <- function(seed,
                       code,
-                      .rng_kind = "default",
-                      .rng_normal_kind = "default",
-                      .rng_sample_kind = "default") {
+                      .rng_kind = NULL,
+                      .rng_normal_kind = NULL,
+                      .rng_sample_kind = NULL) {
   force(seed)
-
   rng_kind <- list(.rng_kind, .rng_normal_kind, .rng_sample_kind)
 
   with_preserve_seed({
@@ -38,9 +37,9 @@ with_seed <- function(seed,
 #' @export
 local_seed <- function(seed,
                        .local_envir = parent.frame(),
-                       .rng_kind = "default",
-                       .rng_normal_kind = "default",
-                       .rng_sample_kind = "default") {
+                       .rng_kind = NULL,
+                       .rng_normal_kind = NULL,
+                       .rng_sample_kind = NULL) {
   old_seed <- get_seed()
 
   defer(envir = .local_envir, {
@@ -114,7 +113,7 @@ set_seed <- local({
       seed$rng_kind <- seed$rng_kind[1L:2L]
     }
 
-    do.call(RNGkind, args = as.list(seed$rng_kind))
+    do.call("RNGkind", args = as.list(seed$rng_kind))
 
     if (is.null(seed$seed)) {
       assign(".Random.seed", seed$random_seed, globalenv())

@@ -85,30 +85,94 @@ test_that("local_preserve_seed preserves empty seed", {
 })
 
 test_that("RNGkind is also respected", {
+  old <- RNGkind()
+  on.exit(do.call("RNGkind", as.list(old)))
+
+
+  # Uniform RNG
+
   my_seed <- sample.int(.Machine$integer.max, 1)
+  rng_kind <- "Mersenne-Twister"
+  alt_rng_kind <- "L'Ecuyer-CMRG"
+
+  RNGkind(rng_kind)
   set.seed(my_seed)
   reference <- runif(10)
 
-  other_rng_kind <- "L'Ecuyer-CMRG"
-  RNGkind(other_rng_kind)
-  expect_equal(with_seed(my_seed, runif(10)), reference)
-  expect_equal(RNGkind()[1L], other_rng_kind)
-  RNGkind("default")
-  expect_equal(with_seed(my_seed, runif(10)), reference)
+  RNGkind(alt_rng_kind)
+  set.seed(my_seed)
+  alt_reference <- runif(10)
 
-  RNGkind(other_rng_kind)
-  set.seed(my_seed)
-  other_reference <- runif(10)
-  expect_equal(with_seed(my_seed, runif(10), .rng_kind = other_rng_kind), other_reference)
-  RNGkind("default")
+  RNGkind(rng_kind)
+  expect_equal(
+    with_seed(my_seed, {
+      expect_equal(RNGkind()[[1]], rng_kind)
+      runif(10)
+    }),
+    reference
+  )
+  expect_equal(RNGkind()[[1]], rng_kind)
 
+  RNGkind(alt_rng_kind)
+  expect_equal(
+    with_seed(my_seed, {
+      expect_equal(RNGkind()[[1]], alt_rng_kind)
+      runif(10)
+    }),
+    alt_reference
+  )
+  expect_equal(RNGkind()[[1]], alt_rng_kind)
+
+  RNGkind(rng_kind)
+  expect_equal(
+    with_seed(
+      my_seed,
+      {
+        expect_equal(RNGkind()[[1]], alt_rng_kind)
+        runif(10)
+      },
+      .rng_kind = alt_rng_kind
+    ),
+    alt_reference
+  )
+  expect_equal(RNGkind()[[1]], rng_kind)
+
+
+  # Normal RNG
+
+  rng_norm_kind <- "Box-Muller"
+  alt_rng_norm_kind <- "Kinderman-Ramage"
+
+  RNGkind(normal.kind = rng_norm_kind)
   set.seed(my_seed)
-  reference <- rnorm(10)
-  expect_equal(with_seed(my_seed, rnorm(10)), reference)
-  RNGkind(normal.kind = "Box-Muller")
+  norm_reference <- rnorm(10)
+
+  RNGkind(normal.kind = alt_rng_norm_kind)
   set.seed(my_seed)
-  other_reference <- rnorm(10)
-  expect_equal(with_seed(my_seed, rnorm(10)), reference)
+  alt_norm_reference <- rnorm(10)
+
+  expect_equal(
+    with_seed(my_seed, rnorm(10)),
+    alt_norm_reference
+  )
+
+  expect_equal(
+    with_seed(
+      my_seed,
+      .rng_normal_kind = alt_rng_norm_kind,
+      rnorm(10)
+    ),
+    alt_norm_reference
+  )
+
+  expect_equal(
+    with_seed(
+      my_seed,
+      .rng_normal_kind = rng_norm_kind,
+      rnorm(10)
+    ),
+    norm_reference
+  )
 
   expect_equal(
     with_preserve_seed(rnorm(10)),
@@ -116,14 +180,10 @@ test_that("RNGkind is also respected", {
   )
 
   # Beware: Box-Muller generates pairs, that state is lost across set.seed()!
+  RNGkind(normal.kind = rng_norm_kind)
   rnorm(1)
   expect_failure(expect_equal(
     with_preserve_seed(rnorm(10)),
     with_preserve_seed(rnorm(10))
   ))
-
-  expect_equal(with_seed(my_seed, rnorm(10)), reference)
-  expect_equal(with_seed(my_seed, rnorm(10), .rng_normal_kind = "Box-Muller"), other_reference)
-  expect_equal(with_seed(my_seed, rnorm(10), .rng_normal_kind = "Box-Muller"), other_reference)
-  RNGkind(normal.kind = "default")
 })
