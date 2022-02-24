@@ -42,6 +42,18 @@ test_that("defer()'s global env facilities work", {
   expect_null(h)
 })
 
+test_that("non-top-level global env is unwound like a normal env", {
+  expect_silent(
+    evalq(local_options(list(opt = "foo")), globalenv())
+  )
+
+  # Check that handlers have been called
+  expect_null(getOption("opt"))
+
+  # Check that handlers were cleaned up
+  expect_null(get_handlers(globalenv()))
+})
+
 test_that("defered actions in global env are run on exit", {
   path <- local_tempfile()
   callr::r(
