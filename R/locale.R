@@ -59,7 +59,7 @@ local_locale <- function(.new = list(),
   # effect.
   if ("LC_COLLATE" %in% names(cats)) {
     collate <- cats["LC_COLLATE"]
-    do.call(Sys.setenv, as.list(collate))
+    local_envvar(collate, .local_envir = .local_envir)
   }
 
   invisible(old)
