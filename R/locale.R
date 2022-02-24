@@ -9,7 +9,19 @@ set_locale <- function(cats) {
   cats <- as_locale_cats(cats)
   old <- get_locale(cats)
 
-  mapply(Sys.setlocale, names(cats), cats)
+  nms <- names(cats)
+
+  # <https://github.com/r-lib/withr/issues/179>
+  # R supports setting LC_COLLATE to C via envvar. When that is the
+  # case, it takes precedence over the currently set locale. We need
+  # to set both the envvar and the locale for collate to fully take
+  # effect.
+  if ("LC_COLLATE" %in% nms) {
+    collate <- cats["LC_COLLATE"]
+    do.call(Sys.setenv, as.list(collate))
+  }
+
+  mapply(Sys.setlocale, nms, cats)
   invisible(old)
 }
 

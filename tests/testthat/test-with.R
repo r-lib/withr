@@ -144,6 +144,20 @@ test_that("with_collate works and resets collate", {
   expect_equal(current, Sys.getlocale("LC_COLLATE"))
 })
 
+test_that("with_collate() and with_locale() set LC_COLLATE envvar (#179)", {
+  output <- callr::r(
+    function() withr::with_collate("en_US", sort(c("A", "a"))),
+    env = c(LC_COLLATE = "C")
+  )
+  expect_equal(output, c("a", "A"))
+
+  output <- callr::r(
+    function() withr::with_locale(c(LC_COLLATE = "en_US"), sort(c("A", "a"))),
+    env = c(LC_COLLATE = "C")
+  )
+  expect_equal(output, c("a", "A"))
+})
+
 test_that("with_makevars works and resets the Makevars file", {
   current <- tempfile()
   writeLines(con = current, c("CFLAGS=-O3"), sep = "\n")

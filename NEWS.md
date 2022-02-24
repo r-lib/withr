@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `with_collate()` is no longer affected by the `LC_COLLATE`
+  environment variable set to "C" (#179).
+
 * Local evaluations in the `globalenv()` (as opposed to top-level
   ones) are now unwound in the same way as regular environments.
 
