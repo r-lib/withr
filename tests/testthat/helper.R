@@ -22,3 +22,12 @@ expect_safe_and_unsafe_unwinding <- function(state,
   early_exit(with_unsafe(list("var" = "foo"), NULL))
   expect_equal(state[["var"]], "foo")
 }
+
+en_locale_or_skip <- function() {
+  tryCatch(
+    error = function(...) skip("Can't set locale"),
+    warning = function(...) skip("Can't set locale"),
+    with_collate("en_US.UTF-8", NULL)
+  )
+  "en_US.UTF-8"
+}
