@@ -5,11 +5,11 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/r-lib/withr/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/withr/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/r-lib/withr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/withr?branch=main)
 [![CRAN
 Version](https://www.r-pkg.org/badges/version/withr)](https://www.r-pkg.org/pkg/withr)
+[![R-CMD-check](https://github.com/r-lib/withr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/withr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Overview
