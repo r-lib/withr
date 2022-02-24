@@ -12,14 +12,20 @@ test_that("with_collate works and resets collate", {
 
 test_that("with_collate() and with_locale() set LC_COLLATE envvar (#179)", {
   output <- callr::r(
-    function() withr::with_collate("en_US", sort(c("A", "a"))),
-    env = c(LC_COLLATE = "C")
-  )
+    env = c(LC_COLLATE = "C"),
+    function() {
+      out <- withr::with_collate("en_US", sort(c("A", "a")))
+      stopifnot(identical(Sys.getenv("LC_COLLATE"), "C"))
+      out
+    })
   expect_equal(output, c("a", "A"))
 
   output <- callr::r(
-    function() withr::with_locale(c(LC_COLLATE = "en_US"), sort(c("A", "a"))),
-    env = c(LC_COLLATE = "C")
-  )
+    env = c(LC_COLLATE = "C"),
+    function() {
+      out <- withr::with_locale(c(LC_COLLATE = "en_US"), sort(c("A", "a")))
+      stopifnot(identical(Sys.getenv("LC_COLLATE"), "C"))
+      out
+    })
   expect_equal(output, c("a", "A"))
 })
