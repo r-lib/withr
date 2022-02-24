@@ -4,7 +4,9 @@ get_path <- function(...) {
   strsplit(Sys.getenv("PATH"), .Platform$path.sep)[[1]]
 }
 
-set_path <- function(path, action = "prefix") {
+set_path <- function(path, action = c("prefix", "suffix", "replace")) {
+  action <- match.arg(action)
+
   path <- as_character(path)
   path <- normalizePath(path, mustWork = FALSE)
 
@@ -22,12 +24,12 @@ set_path <- function(path, action = "prefix") {
 #'
 #' @template with
 #' @param new `[character]`\cr New `PATH` entries
-#' @param action `[character(1)]`\cr Should new values `"replace"`, `"prefix"` or
-#'   `"suffix"` existing paths
+#' @param action `[character(1)]`\cr Should new values `"replace"`, `"prefix"`
+#'   (the default) or `"suffix"` existing paths
 #' @inheritParams with_collate
 #' @seealso [Sys.setenv()]
 #' @examples
-#' # temporarily modify the system PATH, *replacing* the current path
+#' # temporarily modify the system PATH, *prefixing* the current path
 #' with_path(getwd(), Sys.getenv("PATH"))
 
 #' # temporarily modify the system PATH, *appending* to the current path

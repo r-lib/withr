@@ -5,17 +5,21 @@
 \alias{local_path}
 \title{PATH environment variable}
 \usage{
-with_path(new, code, action = "prefix")
+with_path(new, code, action = c("prefix", "suffix", "replace"))
 
-local_path(new = list(), action = "prefix", .local_envir = parent.frame())
+local_path(
+  new = list(),
+  action = c("prefix", "suffix", "replace"),
+  .local_envir = parent.frame()
+)
 }
 \arguments{
 \item{new}{\verb{[character]}\cr New \code{PATH} entries}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{action}{\verb{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"} or
-\code{"suffix"} existing paths}
+\item{action}{\verb{[character(1)]}\cr Should new values \code{"replace"}, \code{"prefix"}
+(the default) or \code{"suffix"} existing paths}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
@@ -27,7 +31,7 @@ argument.
 Temporarily change the system search path.
 }
 \examples{
-# temporarily modify the system PATH, *replacing* the current path
+# temporarily modify the system PATH, *prefixing* the current path
 with_path(getwd(), Sys.getenv("PATH"))
 # temporarily modify the system PATH, *appending* to the current path
 with_path(getwd(), Sys.getenv("PATH"), "suffix")
