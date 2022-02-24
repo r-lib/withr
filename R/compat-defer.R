@@ -45,7 +45,7 @@ setup_handlers <- function(envir) {
     if (is_interactive()) {
       message(
         sprintf("Setting deferred event(s) on the global environment.\n"),
-        "  * Will be run automatically when session ends\n",
+        "  * Will be run automatically when session ends.\n",
         "  * Execute (and clear) with `withr::deferred_run()`.\n",
         "  * Clear (without executing) with `withr::deferred_clear()`."
       )
@@ -65,6 +65,7 @@ setup_handlers <- function(envir) {
 in_knitr <- function(envir) {
   knitr_in_progress() && identical(knitr::knit_global(), envir)
 }
+
 is_top_level_global_env <- function(envir) {
   if (!identical(envir, globalenv())) {
     return(FALSE)

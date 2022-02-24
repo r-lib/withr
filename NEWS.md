@@ -41,7 +41,7 @@
 * `local_tempfile()` gains a lines argument so, if desired, you can pre-fill
   the temporary file with some data.
 
-* `defer()` all `local_` functions now work when run inside of a
+* `defer()` and all `local_*()` functions now work when run inside of a
   `.Rmd`. Note that they are executed at the very end of the session,
   after the output has been collected, so you won't see any printed
   side-effects (#187). The same applies with interactive knitting,
