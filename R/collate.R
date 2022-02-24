@@ -1,10 +1,3 @@
-#' @include with_.R
-
-# collate --------------------------------------------------------------------
-
-get_collate <- function(locale) get_locale(c(LC_COLLATE = locale))[[1]]
-set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
-
 #' Collation Order
 #'
 #' Temporarily change collation order by changing the value of the
@@ -21,8 +14,12 @@ set_collate <- function(locale) set_locale(c(LC_COLLATE = locale))[[1]]
 #' with_collate("C", sort(x))
 #'
 #' @export
-with_collate <- with_(set_collate, get = get_collate)
+with_collate <- function(new, code) {
+  with_locale(c(LC_COLLATE = new), code)
+}
 
 #' @rdname with_collate
 #' @export
-local_collate <- local_(set_collate, get = get_collate)
+local_collate <- function(new = list(), .local_envir = parent.frame()) {
+  local_locale(c(LC_COLLATE = new), .local_envir = .local_envir)
+}

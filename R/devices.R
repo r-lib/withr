@@ -1,3 +1,4 @@
+#' @include with_.R
 #' @include wrap.R
 NULL
 
