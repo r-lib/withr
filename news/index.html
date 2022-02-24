@@ -76,7 +76,8 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="withr-development-version">withr (development version)<a class="anchor" aria-label="anchor" href="#withr-development-version"></a></h2>
-<ul><li><p><code><a href="../reference/with_collate.html">with_collate()</a></code> is no longer affected by the <code>LC_COLLATE</code> environment variable set to “C” (<a href="https://github.com/r-lib/withr/issues/179" class="external-link">#179</a>).</p></li>
+<ul><li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now preserves the current values of <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code> (<a href="https://github.com/r-lib/withr/issues/167" class="external-link">#167</a>).</p></li>
+<li><p><code><a href="../reference/with_collate.html">with_collate()</a></code> is no longer affected by the <code>LC_COLLATE</code> environment variable set to “C” (<a href="https://github.com/r-lib/withr/issues/179" class="external-link">#179</a>).</p></li>
 <li><p>Local evaluations in the <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code> (as opposed to top-level ones) are now unwound in the same way as regular environments.</p></li>
 <li>
 <p>These <code>with_</code> and <code>local_</code> functions are now robust to early exits (see next bullet):</p>
