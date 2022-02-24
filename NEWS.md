@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `with_namespace()` and `local_namespace()` now pass `warn.conflicts`
+  to `attach()` (@kyleam, #185).
+
 * `local_rng_version()` and `local_seed()` no longer warn when
   restoring `sample.kind` to `"Rounding"` (#167).
 
