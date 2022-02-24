@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `local_rng_version()` and `local_seed()` no longer warn when
+  restoring `sample.kind` to `"Rounding"` (#167).
+
 * `with_seed()` now preserves the current values of `RNGkind()` (#167).
 
 * `with_collate()` is no longer affected by the `LC_COLLATE`

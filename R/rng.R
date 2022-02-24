@@ -29,8 +29,8 @@
 #' RNGkind()
 #'
 with_rng_version <- function(version, code) {
-  orig <- RNGkind()
-  on.exit(do.call(RNGkind, as.list(orig)), add = TRUE)
+  old <- RNGkind()
+  on.exit(restore_rng_kind(old), add = TRUE)
   suppressWarnings(RNGversion(version))
   code
 }
@@ -54,8 +54,34 @@ with_rng_version <- function(version, code) {
 #' fun2()
 #' RNGkind()
 local_rng_version <- function(version, .local_envir = parent.frame()) {
-  orig <- RNGkind()
-  defer(do.call(RNGkind, as.list(orig)), envir = .local_envir)
+  old <- RNGkind()
+  defer(restore_rng_kind(old), envir = .local_envir)
   suppressWarnings(RNGversion(version))
-  orig
+  old
+}
+
+on_load(
+  is_before_3.6 <- getRversion() < "3.6"
+)
+
+restore_rng_kind <- function(kind) {
+  RNGkind(kind[[1]], normal.kind = kind[[2]])
+
+  # No sample argument on old R versions
+  if (is_before_3.6) {
+    return()
+  }
+
+  # Within a `local_rng_version("3.5.0")`, we restore to `"Rounding"`,
+  # which causes a warning. See https://github.com/r-lib/withr/issues/167
+  sample_kind <- kind[[3]]
+  if (identical(sample_kind, "Rounding")) {
+    suppressWarnings(
+      RNGkind(sample.kind = sample_kind)
+    )
+  } else {
+    RNGkind(sample.kind = sample_kind)
+  }
+
+  NULL
 }

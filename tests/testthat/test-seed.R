@@ -187,3 +187,10 @@ test_that("RNGkind is also respected", {
     with_preserve_seed(rnorm(10))
   ))
 })
+
+test_that("can restore to `sample.kind = 'Rounding'` (#167)", {
+  expect_warning(regexp = NA, local({
+    withr::local_rng_version("3.5.0")
+    withr::local_seed(42)
+  }))
+})

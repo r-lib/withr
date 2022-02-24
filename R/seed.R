@@ -104,24 +104,15 @@ get_seed <- function() {
   )
 }
 
-set_seed <- local({
-  is_before_3.6 <- getRversion() < "3.6"
+set_seed <- function(seed) {
+  restore_rng_kind(seed$rng_kind)
 
-  function(seed) {
-    # Ensure RNGkind() and Normal RNG state is properly reset (cf. #162)
-    if (is_before_3.6) {
-      seed$rng_kind <- seed$rng_kind[1L:2L]
-    }
-
-    do.call("RNGkind", args = as.list(seed$rng_kind))
-
-    if (is.null(seed$seed)) {
-      assign(".Random.seed", seed$random_seed, globalenv())
-    } else {
-      set.seed(seed$seed)
-    }
+  if (is.null(seed$seed)) {
+    assign(".Random.seed", seed$random_seed, globalenv())
+  } else {
+    set.seed(seed$seed)
   }
-})
+}
 
 rm_seed <- function() {
   if (!has_seed()) {

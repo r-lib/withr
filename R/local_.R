@@ -1,3 +1,6 @@
+#' @include aaa.R
+NULL
+
 #' @rdname with_
 #' @export
 local_ <- function(set,
