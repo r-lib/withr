@@ -75,48 +75,6 @@ test_that("with_libpaths works and resets library", {
   expect_equal(lib, .libPaths())
 })
 
-test_that("with_locale works and resets locales", {
-  current <- Sys.getlocale("LC_CTYPE")
-  new <- "C"
-  with_locale(
-    c(LC_CTYPE = new),
-    {
-      expect_equal(new, Sys.getlocale("LC_CTYPE"))
-    }
-  )
-  expect_equal(current, Sys.getlocale("LC_CTYPE"))
-})
-
-test_that("with_locale fails with LC_ALL", {
-  expect_error(with_locale(c(LC_ALL = "C"), NULL), "LC_ALL")
-})
-
-test_that("with_collate works and resets collate", {
-  current <- Sys.getlocale("LC_COLLATE")
-  new <- "C"
-  with_collate(
-    new,
-    {
-      expect_equal(new, Sys.getlocale("LC_COLLATE"))
-    }
-  )
-  expect_equal(current, Sys.getlocale("LC_COLLATE"))
-})
-
-test_that("with_collate() and with_locale() set LC_COLLATE envvar (#179)", {
-  output <- callr::r(
-    function() withr::with_collate("en_US", sort(c("A", "a"))),
-    env = c(LC_COLLATE = "C")
-  )
-  expect_equal(output, c("a", "A"))
-
-  output <- callr::r(
-    function() withr::with_locale(c(LC_COLLATE = "en_US"), sort(c("A", "a"))),
-    env = c(LC_COLLATE = "C")
-  )
-  expect_equal(output, c("a", "A"))
-})
-
 test_that("with_makevars works and resets the Makevars file", {
   current <- tempfile()
   writeLines(con = current, c("CFLAGS=-O3"), sep = "\n")
