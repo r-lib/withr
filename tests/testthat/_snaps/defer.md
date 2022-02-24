@@ -3,8 +3,9 @@
     Code
       defer(print("howdy"), envir = globalenv())
     Message <simpleMessage>
-      Setting deferred event(s) on the global environment.
-      * Will be run automatically when session ends.
-      * Execute (and clear) with `withr::deferred_run()`.
-      * Clear (without executing) with `withr::deferred_clear()`.
+      Setting global deferred event(s).
+      i These will be run:
+        * Automatically, when the R session ends.
+        * On demand, if you call `withr::deferred_run()`.
+      i Use `withr::deferred_clear()` to clear them without executing.
 
