@@ -45,9 +45,9 @@ setup_handlers <- function(envir) {
     if (is_interactive()) {
       message(
         sprintf("Setting deferred event(s) on the global environment.\n"),
-        "  * Will be run automatically when session ends.\n",
-        "  * Execute (and clear) with `withr::deferred_run()`.\n",
-        "  * Clear (without executing) with `withr::deferred_clear()`."
+        "* Will be run automatically when session ends.\n",
+        "* Execute (and clear) with `withr::deferred_run()`.\n",
+        "* Clear (without executing) with `withr::deferred_clear()`."
       )
     }
     reg.finalizer(envir, function(env) deferred_run(env), onexit = TRUE)
