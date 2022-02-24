@@ -71,11 +71,6 @@ defer_ns <- environment(defer)
 #' deferred_run()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) NULL
 
-# Reassign over an empty template so roxygen can figure out the proper
-# `@usage` and `@name`. The signature above should be kept in sync
-# with the implementation in compat-defer.R.
-defer <- defer_ns$defer
-
 #' @rdname defer
 #' @export
 defer_parent <- function(expr, priority = c("first", "last")) {
@@ -99,7 +94,7 @@ deferred_clear <- function(envir = parent.frame()) {
   invisible()
 }
 
-get_handlers <- defer_ns$get_handlers
-set_handlers <- defer_ns$set_handlers
-execute_handlers <- defer_ns$execute_handlers
-add_handler <- defer_ns$add_handler
+# Splice `compat-defer.R` into the namespace
+for (name in names(defer_ns)) {
+  assign(name, defer_ns[[name]])
+}
