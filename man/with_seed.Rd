@@ -32,11 +32,8 @@ local_preserve_seed(.local_envir = parent.frame())
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{.rng_kind}{\verb{[character(1)]}\cr Kind of (uniform) RNG to use.}
-
-\item{.rng_normal_kind}{\verb{[character(1)]}\cr Kind of normal RNG to use.}
-
-\item{.rng_sample_kind}{\verb{[character(1)]}\cr Kind of RNG to use for sampling.}
+\item{.rng_kind, .rng_normal_kind, .rng_sample_kind}{\verb{[character(1)]}\cr Kind of RNG to use. Passed as the \code{kind},
+\code{normal.kind}, and \code{sample.kind} arguments of \code{\link[=RNGkind]{RNGkind()}}.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }

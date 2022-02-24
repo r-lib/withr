@@ -5,9 +5,9 @@
 #' @template with
 #' @param seed `[integer(1)]`\cr The random seed to use to evaluate the code.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
-#' @param .rng_kind `[character(1)]`\cr Kind of (uniform) RNG to use.
-#' @param .rng_normal_kind `[character(1)]`\cr Kind of normal RNG to use.
-#' @param .rng_sample_kind `[character(1)]`\cr Kind of RNG to use for sampling.
+#' @param .rng_kind,.rng_normal_kind,.rng_sample_kind
+#'   `[character(1)]`\cr Kind of RNG to use. Passed as the `kind`,
+#'   `normal.kind`, and `sample.kind` arguments of [RNGkind()].
 #' @examples
 #' # Same random values:
 #' with_preserve_seed(runif(5))
@@ -19,13 +19,17 @@
 #' with_seed(seed, runif(5))
 #' with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
 #' @export
-with_seed <- function(seed, code, .rng_kind = "default", .rng_normal_kind = "default", .rng_sample_kind = "default") {
+with_seed <- function(seed,
+                      code,
+                      .rng_kind = "default",
+                      .rng_normal_kind = "default",
+                      .rng_sample_kind = "default") {
   force(seed)
-  force(.rng_kind)
-  force(.rng_normal_kind)
-  force(.rng_sample_kind)
+
+  rng_kind <- list(.rng_kind, .rng_normal_kind, .rng_sample_kind)
+
   with_preserve_seed({
-    set_seed(list(seed = seed, rng_kind = c(.rng_kind, .rng_normal_kind, .rng_sample_kind)))
+    set_seed(list(seed = seed, rng_kind = rng_kind))
     code
   })
 }
@@ -47,15 +51,10 @@ local_seed <- function(seed,
     }
   })
 
-  set_seed(list(
-    seed = seed,
-    rng_kind = c(
-      .rng_kind,
-      .rng_normal_kind,
-      .rng_sample_kind
-    )
-  ))
+  rng_kind <- list(.rng_kind, .rng_normal_kind, .rng_sample_kind)
+  set_seed(list(seed = seed, rng_kind = rng_kind))
 
+  # FIXME
   invisible(seed)
 }
 
