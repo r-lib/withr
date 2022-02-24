@@ -130,18 +130,18 @@ afterwards.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Same random values:</span></span>
 <span class="r-in"><span class="fu">with_preserve_seed</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9770680 0.5246689 0.2371893 0.8189717 0.9030099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7524200 0.9791234 0.2956917 0.2540572 0.7147231</span>
 <span class="r-in"><span class="fu">with_preserve_seed</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9770680 0.5246689 0.2371893 0.8189717 0.9030099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7524200 0.9791234 0.2956917 0.2540572 0.7147231</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Use a pseudorandom value as seed to advance the RNG and pick a different</span></span>
 <span class="r-in"><span class="co"># value for the next call:</span></span>
 <span class="r-in"><span class="fu">with_seed</span><span class="op">(</span><span class="va">seed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="va">.Machine</span><span class="op">$</span><span class="va">integer.max</span>, <span class="fl">1L</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.06184512 0.09956636 0.41170982 0.04855338 0.73093791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.06872951 0.90481646 0.18196657 0.08104332 0.44783304</span>
 <span class="r-in"><span class="fu">with_seed</span><span class="op">(</span><span class="va">seed</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.06184512 0.09956636 0.41170982 0.04855338 0.73093791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.06872951 0.90481646 0.18196657 0.08104332 0.44783304</span>
 <span class="r-in"><span class="fu">with_seed</span><span class="op">(</span><span class="va">seed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="va">.Machine</span><span class="op">$</span><span class="va">integer.max</span>, <span class="fl">1L</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2026094 0.2927127 0.9394775 0.5293711 0.4650621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5356420 0.4878314 0.7375198 0.4525733 0.6953607</span>
 </code></pre></div>
     </div>
   </div>
