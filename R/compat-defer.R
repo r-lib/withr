@@ -13,10 +13,17 @@ defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", 
   invisible(
     add_handler(
       envir,
-      handler = list(expr = substitute(expr), envir = parent.frame()),
+      handler = new_handler(substitute(expr), parent.frame()),
       front = priority == "first"
     )
   )
+}
+
+new_handler <- function(expr, envir) {
+  hnd <- new.env(FALSE, size = 2)
+  hnd[["expr"]] <- expr
+  hnd[["envir"]] <- envir
+  hnd
 }
 
 add_handler <- function(envir, handler, front) {
