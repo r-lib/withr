@@ -1,5 +1,7 @@
 # withr (development version)
 
+* `defer()` and `local_` functions now work within `source()`.
+
 * `with_namespace()` and `local_namespace()` now pass `warn.conflicts`
   to `attach()` (@kyleam, #185).
 

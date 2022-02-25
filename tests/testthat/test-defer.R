@@ -104,3 +104,21 @@ test_that("defer executes all handlers even if there is an error in one of them"
 
   expect_equal(getOption("test_option"), 2)
 })
+
+test_that("defer works within source()", {
+  file <- local_tempfile()
+
+  out <- NULL
+  cat(file = file, "
+    out <<- c(out, '1')
+    defer(out <<- c(out, 'foo'))
+    out <<- c(out, '2')
+    evalq(defer(out <<- c(out, 'bar')))
+    out <<- c(out, '3')
+  ")
+  local(
+    source(file, local = TRUE)
+  )
+
+  expect_equal(out, c("1", "2", "bar", "3", "foo"))
+})
