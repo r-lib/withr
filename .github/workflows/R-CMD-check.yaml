@@ -12,9 +12,6 @@ on:
 
 name: R-CMD-check
 
-- if: runner.os == 'macOS'
-  run: brew install --cask xquartz
-
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
@@ -53,6 +50,9 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+
+      - if: runner.os == 'macOS'
+        run: brew install --cask xquartz
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
