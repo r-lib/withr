@@ -1,7 +1,5 @@
 # withr (development version)
 
-* `defer()` and `local_` functions now work within `source()`.
-
 * `with_namespace()` and `local_namespace()` now pass `warn.conflicts`
   to `attach()` (@kyleam, #185).
 
@@ -54,11 +52,12 @@
 * `local_tempfile()` gains a lines argument so, if desired, you can pre-fill
   the temporary file with some data.
 
-* `defer()` and all `local_*()` functions now work when run inside of a
-  `.Rmd`. Note that they are executed at the very end of the session,
-  after the output has been collected, so you won't see any printed
-  side-effects (#187). The same applies with interactive knitting,
-  e.g. in notebooks. They are only executed when R exits.
+* `defer()` and all `local_*()` functions now work when run inside of
+  a `.Rmd`. The deferred expressions are executed after knitr has
+  returned.
+
+* `defer()` and `local_` functions now work within `source()`.
+
 
 # withr 2.4.3
 

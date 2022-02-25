@@ -122,3 +122,23 @@ test_that("defer works within source()", {
 
   expect_equal(out, c("1", "2", "bar", "3", "foo"))
 })
+
+test_that("defer works within knitr::knit()", {
+  out <- NULL
+  evalq({
+    defer(out <- c(out, "first"))
+    rmd <- "
+      ```{r}
+      defer(out <- c(out, 'foo'))
+      out <- c(out, '1')
+      ```
+      ```{r}
+      defer(out <- c(out, 'bar'))
+      out <- c(out, '2')
+      ```
+    "
+    knitr::knit(text = rmd, quiet = TRUE)
+    defer(out <- c(out, "last"))
+  })
+  expect_equal(out, c("1", "2", "bar", "foo", "last", "first"))
+})

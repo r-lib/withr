@@ -56,7 +56,7 @@ set_handlers <- function(envir, handlers, frames, calls) {
 setup_handlers <- function(envir,
                            frames = as.list(sys.frames()),
                            calls = as.list(sys.calls())) {
-  if (in_knitr(envir) || is_top_level_global_env(envir, frames)) {
+  if (is_top_level_global_env(envir, frames)) {
     # For session scopes we use reg.finalizer()
     if (is_interactive()) {
       message(
@@ -88,12 +88,34 @@ exit_frame <- function(envir,
     return(envir)
   }
 
+  if (knitr_in_progress()) {
+    out <- knitr_frame(envir, frames, calls, frame_loc)
+    if (!is.null(out)) {
+      return(out)
+    }
+  }
+
   out <- source_frame(envir, frames, calls, frame_loc)
   if (!is.null(out)) {
     return(out)
   }
 
   envir
+}
+
+knitr_frame <- function(envir, frames, calls, frame_loc) {
+  knitr_ns <- asNamespace("knitr")
+
+  # This doesn't handle correctly the recursive case (knitr called
+  # within a chunk). Handling this would be a little fiddly for an
+  # uncommon edge case.
+  for (i in seq(1, frame_loc)) {
+    if (identical(topenv(frames[[i]]), knitr_ns)) {
+      return(frames[[i]])
+    }
+  }
+
+  NULL
 }
 
 source_frame <- function(envir, frames, calls, frame_loc) {
