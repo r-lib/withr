@@ -107,20 +107,38 @@ test_that("defer executes all handlers even if there is an error in one of them"
 
 test_that("defer works within source()", {
   file <- local_tempfile()
-
   out <- NULL
+
+  local_defer <- function(frame = parent.frame()) {
+    defer(out <<- c(out, "local_defer"), envir = frame)
+  }
+
   cat(file = file, "
     out <<- c(out, '1')
-    defer(out <<- c(out, 'foo'))
+    defer(out <<- c(out, 'defer'))
     out <<- c(out, '2')
-    evalq(defer(out <<- c(out, 'bar')))
+    identity(defer(out <<- c(out, 'identity(defer)')))
     out <<- c(out, '3')
+    local_defer()
+    out <<- c(out, '4')
+    evalq(defer(out <<- c(out, 'evalq(defer)')))
+    out <<- c(out, '5')
   ")
   local(
     source(file, local = TRUE)
   )
 
-  expect_equal(out, c("1", "2", "bar", "3", "foo"))
+  expect_equal(out, c(
+    "1",
+    "2",
+    "3",
+    "4",
+    "evalq(defer)",
+    "5",
+    "local_defer",
+    "identity(defer)",
+    "defer"
+  ))
 })
 
 test_that("defer works within knitr::knit()", {
