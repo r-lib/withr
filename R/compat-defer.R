@@ -148,19 +148,17 @@ source_frame <- function(envir, frames, calls, frame_loc) {
 
 frame_loc <- function(envir, frames) {
   n <- length(frames)
+  if (!n) {
+    return(0)
+  }
 
-  found <- FALSE
   for (i in seq_along(frames)) {
     if (identical(frames[[n - i + 1]], envir)) {
-      found <- TRUE
-      break
+      return(n - i + 1)
     }
   }
-  if (found) {
-    n - i + 1
-  } else {
-    0
-  }
+
+  0
 }
 
 in_knitr <- function(envir) {
