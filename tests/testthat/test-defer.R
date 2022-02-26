@@ -141,6 +141,42 @@ test_that("defer works within source()", {
   ))
 })
 
+test_that("defer works within source()", {
+  out <- NULL
+
+  file1 <- local_tempfile()
+  file2 <- local_tempfile()
+
+  cat(file = file1, "
+    out <<- c(out, 'outer-1')
+    defer(out <<- c(out, 'outer-before'))
+    out <<- c(out, 'outer-2')
+    local(source(file2, local = TRUE))
+    defer(out <<- c(out, 'outer-after'))
+    out <<- c(out, 'outer-3')
+  ")
+  cat(file = file2, "
+    out <<- c(out, '1')
+    defer(out <<- c(out, 'defer'))
+    out <<- c(out, '2')
+  ")
+
+  local(
+    source(file1, local = TRUE)
+  )
+
+  expect_equal(out, c(
+    "outer-1",
+    "outer-2",
+    "1",
+    "2",
+    "defer",
+    "outer-3",
+    "outer-after",
+    "outer-before"
+  ))
+})
+
 test_that("defer works within knitr::knit()", {
   out <- NULL
   evalq({
