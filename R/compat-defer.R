@@ -130,16 +130,16 @@ source_frame <- function(envir, frames, calls, frame_loc) {
   }
   calls <- as.list(calls)
 
-  if (!is_call(calls[[i - 0]], quote(eval))) {
-    return(NULL)
-  }
-  if (!is_call(calls[[i - 1]], quote(eval))) {
+  if (!is_call(calls[[i - 3]], quote(source))) {
     return(NULL)
   }
   if (!is_call(calls[[i - 2]], quote(withVisible))) {
     return(NULL)
   }
-  if (!is_call(calls[[i - 3]], quote(source))) {
+  if (!is_call(calls[[i - 1]], quote(eval))) {
+    return(NULL)
+  }
+  if (!is_call(calls[[i - 0]], quote(eval))) {
     return(NULL)
   }
 
