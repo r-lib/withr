@@ -104,3 +104,95 @@ test_that("defer executes all handlers even if there is an error in one of them"
 
   expect_equal(getOption("test_option"), 2)
 })
+
+test_that("defer works within source()", {
+  file <- local_tempfile()
+  out <- NULL
+
+  local_defer <- function(frame = parent.frame()) {
+    defer(out <<- c(out, "local_defer"), envir = frame)
+  }
+
+  cat(file = file, "
+    out <<- c(out, '1')
+    defer(out <<- c(out, 'defer'))
+    out <<- c(out, '2')
+    identity(defer(out <<- c(out, 'identity(defer)')))
+    out <<- c(out, '3')
+    local_defer()
+    out <<- c(out, '4')
+    evalq(defer(out <<- c(out, 'evalq(defer)')))
+    out <<- c(out, '5')
+  ")
+  local(
+    source(file, local = TRUE)
+  )
+
+  expect_equal(out, c(
+    "1",
+    "2",
+    "3",
+    "4",
+    "evalq(defer)",
+    "5",
+    "local_defer",
+    "identity(defer)",
+    "defer"
+  ))
+})
+
+test_that("defer works within source()", {
+  out <- NULL
+
+  file1 <- local_tempfile()
+  file2 <- local_tempfile()
+
+  cat(file = file1, "
+    out <<- c(out, 'outer-1')
+    defer(out <<- c(out, 'outer-before'))
+    out <<- c(out, 'outer-2')
+    local(source(file2, local = TRUE))
+    defer(out <<- c(out, 'outer-after'))
+    out <<- c(out, 'outer-3')
+  ")
+  cat(file = file2, "
+    out <<- c(out, '1')
+    defer(out <<- c(out, 'defer'))
+    out <<- c(out, '2')
+  ")
+
+  local(
+    source(file1, local = TRUE)
+  )
+
+  expect_equal(out, c(
+    "outer-1",
+    "outer-2",
+    "1",
+    "2",
+    "defer",
+    "outer-3",
+    "outer-after",
+    "outer-before"
+  ))
+})
+
+test_that("defer works within knitr::knit()", {
+  out <- NULL
+  evalq({
+    defer(out <- c(out, "first"))
+    rmd <- "
+      ```{r}
+      defer(out <- c(out, 'foo'))
+      out <- c(out, '1')
+      ```
+      ```{r}
+      defer(out <- c(out, 'bar'))
+      out <- c(out, '2')
+      ```
+    "
+    knitr::knit(text = rmd, quiet = TRUE)
+    defer(out <- c(out, "last"))
+  })
+  expect_equal(out, c("1", "2", "bar", "foo", "last", "first"))
+})

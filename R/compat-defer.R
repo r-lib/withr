@@ -26,18 +26,24 @@ new_handler <- function(expr, envir) {
   hnd
 }
 
-add_handler <- function(envir, handler, front) {
+add_handler <- function(envir,
+                        handler,
+                        front,
+                        frames = as.list(sys.frames()),
+                        calls = as.list(sys.calls())) {
+  envir <- exit_frame(envir, frames, calls)
+
   if (front) {
     handlers <- c(list(handler), get_handlers(envir))
   } else {
     handlers <- c(get_handlers(envir), list(handler))
   }
 
-  set_handlers(envir, handlers)
+  set_handlers(envir, handlers, frames = frames, calls = calls)
   handler
 }
 
-set_handlers <- function(envir, handlers) {
+set_handlers <- function(envir, handlers, frames, calls) {
   if (is.null(get_handlers(envir))) {
     # Ensure that list of handlers called when environment "ends"
     setup_handlers(envir)
@@ -46,8 +52,11 @@ set_handlers <- function(envir, handlers) {
   attr(envir, "withr_handlers") <- handlers
 }
 
-setup_handlers <- function(envir) {
-  if (in_knitr(envir) || is_top_level_global_env(envir)) {
+# Evaluate `frames` lazily
+setup_handlers <- function(envir,
+                           frames = as.list(sys.frames()),
+                           calls = as.list(sys.calls())) {
+  if (is_top_level_global_env(envir, frames)) {
     # For session scopes we use reg.finalizer()
     if (is_interactive()) {
       message(
@@ -66,21 +75,103 @@ setup_handlers <- function(envir) {
     # We have to use do.call here instead of eval because of the way on.exit
     # determines its evaluation context
     # (https://stat.ethz.ch/pipermail/r-devel/2013-November/067867.html)
+
     do.call(base::on.exit, list(call, TRUE), envir = envir)
   }
+}
+
+exit_frame <- function(envir,
+                       frames = as.list(sys.frames()),
+                       calls = as.list(sys.calls())) {
+  frame_loc <- frame_loc(envir, frames)
+  if (!frame_loc) {
+    return(envir)
+  }
+
+  if (knitr_in_progress()) {
+    out <- knitr_frame(envir, frames, calls, frame_loc)
+    if (!is.null(out)) {
+      return(out)
+    }
+  }
+
+  out <- source_frame(envir, frames, calls, frame_loc)
+  if (!is.null(out)) {
+    return(out)
+  }
+
+  envir
+}
+
+knitr_frame <- function(envir, frames, calls, frame_loc) {
+  knitr_ns <- asNamespace("knitr")
+
+  # This doesn't handle correctly the recursive case (knitr called
+  # within a chunk). Handling this would be a little fiddly for an
+  # uncommon edge case.
+  for (i in seq(1, frame_loc)) {
+    if (identical(topenv(frames[[i]]), knitr_ns)) {
+      return(frames[[i]])
+    }
+  }
+
+  NULL
+}
+
+source_frame <- function(envir, frames, calls, frame_loc) {
+  i <- frame_loc
+
+  if (i < 4) {
+    return(NULL)
+  }
+
+  is_call <- function(x, fn) {
+    is.call(x) && identical(x[[1]], fn)
+  }
+  calls <- as.list(calls)
+
+  if (!is_call(calls[[i - 3]], quote(source))) {
+    return(NULL)
+  }
+  if (!is_call(calls[[i - 2]], quote(withVisible))) {
+    return(NULL)
+  }
+  if (!is_call(calls[[i - 1]], quote(eval))) {
+    return(NULL)
+  }
+  if (!is_call(calls[[i - 0]], quote(eval))) {
+    return(NULL)
+  }
+
+  frames[[i - 3]]
+}
+
+frame_loc <- function(envir, frames) {
+  n <- length(frames)
+  if (!n) {
+    return(0)
+  }
+
+  for (i in seq_along(frames)) {
+    if (identical(frames[[n - i + 1]], envir)) {
+      return(n - i + 1)
+    }
+  }
+
+  0
 }
 
 in_knitr <- function(envir) {
   knitr_in_progress() && identical(knitr::knit_global(), envir)
 }
 
-is_top_level_global_env <- function(envir) {
+is_top_level_global_env <- function(envir, frames) {
   if (!identical(envir, globalenv())) {
     return(FALSE)
   }
 
   # Check if another global environment is on the stack
-  !any(vapply(sys.frames(), identical, NA, globalenv()))
+  !any(vapply(frames, identical, NA, globalenv()))
 }
 
 get_handlers <- function(envir) {
