@@ -182,7 +182,7 @@
 <span class="co">#&gt; [1] 3.1</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.141593</span></code></pre></div>
+<span class="co">#&gt; [1] 3.1</span></code></pre></div>
 <p><code><a href="../reference/defer.html">withr::defer()</a></code> is basically a drop-in substitute for <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>, but with three key differences we explore below:</p>
 <ol style="list-style-type: decimal">
 <li>Different default behaviour around the effect of a series of two or more calls</li>
@@ -205,9 +205,7 @@
 <span class="op">}</span>
 <span class="fu">defer_stack</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; put on socks</span>
-<span class="co">#&gt; put on shoes</span>
-<span class="co">#&gt; take off shoes</span>
-<span class="co">#&gt; take off socks</span></code></pre></div>
+<span class="co">#&gt; put on shoes</span></code></pre></div>
 <p>In contrast, by default, a subsequent call to <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> <strong>overwrites</strong> the deferred actions registered in the previous call.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">on_exit_last_one_wins</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
@@ -247,9 +245,7 @@
 <span class="op">}</span>
 <span class="fu">defer_queue</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Adam gets in line for ice cream</span>
-<span class="co">#&gt; Beth gets in line for ice cream</span>
-<span class="co">#&gt; Adam gets ice cream</span>
-<span class="co">#&gt; Beth gets ice cream</span></code></pre></div>
+<span class="co">#&gt; Beth gets in line for ice cream</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="local-functions-and-with-functions">“Local” functions (and “with” functions)<a class="anchor" aria-label="anchor" href="#local-functions-and-with-functions"></a>
@@ -277,7 +273,7 @@
 <span class="op">}</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.141593</span>
+<span class="co">#&gt; [1] 3.1</span>
 
 <span class="fu">neato</span><span class="op">(</span><span class="va">pi</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3.1</span>
@@ -340,7 +336,7 @@
 <span class="op">}</span>
 
 <span class="va">pi</span>
-<span class="co">#&gt; [1] 3.141593</span>
+<span class="co">#&gt; [1] 3.1416</span>
 
 <span class="fu">neatest</span><span class="op">(</span><span class="va">pi</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; [1] 3.1</span>

@@ -105,7 +105,8 @@
 <p>This ensures proper restoration of the old state when an early exit occurs during <code>set()</code> (for instance when a deprecation warning is caught, see <a href="https://github.com/r-lib/withr/issues/191" class="external-link">#191</a>).</p>
 </li>
 <li><p><code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> gains a lines argument so, if desired, you can pre-fill the temporary file with some data.</p></li>
-<li><p><code><a href="../reference/defer.html">defer()</a></code> and all <code>local_*()</code> functions now work when run inside of a <code>.Rmd</code>. Note that they are executed at the very end of the session, after the output has been collected, so you won’t see any printed side-effects (<a href="https://github.com/r-lib/withr/issues/187" class="external-link">#187</a>). The same applies with interactive knitting, e.g. in notebooks. They are only executed when R exits.</p></li>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> and all <code>local_*()</code> functions now work when run inside of a <code>.Rmd</code>. The deferred expressions are executed after knitr has returned.</p></li>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> and <code>local_</code> functions now work within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code>.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.4.3" id="withr-243">withr 2.4.3<small>2021-11-30</small><a class="anchor" aria-label="anchor" href="#withr-243"></a></h2>
