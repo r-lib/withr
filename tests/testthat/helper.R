@@ -31,3 +31,9 @@ en_locale_or_skip <- function() {
   )
   "en_US.UTF-8"
 }
+
+skip_if_cannot_knit <- function() {
+  skip_if_not_installed("knitr")
+  skip_if_not_installed("rmarkdown")
+  skip_if(!rmarkdown::pandoc_available())
+}

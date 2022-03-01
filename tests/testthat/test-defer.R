@@ -66,6 +66,8 @@ test_that("defered actions in global env are run on exit", {
 })
 
 test_that("defered actions in Rmd are run on exit", {
+  skip_if_cannot_knit()
+
   rmd <- local_tempfile(fileext = ".Rmd")
   path <- local_tempfile()
   writeLines(rmd, text = c(
