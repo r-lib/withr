@@ -185,16 +185,31 @@ test_that("defer works within knitr::knit()", {
     defer(out <- c(out, "first"))
     rmd <- "
       ```{r}
-      defer(out <- c(out, 'foo'))
+      defer(out <- c(out, 'defer 1'))
       out <- c(out, '1')
+      local({
+        withr::defer(out <<- c(out, 'local 1'))
+      })
       ```
       ```{r}
-      defer(out <- c(out, 'bar'))
+      defer(out <- c(out, 'defer 2'))
       out <- c(out, '2')
+      local({
+        withr::defer(out <<- c(out, 'local 2'))
+      })
       ```
     "
     knitr::knit(text = rmd, quiet = TRUE)
     defer(out <- c(out, "last"))
   })
-  expect_equal(out, c("1", "2", "bar", "foo", "last", "first"))
+  expect_equal(out, c(
+    "1",
+    "local 1",
+    "2",
+    "local 2",
+    "defer 2",
+    "defer 1",
+    "last",
+    "first"
+  ))
 })

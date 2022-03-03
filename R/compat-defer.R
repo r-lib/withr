@@ -88,7 +88,7 @@ exit_frame <- function(envir,
     return(envir)
   }
 
-  if (knitr_in_progress()) {
+  if (in_knitr(envir)) {
     out <- knitr_frame(envir, frames, calls, frame_loc)
     if (!is.null(out)) {
       return(out)
