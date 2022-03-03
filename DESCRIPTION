@@ -55,7 +55,7 @@ Suggests:
     lattice,
     methods,
     rlang,
-    rmarkdown,
+    rmarkdown (>= 2.12),
     RSQLite,
     testthat (>= 3.0.0)
 VignetteBuilder: 
