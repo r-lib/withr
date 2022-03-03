@@ -48,10 +48,6 @@ local_locale <- function(.new = list(),
   new <- list_combine(as.list(.new), list(...))
   cats <- as_locale_cats(new)
 
-  old <- get_locale(cats)
-  defer(set_locale(old), envir = .local_envir)
-  set_locale(cats)
-
   # <https://github.com/r-lib/withr/issues/179>
   # R supports setting LC_COLLATE to C via envvar. When that is the
   # case, it takes precedence over the currently set locale. We need
@@ -61,6 +57,10 @@ local_locale <- function(.new = list(),
     collate <- cats["LC_COLLATE"]
     local_envvar(collate, .local_envir = .local_envir)
   }
+
+  old <- get_locale(cats)
+  defer(set_locale(old), envir = .local_envir)
+  set_locale(cats)
 
   invisible(old)
 }
