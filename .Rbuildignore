@@ -22,3 +22,4 @@
 ^pkgdown$
 ^LICENSE\.md$
 ^MAINTENANCE\.md$
+^CRAN-SUBMISSION$
