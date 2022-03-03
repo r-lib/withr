@@ -1,4 +1,4 @@
-# withr (development version)
+# withr 2.5.0
 
 * `defer()` and all `local_*()` functions now work when run inside of
   a `.Rmd`. The deferred expressions are executed when knitr exits.
