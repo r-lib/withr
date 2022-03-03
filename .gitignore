@@ -4,3 +4,4 @@
 *.Rcheck/
 inst/doc
 docs
+revdep/data.sqlite
