@@ -31,7 +31,7 @@ Authors@R:
              family = "Cotton",
              role = "ctb"),
       person(given = "RStudio",
-             role = "cph"))
+             role = c("cph", "fnd")))
 Description: A set of functions to run code 'with' safely and
     temporarily modified global state. Many of these functions were
     originally a part of the 'devtools' package, this provides a simple
@@ -94,3 +94,4 @@ Collate:
     'utils.R'
     'with.R'
 Config/testthat/edition: 3
+Config/Needs/website: tidyverse/tidytemplate
