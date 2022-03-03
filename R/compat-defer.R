@@ -1,7 +1,13 @@
-# nocov start --- compat-defer --- 2020-06-16
-
+# nocov start --- compat-defer ---
+#
 # This drop-in file implements withr::defer(). Please find the most
 # recent version in withr's repository.
+#
+# 2022-03-03
+# * Support for `source()` and `knitr::knit()`
+# * Handlers are now stored in environments instead of lists to avoid
+#   infinite recursion issues.
+# * The handler list is now soft-namespaced.
 
 
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) { }
