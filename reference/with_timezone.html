@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.4.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.5.0</span>
       </span>
     </div>
 
@@ -115,11 +115,11 @@ execution environment.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 20:47:30 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 21:00:56 UTC"</span>
 <span class="r-in"><span class="fu">with_timezone</span><span class="op">(</span><span class="st">"Europe/Paris"</span>, <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 21:47:30 CET"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 22:00:56 CET"</span>
 <span class="r-in"><span class="fu">with_timezone</span><span class="op">(</span><span class="st">"US/Pacific"</span>, <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 12:47:30 PST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 13:00:56 PST"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">fun1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="fu">local_timezone</span><span class="op">(</span><span class="st">"CET"</span><span class="op">)</span></span>
@@ -131,13 +131,13 @@ execution environment.</p>
 <span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 20:47:30 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 21:00:56 UTC"</span>
 <span class="r-in"><span class="fu">fun1</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 21:47:30 CET"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 22:00:56 CET"</span>
 <span class="r-in"><span class="fu">fun2</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 12:47:30 PST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 13:00:56 PST"</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 20:47:30 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-03 21:00:56 UTC"</span>
 </code></pre></div>
     </div>
   </div>

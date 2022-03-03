@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">withr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.4.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.5.0</span>
       </span>
     </div>
 
@@ -75,22 +75,9 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="development version" id="withr-development-version">withr (development version)<a class="anchor" aria-label="anchor" href="#withr-development-version"></a></h2>
-<ul><li><p><code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">local_namespace()</a></code> now pass <code>warn.conflicts</code> to <code><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach()</a></code> (<a href="https://github.com/kyleam" class="external-link">@kyleam</a>, <a href="https://github.com/r-lib/withr/issues/185" class="external-link">#185</a>).</p></li>
-<li><p><code><a href="../reference/with_rng_version.html">local_rng_version()</a></code> and <code><a href="../reference/with_seed.html">local_seed()</a></code> no longer warn when restoring <code>sample.kind</code> to <code>"Rounding"</code> (<a href="https://github.com/r-lib/withr/issues/167" class="external-link">#167</a>).</p></li>
-<li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now preserves the current values of <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code> (<a href="https://github.com/r-lib/withr/issues/167" class="external-link">#167</a>).</p></li>
-<li><p><code><a href="../reference/with_collate.html">with_collate()</a></code> is no longer affected by the <code>LC_COLLATE</code> environment variable set to “C” (<a href="https://github.com/r-lib/withr/issues/179" class="external-link">#179</a>).</p></li>
-<li><p>Local evaluations in the <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code> (as opposed to top-level ones) are now unwound in the same way as regular environments.</p></li>
-<li>
-<p>These <code>with_</code> and <code>local_</code> functions are now robust to early exits (see next bullet):</p>
-<ul><li><code>_locale()</code></li>
-<li><code>_envvar()</code></li>
-<li><code>_libpaths()</code></li>
-<li><code>_options()</code></li>
-<li><code>_par()</code></li>
-<li><code>_path()</code></li>
-<li><code>_seed()</code></li>
-</ul></li>
+<h2 class="page-header" data-toc-text="2.5.0" id="withr-250">withr 2.5.0<a class="anchor" aria-label="anchor" href="#withr-250"></a></h2>
+<ul><li><p><code><a href="../reference/defer.html">defer()</a></code> and all <code>local_*()</code> functions now work when run inside of a <code>.Rmd</code>. The deferred expressions are executed when knitr exits.</p></li>
+<li><p><code><a href="../reference/defer.html">defer()</a></code> and <code>local_</code> functions now work within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code>. The deferred expressions are executed when <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> exits.</p></li>
 <li>
 <p><code><a href="../reference/with_.html">with_()</a></code> and <code><a href="../reference/with_.html">local_()</a></code> gain a <code>get</code> argument. Supply a getter function to create <code>with</code> and <code>local</code> functions that are robust to early exits.</p>
 <p>When supplied, this restoration pattern is used:</p>
@@ -104,9 +91,22 @@
 <span class="fu">action</span><span class="op">(</span><span class="op">)</span></code></pre>
 <p>This ensures proper restoration of the old state when an early exit occurs during <code>set()</code> (for instance when a deprecation warning is caught, see <a href="https://github.com/r-lib/withr/issues/191" class="external-link">#191</a>).</p>
 </li>
+<li>
+<p>These <code>with_</code> and <code>local_</code> functions are now robust to early exits (see next bullet):</p>
+<ul><li><code>_locale()</code></li>
+<li><code>_envvar()</code></li>
+<li><code>_libpaths()</code></li>
+<li><code>_options()</code></li>
+<li><code>_par()</code></li>
+<li><code>_path()</code></li>
+<li><code>_seed()</code></li>
+</ul></li>
+<li><p><code><a href="../reference/with_package.html">with_namespace()</a></code> and <code><a href="../reference/with_package.html">local_namespace()</a></code> now pass <code>warn.conflicts</code> to <code><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach()</a></code> (<a href="https://github.com/kyleam" class="external-link">@kyleam</a>, <a href="https://github.com/r-lib/withr/issues/185" class="external-link">#185</a>).</p></li>
+<li><p><code><a href="../reference/with_rng_version.html">local_rng_version()</a></code> and <code><a href="../reference/with_seed.html">local_seed()</a></code> no longer warn when restoring <code>sample.kind</code> to <code>"Rounding"</code> (<a href="https://github.com/r-lib/withr/issues/167" class="external-link">#167</a>).</p></li>
+<li><p><code><a href="../reference/with_seed.html">with_seed()</a></code> now preserves the current values of <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code> (<a href="https://github.com/r-lib/withr/issues/167" class="external-link">#167</a>).</p></li>
+<li><p><code><a href="../reference/with_collate.html">with_collate()</a></code> is no longer affected by the <code>LC_COLLATE</code> environment variable set to “C” (<a href="https://github.com/r-lib/withr/issues/179" class="external-link">#179</a>).</p></li>
+<li><p>Local evaluations in the <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code> (as opposed to top-level ones) are now unwound in the same way as regular environments.</p></li>
 <li><p><code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> gains a lines argument so, if desired, you can pre-fill the temporary file with some data.</p></li>
-<li><p><code><a href="../reference/defer.html">defer()</a></code> and all <code>local_*()</code> functions now work when run inside of a <code>.Rmd</code>. The deferred expressions are executed after knitr has returned.</p></li>
-<li><p><code><a href="../reference/defer.html">defer()</a></code> and <code>local_</code> functions now work within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code>.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.4.3" id="withr-243">withr 2.4.3<small>2021-11-30</small><a class="anchor" aria-label="anchor" href="#withr-243"></a></h2>
