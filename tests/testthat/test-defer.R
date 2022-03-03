@@ -22,7 +22,10 @@ test_that("defer()'s global env facilities work", {
   local_options(rlang_interactive = TRUE)
   Sys.setenv(abcdefg = "abcdefg")
 
-  expect_snapshot(defer(print("howdy"), envir = globalenv()))
+  expect_snapshot(
+    defer(print("howdy"), envir = globalenv()),
+    cran = TRUE
+  )
   expect_message(
     local_envvar(c(abcdefg = "tuvwxyz"), .local_envir = globalenv()),
     NA
