@@ -2,10 +2,10 @@
 #'
 #' Change the time zone, and restore it afterwards.
 #'
-#' `with_time_zone()` runs the code with the specified time zone and
+#' `with_timezone()` runs the code with the specified time zone and
 #' resets it afterwards.
 #'
-#' `local_time_zone()` changes the time zone for the caller
+#' `local_timezone()` changes the time zone for the caller
 #' execution environment.
 #'
 #' @template with
