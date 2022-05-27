@@ -183,6 +183,7 @@ test_that("defer works within source()", {
 })
 
 test_that("defer works within knitr::knit()", {
+  skip_if_not_installed("knitr")
   out <- NULL
   evalq({
     defer(out <- c(out, "first"))
