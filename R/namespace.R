@@ -22,20 +22,11 @@ with_package <- function(package, code, pos = 2, lib.loc = NULL,
   character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
   quietly = TRUE, verbose = getOption("verbose")) {
 
-  # Only try to attach (and detach) the package if it is not already attached.
-  if (!(package %in% .packages())) {
-    suppressPackageStartupMessages(
-      (get("library"))(package, pos = pos, lib.loc = lib.loc,
-        character.only = character.only, logical.return = logical.return,
-        warn.conflicts = warn.conflicts, quietly = quietly, verbose = verbose))
-
-    defer({
-      if (package %in% .packages()) {
-        detach(paste0("package:", package), character.only = TRUE)
-      }
-    })
-  }
-
+  local_package(package = package, pos = pos, lib.loc = lib.loc,
+                character.only = character.only,
+                logical.return = logical.return,
+                warn.conflicts = warn.conflicts,
+                quietly = quietly, verbose = verbose)
   force(code)
 }
 
