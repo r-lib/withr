@@ -20,7 +20,11 @@ defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", 
     add_handler(
       envir,
       handler = new_handler(substitute(expr), parent.frame()),
-      front = priority == "first"
+      front = priority == "first",
+      # Lazily evaluated, but set as soon as possible to capture the minimum
+      # number of frames on the stack that we need to traverse
+      frames = as.list(sys.frames()),
+      calls = as.list(sys.calls())
     )
   )
 }
@@ -32,36 +36,25 @@ new_handler <- function(expr, envir) {
   hnd
 }
 
-add_handler <- function(envir,
-                        handler,
-                        front,
-                        frames = as.list(sys.frames()),
-                        calls = as.list(sys.calls())) {
+add_handler <- function(envir, handler, front, frames, calls) {
   envir <- exit_frame(envir, frames, calls)
+  handlers <- get_handlers(envir)
 
-  if (front) {
-    handlers <- c(list(handler), get_handlers(envir))
+  if (is.null(handlers)) {
+    setup_handlers(envir, frames)
+    handlers <- list(handler)
+  } else if (front) {
+    handlers <- c(list(handler), handlers)
   } else {
-    handlers <- c(get_handlers(envir), list(handler))
-  }
-
-  set_handlers(envir, handlers, frames = frames, calls = calls)
-  handler
-}
-
-set_handlers <- function(envir, handlers, frames, calls) {
-  if (is.null(get_handlers(envir))) {
-    # Ensure that list of handlers called when environment "ends"
-    setup_handlers(envir)
+    handlers <- c(handlers, list(handler))
   }
 
   attr(envir, "withr_handlers") <- handlers
+
+  handler
 }
 
-# Evaluate `frames` lazily
-setup_handlers <- function(envir,
-                           frames = as.list(sys.frames()),
-                           calls = as.list(sys.calls())) {
+setup_handlers <- function(envir, frames) {
   if (is_top_level_global_env(envir, frames)) {
     # For session scopes we use reg.finalizer()
     if (is_interactive()) {
@@ -86,9 +79,7 @@ setup_handlers <- function(envir,
   }
 }
 
-exit_frame <- function(envir,
-                       frames = as.list(sys.frames()),
-                       calls = as.list(sys.calls())) {
+exit_frame <- function(envir, frames, calls) {
   frame_loc <- frame_loc(envir, frames)
   if (!frame_loc) {
     return(envir)
@@ -134,7 +125,6 @@ source_frame <- function(envir, frames, calls, frame_loc) {
   is_call <- function(x, fn) {
     is.call(x) && identical(x[[1]], fn)
   }
-  calls <- as.list(calls)
 
   if (!is_call(calls[[i - 3]], quote(source))) {
     return(NULL)
@@ -181,7 +171,7 @@ is_top_level_global_env <- function(envir, frames) {
 }
 
 get_handlers <- function(envir) {
-  attr(envir, "withr_handlers")
+  attr(envir, "withr_handlers", exact = TRUE)
 }
 
 execute_handlers <- function(envir) {
