@@ -3,6 +3,9 @@
 # This drop-in file implements withr::defer(). Please find the most
 # recent version in withr's repository.
 #
+# 2023-03-08
+# * Small internal tweaks related to frame evaluation and passing arguments.
+#
 # 2022-03-03
 # * Support for `source()` and `knitr::knit()`
 # * Handlers are now stored in environments instead of lists to avoid
