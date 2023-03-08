@@ -15,7 +15,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 local({
 
 defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  priority <- match.arg(priority)
+  priority <- match.arg(priority, choices = c("first", "last"))
   invisible(
     add_handler(
       envir,
