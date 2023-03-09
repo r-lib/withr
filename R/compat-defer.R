@@ -3,6 +3,9 @@
 # This drop-in file implements withr::defer(). Please find the most
 # recent version in withr's repository.
 #
+# 2023-03-08
+# * Explicitly specified `choices` in `match.arg()`, for performance.
+#
 # 2022-03-03
 # * Support for `source()` and `knitr::knit()`
 # * Handlers are now stored in environments instead of lists to avoid
@@ -15,7 +18,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 local({
 
 defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  priority <- match.arg(priority)
+  priority <- match.arg(priority, choices = c("first", "last"))
   invisible(
     add_handler(
       envir,
