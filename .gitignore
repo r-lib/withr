@@ -5,3 +5,8 @@
 inst/doc
 docs
 revdep/data.sqlite
+
+# emacs temp files
+\#*\#
+*~
+

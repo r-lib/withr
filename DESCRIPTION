@@ -62,13 +62,14 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Collate: 
     'aaa.R'
     'collate.R'
     'compat-defer.R'
     'connection.R'
     'db.R'
+    'debug.R'
     'defer.R'
     'wrap.R'
     'local_.R'
