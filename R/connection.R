@@ -7,7 +7,6 @@
 #' create. For `local_connection()` the code to create a single connection,
 #' which is then returned.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
-#' @importFrom stats setNames
 #' @examples
 #' with_connection(list(con = file("foo", "w")), {
 #'   writeLines(c("foo", "bar"), con)

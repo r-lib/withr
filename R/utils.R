@@ -73,3 +73,8 @@ auto_splice <- function(x) {
     x
   }
 }
+
+setNames <- function(x = nm, nm) {
+  names(x) <- nm
+  x
+}

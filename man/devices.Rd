@@ -323,27 +323,27 @@ Temporarily use a graphics device.
 }
 \section{Functions}{
 \itemize{
-\item \code{with_bmp}: BMP device
+\item \code{with_bmp()}: BMP device
 
-\item \code{with_cairo_pdf}: CAIRO_PDF device
+\item \code{with_cairo_pdf()}: CAIRO_PDF device
 
-\item \code{with_cairo_ps}: CAIRO_PS device
+\item \code{with_cairo_ps()}: CAIRO_PS device
 
-\item \code{with_pdf}: PDF device
+\item \code{with_pdf()}: PDF device
 
-\item \code{with_postscript}: POSTSCRIPT device
+\item \code{with_postscript()}: POSTSCRIPT device
 
-\item \code{with_svg}: SVG device
+\item \code{with_svg()}: SVG device
 
-\item \code{with_tiff}: TIFF device
+\item \code{with_tiff()}: TIFF device
 
-\item \code{with_xfig}: XFIG device
+\item \code{with_xfig()}: XFIG device
 
-\item \code{with_png}: PNG device
+\item \code{with_png()}: PNG device
 
-\item \code{with_jpeg}: JPEG device
+\item \code{with_jpeg()}: JPEG device
+
 }}
-
 \examples{
 # dimensions are in inches
 with_pdf(file.path(tempdir(), "test.pdf"), width = 7, height = 5,

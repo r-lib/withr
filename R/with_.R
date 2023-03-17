@@ -71,7 +71,7 @@ with_ <- function(set,
 
   if (length(fmls) > 0L) {
     # Called pass all extra formals on
-    called_fmls <- stats::setNames(lapply(names(fmls), as.symbol), names(fmls))
+    called_fmls <- setNames(lapply(names(fmls), as.symbol), names(fmls))
 
     # Special case for dots. If `set()` and/or `get()` take dots, it
     # is assumed they implement `options()`-like semantic: a list

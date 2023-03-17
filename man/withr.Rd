@@ -100,7 +100,7 @@ Other contributors:
 \itemize{
   \item Jennifer Bryan [contributor]
   \item Richard Cotton [contributor]
-  \item RStudio [copyright holder]
+  \item RStudio [copyright holder, funder]
 }
 
 }

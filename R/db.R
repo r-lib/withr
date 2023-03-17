@@ -9,7 +9,6 @@
 #' create. For `local_db_connection()` the code to create a single connection,
 #' which is then returned.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
-#' @importFrom stats setNames
 #' @examples
 #' db <- tempfile()
 #' with_db_connection(
