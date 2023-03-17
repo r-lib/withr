@@ -85,14 +85,14 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Lionel Henry \email{lionel@rstudio.com}
+\strong{Maintainer}: Lionel Henry \email{lionel@posit.co}
 
 Authors:
 \itemize{
   \item Jim Hester
   \item Kirill Müller \email{krlmlr+r@mailbox.org}
   \item Kevin Ushey \email{kevinushey@gmail.com}
-  \item Hadley Wickham \email{hadley@rstudio.com}
+  \item Hadley Wickham \email{hadley@posit.co}
   \item Winston Chang
 }
 
@@ -100,7 +100,7 @@ Other contributors:
 \itemize{
   \item Jennifer Bryan [contributor]
   \item Richard Cotton [contributor]
-  \item RStudio [copyright holder, funder]
+  \item Posit Software, PBC [copyright holder, funder]
 }
 
 }

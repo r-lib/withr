@@ -8,7 +8,7 @@ Authors@R:
       person(given = "Lionel",
              family = "Henry",
              role = c("aut", "cre"),
-             email = "lionel@rstudio.com"),
+             email = "lionel@posit.co"),
       person(given = "Kirill",
              family = "Müller",
              role = "aut",
@@ -20,7 +20,7 @@ Authors@R:
       person(given = "Hadley",
              family = "Wickham",
              role = "aut",
-             email = "hadley@rstudio.com"),
+             email = "hadley@posit.co"),
       person(given = "Winston",
              family = "Chang",
              role = "aut"),
@@ -30,7 +30,7 @@ Authors@R:
       person(given = "Richard",
              family = "Cotton",
              role = "ctb"),
-      person(given = "RStudio",
+      person(given = "Posit Software, PBC",
              role = c("cph", "fnd")))
 Description: A set of functions to run code 'with' safely and
     temporarily modified global state. Many of these functions were
@@ -61,7 +61,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Collate: 
     'aaa.R'
     'collate.R'
