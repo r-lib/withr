@@ -74,7 +74,7 @@ defer_ns <- environment(defer)
 #' defer(print("three"))
 #' deferred_clear()
 #' deferred_run()
-defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) NULL
+defer
 
 #' @rdname defer
 #' @export
