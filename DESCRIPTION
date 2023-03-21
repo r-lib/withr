@@ -65,9 +65,9 @@ RoxygenNote: 7.2.3
 Collate: 
     'aaa.R'
     'collate.R'
-    'compat-defer.R'
     'connection.R'
     'db.R'
+    'standalone-defer.R'
     'defer.R'
     'wrap.R'
     'local_.R'

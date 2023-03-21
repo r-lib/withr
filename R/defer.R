@@ -1,4 +1,4 @@
-#' @include compat-defer.R
+#' @include standalone-defer.R
 NULL
 
 defer_ns <- environment(defer)
