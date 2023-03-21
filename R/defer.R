@@ -18,8 +18,13 @@ defer_ns <- environment(defer)
 #' be executed `"first"` or `"last"`, relative to any other
 #' registered handlers on this environment.
 #'
-#' @details
+#' @section Running handlers within `source()`:
+#' `r lifecycle::badge("experimental")` Set `options(withr.hook_source
+#' = TRUE)` to enable top-level usage of withr tools in scripts
+#' sourced with `base::source()`. The cleanup expressions are run when
+#' `source()` exits (either normally or early due to an error).
 #'
+#' @details
 #' `defer()` works by attaching handlers to the requested environment (as an
 #' attribute called `"handlers"`), and registering an exit handler that
 #' executes the registered handler when the function associated with the
