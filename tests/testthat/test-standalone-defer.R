@@ -111,6 +111,8 @@ test_that("defer executes all handlers even if there is an error in one of them"
 })
 
 test_that("defer works within source()", {
+  local_options(withr.hook_source = TRUE)
+
   file <- local_tempfile()
   out <- NULL
 
@@ -147,6 +149,8 @@ test_that("defer works within source()", {
 })
 
 test_that("defer works within source()", {
+  local_options(withr.hook_source = TRUE)
+
   out <- NULL
 
   file1 <- local_tempfile()

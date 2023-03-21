@@ -45,6 +45,13 @@ function or test. A message alerts the user to the fact that an explicit
 \code{deferred_clear()} to clear them without evaluation. The global environment
 scenario is the main motivation for these functions.
 }
+\section{Running handlers within \code{source()}}{
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Set \code{options(withr.hook_source = TRUE)} to enable top-level usage of withr tools in scripts
+sourced with \code{base::source()}. The cleanup expressions are run when
+\code{source()} exits (either normally or early due to an error).
+}
+
 \examples{
 # define a 'local' function that creates a file, and
 # removes it when the parent function has finished executing

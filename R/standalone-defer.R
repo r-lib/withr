@@ -12,6 +12,8 @@
 # 2023-03-21:
 # * Now uses standalone format for compatibility with
 #   `usethis::use_standalone()`.
+# * `source()` support is disabled by default for performance.
+#   Use `options(withr.hook_source = TRUE)` to enable it.
 #
 # 2023-03-08:
 # * Explicitly specified `choices` in `match.arg()`, for performance.
@@ -104,6 +106,12 @@ setup_handlers <- function(envir,
 exit_frame <- function(envir,
                        frames = as.list(sys.frames()),
                        calls = as.list(sys.calls())) {
+  hook_source <- getOption("withr.hook_source")
+  hook_knitr <- getOption("knitr.in.progress")
+  if (is.null(hook_source) && is.null(hook_knitr)) {
+    return(envir)
+  }
+
   frame_loc <- frame_loc(envir, frames)
   if (!frame_loc) {
     return(envir)
@@ -116,9 +124,11 @@ exit_frame <- function(envir,
     }
   }
 
-  out <- source_frame(envir, frames, calls, frame_loc)
-  if (!is.null(out)) {
-    return(out)
+  if (isTRUE(hook_source)) {
+    out <- source_frame(envir, frames, calls, frame_loc)
+    if (!is.null(out)) {
+      return(out)
+    }
   }
 
   envir
