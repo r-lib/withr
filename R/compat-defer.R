@@ -1,16 +1,28 @@
-# nocov start --- compat-defer ---
+# ---
+# repo: r-lib/withr
+# file: standalone-defer.R
+# last-updated: 2023-03-21
+# license: https://unlicense.org
+# ---
 #
-# This drop-in file implements withr::defer(). Please find the most
-# recent version in withr's repository.
+# Implementation of `withr::defer()`.
 #
-# 2023-03-08
+# ## Changelog
+#
+# 2023-03-21:
+# * Now uses standalone format for compatibility with
+#   `usethis::use_standalone()`.
+#
+# 2023-03-08:
 # * Explicitly specified `choices` in `match.arg()`, for performance.
 #
-# 2022-03-03
+# 2022-03-03:
 # * Support for `source()` and `knitr::knit()`
 # * Handlers are now stored in environments instead of lists to avoid
 #   infinite recursion issues.
 # * The handler list is now soft-namespaced.
+#
+# nocov start
 
 
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) { }
