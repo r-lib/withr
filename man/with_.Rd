@@ -19,6 +19,8 @@ with_(set, reset = set, get = NULL, ..., envir = parent.frame(), new = TRUE)
 }
 \arguments{
 \item{set}{\verb{[function(...)]}\cr Function used to set the state.
+The return value from this function should be the old state, which will
+then be passed back into the \code{reset()} function to clean up the state.
 The function can have arbitrarily many arguments, they will be replicated
 in the formals of the returned function.}
 
