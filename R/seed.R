@@ -79,13 +79,14 @@ with_preserve_seed <- function(code) {
 local_preserve_seed <- function(.local_envir = parent.frame()) {
   old_seed <- get_seed()
 
-  defer({
+  defer(
     if (is.null(old_seed)) {
-      on.exit(rm_seed(), add = TRUE)
+      rm_seed()
     } else {
-      on.exit(set_seed(old_seed), add = TRUE)
-    }
-  }, envir = .local_envir)
+      set_seed(old_seed)
+    },
+    envir = .local_envir
+  )
 
   invisible(old_seed)
 }

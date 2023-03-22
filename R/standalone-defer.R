@@ -9,11 +9,13 @@
 #
 # ## Changelog
 #
-# 2023-03-21:
+# 2023-03-22:
 # * Now uses standalone format for compatibility with
 #   `usethis::use_standalone()`.
 # * `source()` support is disabled by default for performance.
 #   Use `options(withr.hook_source = TRUE)` to enable it.
+# * `defer()` is now implemented on top of `on.exit()` for performance
+#   and forward compatibility.
 #
 # 2023-03-08:
 # * Explicitly specified `choices` in `match.arg()`, for performance.
@@ -31,7 +33,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 
 local({
 
-defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
+defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   if (is_top_level_global_env(envir)) {
     # Do nothing if withr is not installed, just like `on.exit()`
     # called in the global env
@@ -42,55 +44,29 @@ defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", 
   }
 
   priority <- match.arg(priority, choices = c("first", "last"))
-  invisible(
-    add_handler(
-      envir,
-      handler = new_handler(substitute(expr), parent.frame()),
-      front = priority == "first"
-    )
+  after <- priority == "last"
+
+  thunk <- as.call(list(function() expr))
+  envir <- exit_frame(envir)
+
+  do.call(
+    base::on.exit,
+    list(thunk, TRUE, after),
+    envir = envir
   )
 }
 
-new_handler <- function(expr, envir) {
-  hnd <- new.env(FALSE, size = 2)
-  hnd[["expr"]] <- expr
-  hnd[["envir"]] <- envir
-  hnd
-}
+# Inline formals
+formals(defer)[["priority"]] <- eval(formals(defer)[["priority"]])
+defer <<- defer
 
-add_handler <- function(envir,
-                        handler,
-                        front,
-                        frames = as.list(sys.frames()),
-                        calls = as.list(sys.calls())) {
-  envir <- exit_frame(envir, frames, calls)
-
-  if (front) {
-    handlers <- c(list(handler), get_handlers(envir))
-  } else {
-    handlers <- c(get_handlers(envir), list(handler))
+is_top_level_global_env <- function(envir, frames = sys.frames()) {
+  if (!identical(envir, globalenv())) {
+    return(FALSE)
   }
 
-  set_handlers(envir, handlers, frames = frames, calls = calls)
-  handler
-}
-
-set_handlers <- function(envir, handlers, frames, calls) {
-  if (is.null(get_handlers(envir))) {
-    # Ensure that list of handlers called when environment "ends"
-    setup_handlers(envir)
-  }
-
-  attr(envir, "withr_handlers") <- handlers
-}
-
-setup_handlers <- function(envir) {
-  call <- make_call(execute_handlers, envir)
-  # We have to use do.call here instead of eval because of the way on.exit
-  # determines its evaluation context
-  # (https://stat.ethz.ch/pipermail/r-devel/2013-November/067867.html)
-
-  do.call(base::on.exit, list(call, TRUE), envir = envir)
+  # Check if another global environment is on the stack
+  !any(vapply(frames, identical, NA, globalenv()))
 }
 
 exit_frame <- function(envir,
@@ -185,56 +161,6 @@ frame_loc <- function(envir, frames) {
 in_knitr <- function(envir) {
   knitr_in_progress() && identical(knitr::knit_global(), envir)
 }
-
-is_top_level_global_env <- function(envir, frames = sys.frames()) {
-  if (!identical(envir, globalenv())) {
-    return(FALSE)
-  }
-
-  # Check if another global environment is on the stack
-  !any(vapply(frames, identical, NA, globalenv()))
-}
-
-get_handlers <- function(envir) {
-  attr(envir, "withr_handlers")
-}
-
-execute_handlers <- function(envir) {
-  handlers <- get_handlers(envir)
-  errors <- list()
-  for (handler in handlers) {
-    tryCatch(eval(handler$expr, handler$envir),
-      error = function(e) {
-        errors[[length(errors) + 1]] <<- e
-      }
-    )
-  }
-  attr(envir, "withr_handlers") <- NULL
-
-  for (error in errors) {
-    stop(error)
-  }
-}
-
-make_call <- function(...) {
-  as.call(list(...))
-}
-
-# base implementation of rlang::is_interactive()
-is_interactive <- function() {
-  opt <- getOption("rlang_interactive")
-  if (!is.null(opt)) {
-    return(opt)
-  }
-  if (knitr_in_progress()) {
-    return(FALSE)
-  }
-  if (identical(Sys.getenv("TESTTHAT"), "true")) {
-    return(FALSE)
-  }
-  interactive()
-}
-
 knitr_in_progress <- function() {
   isTRUE(getOption("knitr.in.progress"))
 }

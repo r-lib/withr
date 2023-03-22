@@ -79,10 +79,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) N
 #' @rdname defer
 #' @export
 defer_parent <- function(expr, priority = c("first", "last")) {
-  eval(substitute(
-    defer(expr, envir, priority),
-    list(expr = substitute(expr), envir = parent.frame(2), priority = priority, defer = defer)
-  ), envir = parent.frame())
+  defer(expr, parent.frame(2), priority = priority)
 }
 
 #' @rdname defer
@@ -90,15 +87,33 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 deferred_run <- function(envir = parent.frame()) {
   if (is_top_level_global_env(envir)) {
     handlers <- the$global_exits
-    the$global_exits <- list()
-
-    for (expr in handlers) {
-      eval(expr, envir)
-    }
   } else {
-    execute_handlers(envir)
-    deferred_clear(envir)
+    handlers <- frame_exits(envir)
   }
+  deferred_clear(envir)
+
+  for (expr in handlers) {
+    eval(expr, envir)
+  }
+}
+
+frame_exits <- function(frame = parent.frame()) {
+  exits <- do.call(sys.on.exit, list(), envir = frame)
+
+  # The exit expressions are stored in a single object that is
+  # evaluated on exit. This can be NULL, an expression, or multiple
+  # expressions wrapped in {. We convert this data structure to a list
+  # of expressions.
+  if (is.null(exits)) {
+    list()
+  } else if (identical(exits[[1]], quote(`{`))) {
+    as.list(exits[-1])
+  } else {
+    list(exits)
+  }
+}
+frame_clear_exits <- function(frame = parent.frame()) {
+  do.call(on.exit, list(), envir = frame)
 }
 
 #' @rdname defer
@@ -107,7 +122,7 @@ deferred_clear <- function(envir = parent.frame()) {
   if (is_top_level_global_env(envir)) {
     the$global_exits <- list()
   } else {
-    attr(envir, "withr_handlers") <- NULL
+    frame_clear_exits(envir)
   }
   invisible()
 }

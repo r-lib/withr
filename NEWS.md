@@ -1,5 +1,18 @@
 # withr (development version)
 
+* `defer()` is now a thin wrapper around `base::on.exit()`. This is
+  possible thanks to two contributions that we made to R 3.5:
+
+  - We added an argument for FIFO cleanup: `on.exit(after = FALSE)`.
+  - Calling `sys.on.exit()` elsewhere than top-level didn't work. This
+    is needed for manual invokation with `deferred_run()`.
+
+  Following this change, `defer()` is now much faster (although still
+  slower than `on.exit()`). This also increases the compatibility of
+  `defer()` with `on.exit()` (all handlers are now run in the expected
+  order even if they are registered with `on.exit()`) and standalone
+  versions of `defer()`.
+
 * `source()` support now requires setting `options(withr.hook_source = TRUE)`.
   It is disabled by default to avoid a performance penalty when not needed.
 

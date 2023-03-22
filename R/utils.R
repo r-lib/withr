@@ -78,3 +78,18 @@ setNames <- function(x = nm, nm) {
   names(x) <- nm
   x
 }
+
+# base implementation of rlang::is_interactive()
+is_interactive <- function() {
+  opt <- getOption("rlang_interactive")
+  if (!is.null(opt)) {
+    return(opt)
+  }
+  if (knitr_in_progress()) {
+    return(FALSE)
+  }
+  if (identical(Sys.getenv("TESTTHAT"), "true")) {
+    return(FALSE)
+  }
+  interactive()
+}

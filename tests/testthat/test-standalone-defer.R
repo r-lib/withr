@@ -18,7 +18,8 @@ test_that("defer_parent works", {
 })
 
 test_that("defer()'s global env facilities work", {
-  expect_null(get_handlers(globalenv()))
+  expect_length(the$global_exits, 0)
+
   local_options(rlang_interactive = TRUE)
   Sys.setenv(abcdefg = "abcdefg")
 
@@ -53,7 +54,7 @@ test_that("non-top-level global env is unwound like a normal env", {
   expect_null(getOption("opt"))
 
   # Check that handlers were cleaned up
-  expect_null(get_handlers(globalenv()))
+  expect_length(the$global_exits, 0)
 })
 
 test_that("defered actions in global env are run on exit", {
@@ -219,4 +220,18 @@ test_that("defer works within knitr::knit()", {
     "last",
     "first"
   ))
+})
+
+test_that("defer() and on.exit() handlers can be meshed", {
+  out <- list()
+
+  local({
+    on.exit(out <<- append(out, 1), add = TRUE)
+    defer(out <<- append(out, 2))
+    on.exit(out <<- append(out, 3), add = TRUE)
+    on.exit(out <<- append(out, 4), add = TRUE, after = FALSE)
+    defer(out <<- append(out, 5), priority = "last")
+  })
+
+  expect_equal(out, list(4, 2, 1, 3, 5))
 })
