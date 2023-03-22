@@ -33,7 +33,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 
 local({
 
-defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
+defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   if (is_top_level_global_env(envir)) {
     # Do nothing if withr is not installed, just like `on.exit()`
     # called in the global env
@@ -55,6 +55,10 @@ defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", 
     envir = envir
   )
 }
+
+# Inline formals
+formals(defer)[["priority"]] <- eval(formals(defer)[["priority"]])
+defer <<- defer
 
 is_top_level_global_env <- function(envir, frames = sys.frames()) {
   if (!identical(envir, globalenv())) {
