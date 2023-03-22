@@ -100,6 +100,10 @@ deferred_run <- function(envir = parent.frame()) {
 frame_exits <- function(frame = parent.frame()) {
   exits <- do.call(sys.on.exit, list(), envir = frame)
 
+  # The exit expressions are stored in a single object that is
+  # evaluated on exit. This can be NULL, an expression, or multiple
+  # expressions wrapped in {. We convert this data structure to a list
+  # of expressions.
   if (is.null(exits)) {
     list()
   } else if (identical(exits[[1]], quote(`{`))) {
