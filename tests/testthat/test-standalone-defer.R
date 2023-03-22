@@ -221,3 +221,17 @@ test_that("defer works within knitr::knit()", {
     "first"
   ))
 })
+
+test_that("defer() and on.exit() handlers can be meshed", {
+  out <- list()
+
+  local({
+    on.exit(out <<- append(out, 1), add = TRUE)
+    defer(out <<- append(out, 2))
+    on.exit(out <<- append(out, 3), add = TRUE)
+    on.exit(out <<- append(out, 4), add = TRUE, after = FALSE)
+    defer(out <<- append(out, 5), priority = "last")
+  })
+
+  expect_equal(out, list(4, 2, 1, 3, 5))
+})
