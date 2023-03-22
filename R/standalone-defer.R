@@ -161,27 +161,6 @@ knitr_in_progress <- function() {
   isTRUE(getOption("knitr.in.progress"))
 }
 
-get_handlers <- function(envir) {
-  attr(envir, "withr_handlers")
-}
-
-execute_handlers <- function(envir) {
-  handlers <- get_handlers(envir)
-  errors <- list()
-  for (handler in handlers) {
-    tryCatch(eval(handler$expr, handler$envir),
-      error = function(e) {
-        errors[[length(errors) + 1]] <<- e
-      }
-    )
-  }
-  attr(envir, "withr_handlers") <- NULL
-
-  for (error in errors) {
-    stop(error)
-  }
-}
-
 }) # defer() namespace
 
 # nocov end

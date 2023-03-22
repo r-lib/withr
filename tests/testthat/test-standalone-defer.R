@@ -18,7 +18,8 @@ test_that("defer_parent works", {
 })
 
 test_that("defer()'s global env facilities work", {
-  expect_null(get_handlers(globalenv()))
+  expect_length(the$global_exits, 0)
+
   local_options(rlang_interactive = TRUE)
   Sys.setenv(abcdefg = "abcdefg")
 
@@ -53,7 +54,7 @@ test_that("non-top-level global env is unwound like a normal env", {
   expect_null(getOption("opt"))
 
   # Check that handlers were cleaned up
-  expect_null(get_handlers(globalenv()))
+  expect_length(the$global_exits, 0)
 })
 
 test_that("defered actions in global env are run on exit", {

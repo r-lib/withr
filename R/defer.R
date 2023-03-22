@@ -74,7 +74,7 @@ defer_ns <- environment(defer)
 #' defer(print("three"))
 #' deferred_clear()
 #' deferred_run()
-defer
+defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) NULL
 
 #' @rdname defer
 #' @export
@@ -90,15 +90,29 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 deferred_run <- function(envir = parent.frame()) {
   if (is_top_level_global_env(envir)) {
     handlers <- the$global_exits
-    the$global_exits <- list()
-
-    for (expr in handlers) {
-      eval(expr, envir)
-    }
   } else {
-    execute_handlers(envir)
-    deferred_clear(envir)
+    handlers <- frame_exits(envir)
   }
+  deferred_clear(envir)
+
+  for (expr in handlers) {
+    eval(expr, envir)
+  }
+}
+
+frame_exits <- function(frame = parent.frame()) {
+  exits <- do.call(sys.on.exit, list(), envir = frame)
+
+  if (is.null(exits)) {
+    list()
+  } else if (identical(exits[[1]], quote(`{`))) {
+    as.list(exits[-1])
+  } else {
+    list(exits)
+  }
+}
+frame_clear_exits <- function(frame = parent.frame()) {
+  do.call(on.exit, list(), envir = frame)
 }
 
 #' @rdname defer
@@ -107,7 +121,7 @@ deferred_clear <- function(envir = parent.frame()) {
   if (is_top_level_global_env(envir)) {
     the$global_exits <- list()
   } else {
-    attr(envir, "withr_handlers") <- NULL
+    frame_clear_exits(envir)
   }
   invisible()
 }
