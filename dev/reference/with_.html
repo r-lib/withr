@@ -92,6 +92,8 @@ for an overview.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>set</dt>
 <dd><p><code>[function(...)]</code><br> Function used to set the state.
+The return value from this function should be the old state, which will
+then be passed back into the <code>reset()</code> function to clean up the state.
 The function can have arbitrarily many arguments, they will be replicated
 in the formals of the returned function.</p></dd>
 
@@ -152,7 +154,7 @@ function body.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     on.exit(setwd(old))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     force(code)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5624420e1f68&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x560c0ce88258&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">global_stack</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">set_global_state</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">state</span>, <span class="va">msg</span> <span class="op">=</span> <span class="st">"Changing global state."</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -172,7 +174,7 @@ function body.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     on.exit(reset_global_state(old))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     force(code)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5624420e1f68&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x560c0ce88258&gt;</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
