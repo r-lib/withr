@@ -92,8 +92,8 @@ deferred_run <- function(envir = parent.frame()) {
     handlers <- the$global_exits
     the$global_exits <- list()
 
-    for (fn in handlers) {
-      fn()
+    for (expr in handlers) {
+      eval(expr, envir)
     }
   } else {
     execute_handlers(envir)
@@ -141,7 +141,7 @@ global_defer <- function(expr, priority = c("first", "last")) {
     reg.finalizer(env, function(env) deferred_run(env), onexit = TRUE)
   }
 
-  handler <- function() expr
+  handler <- as.call(list(function() expr))
 
   if (priority == "first") {
     the$global_exits <- c(list(handler), handlers)
