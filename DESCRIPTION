@@ -67,6 +67,7 @@ Collate:
     'collate.R'
     'connection.R'
     'db.R'
+    'defer-exit.R'
     'standalone-defer.R'
     'defer.R'
     'wrap.R'
