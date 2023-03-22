@@ -34,7 +34,7 @@
 
 # Memoise package requirement via a promise
 defer <- (function(has_withr = requireNamespace("withr", quietly = TRUE),
-                   has_withr_3 = has_withr && utils::packageVersion("withr") >= "2.5.0.9000") {
+                   has_withr_3 = has_withr && utils::packageVersion("withr") >= "2.99.0.9000") {
 
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   if (is_top_level_global_env(envir)) {
