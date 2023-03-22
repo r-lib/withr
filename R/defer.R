@@ -88,14 +88,27 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 #' @rdname defer
 #' @export
 deferred_run <- function(envir = parent.frame()) {
-  execute_handlers(envir)
-  deferred_clear(envir)
+  if (is_top_level_global_env(envir)) {
+    handlers <- the$global_exits
+    the$global_exits <- list()
+
+    for (fn in handlers) {
+      fn()
+    }
+  } else {
+    execute_handlers(envir)
+    deferred_clear(envir)
+  }
 }
 
 #' @rdname defer
 #' @export
 deferred_clear <- function(envir = parent.frame()) {
-  attr(envir, "withr_handlers") <- NULL
+  if (is_top_level_global_env(envir)) {
+    the$global_exits <- list()
+  } else {
+    attr(envir, "withr_handlers") <- NULL
+  }
   invisible()
 }
 
@@ -112,9 +125,9 @@ global_defer <- function(expr, priority = c("first", "last")) {
   priority <- match.arg(priority, choices = c("first", "last"))
 
   env <- globalenv()
-  handlers <- get_handlers(env)
+  handlers <- the$global_exits
 
-  if (is.null(handlers)) {
+  if (!length(handlers)) {
     # For session scopes we use reg.finalizer()
     if (is_interactive()) {
       message(
@@ -128,17 +141,18 @@ global_defer <- function(expr, priority = c("first", "last")) {
     reg.finalizer(env, function(env) deferred_run(env), onexit = TRUE)
   }
 
-  handler <- new_handler(quote(evalq(expr)), environment())
+  handler <- function() expr
 
   if (priority == "first") {
-    handlers <- c(list(handler), handlers)
+    the$global_exits <- c(list(handler), handlers)
   } else {
-    handlers <- c(handlers, list(handler))
+    the$global_exits <- c(handlers, list(handler))
   }
 
-  attr(env, "withr_handlers") <- handlers
   invisible(NULL)
 }
+
+the$global_exits <- list()
 
 
 # Splice `compat-defer.R` into the namespace

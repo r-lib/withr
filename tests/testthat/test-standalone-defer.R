@@ -31,7 +31,7 @@ test_that("defer()'s global env facilities work", {
     NA
   )
 
-  h <- get_handlers(globalenv())
+  h <- the$global_exits
   expect_length(h, 2)
   expect_equal(Sys.getenv("abcdefg"), "tuvwxyz")
 
@@ -41,8 +41,7 @@ test_that("defer()'s global env facilities work", {
   expect_message(defer(print("never going to happen"), envir = globalenv()))
   deferred_clear(globalenv())
 
-  h <- get_handlers(globalenv())
-  expect_null(h)
+  expect_length(the$global_exits, 0)
 })
 
 test_that("non-top-level global env is unwound like a normal env", {
