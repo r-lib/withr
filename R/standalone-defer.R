@@ -32,13 +32,15 @@
 # nocov start
 
 
-defer <- (function(has_withr = requireNamespace("withr", quietly = TRUE)) {
+# Memoise package requirement via a promise
+defer <- (function(has_withr = requireNamespace("withr", quietly = TRUE),
+                   has_withr_3 = has_withr && utils::packageVersion("withr") >= "2.5.0.9000") {
 
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   if (is_top_level_global_env(envir)) {
     # Do nothing if withr is not installed, just like `on.exit()`
     # called in the global env
-    if (has_withr) {
+    if (has_withr_3) {
       withr::global_defer(expr, priority = priority)
     }
     return(invisible(NULL))
@@ -51,7 +53,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 
   hook_source <- getOption("withr.hook_source")
   hook_knitr <- getOption("knitr.in.progress")
-  if ((!is.null(hook_source) || !is.null(hook_knitr)) && has_withr) {
+  if ((!is.null(hook_source) || !is.null(hook_knitr)) && has_withr_3) {
     envir <- withr::exit_frame(envir)
   }
 
