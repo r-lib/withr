@@ -27,3 +27,5 @@ run_on_load <- function(ns = topenv(parent.frame())) {
 .onLoad <- function(...) {
   run_on_load()
 }
+
+the <- new.env()

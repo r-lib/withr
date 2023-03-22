@@ -32,6 +32,15 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 local({
 
 defer <<- defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
+  if (is_top_level_global_env(envir)) {
+    # Do nothing if withr is not installed, just like `on.exit()`
+    # called in the global env
+    if (requireNamespace("withr", quietly = TRUE)) {
+      withr::global_defer(expr, priority = priority)
+    }
+    return(invisible(NULL))
+  }
+
   priority <- match.arg(priority, choices = c("first", "last"))
   invisible(
     add_handler(
@@ -75,32 +84,13 @@ set_handlers <- function(envir, handlers, frames, calls) {
   attr(envir, "withr_handlers") <- handlers
 }
 
-# Evaluate `frames` lazily
-setup_handlers <- function(envir,
-                           frames = as.list(sys.frames()),
-                           calls = as.list(sys.calls())) {
-  if (is_top_level_global_env(envir, frames)) {
-    # For session scopes we use reg.finalizer()
-    if (is_interactive()) {
-      message(
-        sprintf("Setting global deferred event(s).\n"),
-        "i These will be run:\n",
-        "  * Automatically, when the R session ends.\n",
-        "  * On demand, if you call `withr::deferred_run()`.\n",
-        "i Use `withr::deferred_clear()` to clear them without executing."
-      )
-    }
-    reg.finalizer(envir, function(env) deferred_run(env), onexit = TRUE)
-  } else {
-    # for everything else we use on.exit()
+setup_handlers <- function(envir) {
+  call <- make_call(execute_handlers, envir)
+  # We have to use do.call here instead of eval because of the way on.exit
+  # determines its evaluation context
+  # (https://stat.ethz.ch/pipermail/r-devel/2013-November/067867.html)
 
-    call <- make_call(execute_handlers, envir)
-    # We have to use do.call here instead of eval because of the way on.exit
-    # determines its evaluation context
-    # (https://stat.ethz.ch/pipermail/r-devel/2013-November/067867.html)
-
-    do.call(base::on.exit, list(call, TRUE), envir = envir)
-  }
+  do.call(base::on.exit, list(call, TRUE), envir = envir)
 }
 
 exit_frame <- function(envir,
@@ -196,7 +186,7 @@ in_knitr <- function(envir) {
   knitr_in_progress() && identical(knitr::knit_global(), envir)
 }
 
-is_top_level_global_env <- function(envir, frames) {
+is_top_level_global_env <- function(envir, frames = sys.frames()) {
   if (!identical(envir, globalenv())) {
     return(FALSE)
   }

@@ -88,16 +88,72 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 #' @rdname defer
 #' @export
 deferred_run <- function(envir = parent.frame()) {
-  execute_handlers(envir)
-  deferred_clear(envir)
+  if (is_top_level_global_env(envir)) {
+    handlers <- the$global_exits
+    the$global_exits <- list()
+
+    for (expr in handlers) {
+      eval(expr, envir)
+    }
+  } else {
+    execute_handlers(envir)
+    deferred_clear(envir)
+  }
 }
 
 #' @rdname defer
 #' @export
 deferred_clear <- function(envir = parent.frame()) {
-  attr(envir, "withr_handlers") <- NULL
+  if (is_top_level_global_env(envir)) {
+    the$global_exits <- list()
+  } else {
+    attr(envir, "withr_handlers") <- NULL
+  }
   invisible()
 }
+
+#' Defer expression globally
+#'
+#' This function is mostly internal. It is exported to be called in
+#' standalone `defer()` implementations to defer expressions from the
+#' global environment.
+#'
+#' @inheritParams defer
+#' @keywords internal
+#' @export
+global_defer <- function(expr, priority = c("first", "last")) {
+  priority <- match.arg(priority, choices = c("first", "last"))
+
+  env <- globalenv()
+  handlers <- the$global_exits
+
+  if (!length(handlers)) {
+    # For session scopes we use reg.finalizer()
+    if (is_interactive()) {
+      message(
+        sprintf("Setting global deferred event(s).\n"),
+        "i These will be run:\n",
+        "  * Automatically, when the R session ends.\n",
+        "  * On demand, if you call `withr::deferred_run()`.\n",
+        "i Use `withr::deferred_clear()` to clear them without executing."
+      )
+    }
+    reg.finalizer(env, function(env) deferred_run(env), onexit = TRUE)
+  }
+
+  handler <- as.call(list(function() expr))
+
+  if (priority == "first") {
+    the$global_exits <- c(list(handler), handlers)
+  } else {
+    the$global_exits <- c(handlers, list(handler))
+  }
+
+  invisible(NULL)
+}
+
+the$global_exits <- list()
+
 
 # Splice `compat-defer.R` into the namespace
 for (name in names(defer_ns)) {
