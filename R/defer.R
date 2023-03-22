@@ -79,10 +79,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) N
 #' @rdname defer
 #' @export
 defer_parent <- function(expr, priority = c("first", "last")) {
-  eval(substitute(
-    defer(expr, envir, priority),
-    list(expr = substitute(expr), envir = parent.frame(2), priority = priority, defer = defer)
-  ), envir = parent.frame())
+  defer(expr, parent.frame(2), priority = priority)
 }
 
 #' @rdname defer
