@@ -1,6 +1,6 @@
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
-Version: 2.5.0.9000
+Version: 2.99.0.9000
 Authors@R: 
     c(person(given = "Jim",
              family = "Hester",
@@ -67,6 +67,7 @@ Collate:
     'collate.R'
     'connection.R'
     'db.R'
+    'defer-exit.R'
     'standalone-defer.R'
     'defer.R'
     'wrap.R'
