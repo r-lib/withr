@@ -67,7 +67,7 @@ functions.
     `bmp`, `cairo_pdf`, `cairo_ps`, `pdf`, `postscript`, `svg`, `tiff`,
     `xfig`, `png`, `jpeg`.
 -   `with_connection()` / `local_connection()` - R file connections
--   `with_db_connection()` / `local_db_connection()` - DB conections
+-   `with_db_connection()` / `local_db_connection()` - DB connections
 -   `with_package()` / `local_package()`, `with_namespace()` /
     `local_namespace()` and `with_environment()` /
     `local_environment()` - to run code with modified object search
