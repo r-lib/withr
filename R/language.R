@@ -36,8 +36,11 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   # > (or LC_ALL) to a value other than ‘C’, before you can use a language
   # > priority list through the LANGUAGE variable.
   # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
-  if (identical(Sys.getenv("LANG"), "C")) {
-    warning("Changing language has no effect when envvar LANG='C'")
+  if (Sys.getenv("LANG") %in% c("C", "C.UTF-8")) {
+    warning(sprintf(
+      "Changing language has no effect when envvar LANG='%s'",
+      Sys.getenv("LANG")
+    ))
   }
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
