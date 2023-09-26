@@ -17,7 +17,7 @@
 #' @examples
 #' Sys.time()
 #' with_timezone("Europe/Paris", print(Sys.time()))
-#' with_timezone("US/Pacific", print(Sys.time()))
+#' with_timezone("America/Los_Angeles", print(Sys.time()))
 #'
 with_timezone <- function(tz, code) {
   reset_timezone()
@@ -34,7 +34,7 @@ with_timezone <- function(tz, code) {
 #' }
 #'
 #' fun2 <- function() {
-#'   local_timezone("US/Pacific")
+#'   local_timezone("America/Los_Angeles")
 #'   print(Sys.time())
 #' }
 #' Sys.time()

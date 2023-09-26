@@ -25,16 +25,16 @@ argument.
 Change the time zone, and restore it afterwards.
 }
 \details{
-\code{with_time_zone()} runs the code with the specified time zone and
+\code{with_timezone()} runs the code with the specified time zone and
 resets it afterwards.
 
-\code{local_time_zone()} changes the time zone for the caller
+\code{local_timezone()} changes the time zone for the caller
 execution environment.
 }
 \examples{
 Sys.time()
 with_timezone("Europe/Paris", print(Sys.time()))
-with_timezone("US/Pacific", print(Sys.time()))
+with_timezone("America/Los_Angeles", print(Sys.time()))
 
 fun1 <- function() {
   local_timezone("CET")
@@ -42,7 +42,7 @@ fun1 <- function() {
 }
 
 fun2 <- function() {
-  local_timezone("US/Pacific")
+  local_timezone("America/Los_Angeles")
   print(Sys.time())
 }
 Sys.time()
