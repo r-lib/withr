@@ -6,6 +6,7 @@ skip_if_needs_cairo <- function(fn) {
 }
 
 test_that("with_*device* functions create a plot file", {
+  skip_if_not_installed("lattice")
   # A plot
   p <- lattice::xyplot(y ~ x, data.frame(x = -2:2, y = dnorm(-2:2)))
 
@@ -40,6 +41,7 @@ test_that("with_*device* functions create a plot file", {
 })
 
 test_that("local_device functions create a plot file", {
+  skip_if_not_installed("lattice")
   # A plot
   p <- lattice::xyplot(y ~ x, data.frame(x = -2:2, y = dnorm(-2:2)))
 
