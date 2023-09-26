@@ -1,3 +1,8 @@
+# withr 2.5.1
+
+* Fixes for CRAN checks.
+
+
 # withr 2.5.0
 
 * `defer()` and all `local_*()` functions now work when run inside of
