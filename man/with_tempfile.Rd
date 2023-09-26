@@ -55,9 +55,9 @@ local_tempdir(
 \item{pattern}{a non-empty character vector giving the initial part
     of the name.}
 
-\item{tmpdir}{a non-empty character vector giving the directory name}
+\item{tmpdir}{a non-empty character vector giving the directory name.}
 
-\item{fileext}{a non-empty character vector giving the file extension}
+\item{fileext}{a non-empty character vector giving the file extension.}
 
 \item{lines}{Optionally, supply lines to be fed into}
 
