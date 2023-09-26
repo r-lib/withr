@@ -1,13 +1,13 @@
 test_that("can temporarily change language", {
   skip_if_not(has_nls())
 
-  expect_error(with_language("en", mean[[1]]), "not subsettable")
-  expect_error(with_language("fr", mean[[1]]), "non indi\u00e7able")
-  expect_error(with_language("es", mean[[1]]), "no es subconjunto")
+  expect_error(with_lang("en_GB", "en", mean[[1]]), "not subsettable")
+  expect_error(with_lang("fr_FR", "fr", mean[[1]]), "non indi\u00e7able")
+  expect_error(with_lang("es_ES", "es", mean[[1]]), "no es subconjunto")
 
   # can use either _ or -
-  expect_error(with_language("pt_BR", mean[[1]]), "não possível dividir")
-  expect_error(with_language("pt-BR", mean[[1]]), "não possível dividir")
+  expect_error(with_lang("pt_BR", "pt_BR", mean[[1]]), "não possível dividir")
+  expect_error(with_lang("pt_BR", "pt-BR", mean[[1]]), "não possível dividir")
 })
 
 test_that("warns if LANG=C", {
