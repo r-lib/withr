@@ -16,6 +16,12 @@
 * `source()` support now requires setting `options(withr.hook_source = TRUE)`.
   It is disabled by default to avoid a performance penalty when not needed.
 
+
+# withr 2.5.1
+
+* Fixes for CRAN checks.
+
+
 # withr 2.5.0
 
 * `defer()` and all `local_*()` functions now work when run inside of
