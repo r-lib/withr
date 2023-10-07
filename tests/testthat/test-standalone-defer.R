@@ -18,6 +18,8 @@ test_that("defer_parent works", {
 })
 
 test_that("defer()'s global env facilities work", {
+  skip_if_not_installed("testthat", "3.2.0")
+
   expect_length(the$global_exits, 0)
 
   local_options(rlang_interactive = TRUE)
