@@ -2,7 +2,7 @@
 
     Code
       defer(print("howdy"), envir = globalenv())
-    Message <simpleMessage>
+    Message
       Setting global deferred event(s).
       i These will be run:
         * Automatically, when the R session ends.
