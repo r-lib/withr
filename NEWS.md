@@ -17,6 +17,11 @@
   It is disabled by default to avoid a performance penalty when not needed.
 
 
+# withr 2.5.2
+
+* Fixes for CRAN checks.
+
+
 # withr 2.5.1
 
 * Fixes for CRAN checks.
