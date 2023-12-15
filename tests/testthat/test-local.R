@@ -184,6 +184,21 @@ test_that("local_par works as expected", {
   dev.off()
 })
 
+test_that("local_par gives no warning", {
+  tmp <- tempfile()
+
+  pdf(tmp)
+  on.exit(unlink(tmp), add = TRUE)
+
+  old <- par("pty")
+  expect_no_warning(local({
+    local_par()
+    par(pty="s")
+  }))
+  expect_equal(par("pty"), old)
+  dev.off()
+})
+
 test_that("supplying a getter to `local_()` shields against early exits", {
   my_get <- function(x) {
     out <- as.list(state)[names(x)]

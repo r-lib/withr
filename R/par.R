@@ -5,7 +5,7 @@ NULL
 
 get_par <- function(...) {
   new <- auto_splice(list(...))
-  out <- do.call(graphics::par, as.list(names(new)))
+  out <- do.call(graphics::par, c(as.list(names(new)), list(no.readonly=TRUE)))
 
   # `par()` doesn't wrap in a list if input is length 1
   if (length(new) == 1) {
