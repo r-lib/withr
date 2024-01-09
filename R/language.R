@@ -28,7 +28,7 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   # Reset a first time in case the cache was populated beforehand
   reset_gettext_cache()
 
-  # Reset a second time to clear any cached translation we might cause
+  # Reset afterwards to clear any translation we might cache
   defer(reset_gettext_cache(), envir = .local_envir)
 
   # https://stackoverflow.com/questions/6152321
