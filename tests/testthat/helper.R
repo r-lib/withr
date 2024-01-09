@@ -38,10 +38,11 @@ skip_if_cannot_knit <- function() {
   skip_if(!rmarkdown::pandoc_available())
 }
 
-# Need to also specify `LC_ALL` because `LANGUAGE` is ignored when
-# `LANG` is set (here via `LC_ALL`) to `C` or `C.UTF-8`
-with_lang <- function(lc, language, expr) {
-  withr::local_envvar(c(LC_ALL = lc))
-  withr::local_language(language)
-  expr
+# Used to skip tests that will fail when locale is set to C, for
+# instance `with_language()` tests. These tests should only be run
+# when using a locale like `en_US`. The check is cautious and simple:
+# If unset we assume the default might be C or maybe `LANG` is set to C.
+skip_if_c_locale <- function() {
+  lc_all <- Sys.getenv("LC_ALL", "")
+  skip_if(lc_all %in% c("", "C", "C.UTF-8"))
 }
