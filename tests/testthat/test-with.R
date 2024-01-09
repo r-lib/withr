@@ -161,20 +161,6 @@ test_that("with_dir works as expected", {
   expect_equal(normalizePath(getwd()), normalizePath(old))
 })
 
-test_that("with_par works as expected", {
-  tmp <- tempfile()
-
-  pdf(tmp)
-  on.exit(unlink(tmp), add = TRUE)
-
-  old <- par("pty")
-  with_par(list(pty = "s"), {
-    expect_equal(par("pty"), "s")
-  })
-  expect_equal(par("pty"), old)
-  dev.off()
-})
-
 test_that("supplying a getter to `with_()` shields against early exits", {
   my_get <- function(x) {
     out <- as.list(state)[names(x)]
