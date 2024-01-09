@@ -36,8 +36,14 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   # > (or LC_ALL) to a value other than ‘C’, before you can use a language
   # > priority list through the LANGUAGE variable.
   # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
-  check_language_envvar("LANG")
-  check_language_envvar("LC_ALL") # Has precedence over `LANG`
+
+  # `LC_ALL` has precedence over `LANG`. Check for the latter if the
+  # former is unset, otherwise check for the former.
+  if (Sys.getenv("LC_ALL", "") == "") {
+    check_language_envvar("LANG")
+  } else {
+    check_language_envvar("LC_ALL")
+  }
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
 
