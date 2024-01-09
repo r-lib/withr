@@ -19,10 +19,10 @@ test_that("can temporarily change language", {
   expect_error(mean[[1]], "not subsettable")
 })
 
-test_that("warns if LANG=C", {
+test_that("warns if LC_ALL=C", {
   skip_if_not(has_nls())
 
-  local_envvar(LANG = "C")
+  local_envvar(LC_ALL = "C")
   expect_warning(with_language("en", "x"), "has no effect")
 })
 
