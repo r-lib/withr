@@ -8,6 +8,9 @@ test_that("can temporarily change language", {
   # can use either _ or -
   expect_error(with_lang("pt_BR", "pt_BR", mean[[1]]), "não possível dividir")
   expect_error(with_lang("pt_BR", "pt-BR", mean[[1]]), "não possível dividir")
+
+  # Is correctly reset (#213)
+  expect_error(mean[[1]], "not subsettable")
 })
 
 test_that("warns if LANG=C", {

@@ -44,14 +44,15 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   }
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
-  if (Sys.info()[["sysname"]] != "Windows") {
-    # Reset cache to avoid gettext() retrieving cached value from a previous
-    # language. I think this works because Sys.setlocale() calls setlocale()
-    # which https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931456 claims
-    # resets the cache. So if there's some OS/setup that this technique fails
-    # on, we might try bindtextdomain() instead or as well.
-    local_locale(c(LC_MESSAGES = ""), .local_envir = .local_envir)
-  }
+
+  # Reset cache to avoid gettext() retrieving cached value from a previous
+  # language (idea from https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931456)
+  defer(
+    bindtextdomain("reset", local_tempdir()),
+    envir = .local_envir
+  )
+
+  invisible()
 }
 
 has_nls <- function() capabilities("NLS")[[1]]
