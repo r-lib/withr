@@ -29,10 +29,7 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   reset_gettext_cache()
 
   # Reset a second time to clear any cached translation we might cause
-  defer(
-    reset_gettext_cache(),
-    envir = .local_envir
-  )
+  defer(reset_gettext_cache(), envir = .local_envir)
 
   # https://stackoverflow.com/questions/6152321
   lang <- gsub("-", "_", lang, fixed = TRUE)
