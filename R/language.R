@@ -24,6 +24,13 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   if (!is.character(lang) || length(lang) != 1) {
     stop("`lang` must be a string")
   }
+
+  # Reset a first time in case the cache was populated beforehand
+  reset_gettext_cache()
+
+  # Reset afterwards to clear any translation we might cache
+  defer(reset_gettext_cache(), envir = .local_envir)
+
   # https://stackoverflow.com/questions/6152321
   lang <- gsub("-", "_", lang, fixed = TRUE)
 
@@ -47,15 +54,14 @@ local_language <- function(lang, .local_envir = parent.frame()) {
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
 
-  # Reset cache to avoid gettext() retrieving cached value from a previous
-  # language (idea from https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931456)
-  # See https://github.com/r-lib/withr/issues/213.
-  defer(
-    bindtextdomain("reset", local_tempdir()),
-    envir = .local_envir
-  )
-
   invisible()
+}
+
+# Reset cache to avoid gettext() retrieving cached value from a previous
+# language (idea from https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931456)
+# See https://github.com/r-lib/withr/issues/213.
+reset_gettext_cache <- function() {
+  bindtextdomain("reset", local_tempdir())
 }
 
 check_language_envvar <- function(var) {

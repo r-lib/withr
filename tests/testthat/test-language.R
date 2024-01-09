@@ -23,7 +23,7 @@ test_that("can temporarily change language after triggering error", {
   skip_if_not(has_nls())
   skip_if_c_locale()
 
-  local_language("en")
+  local_language("fr")
   try(mean[[1]], silent = TRUE) # trigger possible caching
 
   expect_error(with_language("es", mean[[1]]), "no es subconjunto")
