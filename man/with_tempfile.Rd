@@ -59,7 +59,8 @@ local_tempdir(
 
 \item{fileext}{a non-empty character vector giving the file extension}
 
-\item{lines}{Optionally, supply lines to be fed into}
+\item{lines}{Optionally, supply lines to be written to \code{path}. This is
+useful if you want to seed the file with some default content.}
 
 \item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
 directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}

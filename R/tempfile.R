@@ -30,7 +30,9 @@ with_tempfile <- function(new, code, envir = parent.frame(), .local_envir = pare
 }
 
 #' @rdname with_tempfile
-#' @param lines Optionally, supply lines to be fed into
+#' @param lines Optionally, supply a character vector of lines to be written to
+#'   `path`. This is useful if you want to seed the file with some default
+#'   content.
 #' @export
 local_tempfile <- function(new = NULL, lines = NULL, envir = parent.frame(), .local_envir = parent.frame(),
   pattern = "file", tmpdir = tempdir(), fileext = "") {
