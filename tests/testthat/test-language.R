@@ -21,6 +21,8 @@ test_that("can temporarily change language", {
 
 test_that("can temporarily change language after triggering error", {
   skip_if_not(has_nls())
+  skip_if_c_locale()
+
   local_language("en")
   try(mean[[1]], silent = TRUE) # trigger possible caching
 
