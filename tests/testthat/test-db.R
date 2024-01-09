@@ -1,4 +1,5 @@
 describe("with_db_connection", {
+  skip_if_not_installed("RSQLite")
   #it("errors if connection is not named", {
     #expect_error({
       #with_db_connection(list(TRUE), TRUE)
@@ -53,6 +54,7 @@ describe("with_db_connection", {
 })
 
 describe("local_db_connection", {
+  skip_if_not_installed("RSQLite")
   it("creates a single connection", {
     db <- tempfile()
     on.exit(unlink(db))
