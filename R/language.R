@@ -36,12 +36,8 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   # > (or LC_ALL) to a value other than ‘C’, before you can use a language
   # > priority list through the LANGUAGE variable.
   # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
-  if (Sys.getenv("LANG") %in% c("C", "C.UTF-8")) {
-    warning(sprintf(
-      "Changing language has no effect when envvar LANG='%s'",
-      Sys.getenv("LANG")
-    ))
-  }
+  check_language_envvar("LANG")
+  check_language_envvar("LC_ALL") # Has precedence over `LANG`
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)
 
@@ -54,6 +50,16 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   )
 
   invisible()
+}
+
+check_language_envvar <- function(var) {
+  if (Sys.getenv(var) %in% c("C", "C.UTF-8")) {
+    warning(sprintf(
+      "Changing language has no effect when envvar %s='%s'",
+      var,
+      Sys.getenv(var)
+    ))
+  }
 }
 
 has_nls <- function() capabilities("NLS")[[1]]
