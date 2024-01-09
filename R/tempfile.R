@@ -1,6 +1,8 @@
-#' Temporary files
+#' Temporary files and directories
 #'
-#' Temporarily create a tempfile, which is automatically removed afterwards.
+#' Temporarily create a file or directory, which will automatically deleted
+#' once you're finished with it.
+#'
 #' @template with
 #' @param new `[character vector]`\cr (Deprecated for `local_tempfile()`) Names of temporary file handles to create.
 #' @param envir `[environment]`\cr Deprecated in favor of `.local_envir`.
@@ -9,9 +11,24 @@
 #' @inheritParams with_collate
 #' @inheritParams base::tempfile
 #' @examples
-#' # check how big iris would be if written as csv vs RDS
-#' tf <- with_tempfile("tf", {write.csv(iris, tf); file.size(tf)})
-#' tf <- with_tempfile("tf", {saveRDS(iris, tf); file.size(tf)})
+#' # local_tempfile() is the easiest to use because it returns a path
+#' local({
+#'   path1 <<- local_tempfile(lines = c("x,y", "1,2"))
+#'   readLines(path1)
+#' })
+#' # the file is deleted automatically
+#' file.exists(path1)
+#'
+#' # with_tempfile() is a bit trickier; the first argument gives the name
+#' # of a variable that will contain the path:
+#' with_tempfile("path2", {
+#'   print(path2)
+#'   write.csv(iris, path2)
+#'   file.size(path2)
+#' })
+#'
+#' # Note that this variable is only available in the scope of with_tempfile
+#' try(path2)
 #' @export
 with_tempfile <- function(new, code, envir = parent.frame(), .local_envir = parent.frame(),
   pattern = "file", tmpdir = tempdir(), fileext = "") {
