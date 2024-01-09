@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `local_pdf()` and friends now correctly restore to the previously 
+  active device (#138).
+
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:
 

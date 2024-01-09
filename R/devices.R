@@ -77,40 +77,49 @@ jpeg_dev <- function(filename, ...) {
 #' )
 NULL
 
+dev_close <- function(which) {
+  prev <- dev.prev(which)
+  grDevices::dev.off(which)
+  if (prev != which) # no devices active
+    dev.set(prev)
+
+  prev
+}
+
 #' @describeIn devices BMP device
 #' @export
-with_bmp <- with_(bmp_dev, grDevices::dev.off)
+with_bmp <- with_(bmp_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_bmp <- local_(bmp_dev, grDevices::dev.off)
+local_bmp <- local_(bmp_dev, dev_close)
 
 #' @describeIn devices CAIRO_PDF device
 #' @inheritParams grDevices::cairo_pdf
 #' @export
-with_cairo_pdf <- with_(cairo_pdf_dev, grDevices::dev.off)
+with_cairo_pdf <- with_(cairo_pdf_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_cairo_pdf <- local_(cairo_pdf_dev, grDevices::dev.off)
+local_cairo_pdf <- local_(cairo_pdf_dev, dev_close)
 
 #' @describeIn devices CAIRO_PS device
 #' @inheritParams grDevices::cairo_ps
 #' @export
-with_cairo_ps <- with_(cairo_ps_dev, grDevices::dev.off)
+with_cairo_ps <- with_(cairo_ps_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_cairo_ps <- local_(cairo_ps_dev, grDevices::dev.off)
+local_cairo_ps <- local_(cairo_ps_dev, dev_close)
 
 #' @describeIn devices PDF device
 #' @inheritParams grDevices::pdf
 #' @export
-with_pdf <- with_(pdf_dev, grDevices::dev.off)
+with_pdf <- with_(pdf_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_pdf <- local_(pdf_dev, grDevices::dev.off)
+local_pdf <- local_(pdf_dev, dev_close)
 
 #' @describeIn devices POSTSCRIPT device
 #' @inheritParams grDevices::postscript
@@ -119,51 +128,51 @@ local_pdf <- local_(pdf_dev, grDevices::dev.off)
 #'   length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
 #'   520 bytes on windows.
 #' @export
-with_postscript <- with_(postscript_dev, grDevices::dev.off)
+with_postscript <- with_(postscript_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_postscript <- local_(postscript_dev, grDevices::dev.off)
+local_postscript <- local_(postscript_dev, dev_close)
 
 #' @describeIn devices SVG device
 #' @inheritParams grDevices::svg
 #' @export
-with_svg <- with_(svg_dev, grDevices::dev.off)
+with_svg <- with_(svg_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_svg <- local_(svg_dev, grDevices::dev.off)
+local_svg <- local_(svg_dev, dev_close)
 
 #' @describeIn devices TIFF device
 #' @export
-with_tiff <- with_(tiff_dev, grDevices::dev.off)
+with_tiff <- with_(tiff_dev, dev_close)
 
 
 #' @rdname devices
 #' @export
-local_tiff <- local_(tiff_dev, grDevices::dev.off)
+local_tiff <- local_(tiff_dev, dev_close)
 
 #' @describeIn devices XFIG device
 #' @inheritParams grDevices::xfig
 #' @export
-with_xfig <- with_(xfig_dev, grDevices::dev.off)
+with_xfig <- with_(xfig_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_xfig <- local_(xfig_dev, grDevices::dev.off)
+local_xfig <- local_(xfig_dev, dev_close)
 
 #' @describeIn devices PNG device
 #' @export
-with_png <- with_(png_dev, grDevices::dev.off)
+with_png <- with_(png_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_png <- local_(png_dev, grDevices::dev.off)
+local_png <- local_(png_dev, dev_close)
 
 #' @describeIn devices JPEG device
 #' @export
-with_jpeg <- with_(jpeg_dev, grDevices::dev.off)
+with_jpeg <- with_(jpeg_dev, dev_close)
 
 #' @rdname devices
 #' @export
-local_jpeg <- local_(jpeg_dev, grDevices::dev.off)
+local_jpeg <- local_(jpeg_dev, dev_close)
