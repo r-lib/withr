@@ -19,6 +19,14 @@ test_that("can temporarily change language", {
   expect_error(mean[[1]], "not subsettable")
 })
 
+test_that("can temporarily change language after triggering error", {
+  skip_if_not(has_nls())
+  local_language("en")
+  try(mean[[1]], silent = TRUE) # trigger possible caching
+
+  expect_error(with_language("es", mean[[1]]), "no es subconjunto")
+})
+
 test_that("warns if LC_ALL=C", {
   skip_if_not(has_nls())
 
