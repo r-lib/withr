@@ -13,6 +13,9 @@
 
 * `local_()` now works even if withr isn't attached (#207).
 
+* `local_par()` and `with_par()` now work if you don't set any parameters
+  (#238).
+
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:
 
