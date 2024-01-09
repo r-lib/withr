@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
+  `\n` for newlines (#216).
+
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:
 

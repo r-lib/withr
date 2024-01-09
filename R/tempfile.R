@@ -41,7 +41,10 @@ local_tempfile <- function(new = NULL, lines = NULL, envir = parent.frame(), .lo
   if (is.null(new)) {
     path <- tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext)
     if (!is.null(lines)) {
-      writeLines(lines, path)
+      con <- file(path, open = "wb", encoding = "UTF-8")
+      defer(close(con))
+
+      writeLines(lines, con)
     }
 
     defer(unlink(path, recursive = TRUE), envir = .local_envir)
