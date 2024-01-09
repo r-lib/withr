@@ -17,6 +17,7 @@ test_that("can temporarily change language", {
 
 test_that("can use use either _ or -", {
   skip_if_not(has_nls())
+  skip_if_c_locale()
 
   expect_error(with_language("pt_BR", mean[[1]]), "não possível dividir")
   expect_error(with_language("pt-BR", mean[[1]]), "não possível dividir")
