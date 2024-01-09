@@ -16,6 +16,8 @@
 * `source()` support now requires setting `options(withr.hook_source = TRUE)`.
   It is disabled by default to avoid a performance penalty when not needed.
 
+* `with_language()` now properly resets the translation cache (#213).
+
 
 # withr 2.5.2
 

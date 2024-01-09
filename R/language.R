@@ -47,6 +47,7 @@ local_language <- function(lang, .local_envir = parent.frame()) {
 
   # Reset cache to avoid gettext() retrieving cached value from a previous
   # language (idea from https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931456)
+  # See https://github.com/r-lib/withr/issues/213.
   defer(
     bindtextdomain("reset", local_tempdir()),
     envir = .local_envir
