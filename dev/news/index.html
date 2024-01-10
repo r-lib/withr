@@ -61,7 +61,8 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="withr-development-version">withr (development version)<a class="anchor" aria-label="anchor" href="#withr-development-version"></a></h2>
-<ul><li><p><code><a href="../reference/with_.html">local_()</a></code> now works even if withr isn’t attached (<a href="https://github.com/r-lib/withr/issues/207" class="external-link">#207</a>).</p></li>
+<ul><li><p><code><a href="../reference/devices.html">local_pdf()</a></code> and friends now correctly restore to the previously active device (<a href="https://github.com/r-lib/withr/issues/138" class="external-link">#138</a>).</p></li>
+<li><p><code><a href="../reference/with_.html">local_()</a></code> now works even if withr isn’t attached (<a href="https://github.com/r-lib/withr/issues/207" class="external-link">#207</a>).</p></li>
 <li>
 <p><code><a href="../reference/defer.html">defer()</a></code> is now a thin wrapper around <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">base::on.exit()</a></code>. This is possible thanks to two contributions that we made to R 3.5:</p>
 <ul><li>We added an argument for FIFO cleanup: <code>on.exit(after = FALSE)</code>.</li>
