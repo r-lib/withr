@@ -87,6 +87,6 @@ test_that("local_tempfile() uses UTF-8", {
 
   path <- local_tempfile(lines = latin1)
 
-  con <- file(path, encoding = "UTF-8")
-  expect_equal(readLines(con), utf8)
+  local_options(encoding = "native.enc")
+  expect_equal(readLines(path, encoding = "UTF-8"), utf8)
 })
