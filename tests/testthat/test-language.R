@@ -11,12 +11,16 @@ test_that("can temporarily change language", {
   expect_error(with_language("fr", mean[[1]]), "non indi\u00e7able")
   expect_error(with_language("es", mean[[1]]), "no es subconjunto")
 
-  # can use either _ or -
-  expect_error(with_language("pt_BR", mean[[1]]), "não possível dividir")
-  expect_error(with_language("pt-BR", mean[[1]]), "não possível dividir")
-
   # Is correctly reset (#213)
   expect_error(mean[[1]], "not subsettable")
+})
+
+test_that("can use use either _ or -", {
+  skip_if_not(has_nls())
+  skip_if_c_locale()
+
+  expect_error(with_language("pt_BR", mean[[1]]), "não possível dividir")
+  expect_error(with_language("pt-BR", mean[[1]]), "não possível dividir")
 })
 
 test_that("can temporarily change language after triggering error", {

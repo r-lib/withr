@@ -3,6 +3,8 @@
 * `local_pdf()` and friends now correctly restore to the previously 
   active device (#138).
 
+* `local_()` now works even if withr isn't attached (#207).
+
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:
 
