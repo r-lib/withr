@@ -1,3 +1,7 @@
+set_state_inspector(function() {
+  dir(".")
+})
+
 expect_no_output <- function(...) {
   testthat::expect_output(..., regexp = NA)
 }

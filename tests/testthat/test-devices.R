@@ -77,3 +77,16 @@ test_that("local_device functions create a plot file", {
 
   unlink(plot_dir)
 })
+
+test_that("multiple devices closed in correct order", {
+  dev1 <- local_pdf(tempfile())
+
+  local({
+    dev2 <- local_pdf(tempfile())
+
+    local(withr::local_pdf(tempfile()))
+    expect_equal(dev.cur(), dev2)
+  })
+
+  expect_equal(dev.cur(), dev1)
+})
