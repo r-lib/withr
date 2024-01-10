@@ -84,8 +84,7 @@ test_that("local_tempfile() always writes \n", {
 test_that("local_tempfile() uses UTF-8", {
   utf8 <- "\u00e1" # á
 
-  latin1 <- iconv(utf8, "UTF-8", "Latin1")
-  Encoding(latin1) <- "latin1"
+  latin1 <- iconv(utf8, "UTF-8", "latin1")
 
   path <- local_tempfile(lines = latin1)
   expect_equal(readLines(path), utf8)
