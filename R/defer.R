@@ -66,14 +66,10 @@ defer_ns <- environment(defer)
 #'   print(attributes(environment()))
 #' })
 #'
-#' # defer and trigger events on the global environment
+#' # note that examples lack function scoping so deferred calls will
+#' # will be executed immediately
 #' defer(print("one"))
 #' defer(print("two"))
-#' deferred_run()
-#'
-#' defer(print("three"))
-#' deferred_clear()
-#' deferred_run()
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) NULL
 
 #' @rdname defer
