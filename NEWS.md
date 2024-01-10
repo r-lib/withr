@@ -1,5 +1,8 @@
 # withr (development version)
 
+,* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
+  `\n` for newlines (#216).
+
 * `local_pdf()` and friends now correctly restore to the previously 
   active device (#138).
 

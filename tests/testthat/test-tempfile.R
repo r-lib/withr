@@ -74,3 +74,19 @@ test_that("local_tempfile() can add data", {
   path <- local_tempfile(lines = c("a", "b"))
   expect_equal(readLines(path), c("a", "b"))
 })
+
+test_that("local_tempfile() always writes \n", {
+  path <- local_tempfile(lines = "x")
+  expect_equal(file.size(path), 2)
+  expect_equal(readChar(path, file.size(path)), "x\n")
+})
+
+test_that("local_tempfile() uses UTF-8", {
+  utf8 <- "\u00e1" # á
+  latin1 <- iconv(utf8, "UTF-8", "latin1")
+
+  path <- local_tempfile(lines = latin1)
+
+  local_options(encoding = "native.enc")
+  expect_equal(readLines(path, encoding = "UTF-8"), utf8)
+})

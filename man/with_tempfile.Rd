@@ -5,7 +5,7 @@
 \alias{local_tempfile}
 \alias{with_tempdir}
 \alias{local_tempdir}
-\title{Temporary files}
+\title{Temporary files and directories}
 \usage{
 with_tempfile(
   new,
@@ -59,7 +59,9 @@ local_tempdir(
 
 \item{fileext}{a non-empty character vector giving the file extension}
 
-\item{lines}{Optionally, supply lines to be fed into}
+\item{lines}{Optionally, supply a character vector of lines to be written to
+\code{path}. This is useful if you want to seed the file with some default
+content.}
 
 \item{clean}{\verb{[logical(1)]}\cr A logical indicating if the temporary
 directory should be deleted after use (\code{TRUE}, default) or left alone (\code{FALSE}).}
@@ -69,12 +71,28 @@ directory should be deleted after use (\code{TRUE}, default) or left alone (\cod
 argument.
 }
 \description{
-Temporarily create a tempfile, which is automatically removed afterwards.
+Temporarily create a file or directory, which will automatically deleted
+once you're finished with it.
 }
 \examples{
-# check how big iris would be if written as csv vs RDS
-tf <- with_tempfile("tf", {write.csv(iris, tf); file.size(tf)})
-tf <- with_tempfile("tf", {saveRDS(iris, tf); file.size(tf)})
+# local_tempfile() is the easiest to use because it returns a path
+local({
+  path1 <<- local_tempfile(lines = c("x,y", "1,2"))
+  readLines(path1)
+})
+# the file is deleted automatically
+file.exists(path1)
+
+# with_tempfile() is a bit trickier; the first argument gives the name
+# of a variable that will contain the path:
+with_tempfile("path2", {
+  print(path2)
+  write.csv(iris, path2)
+  file.size(path2)
+})
+
+# Note that this variable is only available in the scope of with_tempfile
+try(path2)
 }
 \seealso{
 \code{\link{withr}} for examples
