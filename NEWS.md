@@ -1,5 +1,7 @@
 # withr (development version)
 
+* `local_()` now works even if withr isn't attached (#207).
+
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:
 
