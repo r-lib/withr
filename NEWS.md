@@ -1,7 +1,12 @@
 # withr (development version)
 
-* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
+,* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
   `\n` for newlines (#216).
+
+* `local_pdf()` and friends now correctly restore to the previously 
+  active device (#138).
+
+* `local_()` now works even if withr isn't attached (#207).
 
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:

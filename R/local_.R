@@ -56,7 +56,7 @@ local_ <- function(set,
     fun <- eval(bquote(function(args) {
       .(modify_call)
       old <- .(set_call)
-      defer(.(reset)(old), envir = .local_envir)
+      withr::defer(.(reset)(old), envir = .local_envir)
       invisible(old)
     }))
   } else {
@@ -64,7 +64,7 @@ local_ <- function(set,
     fun <- eval(bquote(function(args) {
       .(modify_call)
       old <- .(get_call)
-      defer(.(reset)(old), envir = .local_envir)
+      withr::defer(.(reset)(old), envir = .local_envir)
       .(set_call)
       invisible(old)
     }))
