@@ -63,7 +63,7 @@ local_tempfile <- function(new = NULL, lines = NULL, envir = parent.frame(), .lo
       con <- file(path, open = "wb", encoding = "UTF-8")
       defer(close(con))
 
-      writeLines(lines, con)
+      writeLines(enc2utf8(lines), con)
     }
 
     defer(unlink(path, recursive = TRUE), envir = .local_envir)
