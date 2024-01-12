@@ -1,5 +1,8 @@
 # withr (development version)
 
+* `deferred_run()` now reports the number of executed expressions with
+  a message.
+
 ,* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
   `\n` for newlines (#216).
 

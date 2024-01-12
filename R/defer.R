@@ -88,8 +88,21 @@ deferred_run <- function(envir = parent.frame()) {
   }
   deferred_clear(envir)
 
+  n <- length(handlers)
+  i <- 0L
+
+  if (!n) {
+    message("No deferred expressions to run")
+    return(invisible(NULL))
+  }
+
+  defer(message(
+    sprintf("Ran %s/%s deferred expressions", i, n)
+  ))
+
   for (expr in handlers) {
     eval(expr, envir)
+    i <- i + 1L
   }
 }
 
