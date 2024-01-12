@@ -76,6 +76,8 @@ is_top_level_global_env <- function(envir, frames = sys.frames()) {
   !any(vapply(frames, identical, NA, globalenv()))
 }
 
+defer
+
 })() # defer() namespace
 
 # nocov end
