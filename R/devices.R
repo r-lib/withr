@@ -78,10 +78,13 @@ jpeg_dev <- function(filename, ...) {
 NULL
 
 dev_close <- function(which) {
-  prev <- dev.prev(which)
+  prev <- grDevices::dev.prev(which)
   grDevices::dev.off(which)
-  if (prev != which) # no devices active
-    dev.set(prev)
+
+  # No devices active
+  if (prev != which) {
+    grDevices::dev.set(prev)
+  }
 
   prev
 }
