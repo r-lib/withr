@@ -1,8 +1,8 @@
 ## revdepcheck results
 
-We checked 611 reverse dependencies (575 from CRAN + 36 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 615 reverse dependencies (579 from CRAN + 36 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
 
- * We saw 21 new problems
+ * We saw 15 new problems
  * We failed to check 0 packages
 
 Issues with CRAN packages are summarised below.
@@ -10,34 +10,19 @@ Issues with CRAN packages are summarised below.
 ### New problems
 (This reports the first line of each new failure)
 
-* arrow
-  checking tests ... ERROR
-
-* crosstable
-  checking tests ... ERROR
-
-* data.validator
-  checking tests ... ERROR
-
-* DBItest
-  checking re-building of vignette outputs ... ERROR
-
-* dials
-  checking tests ... ERROR
-
-* dm
+* cloudfs
   checking tests ... ERROR
 
 * downlit
   checking tests ... ERROR
 
-* dplyr
-  checking tests ... ERROR
-
-* exuber
+* epidatr
   checking tests ... ERROR
 
 * gargle
+  checking tests ... ERROR
+
+* gmailr
   checking tests ... ERROR
 
 * httr2
@@ -46,31 +31,28 @@ Issues with CRAN packages are summarised below.
 * lintr
   checking examples ... ERROR
 
-* mockr
+* odbc
   checking tests ... ERROR
 
-* move2
+* paws.common
   checking tests ... ERROR
 
-* rlang
+* reprex
   checking tests ... ERROR
 
-* RSQLite
+* rsconnect
   checking tests ... ERROR
 
-* sass
+* shiny.telemetry
   checking tests ... ERROR
 
 * testthat
   checking tests ... ERROR
   checking re-building of vignette outputs ... ERROR
 
-* vegawidget
+* usethis
   checking tests ... ERROR
 
 * vetiver
-  checking tests ... ERROR
-
-* vroom
   checking tests ... ERROR
 

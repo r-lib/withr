@@ -1,70 +1,14 @@
-# arrow
+# cloudfs
 
 <details>
 
-* Version: 14.0.0.2
-* GitHub: https://github.com/apache/arrow
-* Source code: https://github.com/cran/arrow
-* Date/Publication: 2023-12-02 01:30:03 UTC
-* Number of recursive dependencies: 79
+* Version: 0.1.2
+* GitHub: https://github.com/g6t/cloudfs
+* Source code: https://github.com/cran/cloudfs
+* Date/Publication: 2023-10-18 15:30:08 UTC
+* Number of recursive dependencies: 84
 
-Run `revdepcheck::cloud_details(, "arrow")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # Licensed to the Apache Software Foundation (ASF) under one
-      > # or more contributor license agreements.  See the NOTICE file
-      > # distributed with this work for additional information
-      > # regarding copyright ownership.  The ASF licenses this file
-      > # to you under the Apache License, Version 2.0 (the
-      > # "License"); you may not use this file except in compliance
-      > # with the License.  You may obtain a copy of the License at
-    ...
-       10.       └─testthat:::waldo_compare(...)
-       11.         └─testthat:::local_reporter_output()
-       12.           └─reporter$local_user_output(.env)
-       13.             └─testthat::local_reproducible_output(...)
-       14.               └─withr::local_language(lang, .local_envir = .env)
-       15.                 └─withr:::check_language_envvar("LANG")
-      
-      [ FAIL 99 | WARN 6462 | SKIP 79 | PASS 6367 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 147.3Mb
-      sub-directories of 1Mb or more:
-        R       8.0Mb
-        libs  138.6Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘readr’
-    ```
-
-# crosstable
-
-<details>
-
-* Version: 0.7.0
-* GitHub: https://github.com/DanChaltiel/crosstable
-* Source code: https://github.com/cran/crosstable
-* Date/Publication: 2023-11-12 20:43:19 UTC
-* Number of recursive dependencies: 141
-
-Run `revdepcheck::cloud_details(, "crosstable")` for more info
+Run `revdepcheck::cloud_details(, "cloudfs")` for more info
 
 </details>
 
@@ -80,170 +24,17 @@ Run `revdepcheck::cloud_details(, "crosstable")` for more info
       > #
       > # Where should you do additional test configuration?
       > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/tests.html
-      > # * https://testthat.r-lib.org/reference/test_package.html#special-files
+      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
+      > # * https://testthat.r-lib.org/articles/special-files.html
     ...
-      ── Failure ('test-selection.R:57:3'): crosstable with external character vector ──
-      `.` produced warnings.
-      Backtrace:
-          ▆
-       1. ├─... %>% expect_silent() at test-selection.R:57:3
-       2. └─testthat::expect_silent(.)
+       3. │   └─testthat:::quasi_capture(...)
+       4. │     ├─testthat (local) .capture(...)
+       5. │     │ └─base::withCallingHandlers(...)
+       6. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+       7. └─testthat::with_mocked_bindings(...)
+       8.   └─rlang (local) `<fn>`(`<env>`)
       
-      [ FAIL 2 | WARN 380 | SKIP 38 | PASS 327 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-# data.validator
-
-<details>
-
-* Version: 0.2.1
-* GitHub: https://github.com/Appsilon/data.validator
-* Source code: https://github.com/cran/data.validator
-* Date/Publication: 2023-12-11 10:20:06 UTC
-* Number of recursive dependencies: 109
-
-Run `revdepcheck::cloud_details(, "data.validator")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(data.validator)
-      > 
-      > report_test <- function() {
-      +   dat <- data.frame(
-      +     V1 = c(1, 2, 3),
-      +     V2 = c("a", "b", "c")
-    ...
-      No columns selected, using all columns.
-      No columns selected, using all columns.
-      No columns selected, using all columns.
-      No columns selected, using all columns.
-      No columns selected, using all columns.
-      [ FAIL 0 | WARN 106 | SKIP 0 | PASS 104 ]
-      
-      [ FAIL 0 | WARN 106 | SKIP 0 | PASS 104 ]
-      Error: Tests generated warnings
-      Execution halted
-    ```
-
-# DBItest
-
-<details>
-
-* Version: 1.8.0
-* GitHub: https://github.com/r-dbi/DBItest
-* Source code: https://github.com/cran/DBItest
-* Date/Publication: 2023-12-21 14:30:02 UTC
-* Number of recursive dependencies: 119
-
-Run `revdepcheck::cloud_details(, "DBItest")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘DBItest.Rmd’ using rmarkdown
-    
-    Quitting from lines 166-167 [simple] (DBItest.Rmd)
-    Error: processing vignette 'DBItest.Rmd' failed with diagnostics:
-    Test failed
-    --- failed re-building ‘DBItest.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘DBItest.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# dials
-
-<details>
-
-* Version: 1.2.0
-* GitHub: https://github.com/tidymodels/dials
-* Source code: https://github.com/cran/dials
-* Date/Publication: 2023-04-03 15:30:10 UTC
-* Number of recursive dependencies: 75
-
-Run `revdepcheck::cloud_details(, "dials")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(dials)
-      Loading required package: scales
-      > 
-      > if (requireNamespace("xml2")) {
-      +   test_check("dials", reporter = MultiReporter$new(reporters = list(JunitReporter$new(file = "test-results.xml"), CheckReporter$new())))
-      + } else {
-      +   test_check("dials")
-      + }
-      Loading required namespace: xml2
-      Error in UseMethod("xml_add_child") : 
-        no applicable method for 'xml_add_child' applied to an object of class "NULL"
-      Calls: test_check ... o_apply -> lapply -> FUN -> <Anonymous> -> <Anonymous>
-      Execution halted
-    ```
-
-# dm
-
-<details>
-
-* Version: 1.0.9
-* GitHub: https://github.com/cynkra/dm
-* Source code: https://github.com/cran/dm
-* Date/Publication: 2024-01-08 12:00:05 UTC
-* Number of recursive dependencies: 137
-
-Run `revdepcheck::cloud_details(, "dm")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > 
-      > # Need to use qualified call, this is checked in helper-print.R
-      > testthat::test_check("dm")
-      Loading required package: dm
-      
-      Attaching package: 'dm'
-    ...
-      • draw-dm/nycflight-dm.svg
-      • draw-dm/single-empty-table-dm.svg
-      • draw-dm/table-desc-1-dm.svg
-      • draw-dm/table-desc-2-dm.svg
-      • draw-dm/table-desc-3-dm.svg
-      • draw-dm/table-desc-4-dm.svg
-      • draw-dm/table-uk-1-dm.svg
-      • draw-dm/table-uk-2-dm.svg
+      [ FAIL 2 | WARN 0 | SKIP 2 | PASS 2 ]
       Error: Test failures
       Execution halted
     ```
@@ -273,7 +64,7 @@ Run `revdepcheck::cloud_details(, "downlit")` for more info
       > library(downlit)
       > 
       > test_check("downlit")
-      [ FAIL 2 | WARN 291 | SKIP 28 | PASS 119 ]
+      [ FAIL 2 | WARN 0 | SKIP 28 | PASS 119 ]
       
       ══ Skipped tests (28) ══════════════════════════════════════════════════════════
     ...
@@ -284,22 +75,22 @@ Run `revdepcheck::cloud_details(, "downlit")` for more info
       `actual` is NULL
       `expected` is a list
       
-      [ FAIL 2 | WARN 291 | SKIP 28 | PASS 119 ]
+      [ FAIL 2 | WARN 0 | SKIP 28 | PASS 119 ]
       Error: Test failures
       Execution halted
     ```
 
-# dplyr
+# epidatr
 
 <details>
 
-* Version: 1.1.4
-* GitHub: https://github.com/tidyverse/dplyr
-* Source code: https://github.com/cran/dplyr
-* Date/Publication: 2023-11-17 16:50:02 UTC
-* Number of recursive dependencies: 97
+* Version: 1.0.0
+* GitHub: https://github.com/cmu-delphi/epidatr
+* Source code: https://github.com/cran/epidatr
+* Date/Publication: 2023-09-19 14:10:02 UTC
+* Number of recursive dependencies: 89
 
-Run `revdepcheck::cloud_details(, "dplyr")` for more info
+Run `revdepcheck::cloud_details(, "epidatr")` for more info
 
 </details>
 
@@ -310,81 +101,24 @@ Run `revdepcheck::cloud_details(, "dplyr")` for more info
       Running ‘testthat.R’
     Running the tests in ‘tests/testthat.R’ failed.
     Complete output:
-      > library(testthat)
-      > library(dplyr)
-      
-      Attaching package: 'dplyr'
-      
-      The following object is masked from 'package:testthat':
-      
+      > # This file is part of the standard setup for testthat.
+      > # It is recommended that you do not modify it.
+      > #
+      > # Where should you do additional test configuration?
+      > # Learn more about the roles of various files in:
+      > # * https://r-pkgs.org/tests.html
+      > # * https://testthat.r-lib.org/reference/test_package.html#special-files
     ...
+       1. └─rlang (local) `<fn>`(`<env>`)
+      ── Error ('test-epidatacall.R:143:1'): classic only fetch ──────────────────────
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'content'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
       
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Failure ('test-rows.R:161:3'): rows_update() works ──────────────────────────
-      `expect_identical(...)` produced warnings.
-      ── Failure ('test-rows.R:258:3'): rows_patch() works ───────────────────────────
-      `expect_identical(...)` produced warnings.
-      
-      [ FAIL 2 | WARN 5031 | SKIP 329 | PASS 2860 ]
+      [ FAIL 8 | WARN 3 | SKIP 0 | PASS 160 ]
       Error: Test failures
       Execution halted
-    ```
-
-## In both
-
-*   checking data for non-ASCII characters ... NOTE
-    ```
-      Note: found 4 marked UTF-8 strings
-    ```
-
-# exuber
-
-<details>
-
-* Version: 1.0.2
-* GitHub: https://github.com/kvasilopoulos/exuber
-* Source code: https://github.com/cran/exuber
-* Date/Publication: 2023-03-22 23:10:02 UTC
-* Number of recursive dependencies: 102
-
-Run `revdepcheck::cloud_details(, "exuber")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(exuber)
-      > 
-      > test_check("exuber")
-      [ FAIL 2 | WARN 54 | SKIP 4 | PASS 199 ]
-      
-    ...
-       29.                           └─testthat:::waldo_compare(before, after, x_arg = "before", y_arg = "after")
-       30.                             └─testthat:::local_reporter_output()
-       31.                               └─reporter$local_user_output(.env)
-       32.                                 └─testthat::local_reproducible_output(...)
-       33.                                   └─withr::local_language(lang, .local_envir = .env)
-       34.                                     └─withr:::check_language_envvar("LANG")
-      
-      [ FAIL 2 | WARN 54 | SKIP 4 | PASS 199 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.5Mb
-      sub-directories of 1Mb or more:
-        libs   4.4Mb
     ```
 
 # gargle
@@ -413,7 +147,7 @@ Run `revdepcheck::cloud_details(, "gargle")` for more info
       > library(gargle)
       > 
       > test_check("gargle")
-      [ FAIL 29 | WARN 501 | SKIP 82 | PASS 214 ]
+      [ FAIL 29 | WARN 8 | SKIP 82 | PASS 214 ]
       
     ...
       ── Error ('test-response_process.R:53:3'): HTML error is offered as a file ─────
@@ -423,7 +157,48 @@ Run `revdepcheck::cloud_details(, "gargle")` for more info
        1. └─testthat::expect_snapshot(...) at test-response_process.R:53:3
        2.   └─rlang::cnd_signal(state$error)
       
-      [ FAIL 29 | WARN 501 | SKIP 82 | PASS 214 ]
+      [ FAIL 29 | WARN 8 | SKIP 82 | PASS 214 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+# gmailr
+
+<details>
+
+* Version: 2.0.0
+* GitHub: https://github.com/r-lib/gmailr
+* Source code: https://github.com/cran/gmailr
+* Date/Publication: 2023-06-30 05:40:02 UTC
+* Number of recursive dependencies: 57
+
+Run `revdepcheck::cloud_details(, "gmailr")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ... ERROR
+    ```
+      Running ‘testthat.R’
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > # This file is part of the standard setup for testthat.
+      > # It is recommended that you do not modify it.
+      > #
+      > # Where should you do additional test configuration?
+      > # Learn more about the roles of various files in:
+      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
+      > # * https://testthat.r-lib.org/articles/special-files.html
+    ...
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Error ('test-gm_auth.R:28:1'): gm_auth() errors informatively ───────────────
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'gm_default_oauth_client'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
+      
+      [ FAIL 1 | WARN 0 | SKIP 21 | PASS 60 ]
       Error: Test failures
       Execution halted
     ```
@@ -464,7 +239,7 @@ Run `revdepcheck::cloud_details(, "httr2")` for more info
       `actual` is an S3 object of class <httr2_response>, a list
       `expected` is NULL
       
-      [ FAIL 37 | WARN 877 | SKIP 82 | PASS 404 ]
+      [ FAIL 37 | WARN 0 | SKIP 82 | PASS 404 ]
       Error: Test failures
       Execution halted
     ```
@@ -504,7 +279,7 @@ Run `revdepcheck::cloud_details(, "lintr")` for more info
     > tmp <- withr::local_tempfile(lines = "c('a', 'b')")
     > expr_as_xml <- get_source_expressions(tmp)$expressions[[1L]]$xml_parsed_content
     Warning in file(con, "r") :
-      cannot open file '/tmp/RtmpvdTETg/filecb67a5916f4': No such file or directory
+      cannot open file '/tmp/RtmpLavXx8/filecb46c69db2c': No such file or directory
     Error in file(con, "r") : cannot open the connection
     Calls: <Anonymous> ... read_lines -> withCallingHandlers -> readLines -> file
     Execution halted
@@ -517,17 +292,17 @@ Run `revdepcheck::cloud_details(, "lintr")` for more info
     Package which this enhances but not available for checking: ‘data.table’
     ```
 
-# mockr
+# odbc
 
 <details>
 
-* Version: 0.2.1
-* GitHub: https://github.com/krlmlr/mockr
-* Source code: https://github.com/cran/mockr
-* Date/Publication: 2023-02-01 12:20:02 UTC
-* Number of recursive dependencies: 71
+* Version: 1.4.1
+* GitHub: https://github.com/r-dbi/odbc
+* Source code: https://github.com/cran/odbc
+* Date/Publication: 2023-12-21 05:40:02 UTC
+* Number of recursive dependencies: 74
 
-Run `revdepcheck::cloud_details(, "mockr")` for more info
+Run `revdepcheck::cloud_details(, "odbc")` for more info
 
 </details>
 
@@ -538,126 +313,169 @@ Run `revdepcheck::cloud_details(, "mockr")` for more info
       Running ‘testthat.R’
     Running the tests in ‘tests/testthat.R’ failed.
     Complete output:
-      > library(testthat)
-      > library(mockr)
-      
-      Attaching package: 'mockr'
-      
-      The following objects are masked from 'package:testthat':
-      
+      > # This file is part of the standard setup for testthat.
+      > # It is recommended that you do not modify it.
+      > #
+      > # Where should you do additional test configuration?
+      > # Learn more about the roles of various files in:
+      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
+      > # * https://testthat.r-lib.org/articles/special-files.html
     ...
-      `expect_null(with_mock())` produced unexpected warnings.
-      Expected match: Not (?:mocking|evaluating) anything
-      Actual values:
-      * Not mocking anything. Please use named arguments to specify the functions you want to mock.
-      * Not evaluating anything. Please use unnamed arguments to specify expressions you want to evaluate.
-      * Changing language has no effect when envvar LANG='C.UTF-8'
+       1. └─rlang (local) `<fn>`(`<env>`)
+      ── Error ('test-odbc-config.R:28:1'): odbcListConfig errors informatively with unexpected odbcinst output ──
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'system'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
       
-      [ FAIL 1 | WARN 27 | SKIP 0 | PASS 51 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-# move2
-
-<details>
-
-* Version: 0.2.7
-* GitHub: NA
-* Source code: https://github.com/cran/move2
-* Date/Publication: 2023-12-13 11:30:02 UTC
-* Number of recursive dependencies: 113
-
-Run `revdepcheck::cloud_details(, "move2")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(move2)
-      > 
-      > 
-      > test_check("move2")
-      Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE
-      Joining with `by = join_by(`individual-local-identifier`)`
-    ...
-      ── Failure ('test-mt_filter_unique.R:64:3'): Filtering with additional columns ──
-      `expect_identical(...)` produced warnings.
-      ── Failure ('test-mt_filter_unique.R:65:3'): Filtering with additional columns ──
-      `expect_identical(...)` produced warnings.
-      ── Failure ('test-mt_stack.R:187:3'): duplicate individuals rename ─────────────
-      `expect_identical(...)` produced warnings.
-      
-      [ FAIL 5 | WARN 637 | SKIP 14 | PASS 655 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-# rlang
-
-<details>
-
-* Version: 1.1.3
-* GitHub: https://github.com/r-lib/rlang
-* Source code: https://github.com/cran/rlang
-* Date/Publication: 2024-01-10 12:00:02 UTC
-* Number of recursive dependencies: 70
-
-Run `revdepcheck::cloud_details(, "rlang")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘sink.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # Workaround for loadNamespace() failure on R 3.2
-      > requireNamespace("rlang")
-      Loading required namespace: rlang
-      > 
-      > library("testthat")
-      > library("rlang")
-    ...
-       10.     └─testthat:::waldo_compare(...)
-       11.       └─testthat:::local_reporter_output()
-       12.         └─reporter$local_user_output(.env)
-       13.           └─testthat::local_reproducible_output(...)
-       14.             └─withr::local_language(lang, .local_envir = .env)
-       15.               └─withr:::check_language_envvar("LANG")
-      
-      [ FAIL 8 | WARN 5680 | SKIP 251 | PASS 3867 ]
+      [ FAIL 9 | WARN 0 | SKIP 18 | PASS 44 ]
       Error: Test failures
       Execution halted
     ```
 
 ## In both
 
-*   checking package dependencies ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Package which this enhances but not available for checking: ‘winch’
+      installed size is 13.5Mb
+      sub-directories of 1Mb or more:
+        libs  12.6Mb
     ```
 
-# RSQLite
+# paws.common
 
 <details>
 
-* Version: 2.3.4
-* GitHub: https://github.com/r-dbi/RSQLite
-* Source code: https://github.com/cran/RSQLite
-* Date/Publication: 2023-12-08 00:10:13 UTC
-* Number of recursive dependencies: 80
+* Version: 0.7.0
+* GitHub: https://github.com/paws-r/paws
+* Source code: https://github.com/cran/paws.common
+* Date/Publication: 2024-01-09 06:40:02 UTC
+* Number of recursive dependencies: 46
 
-Run `revdepcheck::cloud_details(, "RSQLite")` for more info
+Run `revdepcheck::cloud_details(, "paws.common")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ... ERROR
+    ```
+      Running ‘testthat.R’
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > # This file is part of the standard setup for testthat.
+      > # It is recommended that you do not modify it.
+      > #
+      > # Where should you do additional test configuration?
+      > # Learn more about the roles of various files in:
+      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
+      > # * https://testthat.r-lib.org/articles/special-files.html
+    ...
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Error ('test_credential_providers.R:59:1'): config_file_provider ────────────
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'get_assume_role_with_web_identity_creds'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
+      
+      [ FAIL 1 | WARN 0 | SKIP 10 | PASS 920 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+# reprex
+
+<details>
+
+* Version: 2.1.0
+* GitHub: https://github.com/tidyverse/reprex
+* Source code: https://github.com/cran/reprex
+* Date/Publication: 2024-01-11 08:30:04 UTC
+* Number of recursive dependencies: 81
+
+Run `revdepcheck::cloud_details(, "reprex")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ... ERROR
+    ```
+      Running ‘spelling.R’
+      Running ‘testthat.R’
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(reprex)
+      > 
+      > if (rmarkdown::pandoc_available("2.0.0")) {
+      +   test_check("reprex")
+      + }
+    ...
+      ── Error ('test-utils.R:2:3'): locate_input() works ────────────────────────────
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'reprex_clipboard'
+      Backtrace:
+          ▆
+       1. └─testthat::with_mocked_bindings(...) at test-utils.R:2:3
+       2.   └─rlang (local) `<fn>`(`<env>`) at test-utils.R:2:3
+      
+      [ FAIL 1 | WARN 0 | SKIP 65 | PASS 58 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+# rsconnect
+
+<details>
+
+* Version: 1.2.0
+* GitHub: https://github.com/rstudio/rsconnect
+* Source code: https://github.com/cran/rsconnect
+* Date/Publication: 2023-12-15 03:20:02 UTC
+* Number of recursive dependencies: 85
+
+Run `revdepcheck::cloud_details(, "rsconnect")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ... ERROR
+    ```
+      Running ‘testthat.R’
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(rsconnect)
+      > 
+      > test_check("rsconnect")
+      Starting 2 test processes
+      [ FAIL 18 | WARN 0 | SKIP 144 | PASS 628 ]
+      
+    ...
+       1. └─rlang (local) `<fn>`(`<env>`)
+      ── Error ('test-servers.R:188:1'): findServer() errors/prompts of multiple servers present ──
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'servers'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
+      
+      [ FAIL 18 | WARN 0 | SKIP 144 | PASS 628 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+# shiny.telemetry
+
+<details>
+
+* Version: 0.2.0
+* GitHub: https://github.com/Appsilon/shiny.telemetry
+* Source code: https://github.com/cran/shiny.telemetry
+* Date/Publication: 2023-11-16 15:30:02 UTC
+* Number of recursive dependencies: 119
+
+Run `revdepcheck::cloud_details(, "shiny.telemetry")` for more info
 
 </details>
 
@@ -676,81 +494,16 @@ Run `revdepcheck::cloud_details(, "RSQLite")` for more info
       > # * https://r-pkgs.org/tests.html
       > # * https://testthat.r-lib.org/reference/test_package.html#special-files
     ...
-       61.           └─reporter$local_user_output(.env)
-       62.             └─testthat::local_reproducible_output(...)
-       63.               └─withr::local_language(lang, .local_envir = .env)
-       64.                 └─withr:::check_language_envvar("LANG")
+       2.   └─rlang (local) `<fn>`(`<env>`) at test-telemetry-integration-sqlite.R:10:3
+      ── Error ('test-telemetry.R:136:3'): Telemetry tests with mock data_storage layer ──
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'observeEvent'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
       
-      [ FAIL 1 | WARN 843 | SKIP 7 | PASS 685 ]
-      Error: Test failures
-      In addition: Warning message:
-      call dbDisconnect() when finished working with a connection 
-      Execution halted
-    ```
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 14.4Mb
-      sub-directories of 1Mb or more:
-        libs  13.6Mb
-    ```
-
-# sass
-
-<details>
-
-* Version: 0.4.8
-* GitHub: https://github.com/rstudio/sass
-* Source code: https://github.com/cran/sass
-* Date/Publication: 2023-12-06 05:00:02 UTC
-* Number of recursive dependencies: 59
-
-Run `revdepcheck::cloud_details(, "sass")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(sass)
-      > 
-      > test_check("sass")
-      [ FAIL 1 | WARN 307 | SKIP 4 | PASS 188 ]
-      
-      ══ Skipped tests (4) ═══════════════════════════════════════════════════════════
-    ...
-       12.           └─reporter$local_user_output(.env)
-       13.             └─testthat::local_reproducible_output(...)
-       14.               └─withr::local_language(lang, .local_envir = .env)
-       15.                 └─withr:::check_language_envvar("LANG")
-      
-      [ FAIL 1 | WARN 307 | SKIP 4 | PASS 188 ]
-      Deleting unused snapshots:
-      • font-objects/font-css
+      [ FAIL 3 | WARN 0 | SKIP 16 | PASS 87 ]
       Error: Test failures
       Execution halted
-    ```
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        doc    1.7Mb
-        libs   3.4Mb
-    ```
-
-*   checking for GNU extensions in Makefiles ... NOTE
-    ```
-    GNU make is a SystemRequirements.
     ```
 
 # testthat
@@ -778,18 +531,18 @@ Run `revdepcheck::cloud_details(, "testthat")` for more info
       > library(testthat)
       > test_check("testthat")
       Starting 2 test processes
-      [ FAIL 43 | WARN 798 | SKIP 32 | PASS 601 ]
+      [ FAIL 44 | WARN 0 | SKIP 74 | PASS 828 ]
       
-      ══ Skipped tests (32) ══════════════════════════════════════════════════════════
+      ══ Skipped tests (74) ══════════════════════════════════════════════════════════
     ...
-      • R4.1/snapshot-file/version.txt
-      • R4.2/snapshot-file/version.txt
-      • R4.3/snapshot-file/version.txt
-      • snapshot-file/a.txt
-      • snapshot-file/foo.csv
-      • snapshot-file/foo.png
-      • snapshot-file/foo.r
-      • snapshot-file/secret.txt
+      ── Error ('test-try-again.R:8:1'): tries multiple times ────────────────────────
+      Error in `call_type(call)`: corrupt language object
+      ── Error ('test-verify-output.R:15:1'): can record all types of output ─────────
+      Error in `call_type(call)`: corrupt language object
+      ── Error ('test-verify-output.R:41:1'): can't record plots ─────────────────────
+      Error in `call_type(call)`: corrupt language object
+      
+      [ FAIL 44 | WARN 0 | SKIP 74 | PASS 828 ]
       Error: Test failures
       Execution halted
     ```
@@ -829,17 +582,17 @@ Run `revdepcheck::cloud_details(, "testthat")` for more info
         libs   8.5Mb
     ```
 
-# vegawidget
+# usethis
 
 <details>
 
-* Version: 0.4.3
-* GitHub: https://github.com/vegawidget/vegawidget
-* Source code: https://github.com/cran/vegawidget
-* Date/Publication: 2023-09-03 04:40:02 UTC
-* Number of recursive dependencies: 107
+* Version: 2.2.2
+* GitHub: https://github.com/r-lib/usethis
+* Source code: https://github.com/cran/usethis
+* Date/Publication: 2023-07-06 00:20:02 UTC
+* Number of recursive dependencies: 84
 
-Run `revdepcheck::cloud_details(, "vegawidget")` for more info
+Run `revdepcheck::cloud_details(, "usethis")` for more info
 
 </details>
 
@@ -847,27 +600,34 @@ Run `revdepcheck::cloud_details(, "vegawidget")` for more info
 
 *   checking tests ... ERROR
     ```
+      Running ‘spelling.R’
       Running ‘testthat.R’
     Running the tests in ‘tests/testthat.R’ failed.
     Complete output:
       > library(testthat)
-      > library(vegawidget)
+      > library(usethis)
       > 
-      > test_check("vegawidget")
-      
-      Attaching package: 'rlang'
+      > test_check("usethis")
+      [ FAIL 31 | WARN 0 | SKIP 103 | PASS 615 ]
       
     ...
-        'test-to-image.R:78:3', 'test-to-image.R:100:3', 'test-to-vega.R:6:3',
-        'test-vega-version.R:3:3', 'test-vegaspec.R:86:3'
+       1. └─rlang (local) `<fn>`(`<env>`)
+      ── Error ('test-version.R:47:1'): use_version() updates (development version) directly ──
+      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'cran_version'
+      Backtrace:
+          ▆
+       1. └─rlang (local) `<fn>`(`<env>`)
       
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Failure ('test-rlang-check.R:14:3'): rlang functions work and are silent ────
-      `expect_identical(NULL %||% 4, 4)` produced warnings.
-      
-      [ FAIL 1 | WARN 141 | SKIP 10 | PASS 101 ]
+      [ FAIL 31 | WARN 0 | SKIP 103 | PASS 615 ]
       Error: Test failures
       Execution halted
+    ```
+
+## In both
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘devtools’
     ```
 
 # vetiver
@@ -906,63 +666,8 @@ Run `revdepcheck::cloud_details(, "vetiver")` for more info
        3.     └─base::eval(substitute(code), describe_environment)
        4.       └─rlang (local) `<fn>`(`<env>`)
       
-      [ FAIL 1 | WARN 414 | SKIP 63 | PASS 177 ]
+      [ FAIL 1 | WARN 0 | SKIP 63 | PASS 177 ]
       Error: Test failures
       Execution halted
-    ```
-
-# vroom
-
-<details>
-
-* Version: 1.6.5
-* GitHub: https://github.com/tidyverse/vroom
-* Source code: https://github.com/cran/vroom
-* Date/Publication: 2023-12-05 23:50:02 UTC
-* Number of recursive dependencies: 97
-
-Run `revdepcheck::cloud_details(, "vroom")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(vroom)
-      
-      Attaching package: 'vroom'
-      
-      The following object is masked from 'package:testthat':
-    ...
-        9.     └─testthat:::waldo_compare(...)
-       10.       └─testthat:::local_reporter_output()
-       11.         └─reporter$local_user_output(.env)
-       12.           └─testthat::local_reproducible_output(...)
-       13.             └─withr::local_language(lang, .local_envir = .env)
-       14.               └─withr:::check_language_envvar("LANG")
-      
-      [ FAIL 1 | WARN 875 | SKIP 13 | PASS 1084 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 27.5Mb
-      sub-directories of 1Mb or more:
-        libs  25.9Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘readr’
     ```
 
