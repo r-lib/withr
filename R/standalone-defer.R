@@ -5,7 +5,16 @@
 # license: https://unlicense.org
 # ---
 #
-# Implementation of `withr::defer()`.
+# Implementation of `withr::defer()`. Only needed to get special
+# withr features like `deferred_run()` support. If you just need
+# a simple standalone version, use:
+#
+# ````
+# defer <- function(expr, frame = parent.frame(), after = FALSE) {
+#   thunk <- as.call(list(function() expr))
+#   do.call(on.exit, list(thunk, add = TRUE, after = after), envir = frame)
+# }
+# ````
 #
 # ## Changelog
 #
