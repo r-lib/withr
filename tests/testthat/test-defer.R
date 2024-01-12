@@ -28,3 +28,18 @@ test_that("deferred_run() displays how many expressions were run", {
     deferred_run()
   })))
 })
+
+test_that("can't run `deferred_run()` in knitr", {
+    skip_if_cannot_knit()
+
+    rmd <- local_tempfile(fileext = ".Rmd")
+    writeLines(rmd, text = "
+```{r}
+withr::deferred_run()
+```
+")
+    expect_error(
+      suppressMessages(rmarkdown::render(rmd, quiet = TRUE)),
+      "in a knitted document"
+    )
+})

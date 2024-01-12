@@ -81,6 +81,9 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 #' @rdname defer
 #' @export
 deferred_run <- function(envir = parent.frame()) {
+  if (knitr_in_progress()) {
+    stop("Can't run `deferred_run()` in a knitted document")
+  }
   if (is_top_level_global_env(envir)) {
     handlers <- the$global_exits
   } else {
