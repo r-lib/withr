@@ -38,7 +38,9 @@ test_that("defer()'s global env facilities work", {
   expect_length(h, 2)
   expect_equal(Sys.getenv("abcdefg"), "tuvwxyz")
 
-  expect_output(deferred_run(globalenv()), "howdy")
+  suppressMessages(
+    expect_output(deferred_run(globalenv()), "howdy")
+  )
   expect_equal(Sys.getenv("abcdefg"), "abcdefg")
 
   expect_message(defer(print("never going to happen"), envir = globalenv()))
