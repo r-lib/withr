@@ -47,7 +47,8 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   # `LC_ALL` has precedence over `LANG`. Check for the latter if the
   # former is unset, otherwise check for the former.
   if (Sys.getenv("LC_ALL", "") == "") {
-    check_language_envvar("LANG")
+    # Causes too many failures because testthat sets `LANG` to "C"
+    # check_language_envvar("LANG")
   } else {
     check_language_envvar("LC_ALL")
   }
