@@ -705,7 +705,7 @@ Run `revdepcheck::cloud_details(, "microbiomeMarker")` for more info
 * Version: NA
 * GitHub: NA
 * Source code: https://github.com/cran/MicrobiotaProcess
-* Number of recursive dependencies: 168
+* Number of recursive dependencies: 170
 
 Run `revdepcheck::cloud_details(, "MicrobiotaProcess")` for more info
 

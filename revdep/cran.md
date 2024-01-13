@@ -1,8 +1,8 @@
 ## revdepcheck results
 
-We checked 615 reverse dependencies (579 from CRAN + 36 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 614 reverse dependencies (578 from CRAN + 36 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
 
- * We saw 15 new problems
+ * We saw 8 new problems
  * We failed to check 0 packages
 
 Issues with CRAN packages are summarised below.
@@ -10,49 +10,43 @@ Issues with CRAN packages are summarised below.
 ### New problems
 (This reports the first line of each new failure)
 
-* cloudfs
-  checking tests ... ERROR
-
-* downlit
-  checking tests ... ERROR
-
-* epidatr
-  checking tests ... ERROR
-
-* gargle
-  checking tests ... ERROR
-
-* gmailr
-  checking tests ... ERROR
-
-* httr2
-  checking tests ... ERROR
+* goodpractice
+  checking whether the package can be loaded ... ERROR
+  checking whether the package can be loaded with stated dependencies ... WARNING
+  checking whether the package can be unloaded cleanly ... WARNING
+  checking whether the namespace can be loaded with stated dependencies ... WARNING
+  checking whether the namespace can be unloaded cleanly ... WARNING
+  checking loading without being on the library search path ... WARNING
+  checking R code for possible problems ... NOTE
 
 * lintr
+  checking whether the package can be loaded ... ERROR
   checking examples ... ERROR
+  checking whether the package can be loaded with stated dependencies ... WARNING
+  checking whether the package can be unloaded cleanly ... WARNING
+  checking whether the namespace can be loaded with stated dependencies ... WARNING
+  checking whether the namespace can be unloaded cleanly ... WARNING
+  checking loading without being on the library search path ... WARNING
+  checking Rd files ... WARNING
+  checking for unstated dependencies in examples ... WARNING
+  checking startup messages can be suppressed ... NOTE
+  checking R code for possible problems ... NOTE
 
-* odbc
-  checking tests ... ERROR
+* mlr3oml
+  checking dependencies in R code ... NOTE
 
-* paws.common
-  checking tests ... ERROR
+* mlr3pipelines
+  checking dependencies in R code ... NOTE
 
-* reprex
-  checking tests ... ERROR
+* personalr
+  checking dependencies in R code ... NOTE
 
-* rsconnect
-  checking tests ... ERROR
-
-* shiny.telemetry
-  checking tests ... ERROR
+* rhino
+  checking dependencies in R code ... NOTE
 
 * testthat
-  checking tests ... ERROR
   checking re-building of vignette outputs ... ERROR
 
-* usethis
-  checking tests ... ERROR
-
-* vetiver
-  checking tests ... ERROR
+* webfakes
+  checking dependencies in R code ... NOTE
 

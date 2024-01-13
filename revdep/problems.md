@@ -1,247 +1,75 @@
-# cloudfs
+# goodpractice
 
 <details>
 
-* Version: 0.1.2
-* GitHub: https://github.com/g6t/cloudfs
-* Source code: https://github.com/cran/cloudfs
-* Date/Publication: 2023-10-18 15:30:08 UTC
-* Number of recursive dependencies: 84
+* Version: 1.0.4
+* GitHub: https://github.com/mangothecat/goodpractice
+* Source code: https://github.com/cran/goodpractice
+* Date/Publication: 2022-08-30 19:00:02 UTC
+* Number of recursive dependencies: 73
 
-Run `revdepcheck::cloud_details(, "cloudfs")` for more info
+Run `revdepcheck::cloud_details(, "goodpractice")` for more info
 
 </details>
 
 ## Newly broken
 
-*   checking tests ... ERROR
+*   checking whether the package can be loaded ... ERROR
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
-      > # * https://testthat.r-lib.org/articles/special-files.html
-    ...
-       3. │   └─testthat:::quasi_capture(...)
-       4. │     ├─testthat (local) .capture(...)
-       5. │     │ └─base::withCallingHandlers(...)
-       6. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
-       7. └─testthat::with_mocked_bindings(...)
-       8.   └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 2 | WARN 0 | SKIP 2 | PASS 2 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package has a loading problem: see the messages for
+    details.
     ```
 
-# downlit
-
-<details>
-
-* Version: 0.4.3
-* GitHub: https://github.com/r-lib/downlit
-* Source code: https://github.com/cran/downlit
-* Date/Publication: 2023-06-29 22:40:08 UTC
-* Number of recursive dependencies: 62
-
-Run `revdepcheck::cloud_details(, "downlit")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
+*   checking whether the package can be loaded with stated dependencies ... WARNING
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(downlit)
-      > 
-      > test_check("downlit")
-      [ FAIL 2 | WARN 0 | SKIP 28 | PASS 119 ]
-      
-      ══ Skipped tests (28) ══════════════════════════════════════════════════════════
-    ...
-       1. └─rlang (local) `<fn>`(`<env>`)
-      ── Failure ('test-topic-index.R:31:3'): can find topic in attached packages ────
-      find_rdname_attached("unit") (`actual`) not equal to list(rdname = "unit", package = "grid") (`expected`).
-      
-      `actual` is NULL
-      `expected` is a list
-      
-      [ FAIL 2 | WARN 0 | SKIP 28 | PASS 119 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package (or one of its dependent packages) has an
+    unstated dependence on a standard package.  All dependencies must be
+    declared in DESCRIPTION.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-# epidatr
-
-<details>
-
-* Version: 1.0.0
-* GitHub: https://github.com/cmu-delphi/epidatr
-* Source code: https://github.com/cran/epidatr
-* Date/Publication: 2023-09-19 14:10:02 UTC
-* Number of recursive dependencies: 89
-
-Run `revdepcheck::cloud_details(, "epidatr")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
+*   checking whether the package can be unloaded cleanly ... WARNING
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/tests.html
-      > # * https://testthat.r-lib.org/reference/test_package.html#special-files
-    ...
-       1. └─rlang (local) `<fn>`(`<env>`)
-      ── Error ('test-epidatacall.R:143:1'): classic only fetch ──────────────────────
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'content'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 8 | WARN 3 | SKIP 0 | PASS 160 ]
-      Error: Test failures
-      Execution halted
+    ---- unloading
     ```
 
-# gargle
-
-<details>
-
-* Version: 1.5.2
-* GitHub: https://github.com/r-lib/gargle
-* Source code: https://github.com/cran/gargle
-* Date/Publication: 2023-07-20 18:50:08 UTC
-* Number of recursive dependencies: 70
-
-Run `revdepcheck::cloud_details(, "gargle")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
     ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(gargle)
-      > 
-      > test_check("gargle")
-      [ FAIL 29 | WARN 8 | SKIP 82 | PASS 214 ]
-      
-    ...
-      ── Error ('test-response_process.R:53:3'): HTML error is offered as a file ─────
-      Error in `readLines(path_to_html_error)`: 'con' is not a connection
-      Backtrace:
-          ▆
-       1. └─testthat::expect_snapshot(...) at test-response_process.R:53:3
-       2.   └─rlang::cnd_signal(state$error)
-      
-      [ FAIL 29 | WARN 8 | SKIP 82 | PASS 214 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
     ```
 
-# gmailr
-
-<details>
-
-* Version: 2.0.0
-* GitHub: https://github.com/r-lib/gmailr
-* Source code: https://github.com/cran/gmailr
-* Date/Publication: 2023-06-30 05:40:02 UTC
-* Number of recursive dependencies: 57
-
-Run `revdepcheck::cloud_details(, "gmailr")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
+*   checking whether the namespace can be unloaded cleanly ... WARNING
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
-      > # * https://testthat.r-lib.org/articles/special-files.html
-    ...
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Error ('test-gm_auth.R:28:1'): gm_auth() errors informatively ───────────────
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'gm_default_oauth_client'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 1 | WARN 0 | SKIP 21 | PASS 60 ]
-      Error: Test failures
-      Execution halted
+    ---- unloading
     ```
 
-# httr2
-
-<details>
-
-* Version: 1.0.0
-* GitHub: https://github.com/r-lib/httr2
-* Source code: https://github.com/cran/httr2
-* Date/Publication: 2023-11-14 13:53:23 UTC
-* Number of recursive dependencies: 70
-
-Run `revdepcheck::cloud_details(, "httr2")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
+*   checking loading without being on the library search path ... WARNING
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(httr2)
-      
-      Attaching package: 'httr2'
-      
-      The following objects are masked from 'package:testthat':
-      
-    ...
-      out[[3]] inherits from 'httr2_response' not 'httr2_http_404'.
-      ── Failure ('test-sequential.R:56:3'): on_error = 'return' returns error ───────
-      out[[4]] (`actual`) not equal to NULL (`expected`).
-      
-      `actual` is an S3 object of class <httr2_response>, a list
-      `expected` is NULL
-      
-      [ FAIL 37 | WARN 0 | SKIP 82 | PASS 404 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package has a loading problem when not on .libPaths:
+    see the messages for details.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
     ```
 
 # lintr
@@ -259,6 +87,15 @@ Run `revdepcheck::cloud_details(, "lintr")` for more info
 </details>
 
 ## Newly broken
+
+*   checking whether the package can be loaded ... ERROR
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package has a loading problem: see the messages for
+    details.
+    ```
 
 *   checking examples ... ERROR
     ```
@@ -279,10 +116,80 @@ Run `revdepcheck::cloud_details(, "lintr")` for more info
     > tmp <- withr::local_tempfile(lines = "c('a', 'b')")
     > expr_as_xml <- get_source_expressions(tmp)$expressions[[1L]]$xml_parsed_content
     Warning in file(con, "r") :
-      cannot open file '/tmp/RtmpLavXx8/filecb46c69db2c': No such file or directory
+      cannot open file '/tmp/Rtmp3mj1XV/filed0eeb39fdc': No such file or directory
     Error in file(con, "r") : cannot open the connection
     Calls: <Anonymous> ... read_lines -> withCallingHandlers -> readLines -> file
     Execution halted
+    ```
+
+*   checking whether the package can be loaded with stated dependencies ... WARNING
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package (or one of its dependent packages) has an
+    unstated dependence on a standard package.  All dependencies must be
+    declared in DESCRIPTION.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    ---- unloading
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking whether the namespace can be unloaded cleanly ... WARNING
+    ```
+    ---- unloading
+    ```
+
+*   checking loading without being on the library search path ... WARNING
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package has a loading problem when not on .libPaths:
+    see the messages for details.
+    ```
+
+*   checking Rd files ... WARNING
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    ```
+
+*   checking for unstated dependencies in examples ... WARNING
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    ```
+
+*   checking startup messages can be suppressed ... NOTE
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    
+    It looks like this package (or a package it requires) has a startup
+    message which cannot be suppressed: see ?packageStartupMessage.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
     ```
 
 ## In both
@@ -292,218 +199,144 @@ Run `revdepcheck::cloud_details(, "lintr")` for more info
     Package which this enhances but not available for checking: ‘data.table’
     ```
 
-# odbc
+# mlr3oml
 
 <details>
 
-* Version: 1.4.1
-* GitHub: https://github.com/r-dbi/odbc
-* Source code: https://github.com/cran/odbc
-* Date/Publication: 2023-12-21 05:40:02 UTC
-* Number of recursive dependencies: 74
+* Version: 0.9.0
+* GitHub: https://github.com/mlr-org/mlr3oml
+* Source code: https://github.com/cran/mlr3oml
+* Date/Publication: 2023-09-13 12:30:02 UTC
+* Number of recursive dependencies: 71
 
-Run `revdepcheck::cloud_details(, "odbc")` for more info
+Run `revdepcheck::cloud_details(, "mlr3oml")` for more info
 
 </details>
 
 ## Newly broken
 
-*   checking tests ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
-      > # * https://testthat.r-lib.org/articles/special-files.html
-    ...
-       1. └─rlang (local) `<fn>`(`<env>`)
-      ── Error ('test-odbc-config.R:28:1'): odbcListConfig errors informatively with unexpected odbcinst output ──
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'system'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 9 | WARN 0 | SKIP 18 | PASS 44 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
+    ```
+
+# mlr3pipelines
+
+<details>
+
+* Version: 0.5.0-2
+* GitHub: https://github.com/mlr-org/mlr3pipelines
+* Source code: https://github.com/cran/mlr3pipelines
+* Date/Publication: 2023-12-08 22:20:03 UTC
+* Number of recursive dependencies: 163
+
+Run `revdepcheck::cloud_details(, "mlr3pipelines")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
     ```
 
 ## In both
 
-*   checking installed package size ... NOTE
+*   checking examples ... ERROR
     ```
-      installed size is 13.5Mb
-      sub-directories of 1Mb or more:
-        libs  12.6Mb
+    Running examples in ‘mlr3pipelines-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: mlr_pipeops_encodelmer
+    > ### Title: Impact Encoding with Random Intercept Models
+    > ### Aliases: mlr_pipeops_encodelmer PipeOpEncodeLmer
+    > 
+    > ### ** Examples
+    > 
+    > library("mlr3")
+    ...
+    +     x = factor(c("a", "a", "a", "b", "b")),
+    +     y = factor(c("a", "a", "b", "b", "b"))),
+    +   "x")
+    > 
+    > poe$train(list(task))[[1]]$data()
+    Error in initializePtr() : 
+      function 'cholmod_factor_ldetA' not provided by package 'Matrix'
+    This happened PipeOp encodelmer's $train()
+    Calls: <Anonymous> ... <Anonymous> -> initializePtr -> .Call -> .handleSimpleError -> h
+    Execution halted
     ```
-
-# paws.common
-
-<details>
-
-* Version: 0.7.0
-* GitHub: https://github.com/paws-r/paws
-* Source code: https://github.com/cran/paws.common
-* Date/Publication: 2024-01-09 06:40:02 UTC
-* Number of recursive dependencies: 46
-
-Run `revdepcheck::cloud_details(, "paws.common")` for more info
-
-</details>
-
-## Newly broken
 
 *   checking tests ... ERROR
     ```
       Running ‘testthat.R’
     Running the tests in ‘tests/testthat.R’ failed.
     Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
-      > # * https://testthat.r-lib.org/articles/special-files.html
+      > if (requireNamespace("testthat", quietly = TRUE)) {
+      +   library("checkmate")
+      +   library("testthat")
+      +   library("mlr3")
+      +   library("paradox")
+      +   library("mlr3pipelines")
+      +   test_check("mlr3pipelines")
     ...
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Error ('test_credential_providers.R:59:1'): config_file_provider ────────────
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'get_assume_role_with_web_identity_creds'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
+       27. │                                     ├─methods::initialize(value, ...)
+       28. │                                     └─methods::initialize(value, ...)
+       29. │                                       └─.Object$initialize(...)
+       30. │                                         └─lme4 (local) initializePtr()
+       31. └─base::.handleSimpleError(...)
+       32.   └─mlr3pipelines (local) h(simpleError(msg, call))
       
-      [ FAIL 1 | WARN 0 | SKIP 10 | PASS 920 ]
+      [ FAIL 1 | WARN 9 | SKIP 79 | PASS 12761 ]
       Error: Test failures
       Execution halted
     ```
 
-# reprex
+# personalr
 
 <details>
 
-* Version: 2.1.0
-* GitHub: https://github.com/tidyverse/reprex
-* Source code: https://github.com/cran/reprex
-* Date/Publication: 2024-01-11 08:30:04 UTC
-* Number of recursive dependencies: 81
+* Version: 1.0.3
+* GitHub: https://github.com/mrcaseb/personalr
+* Source code: https://github.com/cran/personalr
+* Date/Publication: 2022-08-11 22:00:02 UTC
+* Number of recursive dependencies: 99
 
-Run `revdepcheck::cloud_details(, "reprex")` for more info
+Run `revdepcheck::cloud_details(, "personalr")` for more info
 
 </details>
 
 ## Newly broken
 
-*   checking tests ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(reprex)
-      > 
-      > if (rmarkdown::pandoc_available("2.0.0")) {
-      +   test_check("reprex")
-      + }
-    ...
-      ── Error ('test-utils.R:2:3'): locate_input() works ────────────────────────────
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'reprex_clipboard'
-      Backtrace:
-          ▆
-       1. └─testthat::with_mocked_bindings(...) at test-utils.R:2:3
-       2.   └─rlang (local) `<fn>`(`<env>`) at test-utils.R:2:3
-      
-      [ FAIL 1 | WARN 0 | SKIP 65 | PASS 58 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
     ```
 
-# rsconnect
+# rhino
 
 <details>
 
-* Version: 1.2.0
-* GitHub: https://github.com/rstudio/rsconnect
-* Source code: https://github.com/cran/rsconnect
-* Date/Publication: 2023-12-15 03:20:02 UTC
-* Number of recursive dependencies: 85
+* Version: 1.5.0
+* GitHub: https://github.com/Appsilon/rhino
+* Source code: https://github.com/cran/rhino
+* Date/Publication: 2023-09-06 14:00:02 UTC
+* Number of recursive dependencies: 93
 
-Run `revdepcheck::cloud_details(, "rsconnect")` for more info
+Run `revdepcheck::cloud_details(, "rhino")` for more info
 
 </details>
 
 ## Newly broken
 
-*   checking tests ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(rsconnect)
-      > 
-      > test_check("rsconnect")
-      Starting 2 test processes
-      [ FAIL 18 | WARN 0 | SKIP 144 | PASS 628 ]
-      
-    ...
-       1. └─rlang (local) `<fn>`(`<env>`)
-      ── Error ('test-servers.R:188:1'): findServer() errors/prompts of multiple servers present ──
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'servers'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 18 | WARN 0 | SKIP 144 | PASS 628 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-# shiny.telemetry
-
-<details>
-
-* Version: 0.2.0
-* GitHub: https://github.com/Appsilon/shiny.telemetry
-* Source code: https://github.com/cran/shiny.telemetry
-* Date/Publication: 2023-11-16 15:30:02 UTC
-* Number of recursive dependencies: 119
-
-Run `revdepcheck::cloud_details(, "shiny.telemetry")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
-      > # * https://r-pkgs.org/tests.html
-      > # * https://testthat.r-lib.org/reference/test_package.html#special-files
-    ...
-       2.   └─rlang (local) `<fn>`(`<env>`) at test-telemetry-integration-sqlite.R:10:3
-      ── Error ('test-telemetry.R:136:3'): Telemetry tests with mock data_storage layer ──
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'observeEvent'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 3 | WARN 0 | SKIP 16 | PASS 87 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
     ```
 
 # testthat
@@ -521,31 +354,6 @@ Run `revdepcheck::cloud_details(, "testthat")` for more info
 </details>
 
 ## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘test-catch.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > test_check("testthat")
-      Starting 2 test processes
-      [ FAIL 44 | WARN 0 | SKIP 74 | PASS 828 ]
-      
-      ══ Skipped tests (74) ══════════════════════════════════════════════════════════
-    ...
-      ── Error ('test-try-again.R:8:1'): tries multiple times ────────────────────────
-      Error in `call_type(call)`: corrupt language object
-      ── Error ('test-verify-output.R:15:1'): can record all types of output ─────────
-      Error in `call_type(call)`: corrupt language object
-      ── Error ('test-verify-output.R:41:1'): can't record plots ─────────────────────
-      Error in `call_type(call)`: corrupt language object
-      
-      [ FAIL 44 | WARN 0 | SKIP 74 | PASS 828 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 *   checking re-building of vignette outputs ... ERROR
     ```
@@ -582,92 +390,25 @@ Run `revdepcheck::cloud_details(, "testthat")` for more info
         libs   8.5Mb
     ```
 
-# usethis
+# webfakes
 
 <details>
 
-* Version: 2.2.2
-* GitHub: https://github.com/r-lib/usethis
-* Source code: https://github.com/cran/usethis
-* Date/Publication: 2023-07-06 00:20:02 UTC
-* Number of recursive dependencies: 84
+* Version: 1.3.0
+* GitHub: https://github.com/r-lib/webfakes
+* Source code: https://github.com/cran/webfakes
+* Date/Publication: 2023-12-11 04:20:02 UTC
+* Number of recursive dependencies: 49
 
-Run `revdepcheck::cloud_details(, "usethis")` for more info
+Run `revdepcheck::cloud_details(, "webfakes")` for more info
 
 </details>
 
 ## Newly broken
 
-*   checking tests ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(usethis)
-      > 
-      > test_check("usethis")
-      [ FAIL 31 | WARN 0 | SKIP 103 | PASS 615 ]
-      
-    ...
-       1. └─rlang (local) `<fn>`(`<env>`)
-      ── Error ('test-version.R:47:1'): use_version() updates (development version) directly ──
-      Error in `env_bind0(.env, old)`: cannot change value of locked binding for 'cran_version'
-      Backtrace:
-          ▆
-       1. └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 31 | WARN 0 | SKIP 103 | PASS 615 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-## In both
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘devtools’
-    ```
-
-# vetiver
-
-<details>
-
-* Version: 0.2.5
-* GitHub: https://github.com/rstudio/vetiver-r
-* Source code: https://github.com/cran/vetiver
-* Date/Publication: 2023-11-16 22:50:02 UTC
-* Number of recursive dependencies: 217
-
-Run `revdepcheck::cloud_details(, "vetiver")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ... ERROR
-    ```
-      Running ‘testthat.R’
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(vetiver)
-      > 
-      > test_check("vetiver")
-      Loading required package: ggplot2
-      Loading required package: lattice
-      
-    ...
-      Backtrace:
-          ▆
-       1. └─testthat::describe(...) at test-rsconnect.R:3:1
-       2.   └─base::eval(substitute(code), describe_environment)
-       3.     └─base::eval(substitute(code), describe_environment)
-       4.       └─rlang (local) `<fn>`(`<env>`)
-      
-      [ FAIL 1 | WARN 0 | SKIP 63 | PASS 177 ]
-      Error: Test failures
-      Execution halted
+    Error in fun(pkgname, pkgpath) : 
+      cannot add bindings to a locked environment
     ```
 
