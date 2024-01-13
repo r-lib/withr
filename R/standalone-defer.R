@@ -50,7 +50,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
     # Do nothing if withr is not installed, just like `on.exit()`
     # called in the global env
     if (has_withr_3) {
-      withr::global_defer(expr, priority = priority)
+      global_defer(expr, priority = priority)
     }
     return(invisible(NULL))
   }
@@ -63,7 +63,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
   hook_source <- getOption("withr.hook_source")
   hook_knitr <- getOption("knitr.in.progress")
   if ((!is.null(hook_source) || !is.null(hook_knitr)) && has_withr_3) {
-    envir <- withr::exit_frame(envir)
+    envir <- exit_frame(envir)
   }
 
   do.call(

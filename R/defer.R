@@ -186,3 +186,15 @@ the$global_exits <- list()
 for (name in names(defer_ns)) {
   assign(name, defer_ns[[name]])
 }
+
+# Augment rlang with withr features such as knitr support
+on_load({
+  on_package_load("rlang", {
+    ns <- asNamespace("rlang")
+
+    unlockBinding("defer", ns)
+    defer(lockBinding("defer", ns))
+
+    ns$defer <- defer
+  })
+})
