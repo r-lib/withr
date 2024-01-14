@@ -189,12 +189,12 @@ for (name in names(defer_ns)) {
 
 # Augment rlang with withr features such as knitr support
 on_load({
-  on_package_load("rlang", {
+  on_package_load("rlang", local({
     ns <- asNamespace("rlang")
 
     unlockBinding("defer", ns)
     defer(lockBinding("defer", ns))
 
     ns$defer <- defer
-  })
+  }))
 })
