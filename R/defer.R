@@ -83,7 +83,7 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
 
   # Don't handle `source()` by default to avoid a performance hit
   if (!is.null(getOption("withr.hook_source"))) {
-    envir <- exit_frame(envir)
+    envir <- source_exit_frame(envir)
   }
 
   thunk <- as.call(list(function() expr))
@@ -228,7 +228,7 @@ is_top_level_global_env <- function(envir, frames = sys.frames()) {
 defer_knitr <- function(expr, envir, priority = c("first", "last")) {
   priority <- match.arg(priority, choices = c("first", "last"))
 
-  envir <- exit_frame(envir)
+  envir <- knitr_exit_frame(envir)
   handler <- as.call(list(function() expr))
 
   handlers <- knitr_handlers(envir)
