@@ -1,7 +1,6 @@
+# Include standalone defer to overwrite it:
 #' @include standalone-defer.R
 NULL
-
-defer_ns <- environment(defer)
 
 #' Defer Evaluation of an Expression
 #'
@@ -70,7 +69,35 @@ defer_ns <- environment(defer)
 #' # will be executed immediately
 #' defer(print("one"))
 #' defer(print("two"))
-defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) NULL
+defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
+  if (is_top_level_global_env(envir)) {
+    global_defer(expr, priority = priority)
+    return(invisible(NULL))
+  }
+
+  priority <- match.arg(priority, choices = c("first", "last"))
+  after <- priority == "last"
+
+  thunk <- as.call(list(function() expr))
+
+  # Don't handle `source()` and `knit()` specially by default
+  # to avoid a performance hit
+  hook_source <- getOption("withr.hook_source")
+  hook_knitr <- getOption("knitr.in.progress")
+  if (!is.null(hook_source) || !is.null(hook_knitr)) {
+    envir <- exit_frame(envir)
+  }
+
+  do.call(
+    base::on.exit,
+    list(thunk, TRUE, after),
+    envir = envir
+  )
+}
+
+# Inline formals for performance
+formals(defer)[["priority"]] <- eval(formals(defer)[["priority"]])
+
 
 #' @rdname defer
 #' @export
@@ -181,18 +208,24 @@ global_defer <- function(expr, priority = c("first", "last")) {
 
 the$global_exits <- list()
 
+# Evaluate `frames` lazily to avoid expensive `sys.frames()`
+# call for the default case of a local environment
+is_top_level_global_env <- function(envir, frames = sys.frames()) {
+  if (!identical(envir, globalenv())) {
+    return(FALSE)
+  }
 
-# Splice `compat-defer.R` into the namespace
-for (name in names(defer_ns)) {
-  assign(name, defer_ns[[name]])
+  # Check if another global environment is on the stack
+  !any(vapply(frames, identical, NA, globalenv()))
 }
+
 
 # Augment rlang with withr features such as knitr support
 on_load({
   on_package_load("rlang", local({
     ns <- asNamespace("rlang")
 
-    unlockBinding("defer", ns)
+    do.call("unlockBinding", list("defer", ns))
     defer(lockBinding("defer", ns))
 
     ns$defer <- defer
