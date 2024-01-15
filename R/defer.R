@@ -109,15 +109,19 @@ defer_parent <- function(expr, priority = c("first", "last")) {
 #' @rdname defer
 #' @export
 deferred_run <- function(envir = parent.frame()) {
-  if (knitr_in_progress()) {
-    stop("Can't run `deferred_run()` in a knitted document")
-  }
-  if (is_top_level_global_env(envir)) {
-    handlers <- the$global_exits
+  if (knitr_in_progress() && identical(envir, knitr::knit_global())) {
+    # The handlers are thunks so we don't need to clear them.
+    # They will only be run once.
+    frame <- knitr_exit_frame(envir)
+    handlers <- knitr_handlers(frame)
   } else {
-    handlers <- frame_exits(envir)
+    if (is_top_level_global_env(envir)) {
+      handlers <- the$global_exits
+    } else {
+      handlers <- frame_exits(envir)
+    }
+    deferred_clear(envir)
   }
-  deferred_clear(envir)
 
   n <- length(handlers)
   i <- 0L
@@ -224,7 +228,8 @@ is_top_level_global_env <- function(envir, frames = sys.frames()) {
 # This picks up knitr's first frame on the stack and registers the
 # handler there. To avoid mixing up knitr's own exit handlers with
 # ours, we don't hook directly but instead save the list of handlers
-# as an attribute on the frame environment.
+# as an attribute on the frame environment. This allows `deferred_run()`
+# to run our handlers without running the knitr ones.
 defer_knitr <- function(expr, envir, priority = c("first", "last")) {
   priority <- match.arg(priority, choices = c("first", "last"))
 

@@ -3,6 +3,8 @@
 * `deferred_run()` now reports the number of executed expressions with
   a message.
 
+* `deferred_run()` can now be run at any point in a knitr file (#235).
+
 ,* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
   `\n` for newlines (#216).
 
