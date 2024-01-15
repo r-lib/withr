@@ -93,3 +93,7 @@ is_interactive <- function() {
   }
   interactive()
 }
+
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
