@@ -23,6 +23,10 @@ NULL
 #' sourced with `base::source()`. The cleanup expressions are run when
 #' `source()` exits (either normally or early due to an error).
 #'
+#' As an exception, `source()` is automatically supported when
+#' evaluating in the global environment. This makes it possible to run
+#' withr functions in examples (they are run with `source()` in R CMD check).
+#'
 #' @details
 #' `defer()` works by attaching handlers to the requested environment (as an
 #' attribute called `"handlers"`), and registering an exit handler that
@@ -70,9 +74,21 @@ NULL
 #' defer(print("one"))
 #' defer(print("two"))
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  if (is_top_level_global_env(envir)) {
-    global_defer(expr, priority = priority)
-    return(invisible(NULL))
+  if (identical(envir, globalenv())) {
+    source_frame <- source_exit_frame_option(envir)
+    if (!is.null(source_frame)) {
+      # Automatically enable `source()` special-casing for the global
+      # environment.  The main way this happens is in R CMD check if
+      # withr is used inside an example. An R example is run inside
+      # `withAutoprint()` which uses `source()`.
+      local_options(withr.hook_source = TRUE)
+      # And fallthrough to the default `defer()` handling. Within
+      # `source()` we don't require manual calling of
+      # `deferred_run()`.
+    } else if (is_top_level_global_env(envir)) {
+      global_defer(expr, priority = priority)
+      return(invisible(NULL))
+    }
   }
 
   priority <- match.arg(priority, choices = c("first", "last"))

@@ -190,6 +190,22 @@ test_that("defer works within source()", {
   ))
 })
 
+test_that("don't need to enable source for the global env", {
+  local_options(withr.hook_source = NULL)
+
+  file <- local_tempfile()
+
+  cat(file = file, "
+    writeLines('1')
+    withr::defer(writeLines('deferred'))
+    writeLines('2')
+  ")
+
+  expect_snapshot({
+    source(file, local = globalenv())
+  })
+})
+
 test_that("defer works within knitr::knit()", {
   skip_if_not_installed("knitr")
   out <- NULL

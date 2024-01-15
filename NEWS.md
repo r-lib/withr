@@ -29,6 +29,10 @@
 * `source()` support now requires setting `options(withr.hook_source = TRUE)`.
   It is disabled by default to avoid a performance penalty when not needed.
 
+  As an exception, `source()` remains automatically supported when
+  evaluating in the global environment. This makes it possible to run
+  withr functions in examples (they are run with `source()` in R CMD check).
+
 * `with_language()` now properly resets the translation cache (#213).
 
 

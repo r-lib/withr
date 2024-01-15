@@ -50,6 +50,10 @@ scenario is the main motivation for these functions.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Set \code{options(withr.hook_source = TRUE)} to enable top-level usage of withr tools in scripts
 sourced with \code{base::source()}. The cleanup expressions are run when
 \code{source()} exits (either normally or early due to an error).
+
+As an exception, \code{source()} is automatically supported when
+evaluating in the global environment. This makes it possible to run
+withr functions in examples (they are run with \code{source()} in R CMD check).
 }
 
 \examples{

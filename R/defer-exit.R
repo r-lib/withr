@@ -22,16 +22,21 @@ knitr_exit_frame <- function(envir) {
 }
 
 source_exit_frame <- function(envir) {
-  frames <- as.list(sys.frames())
+  source_exit_frame_option(envir) %||% envir
+}
+
+# Returns an environment if expression is called directly from `source()`.
+# Otherwise returns `NULL`.
+source_exit_frame_option <- function(envir, frames = as.list(sys.frames())) {
   calls <- as.list(sys.calls())
 
   i <- frame_loc(envir, frames)
   if (!i) {
-    return(envir)
+    return(NULL)
   }
 
   if (i < 4) {
-    return(envir)
+    return(NULL)
   }
 
   is_call <- function(x, fn) {
@@ -40,16 +45,16 @@ source_exit_frame <- function(envir) {
   calls <- as.list(calls)
 
   if (!is_call(calls[[i - 3]], quote(source))) {
-    return(envir)
+    return(NULL)
   }
   if (!is_call(calls[[i - 2]], quote(withVisible))) {
-    return(envir)
+    return(NULL)
   }
   if (!is_call(calls[[i - 1]], quote(eval))) {
-    return(envir)
+    return(NULL)
   }
   if (!is_call(calls[[i - 0]], quote(eval))) {
-    return(envir)
+    return(NULL)
   }
 
   frames[[i - 3]]

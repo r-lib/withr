@@ -9,3 +9,12 @@
         * On demand, if you call `withr::deferred_run()`.
       i Use `withr::deferred_clear()` to clear them without executing.
 
+# don't need to enable source for the global env
+
+    Code
+      source(file, local = globalenv())
+    Output
+      1
+      2
+      deferred
+
