@@ -1,4 +1,33 @@
-# withr (development version)
+# withr 3.0.0
+
+## Performance of withr
+
+* `defer()` is now a thin wrapper around `base::on.exit()`. This is
+  possible thanks to two contributions that we made to R 3.5:
+
+  - We added an argument for FIFO cleanup: `on.exit(after = FALSE)`.
+  - Calling `sys.on.exit()` elsewhere than top-level didn't work. This
+    is needed for manual invokation with `deferred_run()`.
+
+  Following this change, `defer()` is now much faster (although still
+  slower than `on.exit()` which is a primitive function and about as
+  fast as it gets). This also increases the compatibility of `defer()`
+  with `on.exit()` (all handlers are now run in the expected order
+  even if they are registered with `on.exit()`) and standalone
+  versions of `defer()`.
+
+
+## Breaking change
+
+* When `source()` is used with a local environment, as opposed to
+  `globalenv()` (the default), you now need to set
+  `options(withr.hook_source = TRUE)` to get proper withr support
+  (running `defer()` or `local_` functions at top-level of a script).
+  THis support is disabled by default in local environments to avoid a
+  performance penalty in normal usage of withr features.
+
+
+## Other features and bugfixes
 
 * `deferred_run()` now reports the number of executed expressions with
   a message.
@@ -16,27 +45,9 @@
 * `local_par()` and `with_par()` now work if you don't set any parameters
   (#238).
 
-* `defer()` is now a thin wrapper around `base::on.exit()`. This is
-  possible thanks to two contributions that we made to R 3.5:
-
-  - We added an argument for FIFO cleanup: `on.exit(after = FALSE)`.
-  - Calling `sys.on.exit()` elsewhere than top-level didn't work. This
-    is needed for manual invokation with `deferred_run()`.
-
-  Following this change, `defer()` is now much faster (although still
-  slower than `on.exit()`). This also increases the compatibility of
-  `defer()` with `on.exit()` (all handlers are now run in the expected
-  order even if they are registered with `on.exit()`) and standalone
-  versions of `defer()`.
-
-* When `source()` is used with a local environment, as opposed to
-  `globalenv()` (the default), you now need to set
-  `options(withr.hook_source = TRUE)` to get proper withr support
-  (running `defer()` or `local_` functions at top-level of a script).
-  THis support is disabled by default in local environments to avoid a
-  performance penalty in normal usage of withr features.
-
 * `with_language()` now properly resets the translation cache (#213).
+
+* Fixes for Debian packaging.
 
 
 # withr 2.5.2
