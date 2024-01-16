@@ -16,7 +16,7 @@ effects for the duration of a function's execution."><meta property="og:image" c
     
     <a class="navbar-brand me-2" href="../index.html">withr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">3.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,6 +115,17 @@ function or test. A message alerts the user to the fact that an explicit
 <code>deferred_clear()</code> to clear them without evaluation. The global environment
 scenario is the main motivation for these functions.</p>
     </div>
+    <div class="section level2">
+    <h2 id="running-handlers-within-source-">Running handlers within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code><a class="anchor" aria-label="anchor" href="#running-handlers-within-source-"></a></h2>
+    
+
+<p>withr handlers run within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> are run when <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> exits
+rather than line by line.</p>
+<p>This is only the case when the script is sourced in <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code>.
+For a local environment, the caller needs to set
+<code>options(withr.hook_source = TRUE)</code>. This is to avoid paying the
+penalty of detecting <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> in the normal usage of <code>defer()</code>.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -143,23 +154,14 @@ scenario is the main motivation for these functions.</p>
 <span class="r-in"><span>  <span class="fu"><a href="with_file.html">local_file</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $withr_handlers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $withr_handlers[[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5593dd1e2940&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># defer and trigger events on the global environment</span></span></span>
+<span class="r-in"><span><span class="co"># Note that examples lack function scoping so deferred calls are</span></span></span>
+<span class="r-in"><span><span class="co"># generally executed immediately</span></span></span>
 <span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "one"</span>
 <span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"two"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two"</span>
-<span class="r-in"><span><span class="fu">deferred_run</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"three"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "three"</span>
-<span class="r-in"><span><span class="fu">deferred_clear</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">deferred_run</span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
