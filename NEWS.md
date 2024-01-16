@@ -26,8 +26,12 @@
   order even if they are registered with `on.exit()`) and standalone
   versions of `defer()`.
 
-* `source()` support now requires setting `options(withr.hook_source = TRUE)`.
-  It is disabled by default to avoid a performance penalty when not needed.
+* When `source()` is used with a local environment, as opposed to
+  `globalenv()` (the default), you now need to set
+  `options(withr.hook_source = TRUE)` to get proper withr support
+  (running `defer()` or `local_` functions at top-level of a script).
+  THis support is disabled by default in local environments to avoid a
+  performance penalty in normal usage of withr features.
 
 * `with_language()` now properly resets the translation cache (#213).
 

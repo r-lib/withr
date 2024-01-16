@@ -18,10 +18,13 @@ NULL
 #' registered handlers on this environment.
 #'
 #' @section Running handlers within `source()`:
-#' `r lifecycle::badge("experimental")` Set `options(withr.hook_source
-#' = TRUE)` to enable top-level usage of withr tools in scripts
-#' sourced with `base::source()`. The cleanup expressions are run when
-#' `source()` exits (either normally or early due to an error).
+#' withr handlers run within `source()` are run when `source()` exits
+#' rather than line by line.
+#'
+#' This is only the case when the script is sourced in `globalenv()`.
+#' For a local environment, the caller needs to set
+#' `options(withr.hook_source = TRUE)`. This is to avoid paying the
+#' penalty of detecting `source()` in the normal usage of `defer()`.
 #'
 #' @details
 #' `defer()` works by attaching handlers to the requested environment (as an
@@ -65,14 +68,28 @@ NULL
 #'   print(attributes(environment()))
 #' })
 #'
-#' # note that examples lack function scoping so deferred calls will
-#' # will be executed immediately
+#' # Note that examples lack function scoping so deferred calls might
+#' # be executed immediately. This is currently the case on websites
+#' # built with pkgdown
 #' defer(print("one"))
 #' defer(print("two"))
 defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
-  if (is_top_level_global_env(envir)) {
-    global_defer(expr, priority = priority)
-    return(invisible(NULL))
+  if (identical(envir, globalenv())) {
+    source_frame <- source_exit_frame_option(envir)
+    if (!is.null(source_frame)) {
+      # Automatically enable `source()` special-casing for the global
+      # environment. This is the default for `source()` and the normal
+      # case when users run scripts. This also happens in R CMD check
+      # when withr is used inside an example because an R example is
+      # run inside `withAutoprint()` which uses `source()`.
+      local_options(withr.hook_source = TRUE)
+      # And fallthrough to the default `defer()` handling. Within
+      # `source()` we don't require manual calling of
+      # `deferred_run()`.
+    } else if (is_top_level_global_env(envir)) {
+      global_defer(expr, priority = priority)
+      return(invisible(NULL))
+    }
   }
 
   priority <- match.arg(priority, choices = c("first", "last"))

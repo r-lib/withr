@@ -47,9 +47,13 @@ scenario is the main motivation for these functions.
 }
 \section{Running handlers within \code{source()}}{
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Set \code{options(withr.hook_source = TRUE)} to enable top-level usage of withr tools in scripts
-sourced with \code{base::source()}. The cleanup expressions are run when
-\code{source()} exits (either normally or early due to an error).
+withr handlers run within \code{source()} are run when \code{source()} exits
+rather than line by line.
+
+This is only the case when the script is sourced in \code{globalenv()}.
+For a local environment, the caller needs to set
+\code{options(withr.hook_source = TRUE)}. This is to avoid paying the
+penalty of detecting \code{source()} in the normal usage of \code{defer()}.
 }
 
 \examples{
@@ -79,8 +83,9 @@ local({
   print(attributes(environment()))
 })
 
-# note that examples lack function scoping so deferred calls will
-# will be executed immediately
+# Note that examples lack function scoping so deferred calls might
+# be executed immediately. This is currently the case on websites
+# built with pkgdown
 defer(print("one"))
 defer(print("two"))
 }
