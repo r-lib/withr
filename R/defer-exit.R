@@ -1,43 +1,12 @@
-#' Find frame for exit handlers
-#' @noRd
-#'
-#' @description
-#' - If knitr is running and `defer()` is run at top-level in a chunk,
-#'   `exit_frame()` returns the first frame on the stack that inherits
-#'   from the knitr namespace. This way handlers are run when knitr
-#'   returns.
-#'
-#' - If `getOption("withr.hook_source")` is `TRUE`, and `defer()` is
-#'   run at top-level in a script being evaluated by [base::source()],
-#'   `exit_frame()` returns the frame of `source()`. This way handlers
-#'   are run when the script has finished running.
-#'
-exit_frame <- function(envir,
-                       frames = as.list(sys.frames()),
-                       calls = as.list(sys.calls())) {
+# Find first knitr frame on the stack
+knitr_exit_frame <- function(envir) {
+  frames <- as.list(sys.frames())
+
   frame_loc <- frame_loc(envir, frames)
   if (!frame_loc) {
     return(envir)
   }
 
-  if (in_knitr(envir)) {
-    out <- knitr_frame(envir, frames, calls, frame_loc)
-    if (!is.null(out)) {
-      return(out)
-    }
-  }
-
-  if (isTRUE(getOption("withr.hook_source"))) {
-    out <- source_frame(envir, frames, calls, frame_loc)
-    if (!is.null(out)) {
-      return(out)
-    }
-  }
-
-  envir
-}
-
-knitr_frame <- function(envir, frames, calls, frame_loc) {
   knitr_ns <- asNamespace("knitr")
 
   # This doesn't handle correctly the recursive case (knitr called
@@ -52,11 +21,17 @@ knitr_frame <- function(envir, frames, calls, frame_loc) {
   NULL
 }
 
-source_frame <- function(envir, frames, calls, frame_loc) {
-  i <- frame_loc
+source_exit_frame <- function(envir) {
+  frames <- as.list(sys.frames())
+  calls <- as.list(sys.calls())
+
+  i <- frame_loc(envir, frames)
+  if (!i) {
+    return(envir)
+  }
 
   if (i < 4) {
-    return(NULL)
+    return(envir)
   }
 
   is_call <- function(x, fn) {
@@ -65,16 +40,16 @@ source_frame <- function(envir, frames, calls, frame_loc) {
   calls <- as.list(calls)
 
   if (!is_call(calls[[i - 3]], quote(source))) {
-    return(NULL)
+    return(envir)
   }
   if (!is_call(calls[[i - 2]], quote(withVisible))) {
-    return(NULL)
+    return(envir)
   }
   if (!is_call(calls[[i - 1]], quote(eval))) {
-    return(NULL)
+    return(envir)
   }
   if (!is_call(calls[[i - 0]], quote(eval))) {
-    return(NULL)
+    return(envir)
   }
 
   frames[[i - 3]]

@@ -33,13 +33,25 @@ test_that("can't run `deferred_run()` in knitr", {
     skip_if_cannot_knit()
 
     rmd <- local_tempfile(fileext = ".Rmd")
+    out <- local_tempfile(fileext = ".md")
     writeLines(rmd, text = "
 ```{r}
 withr::deferred_run()
 ```
+```{r}
+defer(writeLines('1'))
+writeLines('2')
+defer(writeLines('3'))
+```
+```{r}
+writeLines('4')
+withr::deferred_run()
+```
 ")
-    expect_error(
-      suppressMessages(rmarkdown::render(rmd, quiet = TRUE)),
-      "in a knitted document"
-    )
+
+    knitr::knit(rmd, out, quiet = TRUE)
+
+    expect_snapshot({
+      writeLines(readLines(out))
+    })
 })
