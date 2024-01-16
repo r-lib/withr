@@ -83,9 +83,8 @@ local({
   print(attributes(environment()))
 })
 
-# Note that examples lack function scoping so deferred calls might
-# be executed immediately. This is currently the case on websites
-# built with pkgdown
+# Note that examples lack function scoping so deferred calls are
+# generally executed immediately
 defer(print("one"))
 defer(print("two"))
 }
