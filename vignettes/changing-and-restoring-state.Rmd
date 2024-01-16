@@ -311,28 +311,21 @@ It's hard to develop with functions that work one way inside a function, but ano
 
 Here's how `defer()` (and all functions based on it) works in an interactive session.
 
-```{r eval = FALSE}
+```{r}
 library(withr)
 
 defer(print("hi"))
-#> Setting deferred event(s) on global environment.
-#>   * Execute (and clear) with `withr::deferred_run()`.
-#>   * Clear (without executing) with `withr::deferred_clear()`.
 
 pi
-#> [1] 3.141593
 
 # this adds another deferred event, but does not re-message
 local_digits(3)
 
 pi
-#> [1] 3.14
 
 deferred_run()
-#> [1] "hi"
 
 pi
-#> [1] 3.141593
 ```
 
 When you defer events on the global environment, you get a message that alerts you to the situation.
