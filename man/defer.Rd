@@ -47,13 +47,13 @@ scenario is the main motivation for these functions.
 }
 \section{Running handlers within \code{source()}}{
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Set \code{options(withr.hook_source = TRUE)} to enable top-level usage of withr tools in scripts
-sourced with \code{base::source()}. The cleanup expressions are run when
-\code{source()} exits (either normally or early due to an error).
+withr handlers run within \code{source()} are run when \code{source()} exits
+rather than line by line.
 
-As an exception, \code{source()} is automatically supported when
-evaluating in the global environment. This makes it possible to run
-withr functions in examples (they are run with \code{source()} in R CMD check).
+This is only the case when the script is sourced in \code{globalenv()}.
+For a local environment, the caller needs to set
+\code{options(withr.hook_source = TRUE)}. This is to avoid paying the
+penalty of detecting \code{source()} in the normal usage of \code{defer()}.
 }
 
 \examples{

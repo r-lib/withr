@@ -18,14 +18,13 @@ NULL
 #' registered handlers on this environment.
 #'
 #' @section Running handlers within `source()`:
-#' `r lifecycle::badge("experimental")` Set `options(withr.hook_source
-#' = TRUE)` to enable top-level usage of withr tools in scripts
-#' sourced with `base::source()`. The cleanup expressions are run when
-#' `source()` exits (either normally or early due to an error).
+#' withr handlers run within `source()` are run when `source()` exits
+#' rather than line by line.
 #'
-#' As an exception, `source()` is automatically supported when
-#' evaluating in the global environment. This makes it possible to run
-#' withr functions in examples (they are run with `source()` in R CMD check).
+#' This is only the case when the script is sourced in `globalenv()`.
+#' For a local environment, the caller needs to set
+#' `options(withr.hook_source = TRUE)`. This is to avoid paying the
+#' penalty of detecting `source()` in the normal usage of `defer()`.
 #'
 #' @details
 #' `defer()` works by attaching handlers to the requested environment (as an
@@ -78,9 +77,10 @@ defer <- function(expr, envir = parent.frame(), priority = c("first", "last")) {
     source_frame <- source_exit_frame_option(envir)
     if (!is.null(source_frame)) {
       # Automatically enable `source()` special-casing for the global
-      # environment.  The main way this happens is in R CMD check if
-      # withr is used inside an example. An R example is run inside
-      # `withAutoprint()` which uses `source()`.
+      # environment. This is the default for `source()` and the normal
+      # case when users run scripts. This also happens in R CMD check
+      # when withr is used inside an example because an R example is
+      # run inside `withAutoprint()` which uses `source()`.
       local_options(withr.hook_source = TRUE)
       # And fallthrough to the default `defer()` handling. Within
       # `source()` we don't require manual calling of
