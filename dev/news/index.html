@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">withr</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">2.99.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">3.0.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,21 +61,34 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="withr-development-version">withr (development version)<a class="anchor" aria-label="anchor" href="#withr-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.0.0" id="withr-300">withr 3.0.0<a class="anchor" aria-label="anchor" href="#withr-300"></a></h2>
+<div class="section level3">
+<h3 id="performance-of-withr-3-0-0">Performance of withr<a class="anchor" aria-label="anchor" href="#performance-of-withr-3-0-0"></a></h3>
+<ul><li>
+<p><code><a href="../reference/defer.html">defer()</a></code> is now a thin wrapper around <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">base::on.exit()</a></code>. This is possible thanks to two contributions that we made to R 3.5:</p>
+<ul><li>We added an argument for FIFO cleanup: <code>on.exit(after = FALSE)</code>.</li>
+<li>Calling <code><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">sys.on.exit()</a></code> elsewhere than top-level didn’t work. This is needed for manual invokation with <code><a href="../reference/defer.html">deferred_run()</a></code>.</li>
+</ul><p>Following this change, <code><a href="../reference/defer.html">defer()</a></code> is now much faster (although still slower than <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> which is a primitive function and about as fast as it gets). This also increases the compatibility of <code><a href="../reference/defer.html">defer()</a></code> with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> (all handlers are now run in the expected order even if they are registered with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>) and standalone versions of <code><a href="../reference/defer.html">defer()</a></code>.</p>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="breaking-change-3-0-0">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-3-0-0"></a></h3>
+<ul><li>When <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> is used with a local environment, as opposed to <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code> (the default), you now need to set <code>options(withr.hook_source = TRUE)</code> to get proper withr support (running <code><a href="../reference/defer.html">defer()</a></code> or <code>local_</code> functions at top-level of a script). THis support is disabled by default in local environments to avoid a performance penalty in normal usage of withr features.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-features-and-bugfixes-3-0-0">Other features and bugfixes<a class="anchor" aria-label="anchor" href="#other-features-and-bugfixes-3-0-0"></a></h3>
 <ul><li><p><code><a href="../reference/defer.html">deferred_run()</a></code> now reports the number of executed expressions with a message.</p></li>
 <li><p><code><a href="../reference/defer.html">deferred_run()</a></code> can now be run at any point in a knitr file (<a href="https://github.com/r-lib/withr/issues/235" class="external-link">#235</a>).</p></li>
 </ul><p>,* <code><a href="../reference/with_tempfile.html">local_tempfile()</a></code> now writes <code>lines</code> in UTF-8 (<a href="https://github.com/r-lib/withr/issues/210" class="external-link">#210</a>) and always uses <code>\n</code> for newlines (<a href="https://github.com/r-lib/withr/issues/216" class="external-link">#216</a>).</p>
 <ul><li><p><code><a href="../reference/devices.html">local_pdf()</a></code> and friends now correctly restore to the previously active device (<a href="https://github.com/r-lib/withr/issues/138" class="external-link">#138</a>).</p></li>
 <li><p><code><a href="../reference/with_.html">local_()</a></code> now works even if withr isn’t attached (<a href="https://github.com/r-lib/withr/issues/207" class="external-link">#207</a>).</p></li>
 <li><p><code><a href="../reference/with_par.html">local_par()</a></code> and <code><a href="../reference/with_par.html">with_par()</a></code> now work if you don’t set any parameters (<a href="https://github.com/r-lib/withr/issues/238" class="external-link">#238</a>).</p></li>
-<li>
-<p><code><a href="../reference/defer.html">defer()</a></code> is now a thin wrapper around <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">base::on.exit()</a></code>. This is possible thanks to two contributions that we made to R 3.5:</p>
-<ul><li>We added an argument for FIFO cleanup: <code>on.exit(after = FALSE)</code>.</li>
-<li>Calling <code><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">sys.on.exit()</a></code> elsewhere than top-level didn’t work. This is needed for manual invokation with <code><a href="../reference/defer.html">deferred_run()</a></code>.</li>
-</ul><p>Following this change, <code><a href="../reference/defer.html">defer()</a></code> is now much faster (although still slower than <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>). This also increases the compatibility of <code><a href="../reference/defer.html">defer()</a></code> with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> (all handlers are now run in the expected order even if they are registered with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>) and standalone versions of <code><a href="../reference/defer.html">defer()</a></code>.</p>
-</li>
-<li><p>When <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> is used with a local environment, as opposed to <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code> (the default), you now need to set <code>options(withr.hook_source = TRUE)</code> to get proper withr support (running <code><a href="../reference/defer.html">defer()</a></code> or <code>local_</code> functions at top-level of a script). THis support is disabled by default in local environments to avoid a performance penalty in normal usage of withr features.</p></li>
 <li><p><code><a href="../reference/with_language.html">with_language()</a></code> now properly resets the translation cache (<a href="https://github.com/r-lib/withr/issues/213" class="external-link">#213</a>).</p></li>
+<li><p>Fixes for Debian packaging.</p></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.5.2" id="withr-252">withr 2.5.2<a class="anchor" aria-label="anchor" href="#withr-252"></a></h2><p class="text-muted">CRAN release: 2023-10-30</p>
 <ul><li>Fixes for CRAN checks.</li>
