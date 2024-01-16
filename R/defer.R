@@ -223,11 +223,13 @@ is_top_level_global_env <- function(envir, frames = sys.frames()) {
 # Augment rlang with withr features such as knitr support
 on_load({
   on_package_load("rlang", local({
-    ns <- asNamespace("rlang")
+    if (is.null(getOption("withr:::inject_defer_override"))) {
+      ns <- asNamespace("rlang")
 
-    do.call("unlockBinding", list("defer", ns))
-    defer(lockBinding("defer", ns))
+      do.call("unlockBinding", list("defer", ns))
+      defer(lockBinding("defer", ns))
 
-    ns$defer <- defer
+      ns$defer <- defer
+    }
   }))
 })
