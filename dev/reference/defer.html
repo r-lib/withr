@@ -156,9 +156,8 @@ penalty of detecting <code><a href="https://rdrr.io/r/base/source.html" class="e
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Note that examples lack function scoping so deferred calls might</span></span></span>
-<span class="r-in"><span><span class="co"># be executed immediately. This is currently the case on websites</span></span></span>
-<span class="r-in"><span><span class="co"># built with pkgdown</span></span></span>
+<span class="r-in"><span><span class="co"># Note that examples lack function scoping so deferred calls are</span></span></span>
+<span class="r-in"><span><span class="co"># generally executed immediately</span></span></span>
 <span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "one"</span>
 <span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"two"</span><span class="op">)</span><span class="op">)</span></span></span>
