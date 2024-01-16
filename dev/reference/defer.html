@@ -119,9 +119,12 @@ scenario is the main motivation for these functions.</p>
     <h2 id="running-handlers-within-source-">Running handlers within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code><a class="anchor" aria-label="anchor" href="#running-handlers-within-source-"></a></h2>
     
 
-<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a> Set <code>options(withr.hook_source = TRUE)</code> to enable top-level usage of withr tools in scripts
-sourced with <code><a href="https://rdrr.io/r/base/source.html" class="external-link">base::source()</a></code>. The cleanup expressions are run when
-<code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> exits (either normally or early due to an error).</p>
+<p>withr handlers run within <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> are run when <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> exits
+rather than line by line.</p>
+<p>This is only the case when the script is sourced in <code><a href="https://rdrr.io/r/base/environment.html" class="external-link">globalenv()</a></code>.
+For a local environment, the caller needs to set
+<code>options(withr.hook_source = TRUE)</code>. This is to avoid paying the
+penalty of detecting <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> in the normal usage of <code>defer()</code>.</p>
     </div>
 
     <div class="section level2">
@@ -153,8 +156,9 @@ sourced with <code><a href="https://rdrr.io/r/base/source.html" class="external-
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># note that examples lack function scoping so deferred calls will</span></span></span>
-<span class="r-in"><span><span class="co"># will be executed immediately</span></span></span>
+<span class="r-in"><span><span class="co"># Note that examples lack function scoping so deferred calls might</span></span></span>
+<span class="r-in"><span><span class="co"># be executed immediately. This is currently the case on websites</span></span></span>
+<span class="r-in"><span><span class="co"># built with pkgdown</span></span></span>
 <span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "one"</span>
 <span class="r-in"><span><span class="fu">defer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"two"</span><span class="op">)</span><span class="op">)</span></span></span>
