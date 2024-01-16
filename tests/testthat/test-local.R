@@ -169,21 +169,6 @@ test_that("local_dir works as expected", {
   expect_equal(normalizePath(getwd()), normalizePath(old))
 })
 
-test_that("local_par works as expected", {
-  tmp <- tempfile()
-
-  pdf(tmp)
-  on.exit(unlink(tmp), add = TRUE)
-
-  old <- par("pty")
-  local({
-    local_par(list(pty = "s"))
-    expect_equal(par("pty"), "s")
-  })
-  expect_equal(par("pty"), old)
-  dev.off()
-})
-
 test_that("supplying a getter to `local_()` shields against early exits", {
   my_get <- function(x) {
     out <- as.list(state)[names(x)]

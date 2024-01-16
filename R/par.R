@@ -5,7 +5,12 @@ NULL
 
 get_par <- function(...) {
   new <- auto_splice(list(...))
-  out <- do.call(graphics::par, as.list(names(new)))
+  if (length(new) == 0) {
+    # Only retrieve settable values
+    out <- graphics::par(no.readonly = TRUE)
+  } else {
+    out <- do.call(graphics::par, as.list(names(new)))
+  }
 
   # `par()` doesn't wrap in a list if input is length 1
   if (length(new) == 1) {
