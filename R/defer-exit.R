@@ -1,4 +1,5 @@
 #' Find frame for exit handlers
+#' @noRd
 #'
 #' @description
 #' - If knitr is running and `defer()` is run at top-level in a chunk,
@@ -11,8 +12,6 @@
 #'   `exit_frame()` returns the frame of `source()`. This way handlers
 #'   are run when the script has finished running.
 #'
-#' @keywords internal
-#' @export
 exit_frame <- function(envir,
                        frames = as.list(sys.frames()),
                        calls = as.list(sys.calls())) {

@@ -2,8 +2,8 @@
 % Please edit documentation in R/with.R
 \docType{package}
 \name{withr}
-\alias{withr}
 \alias{withr-package}
+\alias{withr}
 \title{Execute code in temporarily altered environment}
 \description{
 All functions prefixed by \code{with_} work as follows. First, a particular
