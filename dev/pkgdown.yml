@@ -2,8 +2,8 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  changing-and-restoring-state: changing-and-restoring-state.html
-last_built: 2024-01-17T08:11Z
+  withr: withr.html
+last_built: 2024-01-17T08:15Z
 urls:
   reference: https://withr.r-lib.org/reference
   article: https://withr.r-lib.org/articles
