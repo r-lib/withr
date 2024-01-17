@@ -328,6 +328,16 @@ deferred_run()
 pi
 ```
 
-When you defer events on the global environment, you get a message that alerts you to the situation.
+Note that because this example is running in a vignette, it doesn't look exactly the same as what you'll see interactively. When you defer events on the global environment for the first time, you get this message that alerts you to the situation:
+
+```{r, eval = FALSE}
+defer(print("hi"))
+#> Setting global deferred event(s).
+#> i These will be run:
+#>   * Automatically, when the R session ends.
+#>   * On demand, if you call `withr::deferred_run()`.
+#> i Use `withr::deferred_clear()` to clear them without executing.
+```
+
 If you add subsequent events, the message is *not* repeated.
 Since the global environment isn't perishable, like a test environment is, you have to call `deferred_run()` explicitly to execute the deferred events. You can also clear them, without running, with `deferred_clear()`.
