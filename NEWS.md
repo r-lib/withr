@@ -7,7 +7,7 @@
 * `defer()` is now a thin wrapper around `base::on.exit()`. This is
   possible thanks to two contributions that we made to R 3.5:
 
-  - We added an argument for FIFO cleanup: `on.exit(after = FALSE)`.
+  - We added an argument for LIFO cleanup: `on.exit(after = FALSE)`.
   - Calling `sys.on.exit()` elsewhere than top-level didn't work. This
     is needed for manual invokation with `deferred_run()`.
 
