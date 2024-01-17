@@ -68,7 +68,7 @@
 <h3 id="performance-of-withr-3-0-0">Performance of withr<a class="anchor" aria-label="anchor" href="#performance-of-withr-3-0-0"></a></h3>
 <ul><li>
 <p><code><a href="../reference/defer.html">defer()</a></code> is now a thin wrapper around <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">base::on.exit()</a></code>. This is possible thanks to two contributions that we made to R 3.5:</p>
-<ul><li>We added an argument for FIFO cleanup: <code>on.exit(after = FALSE)</code>.</li>
+<ul><li>We added an argument for LIFO cleanup: <code>on.exit(after = FALSE)</code>.</li>
 <li>Calling <code><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">sys.on.exit()</a></code> elsewhere than top-level didn’t work. This is needed for manual invokation with <code><a href="../reference/defer.html">deferred_run()</a></code>.</li>
 </ul><p>Following this change, <code><a href="../reference/defer.html">defer()</a></code> is now much faster (although still slower than <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> which is a primitive function and about as fast as it gets). This also increases the compatibility of <code><a href="../reference/defer.html">defer()</a></code> with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> (all handlers are now run in the expected order even if they are registered with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>) and standalone versions of <code><a href="../reference/defer.html">defer()</a></code>.</p>
 </li>
