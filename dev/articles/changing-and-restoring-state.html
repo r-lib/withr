@@ -474,12 +474,21 @@ in an interactive session.</p>
 <span></span>
 <span><span class="va">pi</span></span>
 <span><span class="co">#&gt; [1] 3.141593</span></span></code></pre></div>
-<p>When you defer events on the global environment, you get a message
-that alerts you to the situation. If you add subsequent events, the
-message is <em>not</em> repeated. Since the global environment isn’t
-perishable, like a test environment is, you have to call
-<code><a href="../reference/defer.html">deferred_run()</a></code> explicitly to execute the deferred events.
-You can also clear them, without running, with
+<p>Note that because this example is running in a vignette, it doesn’t
+look exactly the same as what you’ll see interactively. When you defer
+events on the global environment for the first time, you get this
+message that alerts you to the situation:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/defer.html">defer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"hi"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Setting global deferred event(s).</span></span>
+<span><span class="co">#&gt; i These will be run:</span></span>
+<span><span class="co">#&gt;   * Automatically, when the R session ends.</span></span>
+<span><span class="co">#&gt;   * On demand, if you call `withr::deferred_run()`.</span></span>
+<span><span class="co">#&gt; i Use `withr::deferred_clear()` to clear them without executing.</span></span></code></pre></div>
+<p>If you add subsequent events, the message is <em>not</em> repeated.
+Since the global environment isn’t perishable, like a test environment
+is, you have to call <code><a href="../reference/defer.html">deferred_run()</a></code> explicitly to execute
+the deferred events. You can also clear them, without running, with
 <code><a href="../reference/defer.html">deferred_clear()</a></code>.</p>
 </div>
 
