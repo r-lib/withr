@@ -6,7 +6,7 @@
     <a href="#container" class="visually-hidden-focusable">Skip to content</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-none"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-none"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">withr</a>
 
@@ -19,24 +19,19 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a class="nav-link" href="../articles/withr.html">Get started</a>
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
-</li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-news">
-    <h6 class="dropdown-header" data-toc-skip>Release notes</h6>
+    <h6 class="dropdown-header" data-toc-skip>Releases</h6>
+    <a class="external-link dropdown-item" href="https://www.tidyverse.org/blog/2024/01/withr-3-0-0/">Version 3.0.0</a>
     <a class="external-link dropdown-item" href="https://www.tidyverse.org/blog/2017/11/withr-2.1.0/">Version 2.1.0</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="../news/index.html">Change log</a>
+    <a class="dropdown-item" href="../news/index.html">Changelog</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -111,11 +106,11 @@ execution environment.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 14:34:15 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 08:54:20 UTC"</span>
 <span class="r-in"><span><span class="fu">with_timezone</span><span class="op">(</span><span class="st">"Europe/Paris"</span>, <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 15:34:15 CET"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 09:54:20 CET"</span>
 <span class="r-in"><span><span class="fu">with_timezone</span><span class="op">(</span><span class="st">"America/Los_Angeles"</span>, <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 06:34:15 PST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 00:54:20 PST"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">fun1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu">local_timezone</span><span class="op">(</span><span class="st">"CET"</span><span class="op">)</span></span></span>
@@ -127,13 +122,13 @@ execution environment.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 14:34:15 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 08:54:20 UTC"</span>
 <span class="r-in"><span><span class="fu">fun1</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 15:34:15 CET"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 09:54:20 CET"</span>
 <span class="r-in"><span><span class="fu">fun2</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 06:34:15 PST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 00:54:20 PST"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-17 14:34:15 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-01-18 08:54:20 UTC"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
