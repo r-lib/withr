@@ -29,7 +29,6 @@ Suggests:
     covr,
     DBI,
     knitr,
-    lattice,
     methods,
     rlang,
     rmarkdown (>= 2.12),
