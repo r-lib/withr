@@ -1,114 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://withr.r-lib.org/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/MAINTENANCE.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/articles/withr.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/defer.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/devices.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/global_defer.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/makevars_user.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/set_makevars.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_collate.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_connection.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_db_connection.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_dir.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_envvar.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_file.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_gctorture2.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_language.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_libpaths.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_locale.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_makevars.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_options.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_package.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_par.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_path.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_rng_version.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_seed.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_sink.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_temp_libpaths.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_tempfile.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/with_timezone.html</loc>
-  </url>
-  <url>
-    <loc>https://withr.r-lib.org/dev/reference/withr.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://withr.r-lib.org/dev/LICENSE-text.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/LICENSE.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/MAINTENANCE.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/articles/index.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/articles/withr.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/authors.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/index.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/news/index.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/defer.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/devices.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/global_defer.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/index.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/makevars_user.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/set_makevars.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_collate.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_connection.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_db_connection.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_dir.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_envvar.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_file.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_gctorture2.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_language.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_libpaths.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_locale.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_makevars.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_options.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_package.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_par.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_path.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_rng_version.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_seed.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_sink.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_temp_libpaths.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_tempfile.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/with_timezone.html</loc></url>
+<url><loc>https://withr.r-lib.org/dev/reference/withr.html</loc></url>
 </urlset>
+
