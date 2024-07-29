@@ -61,7 +61,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0.9000
+RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
     'collate.R'

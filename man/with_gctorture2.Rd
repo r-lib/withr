@@ -12,7 +12,7 @@ with_gctorture2(new, code, wait = new, inhibit_release = FALSE)
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
 \item{wait}{integer; number of allocations to wait before starting
-    GC torture.}
+    \abbr{GC} torture.}
 
 \item{inhibit_release}{logical; do not release free objects for
     re-use: use with caution.}
