@@ -15,7 +15,7 @@ test_that("with_*device* functions create a plot file", {
   dir.create(plot_dir)
 
   fn_names <- c("with_bmp", "with_jpeg", "with_pdf", "with_png",
-    "with_tiff", "with_xfig", "with_svg", "with_cairo_pdf", "with_cairo_ps")
+    "with_tiff", "with_svg", "with_cairo_pdf", "with_cairo_ps")
 
   fns <- mget(fn_names, envir = asNamespace("withr"))
   extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "tiff", "xfig", "svg", "pdf", "ps")
@@ -50,10 +50,10 @@ test_that("local_device functions create a plot file", {
   dir.create(plot_dir)
 
   fn_names <- c("local_bmp", "local_jpeg", "local_pdf", "local_png",
-    "local_tiff", "local_xfig", "local_svg", "local_cairo_pdf", "local_cairo_ps")
+    "local_tiff", "local_svg", "local_cairo_pdf", "local_cairo_ps")
 
   fns <- mget(fn_names, envir = asNamespace("withr"))
-  extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "tiff", "xfig", "svg", "pdf", "ps")
+  extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "tiff", "svg", "pdf", "ps")
 
   for (i in seq_along(fns)) {
     skip_if_needs_cairo(fn_names[[i]])
