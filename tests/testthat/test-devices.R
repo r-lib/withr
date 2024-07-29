@@ -18,21 +18,13 @@ test_that("with_*device* functions create a plot file", {
     "with_tiff", "with_svg", "with_cairo_pdf", "with_cairo_ps")
 
   fns <- mget(fn_names, envir = asNamespace("withr"))
-  extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "tiff", "xfig", "svg", "pdf", "ps")
+  extensions <- c("bmp", "pdf", "ps", "jpg", "pdf", "png", "tiff", "svg", "pdf", "ps")
   for (i in seq_along(fns)) {
     skip_if_needs_cairo(fn_names[[i]])
 
     filename <- file.path(plot_dir, paste0("test-", fn_names[i], ".", extensions[i]))
     info <- paste0("function = ", fn_names[i], "; filename = ", filename)
-    if (fn_names[i] == "with_xfig") {
-      # grDevices::xfig weirdly gives a warning with the default inputs
-      expect_warning(
-        fns[[i]](filename, print(p)),
-        "will only return the last plot"
-      )
-    } else {
-      expect_silent(fns[[i]](filename, print(p)))
-    }
+    expect_silent(fns[[i]](filename, print(p)))
     expect_true(file.exists(filename), info = info)
     expect_gt(file.info(filename)$size, 0, label = info)
   }
@@ -61,14 +53,7 @@ test_that("local_device functions create a plot file", {
     filename <- file.path(plot_dir, paste0("test-", fn_names[i], ".", extensions[i]))
     info <- paste0("function = ", fn_names[i], "; filename = ", filename)
     (function(i) {
-      if (fn_names[i] == "local_xfig") {
-        # grDevices::xfig weirdly gives a warning with the default inputs
-        expect_warning(
-          fns[[i]](filename),
-          "will only return the last plot")
-      } else {
-        expect_silent(fns[[i]](filename))
-      }
+      expect_silent(fns[[i]](filename))
       print(p)
     })(i)
     expect_true(file.exists(filename), info = info)
