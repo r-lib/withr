@@ -6,7 +6,6 @@ test_that("with_par works as expected", {
     expect_equal(par("pty"), "s")
   })
   expect_equal(par("pty"), old)
-  dev.off()
 })
 
 test_that("local_par works as expected", {
