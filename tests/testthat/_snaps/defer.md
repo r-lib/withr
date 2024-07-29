@@ -35,7 +35,7 @@
     Output
       
       
-      ```r
+      ``` r
       withr::deferred_run()
       ```
       
@@ -43,7 +43,7 @@
       ## No deferred expressions to run
       ```
       
-      ```r
+      ``` r
       defer(writeLines('1'))
       writeLines('2')
       ```
@@ -52,11 +52,11 @@
       ## 2
       ```
       
-      ```r
+      ``` r
       defer(writeLines('3'))
       ```
       
-      ```r
+      ``` r
       writeLines('4')
       ```
       
@@ -64,7 +64,7 @@
       ## 4
       ```
       
-      ```r
+      ``` r
       withr::deferred_run()
       ```
       
