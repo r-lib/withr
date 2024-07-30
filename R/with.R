@@ -59,3 +59,6 @@
 #' }
 #' Sys.getenv("WITHR")
 "_PACKAGE"
+
+# Enable pkgload to hotpatch `::` in detached namespaces
+on_load(`::` <- base::`::`)
