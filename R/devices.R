@@ -43,9 +43,8 @@ with_bmp <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_bmp <- function(new, ..., .local_envir = parent.frame()) {
-  old <- bmp_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::bmp(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices CAIRO_PDF device
@@ -58,9 +57,8 @@ with_cairo_pdf <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_cairo_pdf <- function(new, ..., .local_envir = parent.frame()) {
-  old <- cairo_pdf_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::cairo_pdf(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices CAIRO_PS device
@@ -73,9 +71,8 @@ with_cairo_ps <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_cairo_ps <- function(new, ..., .local_envir = parent.frame()) {
-  old <- cairo_ps_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::cairo_ps(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices PDF device
@@ -88,9 +85,8 @@ with_pdf <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_pdf <- function(new, ..., .local_envir = parent.frame()) {
-  old <- pdf_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::pdf(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices POSTSCRIPT device
@@ -103,9 +99,8 @@ with_postscript <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_postscript <- function(new, ..., .local_envir = parent.frame()) {
-  old <- postscript_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::postscript(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices SVG device
@@ -118,9 +113,8 @@ with_svg <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_svg <- function(new, ..., .local_envir = parent.frame()) {
-  old <- svg_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::svg(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices TIFF device
@@ -133,9 +127,8 @@ with_tiff <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_tiff <- function(new, ..., .local_envir = parent.frame()) {
-  old <- tiff_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::tiff(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices XFIG device
@@ -148,9 +141,8 @@ with_xfig <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_xfig <- function(new, ..., .local_envir = parent.frame()) {
-  old <- xfig_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::xfig(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices PNG device
@@ -163,9 +155,8 @@ with_png <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_png <- function(new, ..., .local_envir = parent.frame()) {
-  old <- png_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::png(new, ...)
+  defer_dev_close(.local_envir)
 }
 
 #' @describeIn devices JPEG device
@@ -178,62 +169,17 @@ with_jpeg <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_jpeg <- function(new, ..., .local_envir = parent.frame()) {
-  old <- jpeg_dev(new, ...)
-  defer(dev_close(old), envir = .local_envir)
-  invisible(old)
+  grDevices::jpeg(new, ...)
+  defer_dev_close(.local_envir)
 }
 
+defer_dev_close <- function(frame) {
+  cur <- grDevices::dev.cur()
+  defer(dev_close(cur), envir = frame)
 
-# Internal *_dev functions ------------------------------------------------
-
-pdf_dev <- function(filename, ...) {
-  grDevices::pdf(file = filename, ...)
-  grDevices::dev.cur()
-}
-
-postscript_dev <- function(filename, ...) {
-  grDevices::postscript(file = filename, ...)
-  grDevices::dev.cur()
-}
-
-svg_dev <- function(filename, ...) {
-  grDevices::svg(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-xfig_dev <- function(filename, ...) {
-  grDevices::xfig(file = filename, ...)
-  grDevices::dev.cur()
-}
-
-cairo_pdf_dev <- function(filename, ...) {
-  grDevices::cairo_pdf(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-cairo_ps_dev <- function(filename, ...) {
-  grDevices::cairo_ps(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-bmp_dev <- function(filename, ...) {
-  grDevices::bmp(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-tiff_dev <- function(filename, ...) {
-  grDevices::tiff(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-png_dev <- function(filename, ...) {
-  grDevices::png(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-jpeg_dev <- function(filename, ...) {
-  grDevices::jpeg(filename = filename, ...)
-  grDevices::dev.cur()
+  # Note that unlike typical `local_` functions we return the current device
+  # rather than the old one
+  invisible(cur)
 }
 
 dev_close <- function(which) {
