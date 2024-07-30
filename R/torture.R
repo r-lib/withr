@@ -4,6 +4,7 @@
 #'
 #' @template with
 #' @param new `[integer]`\cr run GC every 'step' allocations.
+#' @param wait integer; number of allocations to wait before starting GC torture.
 #' @inheritParams base::gctorture
 #' @inheritParams local_
 with_gctorture2 <- with_(gctorture2)

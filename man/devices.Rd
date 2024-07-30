@@ -224,7 +224,7 @@ local_jpeg(new = list(), ..., .local_envir = parent.frame())
     string specify a font family to be searched for in a
     system-dependent way.
 
-    On unix-alikes (incl.\\ Mac), see
+    On unix-alikes (incl.\\ macOS), see
     the \sQuote{Cairo fonts} section in the help for \code{\link[grDevices]{X11}}.
   }
 
@@ -247,16 +247,32 @@ local_jpeg(new = list(), ..., .local_envir = parent.frame())
     The default is \code{"special"}, which means that the \code{width}
     and \code{height} specify the paper size.  A further choice is
     \code{"default"}; if this is selected, the
-    papersize is taken from the option \code{"papersize"}
+    paper size is taken from the option \code{"papersize"}
     if that is set and as \code{"a4"} if it is unset or empty.
     Defaults to \code{"special"}.
   }
 
-\item{encoding}{the name of an encoding file.  See
-    \code{\link[grDevices]{postscript}} for details.  Defaults to \code{"default"}.}
+\item{encoding}{the name of an encoding file.  Defaults to
+    \code{"default"}.  The latter is interpreted
+    \describe{
+      \item{on Unix-alikes}{
+	as \file{"ISOLatin1.enc"} unless the locale is recognized as
+    corresponding to a language using ISO 8859-\{2,5,7,13,15\} or KOI8-\{R,U\}.
+      }
+      \item{on Windows}{
+    as \file{"CP1250.enc"} (Central European), \code{"CP1251.enc"} (Cyrillic),
+    \code{"CP1253.enc"} (Greek) or \code{"CP1257.enc"} (Baltic) if one
+    of those codepages is in use, otherwise \file{"WinAnsi.enc"}
+    (codepage 1252).
+      }
+    }
+    The file is looked for in the \file{enc} directory of package
+    \pkg{grDevices} if the path does not contain a path separator.  An
+    extension \code{".enc"} can be omitted.
+  }
 
 \item{bg}{the initial background colour: can be overridden by setting
-    par("bg").}
+    \code{par("bg")}.}
 
 \item{fg}{the initial foreground color to be used.  Defaults to
    \code{"black"}.}
@@ -275,7 +291,7 @@ local_jpeg(new = list(), ..., .local_envir = parent.frame())
 \item{useDingbats}{logical.  Should small circles be rendered
     \emph{via} the Dingbats font?  Defaults to \code{FALSE}.
     If \code{TRUE}, this can produce smaller and better output, but
-    there can font display problems in broken PDF viewers: although this
+    can cause font display problems in broken PDF viewers: although this
     font is one of the 14 guaranteed to be available in all PDF viewers,
     that guarantee is not always honoured.
 
@@ -307,11 +323,11 @@ length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
 \item{antialias}{string, the type of anti-aliasing (if any) to be used;
     defaults to \code{"default"}.}
 
-\item{defaultfont}{logical: should the device use xfig's default
+\item{defaultfont}{logical: should the device use XFig's default
     font?}
 
 \item{textspecial}{logical: should the device set the textspecial flag
-  for all text elements. This is useful when generating pstex from xfig
+  for all text elements? This is useful when generating pstex from XFig
   figures.}
 }
 \value{
