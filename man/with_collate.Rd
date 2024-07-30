@@ -24,14 +24,20 @@ argument.
 Temporarily change collation order by changing the value of the
 \code{LC_COLLATE} locale.
 }
-\examples{
+\section{Examples}{
 
-# Modify collation order:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Modify collation order:
 x <- c("bernard", "bérénice", "béatrice", "boris")
-with_collate("fr_FR", sort(x))
-with_collate("C", sort(x))
 
+with_collate("fr_FR", sort(x))
+#> [1] "béatrice" "bérénice" "bernard"  "boris"   
+
+with_collate("C", sort(x))
+#> [1] "bernard"  "boris"    "béatrice" "bérénice"
+}\if{html}{\out{</div>}}
 }
+
 \seealso{
 \code{\link{withr}} for examples
 }
