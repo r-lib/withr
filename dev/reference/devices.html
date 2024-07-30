@@ -262,7 +262,7 @@
     <code>"sans"</code>, <code>"serif"</code> and <code>"mono"</code>, or a character
     string specify a font family to be searched for in a
     system-dependent way.</p>
-<p>On unix-alikes (incl.\ Mac), see
+<p>On unix-alikes (incl.\ macOS), see
     the ‘Cairo fonts’ section in the help for <code><a href="https://rdrr.io/r/grDevices/x11.html" class="external-link">X11</a></code>.</p></dd>
 
 
@@ -292,19 +292,32 @@
     The default is <code>"special"</code>, which means that the <code>width</code>
     and <code>height</code> specify the paper size.  A further choice is
     <code>"default"</code>; if this is selected, the
-    papersize is taken from the option <code>"papersize"</code>
+    paper size is taken from the option <code>"papersize"</code>
     if that is set and as <code>"a4"</code> if it is unset or empty.
     Defaults to <code>"special"</code>.</p></dd>
 
 
 <dt id="arg-encoding">encoding<a class="anchor" aria-label="anchor" href="#arg-encoding"></a></dt>
-<dd><p>the name of an encoding file.  See
-    <code><a href="https://rdrr.io/r/grDevices/postscript.html" class="external-link">postscript</a></code> for details.  Defaults to <code>"default"</code>.</p></dd>
+<dd><p>the name of an encoding file.  Defaults to
+    <code>"default"</code>.  The latter is interpreted</p><dl><dt>on Unix-alikes</dt>
+<dd><p>as <code class="file">"ISOLatin1.enc"</code> unless the locale is recognized as
+    corresponding to a language using ISO 8859-{2,5,7,13,15} or KOI8-{R,U}.</p></dd>
+
+      <dt>on Windows</dt>
+<dd><p>as <code class="file">"CP1250.enc"</code> (Central European), <code>"CP1251.enc"</code> (Cyrillic),
+    <code>"CP1253.enc"</code> (Greek) or <code>"CP1257.enc"</code> (Baltic) if one
+    of those codepages is in use, otherwise <code class="file">"WinAnsi.enc"</code>
+    (codepage 1252).</p></dd>
+
+
+</dl><p>The file is looked for in the <code class="file">enc</code> directory of package
+    <span class="pkg">grDevices</span> if the path does not contain a path separator.  An
+    extension <code>".enc"</code> can be omitted.</p></dd>
 
 
 <dt id="arg-bg">bg<a class="anchor" aria-label="anchor" href="#arg-bg"></a></dt>
 <dd><p>the initial background colour: can be overridden by setting
-    par("bg").</p></dd>
+    <code>par("bg")</code>.</p></dd>
 
 
 <dt id="arg-fg">fg<a class="anchor" aria-label="anchor" href="#arg-fg"></a></dt>
@@ -333,7 +346,7 @@
 <dd><p>logical.  Should small circles be rendered
     <em>via</em> the Dingbats font?  Defaults to <code>FALSE</code>.
     If <code>TRUE</code>, this can produce smaller and better output, but
-    there can font display problems in broken PDF viewers: although this
+    can cause font display problems in broken PDF viewers: although this
     font is one of the 14 guaranteed to be available in all PDF viewers,
     that guarantee is not always honoured.</p>
 <p>For Unix-alikes (including macOS) see the ‘Note’ for a
@@ -380,13 +393,13 @@ length limit is <code>2*PATH_MAX</code>, typically 8096 bytes on unix systems an
 
 
 <dt id="arg-defaultfont">defaultfont<a class="anchor" aria-label="anchor" href="#arg-defaultfont"></a></dt>
-<dd><p>logical: should the device use xfig's default
+<dd><p>logical: should the device use XFig's default
     font?</p></dd>
 
 
 <dt id="arg-textspecial">textspecial<a class="anchor" aria-label="anchor" href="#arg-textspecial"></a></dt>
 <dd><p>logical: should the device set the textspecial flag
-  for all text elements. This is useful when generating pstex from xfig
+  for all text elements? This is useful when generating pstex from XFig
   figures.</p></dd>
 
 </dl></div>
