@@ -1,6 +1,6 @@
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
-Version: 3.0.0.9000
+Version: 3.0.1
 Authors@R: c(
     person("Jim", "Hester", role = "aut"),
     person("Lionel", "Henry", , "lionel@posit.co", role = c("aut", "cre")),

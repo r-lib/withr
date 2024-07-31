@@ -1,4 +1,7 @@
-# withr (development version)
+# withr 3.0.1
+
+* Fixes for CRAN checks.
+
 
 # withr 3.0.0
 
