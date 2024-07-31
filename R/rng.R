@@ -60,21 +60,12 @@ local_rng_version <- function(version, .local_envir = parent.frame()) {
   old
 }
 
-on_load(
-  is_before_3.6 <- getRversion() < "3.6"
-)
-
 restore_rng_kind <- function(kind) {
   # Silence static analysis linting about `RNGkind()` signature on old
   # R versions
   RNGkind <- get("RNGkind")
 
   RNGkind(kind[[1]], normal.kind = kind[[2]])
-
-  # No sample argument on old R versions
-  if (is_before_3.6) {
-    return()
-  }
 
   # Within a `local_rng_version("3.5.0")`, we restore to `"Rounding"`,
   # which causes a warning. See https://github.com/r-lib/withr/issues/167

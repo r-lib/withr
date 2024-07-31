@@ -20,7 +20,7 @@ License: MIT + file LICENSE
 URL: https://withr.r-lib.org, https://github.com/r-lib/withr#readme
 BugReports: https://github.com/r-lib/withr/issues
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.6.0)
 Imports:
     graphics,
     grDevices
