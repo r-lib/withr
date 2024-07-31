@@ -284,18 +284,3 @@ defer_knitr_run <- function(
     }
   })
 }
-
-
-# Augment rlang with withr features such as knitr support
-on_load({
-  on_package_load("rlang", local({
-    if (is.null(getOption("withr:::inject_defer_override"))) {
-      ns <- asNamespace("rlang")
-
-      do.call("unlockBinding", list("defer", ns))
-      defer(lockBinding("defer", ns))
-
-      ns$defer <- defer
-    }
-  }))
-})
