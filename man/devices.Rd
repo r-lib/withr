@@ -28,181 +28,43 @@
 \usage{
 with_bmp(new, code, ...)
 
-local_bmp(new = list(), ..., .local_envir = parent.frame())
+local_bmp(new, ..., .local_envir = parent.frame())
 
 with_cairo_pdf(new, code, ...)
 
-local_cairo_pdf(new = list(), ..., .local_envir = parent.frame())
+local_cairo_pdf(new, ..., .local_envir = parent.frame())
 
 with_cairo_ps(new, code, ...)
 
-local_cairo_ps(new = list(), ..., .local_envir = parent.frame())
+local_cairo_ps(new, ..., .local_envir = parent.frame())
 
-with_pdf(
-  new,
-  code,
-  width,
-  height,
-  onefile,
-  family,
-  title,
-  fonts,
-  version,
-  paper,
-  encoding,
-  bg,
-  fg,
-  pointsize,
-  pagecentre,
-  colormodel,
-  useDingbats,
-  useKerning,
-  fillOddEven,
-  compress
-)
+with_pdf(new, code, ...)
 
-local_pdf(
-  new = list(),
-  width,
-  height,
-  onefile,
-  family,
-  title,
-  fonts,
-  version,
-  paper,
-  encoding,
-  bg,
-  fg,
-  pointsize,
-  pagecentre,
-  colormodel,
-  useDingbats,
-  useKerning,
-  fillOddEven,
-  compress,
-  .local_envir = parent.frame()
-)
+local_pdf(new, ..., .local_envir = parent.frame())
 
-with_postscript(
-  new,
-  code,
-  onefile,
-  family,
-  title,
-  fonts,
-  encoding,
-  bg,
-  fg,
-  width,
-  height,
-  horizontal,
-  pointsize,
-  paper,
-  pagecentre,
-  print.it,
-  command,
-  colormodel,
-  useKerning,
-  fillOddEven
-)
+with_postscript(new, code, ...)
 
-local_postscript(
-  new = list(),
-  onefile,
-  family,
-  title,
-  fonts,
-  encoding,
-  bg,
-  fg,
-  width,
-  height,
-  horizontal,
-  pointsize,
-  paper,
-  pagecentre,
-  print.it,
-  command,
-  colormodel,
-  useKerning,
-  fillOddEven,
-  .local_envir = parent.frame()
-)
+local_postscript(new, ..., .local_envir = parent.frame())
 
-with_svg(
-  new,
-  code,
-  width = 7,
-  height = 7,
-  pointsize = 12,
-  onefile = FALSE,
-  family = "sans",
-  bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"),
-  ...
-)
+with_svg(new, code, ...)
 
-local_svg(
-  new = list(),
-  width = 7,
-  height = 7,
-  pointsize = 12,
-  onefile = FALSE,
-  family = "sans",
-  bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"),
-  ...,
-  .local_envir = parent.frame()
-)
+local_svg(new, ..., .local_envir = parent.frame())
 
 with_tiff(new, code, ...)
 
-local_tiff(new = list(), ..., .local_envir = parent.frame())
+local_tiff(new, ..., .local_envir = parent.frame())
 
-with_xfig(
-  new,
-  code,
-  onefile = FALSE,
-  encoding = "none",
-  paper = "default",
-  horizontal = TRUE,
-  width = 0,
-  height = 0,
-  family = "Helvetica",
-  pointsize = 12,
-  bg = "transparent",
-  fg = "black",
-  pagecentre = TRUE,
-  defaultfont = FALSE,
-  textspecial = FALSE
-)
+with_xfig(new, code, ...)
 
-local_xfig(
-  new = list(),
-  onefile = FALSE,
-  encoding = "none",
-  paper = "default",
-  horizontal = TRUE,
-  width = 0,
-  height = 0,
-  family = "Helvetica",
-  pointsize = 12,
-  bg = "transparent",
-  fg = "black",
-  pagecentre = TRUE,
-  defaultfont = FALSE,
-  textspecial = FALSE,
-  .local_envir = parent.frame()
-)
+local_xfig(new, ..., .local_envir = parent.frame())
 
 with_png(new, code, ...)
 
-local_png(new = list(), ..., .local_envir = parent.frame())
+local_png(new, ..., .local_envir = parent.frame())
 
 with_jpeg(new, code, ...)
 
-local_jpeg(new = list(), ..., .local_envir = parent.frame())
+local_jpeg(new, ..., .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}
@@ -212,123 +74,6 @@ local_jpeg(new = list(), ..., .local_envir = parent.frame())
 \item{...}{Additional arguments passed to the graphics device.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
-
-\item{width}{the width of the device in inches.}
-
-\item{height}{the height of the device in inches.}
-
-\item{onefile}{should all plots appear in one file or in separate files?}
-
-\item{family}{one of the device-independent font families,
-    \code{"sans"}, \code{"serif"} and \code{"mono"}, or a character
-    string specify a font family to be searched for in a
-    system-dependent way.
-
-    On unix-alikes (incl.\\ macOS), see
-    the \sQuote{Cairo fonts} section in the help for \code{\link[grDevices]{X11}}.
-  }
-
-\item{title}{title string to embed as the \samp{/Title} field in the
-    file.  Defaults to \code{"R Graphics Output"}.}
-
-\item{fonts}{a character vector specifying \R graphics font family
-    names for additional fonts which will be included in the PDF file.
-    Defaults to \code{NULL}.}
-
-\item{version}{a string describing the PDF version that will be
-    required to view the output.  This is a minimum, and will be
-    increased (with a warning) if necessary.  Defaults to \code{"1.4"},
-    but see \sQuote{Details}.}
-
-\item{paper}{the target paper size.  The choices are
-    \code{"a4"}, \code{"letter"}, \code{"legal"} (or \code{"us"}) and
-    \code{"executive"} (and these can be capitalized), or \code{"a4r"}
-    and \code{"USr"} for rotated (\sQuote{landscape}).
-    The default is \code{"special"}, which means that the \code{width}
-    and \code{height} specify the paper size.  A further choice is
-    \code{"default"}; if this is selected, the
-    paper size is taken from the option \code{"papersize"}
-    if that is set and as \code{"a4"} if it is unset or empty.
-    Defaults to \code{"special"}.
-  }
-
-\item{encoding}{the name of an encoding file.  Defaults to
-    \code{"default"}.  The latter is interpreted
-    \describe{
-      \item{on Unix-alikes}{
-	as \file{"ISOLatin1.enc"} unless the locale is recognized as
-    corresponding to a language using ISO 8859-\{2,5,7,13,15\} or KOI8-\{R,U\}.
-      }
-      \item{on Windows}{
-    as \file{"CP1250.enc"} (Central European), \code{"CP1251.enc"} (Cyrillic),
-    \code{"CP1253.enc"} (Greek) or \code{"CP1257.enc"} (Baltic) if one
-    of those codepages is in use, otherwise \file{"WinAnsi.enc"}
-    (codepage 1252).
-      }
-    }
-    The file is looked for in the \file{enc} directory of package
-    \pkg{grDevices} if the path does not contain a path separator.  An
-    extension \code{".enc"} can be omitted.
-  }
-
-\item{bg}{the initial background colour: can be overridden by setting
-    \code{par("bg")}.}
-
-\item{fg}{the initial foreground color to be used.  Defaults to
-   \code{"black"}.}
-
-\item{pointsize}{the default pointsize of plotted text (in big points).}
-
-\item{pagecentre}{logical: should the device region be centred on the
-    page? -- is only relevant for \code{paper != "special"}.
-    Defaults to \code{TRUE}.}
-
-\item{colormodel}{a character string describing the color model:
-    currently allowed values are \code{"srgb"}, \code{"gray"} (or
-    \code{"grey"}) and \code{"cmyk"}.  Defaults to \code{"srgb"}.  See section
-    \sQuote{Color models}.}
-
-\item{useDingbats}{logical.  Should small circles be rendered
-    \emph{via} the Dingbats font?  Defaults to \code{FALSE}.
-    If \code{TRUE}, this can produce smaller and better output, but
-    can cause font display problems in broken PDF viewers: although this
-    font is one of the 14 guaranteed to be available in all PDF viewers,
-    that guarantee is not always honoured.
-
-    For Unix-alikes (including macOS) see the \sQuote{Note} for a
-    possible fix for some viewers.}
-
-\item{useKerning}{logical.  Should kerning corrections be included in
-    setting text and calculating string widths?  Defaults to \code{TRUE}.}
-
-\item{fillOddEven}{logical controlling the polygon fill mode:  see
-    \code{\link{polygon}} for details.  Defaults to \code{FALSE}.}
-
-\item{compress}{logical.  Should PDF streams be generated with Flate
-    compression?  Defaults to \code{TRUE}.}
-
-\item{horizontal}{the orientation of the printed image, a logical.
-    Defaults to true, that is landscape orientation on paper sizes
-    with width less than height.}
-
-\item{print.it}{logical: should the file be printed when the device is
-    closed?  (This only applies if \code{file} is a real file name.)
-    Defaults to false.}
-
-\item{command}{the command to be used for \sQuote{printing}. Defaults
-to \code{"default"}, the value of option \code{"printcmd"}. The
-length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
-520 bytes on windows.}
-
-\item{antialias}{string, the type of anti-aliasing (if any) to be used;
-    defaults to \code{"default"}.}
-
-\item{defaultfont}{logical: should the device use XFig's default
-    font?}
-
-\item{textspecial}{logical: should the device set the textspecial flag
-  for all text elements? This is useful when generating pstex from XFig
-  figures.}
 }
 \value{
 \code{[any]}\cr The results of the evaluation of the \code{code}
@@ -336,6 +81,20 @@ argument.
 }
 \description{
 Temporarily use a graphics device.
+}
+\details{
+\itemize{
+\item \code{with_bmp()} and \code{local_bmp()} wrap around \code{\link[grDevices:png]{grDevices::bmp()}}.
+\item \code{with_cairo_pdf()} and \code{local_cairo_pdf()} wrap around \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}}.
+\item \code{with_cairo_ps()} and \code{local_cairo_ps()} wrap around \code{\link[grDevices:cairo]{grDevices::cairo_ps()}}.
+\item \code{with_pdf()} and \code{local_pdf()} wrap around \code{\link[grDevices:pdf]{grDevices::pdf()}}.
+\item \code{with_postscript()} and \code{local_postscript()} wrap around \code{\link[grDevices:postscript]{grDevices::postscript()}}.
+\item \code{with_svg()} and \code{local_svg()} wrap around \code{\link[grDevices:cairo]{grDevices::svg()}}.
+\item \code{with_tiff()} and \code{local_tiff()} wrap around \code{\link[grDevices:png]{grDevices::tiff()}}.
+\item \code{with_xfig()} and \code{local_xfig()} wrap around \code{\link[grDevices:xfig]{grDevices::xfig()}}.
+\item \code{with_png()} and \code{local_png()} wrap around \code{\link[grDevices:png]{grDevices::png()}}.
+\item \code{with_jpeg()} and \code{local_jpeg()} wrap around \code{\link[grDevices:png]{grDevices::jpeg()}}.
+}
 }
 \section{Functions}{
 \itemize{

@@ -1,59 +1,3 @@
-#' @include with_.R
-#' @include wrap.R
-NULL
-
-# Internal *_dev functions ------------------------------------------------
-
-pdf_dev <- wrap(grDevices::pdf, NULL, grDevices::dev.cur())
-
-postscript_dev <- wrap(grDevices::postscript, NULL, grDevices::dev.cur())
-
-svg_wrapper <- function(filename, width = 7, height = 7, pointsize = 12,
-  onefile = FALSE, family = "sans", bg = "white",
-  antialias = c("default", "none", "gray", "subpixel"), ...) {
-  grDevices::svg(filename, width, height, pointsize, onefile, family, bg, antialias, ...)
-}
-svg_dev <- wrap(svg_wrapper, NULL, grDevices::dev.cur())
-
-xfig_dev <- wrap(grDevices::xfig, NULL, grDevices::dev.cur())
-
-
-# These functions arguments differ between R versions, so just use ...
-
-cairo_pdf_dev <- function(filename, ...) {
-  grDevices::cairo_pdf(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-cairo_ps_dev <- function(filename, ...) {
-  grDevices::cairo_ps(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-# These functions arguments differ between unix and windows, so just use ...
-
-bmp_dev <- function(filename, ...) {
-  grDevices::bmp(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-tiff_dev <- function(filename, ...) {
-  grDevices::tiff(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-png_dev <- function(filename, ...) {
-  grDevices::png(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-jpeg_dev <- function(filename, ...) {
-  grDevices::jpeg(filename = filename, ...)
-  grDevices::dev.cur()
-}
-
-# User-level with_* fns ---------------------------------------------------
-
 #' Graphics devices
 #'
 #' Temporarily use a graphics device.
@@ -64,6 +8,18 @@ jpeg_dev <- function(filename, ...) {
 #' @param new \code{[named character]}\cr New graphics device
 #' @param ... Additional arguments passed to the graphics device.
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
+#' @details
+#' * `with_bmp()` and `local_bmp()` wrap around [grDevices::bmp()].
+#' * `with_cairo_pdf()` and `local_cairo_pdf()` wrap around [grDevices::cairo_pdf()].
+#' * `with_cairo_ps()` and `local_cairo_ps()` wrap around [grDevices::cairo_ps()].
+#' * `with_pdf()` and `local_pdf()` wrap around [grDevices::pdf()].
+#' * `with_postscript()` and `local_postscript()` wrap around [grDevices::postscript()].
+#' * `with_svg()` and `local_svg()` wrap around [grDevices::svg()].
+#' * `with_tiff()` and `local_tiff()` wrap around [grDevices::tiff()].
+#' * `with_xfig()` and `local_xfig()` wrap around [grDevices::xfig()].
+#' * `with_png()` and `local_png()` wrap around [grDevices::png()].
+#' * `with_jpeg()` and `local_jpeg()` wrap around [grDevices::jpeg()].
+#' 
 #' @seealso \code{\link[grDevices]{Devices}}
 #' @examples
 #' # dimensions are in inches
@@ -77,6 +33,155 @@ jpeg_dev <- function(filename, ...) {
 #' )
 NULL
 
+#' @describeIn devices BMP device
+#' @export
+with_bmp <- function(new, code, ...) {
+  local_bmp(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_bmp <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::bmp(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices CAIRO_PDF device
+#' @export
+with_cairo_pdf <- function(new, code, ...) {
+  local_cairo_pdf(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_cairo_pdf <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::cairo_pdf(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices CAIRO_PS device
+#' @export
+with_cairo_ps <- function(new, code, ...) {
+  local_cairo_ps(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_cairo_ps <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::cairo_ps(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices PDF device
+#' @export
+with_pdf <- function(new, code, ...) {
+  local_pdf(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_pdf <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::pdf(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices POSTSCRIPT device
+#' @export
+with_postscript <- function(new, code, ...) {
+  local_postscript(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_postscript <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::postscript(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices SVG device
+#' @export
+with_svg <- function(new, code, ...) {
+  local_svg(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_svg <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::svg(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices TIFF device
+#' @export
+with_tiff <- function(new, code, ...) {
+  local_tiff(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_tiff <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::tiff(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices XFIG device
+#' @export
+with_xfig <- function(new, code, ...) {
+  local_xfig(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_xfig <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::xfig(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices PNG device
+#' @export
+with_png <- function(new, code, ...) {
+  local_png(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_png <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::png(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+#' @describeIn devices JPEG device
+#' @export
+with_jpeg <- function(new, code, ...) {
+  local_jpeg(new, ...)
+  code
+}
+
+#' @rdname devices
+#' @export
+local_jpeg <- function(new, ..., .local_envir = parent.frame()) {
+  grDevices::jpeg(new, ...)
+  defer_dev_close(.local_envir)
+}
+
+defer_dev_close <- function(frame) {
+  cur <- grDevices::dev.cur()
+  defer(dev_close(cur), envir = frame)
+
+  # Note that unlike typical `local_` functions we return the current device
+  # rather than the old one
+  invisible(cur)
+}
+
 dev_close <- function(which) {
   prev <- grDevices::dev.prev(which)
   grDevices::dev.off(which)
@@ -88,94 +193,3 @@ dev_close <- function(which) {
 
   prev
 }
-
-#' @describeIn devices BMP device
-#' @export
-with_bmp <- with_(bmp_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_bmp <- local_(bmp_dev, dev_close)
-
-#' @describeIn devices CAIRO_PDF device
-#' @inheritParams grDevices::cairo_pdf
-#' @export
-with_cairo_pdf <- with_(cairo_pdf_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_cairo_pdf <- local_(cairo_pdf_dev, dev_close)
-
-#' @describeIn devices CAIRO_PS device
-#' @inheritParams grDevices::cairo_ps
-#' @export
-with_cairo_ps <- with_(cairo_ps_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_cairo_ps <- local_(cairo_ps_dev, dev_close)
-
-#' @describeIn devices PDF device
-#' @inheritParams grDevices::pdf
-#' @export
-with_pdf <- with_(pdf_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_pdf <- local_(pdf_dev, dev_close)
-
-#' @describeIn devices POSTSCRIPT device
-#' @inheritParams grDevices::postscript
-#' @param command the command to be used for \sQuote{printing}. Defaults
-#'   to \code{"default"}, the value of option \code{"printcmd"}. The
-#'   length limit is \code{2*PATH_MAX}, typically 8096 bytes on unix systems and
-#'   520 bytes on windows.
-#' @export
-with_postscript <- with_(postscript_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_postscript <- local_(postscript_dev, dev_close)
-
-#' @describeIn devices SVG device
-#' @inheritParams grDevices::svg
-#' @export
-with_svg <- with_(svg_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_svg <- local_(svg_dev, dev_close)
-
-#' @describeIn devices TIFF device
-#' @export
-with_tiff <- with_(tiff_dev, dev_close)
-
-
-#' @rdname devices
-#' @export
-local_tiff <- local_(tiff_dev, dev_close)
-
-#' @describeIn devices XFIG device
-#' @inheritParams grDevices::xfig
-#' @export
-with_xfig <- with_(xfig_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_xfig <- local_(xfig_dev, dev_close)
-
-#' @describeIn devices PNG device
-#' @export
-with_png <- with_(png_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_png <- local_(png_dev, dev_close)
-
-#' @describeIn devices JPEG device
-#' @export
-with_jpeg <- with_(jpeg_dev, dev_close)
-
-#' @rdname devices
-#' @export
-local_jpeg <- local_(jpeg_dev, dev_close)
