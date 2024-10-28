@@ -9,7 +9,7 @@ once you're finished with it."><meta property="og:image" content="https://withr.
 
     <a class="navbar-brand me-2" href="../index.html">withr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">3.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">3.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ once you're finished with it."><meta property="og:image" content="https://withr.
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Temporary files and directories</h1>
-      <small class="dont-index">Source: <a href="https://github.com/r-lib/withr/blob/v3.0.1/R/tempfile.R" class="external-link"><code>R/tempfile.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/withr/blob/main/R/tempfile.R" class="external-link"><code>R/tempfile.R</code></a></small>
       <div class="d-none name"><code>with_tempfile.Rd</code></div>
     </div>
 
@@ -159,12 +159,12 @@ argument.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">iris</span>, <span class="va">path2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.info.html" class="external-link">file.size</a></span><span class="op">(</span><span class="va">path2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpuxyaZ7/file169838528f6e"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmp7gdDMb/file16ae32633ce4"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4821</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Note that this variable is only available in the scope of with_tempfile</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">path2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir, enclos) : object 'path2' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : object 'path2' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -178,7 +178,7 @@ argument.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
   </div></footer></body></html>
