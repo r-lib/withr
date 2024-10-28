@@ -1,4 +1,4 @@
-# withr (development version)
+# withr 3.0.2
 
 * `local_language()` now never warns when set to `"C"` (#254).
   This is a cross-platform and silent way of disabling `gettext()`
