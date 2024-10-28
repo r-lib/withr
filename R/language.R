@@ -34,23 +34,26 @@ local_language <- function(lang, .local_envir = parent.frame()) {
   # https://stackoverflow.com/questions/6152321
   lang <- gsub("-", "_", lang, fixed = TRUE)
 
-  if (!has_nls()) {
-    warning("Changing language has no effect when R installed without NLS")
-  }
+  # Only warn if setting `LANGUAGE` to something other than `"C"` (#254)
+  if (lang != "C") {
+    if (!has_nls()) {
+      warning("Changing language has no effect when R installed without NLS")
+    }
 
-  # > Note: The variable LANGUAGE is ignored if the locale is set to ‘C’.
-  # > In other words, you have to first enable localization, by setting LANG
-  # > (or LC_ALL) to a value other than ‘C’, before you can use a language
-  # > priority list through the LANGUAGE variable.
-  # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
+    # > Note: The variable LANGUAGE is ignored if the locale is set to ‘C’.
+    # > In other words, you have to first enable localization, by setting LANG
+    # > (or LC_ALL) to a value other than ‘C’, before you can use a language
+    # > priority list through the LANGUAGE variable.
+    # --- https://www.gnu.org/software/gettext/manual/html_node/The-LANGUAGE-variable.html
 
-  # `LC_ALL` has precedence over `LANG`. Check for the latter if the
-  # former is unset, otherwise check for the former.
-  if (Sys.getenv("LC_ALL", "") == "") {
-    # Causes too many failures because testthat sets `LANG` to "C"
-    # check_language_envvar("LANG")
-  } else {
-    check_language_envvar("LC_ALL")
+    # `LC_ALL` has precedence over `LANG`. Check for the latter if the
+    # former is unset, otherwise check for the former.
+    if (Sys.getenv("LC_ALL", "") == "") {
+      # Causes too many failures because testthat sets `LANG` to "C"
+      # check_language_envvar("LANG")
+    } else {
+      check_language_envvar("LC_ALL")
+    }
   }
 
   local_envvar(LANGUAGE = lang, .local_envir = .local_envir)

@@ -1,5 +1,10 @@
 # withr (development version)
 
+* `local_language()` now never warns when set to `"C"` (#254).
+  This is a cross-platform and silent way of disabling `gettext()`
+  translations.
+
+
 # withr 3.0.1
 
 * Fixes for CRAN checks.
@@ -41,10 +46,10 @@
 
 * `deferred_run()` can now be run at any point in a knitr file (#235).
 
-* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses 
+* `local_tempfile()` now writes `lines` in UTF-8 (#210) and always uses
   `\n` for newlines (#216).
 
-* `local_pdf()` and friends now correctly restore to the previously 
+* `local_pdf()` and friends now correctly restore to the previously
   active device (#138).
 
 * `local_()` now works even if withr isn't attached (#207).
@@ -132,7 +137,7 @@
 
 * Lionel Henry is the new maintainer.
 
-* Handlers registered with the global environment (as happens when `local_()` 
+* Handlers registered with the global environment (as happens when `local_()`
   is run at the top-level, outside a function) are now automatically run
   when the R session ends (#173).
 
