@@ -1,6 +1,6 @@
 Package: withr
 Title: Run Code 'With' Temporarily Modified Global State
-Version: 3.0.2.9000
+Version: 3.0.2.9001
 Authors@R: c(
     person("Jim", "Hester", role = "aut"),
     person("Lionel", "Henry", , "lionel@posit.co", role = c("aut", "cre")),
@@ -33,14 +33,14 @@ Suggests:
     rmarkdown (>= 2.12),
     RSQLite,
     testthat (>= 3.0.0)
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Collate: 
+Collate:
     'aaa.R'
     'collate.R'
     'connection.R'
