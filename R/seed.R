@@ -96,11 +96,8 @@ has_seed <- function() {
 }
 
 get_seed <- function() {
-  if (!has_seed()) {
-    return(NULL)
-  }
   list(
-    random_seed = get(".Random.seed", globalenv(), mode = "integer", inherits = FALSE),
+    random_seed = get0(".Random.seed", globalenv(), mode = "integer", inherits = FALSE),
     rng_kind = RNGkind()
   )
 }
