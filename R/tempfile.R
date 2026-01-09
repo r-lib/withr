@@ -1,6 +1,6 @@
 #' Temporary files and directories
 #'
-#' Temporarily create a file or directory, which will automatically deleted
+#' Temporarily create a file or directory, which will be automatically deleted
 #' once you're finished with it.
 #'
 #' @template with
