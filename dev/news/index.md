@@ -2,6 +2,12 @@
 
 ## withr (development version)
 
+- Fixed issue that prevented
+  [`local_seed()`](https://withr.r-lib.org/dev/reference/with_seed.md)
+  from preserving the seed
+  ([\#286](https://github.com/r-lib/withr/issues/286),
+  [@BjarkeHautop](https://github.com/BjarkeHautop)).
+
 ## withr 3.0.2
 
 CRAN release: 2024-10-28
