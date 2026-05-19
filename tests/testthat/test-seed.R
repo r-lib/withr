@@ -69,6 +69,17 @@ test_that("local_seed works as expected", {
   expect_false(x == y)
 })
 
+test_that("local_seed doesn't modify `.Random.seed` (#286)", {
+  f1 <- function(n, seed) {
+    local_seed(seed)
+    rnorm(n)
+  }
+  set.seed(42)
+  seed3 <- .Random.seed
+  rslt3 <- f1(5, 41)
+  expect_identical(seed3, .Random.seed)
+})
+
 test_that("with_preserve_seed preserves empty seed", {
   rm_seed()
   with_preserve_seed(runif(1))

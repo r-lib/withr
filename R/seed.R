@@ -44,9 +44,9 @@ local_seed <- function(seed,
 
   defer(envir = .local_envir, {
     if (is.null(old_seed)) {
-      on.exit(rm_seed(), add = TRUE)
+      rm_seed()
     } else {
-      on.exit(set_seed(old_seed), add = TRUE)
+      set_seed(old_seed)
     }
   })
 
