@@ -34,6 +34,7 @@ block of code, then automatically reset it after the block is completed.
 ## Installation
 
 ``` r
+
 #Install the latest version with:
 install.packages("withr")
 ```
@@ -142,6 +143,7 @@ argument has been evaluated. The latter reset when they reach the end of
 their scope, usually at the end of a function body.
 
 ``` r
+
 par("col" = "black")
 my_plot <- function(new) {
   with_par(list(col = "red", pch = 19),
@@ -176,6 +178,7 @@ There are also
 to construct new `with_*` and `local_*` functions if needed.
 
 ``` r
+
 Sys.getenv("WITHR")
 #> [1] ""
 with_envvar(c("WITHR" = 2), Sys.getenv("WITHR"))

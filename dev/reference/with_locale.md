@@ -49,6 +49,7 @@ Setting the `LC_ALL` category is currently not implemented.
 ## Examples
 
 ``` r
+
 ## Change locale for time:
 df <- data.frame(
   stringsAsFactors = FALSE,

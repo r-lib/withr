@@ -68,16 +68,16 @@ The results of the evaluation of the `code` argument.
 ``` r
 # Same random values:
 with_preserve_seed(runif(5))
-#> [1] 0.4048736 0.6039472 0.3271063 0.4576199 0.3756114
+#> [1] 0.10169262 0.76999328 0.08906143 0.53659237 0.26213892
 with_preserve_seed(runif(5))
-#> [1] 0.4048736 0.6039472 0.3271063 0.4576199 0.3756114
+#> [1] 0.10169262 0.76999328 0.08906143 0.53659237 0.26213892
 
 # Use a pseudorandom value as seed to advance the RNG and pick a different
 # value for the next call:
 with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
-#> [1] 0.20927225 0.09925052 0.26999674 0.64445334 0.38068915
+#> [1] 0.5885083 0.3289879 0.4357050 0.2184870 0.3697503
 with_seed(seed, runif(5))
-#> [1] 0.20927225 0.09925052 0.26999674 0.64445334 0.38068915
+#> [1] 0.5885083 0.3289879 0.4357050 0.2184870 0.3697503
 with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
-#> [1] 0.7856574 0.4951076 0.1233589 0.8756561 0.6825961
+#> [1] 0.6099326 0.6076366 0.4936592 0.6276273 0.5535448
 ```

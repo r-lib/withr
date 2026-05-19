@@ -1,6 +1,7 @@
 # Changing and restoring state
 
 ``` r
+
 library(withr)
 ```
 
@@ -22,6 +23,7 @@ Here’s a `sloppy()` function that prints a number with a specific number
 of significant digits, by adjusting R’s global “digits” option.
 
 ``` r
+
 sloppy <- function(x, sig_digits) {
   options(digits = sig_digits)
   print(x)
@@ -55,13 +57,14 @@ The first function to know about is base R’s
 [`on.exit()`](https://rdrr.io/r/base/on.exit.html). Inside your function
 body, every time you do something that should be undone **on exit**, you
 immediately register the cleanup code with
-`on.exit(expr, add = TRUE)`[¹](#fn1).
+`on.exit(expr, add = TRUE)`[^1].
 
 `neat()` is an improvement over `sloppy()`, because it uses
 [`on.exit()`](https://rdrr.io/r/base/on.exit.html) to ensure that the
 “digits” option is restored to its original value.
 
 ``` r
+
 neat <- function(x, sig_digits) {
   op <- options(digits = sig_digits)
   on.exit(options(op), add = TRUE)
@@ -96,6 +99,7 @@ function of withr and is very much like
 the execution of arbitrary code when the current function exits:
 
 ``` r
+
 neater <- function(x, sig_digits) {
   op <- options(digits = sig_digits)
   defer(options(op))
@@ -136,6 +140,7 @@ If you make more than one call to
 it **adds** expressions to the **top** of the stack of deferred actions.
 
 ``` r
+
 defer_stack <- function() {
   cat("put on socks\n")
   defer(cat("take off socks\n"))
@@ -155,6 +160,7 @@ In contrast, by default, a subsequent call to
 deferred actions registered in the previous call.
 
 ``` r
+
 on_exit_last_one_wins <- function() {
   cat("put on socks\n")
   on.exit(cat("take off socks\n"))
@@ -174,9 +180,10 @@ tends to be what you want in most applications.
 
 To get such behaviour with
 [`on.exit()`](https://rdrr.io/r/base/on.exit.html), remember to call it
-with `add = TRUE, after = FALSE`[²](#fn2).
+with `add = TRUE, after = FALSE`[^2].
 
 ``` r
+
 on_exit_stack <- function() {
   cat("put on socks\n")
   on.exit(cat("take off socks\n"), add = TRUE, after = FALSE)
@@ -196,6 +203,7 @@ Conversely, if you want
 first-in, first-out behaviour, specify `priority = "last"`.
 
 ``` r
+
 defer_queue <- function() {
   cat("Adam gets in line for ice cream\n")
   defer(cat("Adam gets ice cream\n"), priority = "last")
@@ -225,6 +233,7 @@ extensions.
 Let’s look at the `neater()` function again.
 
 ``` r
+
 neater <- function(x, sig_digits) {
   op <- options(digits = sig_digits) # record orig. "digits" & change "digits"
   defer(options(op))                 # schedule restoration of "digits"
@@ -245,6 +254,7 @@ frame and schedule cleanup there. But with
 Here is such a custom helper, called `local_digits()`.
 
 ``` r
+
 local_digits <- function(sig_digits, envir = parent.frame()) {
   op <- options(digits = sig_digits)
   defer(options(op), envir = envir)
@@ -255,6 +265,7 @@ We can use `local_digits()` to keep any manipulation of `digits` local
 to a function.
 
 ``` r
+
 neato <- function(x, digits) {
   local_digits(digits)
   print(x)
@@ -275,6 +286,7 @@ Each call to `local_digits()` is in effect until the next or until the
 function exits, which ever comes first.
 
 ``` r
+
 neatful <- function(x) {
   local_digits(1)
   print(x)
@@ -296,12 +308,12 @@ forms: `local_*()` functions, like the one we just made, and `with_*()`
 functions, which we explain below. Here are the state change helpers in
 withr that you are most likely to find useful:
 
-| Do / undo this              | withr functions                                                                                                                                      |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Set an R option             | [`local_options()`](https://withr.r-lib.org/dev/reference/with_options.md),[`with_options()`](https://withr.r-lib.org/dev/reference/with_options.md) |
-| Set an environment variable | [`local_envvar()`](https://withr.r-lib.org/dev/reference/with_envvar.md), [`with_envvar()`](https://withr.r-lib.org/dev/reference/with_envvar.md)    |
-| Change working directory    | [`local_dir()`](https://withr.r-lib.org/dev/reference/with_dir.md), [`with_dir()`](https://withr.r-lib.org/dev/reference/with_dir.md)                |
-| Set a graphics parameter    | [`local_par()`](https://withr.r-lib.org/dev/reference/with_par.md), [`with_par()`](https://withr.r-lib.org/dev/reference/with_par.md)                |
+| Do / undo this | withr functions |
+|----|----|
+| Set an R option | [`local_options()`](https://withr.r-lib.org/dev/reference/with_options.md),[`with_options()`](https://withr.r-lib.org/dev/reference/with_options.md) |
+| Set an environment variable | [`local_envvar()`](https://withr.r-lib.org/dev/reference/with_envvar.md), [`with_envvar()`](https://withr.r-lib.org/dev/reference/with_envvar.md) |
+| Change working directory | [`local_dir()`](https://withr.r-lib.org/dev/reference/with_dir.md), [`with_dir()`](https://withr.r-lib.org/dev/reference/with_dir.md) |
+| Set a graphics parameter | [`local_par()`](https://withr.r-lib.org/dev/reference/with_par.md), [`with_par()`](https://withr.r-lib.org/dev/reference/with_par.md) |
 
 We didn’t really need to write our own `local_digits()` helper, because
 the built-in
@@ -309,6 +321,7 @@ the built-in
 also gets the job done:
 
 ``` r
+
 neatest <- function(x, sig_digits) {
   local_options(list(digits = sig_digits))
   print(x)
@@ -332,6 +345,7 @@ The `local_*()` functions target a slightly different use case from the
   with a modified state
 
   ``` r
+
   neat_with <- function(x, sig_digits) {
     # imagine lots of code here
     withr::with_options(
@@ -346,6 +360,7 @@ The `local_*()` functions target a slightly different use case from the
   function exits”
 
   ``` r
+
   neat_local <- function(x, sig_digits) {
     withr::local_options(list(digits = sig_digits))
     print(x)
@@ -363,7 +378,7 @@ function’s body, then it’s better to use `local_*()`.
 Here is one last difference between
 [`withr::defer()`](https://withr.r-lib.org/dev/reference/defer.md) and
 [`on.exit()`](https://rdrr.io/r/base/on.exit.html): the ability to defer
-events on the global environment[³](#fn3).
+events on the global environment[^3].
 
 At first, it sounds pretty weird to propose scheduling deferred actions
 on the global environment. It’s not ephemeral, the way function
@@ -382,6 +397,7 @@ Here’s how [`defer()`](https://withr.r-lib.org/dev/reference/defer.md)
 (and all functions based on it) works in an interactive session.
 
 ``` r
+
 library(withr)
 
 defer(print("hi"))
@@ -409,6 +425,7 @@ on the global environment for the first time, you get this message that
 alerts you to the situation:
 
 ``` r
+
 defer(print("hi"))
 #> Setting global deferred event(s).
 #> i These will be run:
@@ -425,15 +442,13 @@ explicitly to execute the deferred events. You can also clear them,
 without running, with
 [`deferred_clear()`](https://withr.r-lib.org/dev/reference/defer.md).
 
-------------------------------------------------------------------------
-
-1.  It’s too bad `add = TRUE` isn’t the default, because you almost
+[^1]: It’s too bad `add = TRUE` isn’t the default, because you almost
     always want this. Without it, each call to
     [`on.exit()`](https://rdrr.io/r/base/on.exit.html) clobbers the
     effect of previous calls.
 
-2.  Note: the `after` argument of
+[^2]: Note: the `after` argument of
     [`on.exit()`](https://rdrr.io/r/base/on.exit.html) first appeared in
     R 3.5.0.
 
-3.  This feature first appeared in withr v2.2.0.
+[^3]: This feature first appeared in withr v2.2.0.

@@ -102,7 +102,7 @@ Other contributors:
 getwd()
 #> [1] "/home/runner/work/withr/withr/docs/dev/reference"
 with_dir(tempdir(), getwd())
-#> [1] "/tmp/RtmpvIFsFU"
+#> [1] "/tmp/RtmpADs5gt"
 getwd()
 #> [1] "/home/runner/work/withr/withr/docs/dev/reference"
 
