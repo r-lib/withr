@@ -1,5 +1,8 @@
 # withr (development version)
 
+* Fixed issue that prevented `local_seed()` from preserving the seed (#286, @BjarkeHautop).
+
+
 # withr 3.0.2
 
 * `local_language()` now never warns when set to `"C"` (#254).
