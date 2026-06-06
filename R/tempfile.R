@@ -29,6 +29,27 @@
 #'
 #' # Note that this variable is only available in the scope of with_tempfile
 #' try(path2)
+#'
+#' # local_tempdir() creates a temporary directory and returns its path
+#' local({
+#'   dir_path <- local_tempdir()
+#'   dir.exists(dir_path)
+#'   # create a file inside it
+#'   writeLines("hello", file.path(dir_path, "test.txt"))
+#'   file.exists(file.path(dir_path, "test.txt"))
+#' })
+#' # the directory and its contents are deleted automatically
+#' file.exists(dir_path)
+#'
+#' # with_tempdir() temporarily changes the working directory to a temp dir
+#' getwd()
+#' with_tempdir({
+#'   getwd()
+#'   writeLines("test", "example.txt")
+#'   list.files()
+#' })
+#' # the original working directory is restored
+#' getwd()
 #' @export
 with_tempfile <- function(new, code, envir = parent.frame(), .local_envir = parent.frame(),
   pattern = "file", tmpdir = tempdir(), fileext = "") {
