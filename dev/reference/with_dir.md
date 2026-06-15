@@ -45,5 +45,5 @@ getwd()
 #> [1] "/home/runner/work/withr/withr/docs/dev/reference"
 
 with_dir(tempdir(), getwd())
-#> [1] "/tmp/RtmpUQo9Pn"
+#> [1] "/tmp/RtmpeatGVw"
 ```
