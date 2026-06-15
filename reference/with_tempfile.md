@@ -119,7 +119,7 @@ with_tempfile("path2", {
   write.csv(iris, path2)
   file.size(path2)
 })
-#> [1] "/tmp/RtmpdjWZqe/file1a99152b95ce"
+#> [1] "/tmp/Rtmpkjj5qn/file191d2eaecd0d"
 #> [1] 4821
 
 # Note that this variable is only available in the scope of with_tempfile

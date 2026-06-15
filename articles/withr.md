@@ -128,7 +128,7 @@ differences we explore below:
 
 Here we focus on using withr inside your functions. See the blog post
 [Self-cleaning test
-fixtures](https://www.tidyverse.org/blog/2020/04/self-cleaning-test-fixtures/)
+fixtures](https://tidyverse.org/blog/2020/04/self-cleaning-test-fixtures/)
 or the testthat vignette [Test
 fixtures](https://testthat.r-lib.org/articles/test-fixtures.html) for
 how to use withr inside tests.
