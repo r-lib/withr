@@ -16,7 +16,6 @@
 #' })
 #' @export
 with_file <- function(file, code) {
-
   file_nms <- names2(file)
   unnamed <- file_nms == ""
   file_nms[unnamed] <- as.character(file[unnamed])

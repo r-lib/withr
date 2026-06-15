@@ -48,17 +48,25 @@ local_timezone <- function(tz, .local_envir = parent.frame()) {
 
 reset_timezone <- function(envir = parent.frame()) {
   base_env <- baseenv()
-  old <- get0(".sys.timezone", base_env, mode = "character",
-              inherits = FALSE, ifnotfound = NA_character_)
+  old <- get0(
+    ".sys.timezone",
+    base_env,
+    mode = "character",
+    inherits = FALSE,
+    ifnotfound = NA_character_
+  )
   is_locked <- bindingIsLocked(".sys.timezone", env = base_env)
   if (is_locked) {
     base_env$unlockBinding(".sys.timezone", env = base_env)
   }
-  defer({
-    assign(".sys.timezone", old, envir = base_env)
-    if (is_locked) {
-      lockBinding(".sys.timezone", env = base_env)
-    }
-  }, envir = envir)
+  defer(
+    {
+      assign(".sys.timezone", old, envir = base_env)
+      if (is_locked) {
+        lockBinding(".sys.timezone", env = base_env)
+      }
+    },
+    envir = envir
+  )
   assign(".sys.timezone", NA_character_, envir = base_env)
 }

@@ -6,7 +6,7 @@
 #' @template with
 #' @param new `[character(1)]`\cr New collation order
 #' @param .local_envir `[environment]`\cr The environment to use for scoping.
-#' 
+#'
 #' @section Examples:
 #'
 #' ```
@@ -14,7 +14,7 @@
 #' x <- c("bernard", "bérénice", "béatrice", "boris")
 #'
 #' with_collate("fr_FR", sort(x))
-#' #> [1] "béatrice" "bérénice" "bernard"  "boris"   
+#' #> [1] "béatrice" "bérénice" "bernard"  "boris"
 #'
 #' with_collate("C", sort(x))
 #' #> [1] "bernard"  "boris"    "béatrice" "bérénice"

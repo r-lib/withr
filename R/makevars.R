@@ -18,10 +18,12 @@ NULL
 #'
 #' @keywords internal
 #' @export
-set_makevars <- function(variables,
-                         old_path = makevars_user(),
-                         new_path = tempfile(),
-                         assignment = c("=", ":=", "?=", "+=")) {
+set_makevars <- function(
+  variables,
+  old_path = makevars_user(),
+  new_path = tempfile(),
+  assignment = c("=", ":=", "?=", "+=")
+) {
   if (length(variables) == 0) {
     return()
   }
@@ -34,13 +36,21 @@ set_makevars <- function(variables,
     lines <- readLines(old_path)
     old <- lines
     for (var in names(variables)) {
-      loc <- grep(paste(c("^[[:space:]]*", var, "[[:space:]]*", "="), collapse = ""), lines)
+      loc <- grep(
+        paste(c("^[[:space:]]*", var, "[[:space:]]*", "="), collapse = ""),
+        lines
+      )
       if (length(loc) == 0) {
         lines <- append(lines, paste(sep = assignment, var, variables[var]))
-      } else if(length(loc) == 1) {
+      } else if (length(loc) == 1) {
         lines[loc] <- paste(sep = assignment, var, variables[var])
       } else {
-        stop("Multiple results for ", var, " found, something is wrong.", .call = FALSE)
+        stop(
+          "Multiple results for ",
+          var,
+          " found, something is wrong.",
+          .call = FALSE
+        )
       }
     }
   } else {
@@ -76,7 +86,12 @@ set_makevars <- function(variables,
 #' with_makevars(c(CFLAGS = "-O3"), system("R CMD SHLIB --preclean -c foo.c"))
 #' unlink(c("foo.c", "foo.so"))
 #' @export
-with_makevars <- function(new, code, path = makevars_user(), assignment = c("=", ":=", "?=", "+=")) {
+with_makevars <- function(
+  new,
+  code,
+  path = makevars_user(),
+  assignment = c("=", ":=", "?=", "+=")
+) {
   assignment <- match.arg(assignment)
   makevars_file <- tempfile()
   on.exit(unlink(makevars_file), add = TRUE)
@@ -89,7 +104,13 @@ with_makevars <- function(new, code, path = makevars_user(), assignment = c("=",
 
 #' @rdname with_makevars
 #' @export
-local_makevars <- function(.new = list(), ..., .path = makevars_user(), .assignment = c("=", ":=", "?=", "+="), .local_envir = parent.frame()) {
+local_makevars <- function(
+  .new = list(),
+  ...,
+  .path = makevars_user(),
+  .assignment = c("=", ":=", "?=", "+="),
+  .local_envir = parent.frame()
+) {
   .new <- utils::modifyList(as.list(.new), list(...))
   .new <- as_character(.new)
 

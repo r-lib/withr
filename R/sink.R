@@ -15,7 +15,8 @@ set_output_sink <- wrap(
   if (is.null(file)) {
     stop("file cannot be NULL", call. = FALSE)
   },
-  list(n = sink.number()))
+  list(n = sink.number())
+)
 
 set_message_sink <- wrap(
   message_sink,
@@ -24,8 +25,10 @@ set_message_sink <- wrap(
       stop("file cannot be NULL,", call. = FALSE)
     }
     if (sink.number(type = "message") != 2L) {
-      stop("Cannot establish message sink when another sink is active.",
-           call. = FALSE)
+      stop(
+        "Cannot establish message sink when another sink is active.",
+        call. = FALSE
+      )
     }
     con <- if (is.character(file)) {
       file <- file(file, if (append) "a" else "w")
@@ -33,7 +36,8 @@ set_message_sink <- wrap(
   },
   {
     list(n = sink.number(type = "message"), con = con)
-  })
+  }
+)
 
 reset_output_sink <- function(sink_info) {
   repeat {

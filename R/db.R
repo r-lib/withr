@@ -32,7 +32,9 @@ with_db_connection <- function(con, code) {
   nme <- tempfile()
   (get("attach", baseenv()))(con, name = nme, warn.conflicts = FALSE)
   on.exit({
-    for (connection in con) DBI::dbDisconnect(connection)
+    for (connection in con) {
+      DBI::dbDisconnect(connection)
+    }
     detach(nme, character.only = TRUE)
   })
   force(code)

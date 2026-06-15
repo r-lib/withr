@@ -59,12 +59,14 @@ NULL
 #' }
 #' with_(set_global_state, reset_global_state)
 #' @export
-with_ <- function(set,
-                  reset = set,
-                  get = NULL,
-                  ...,
-                  envir = parent.frame(),
-                  new = TRUE) {
+with_ <- function(
+  set,
+  reset = set,
+  get = NULL,
+  ...,
+  envir = parent.frame(),
+  new = TRUE
+) {
   if (!missing(...)) {
     stop("`...` must be empty.")
   }
@@ -84,19 +86,19 @@ with_ <- function(set,
       # rename first formal to new
       called_fmls[[1]] <- as.symbol("new")
 
-      fun_args <- c(alist(new =, code =), fmls[-1L])
+      fun_args <- c(alist(new = , code = ), fmls[-1L])
     } else {
-      fun_args <- c(alist(code =), fmls)
+      fun_args <- c(alist(code = ), fmls)
     }
   } else {
     # no formals -- only have code
     called_fmls <- NULL
 
-    fun_args <- alist(code =)
+    fun_args <- alist(code = )
   }
 
   set_call <- as.call(c(substitute(set), called_fmls))
-  reset <-  if (missing(reset)) substitute(set) else substitute(reset)
+  reset <- if (missing(reset)) substitute(set) else substitute(reset)
 
   if (is.null(get)) {
     fun <- eval(bquote(function(args) {

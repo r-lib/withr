@@ -3,13 +3,15 @@ NULL
 
 #' @rdname with_
 #' @export
-local_ <- function(set,
-                   reset = set,
-                   get = NULL,
-                   ...,
-                   envir = parent.frame(),
-                   new = TRUE,
-                   dots = FALSE) {
+local_ <- function(
+  set,
+  reset = set,
+  get = NULL,
+  ...,
+  envir = parent.frame(),
+  new = TRUE,
+  dots = FALSE
+) {
   if (!missing(...)) {
     stop("`...` must be empty.")
   }

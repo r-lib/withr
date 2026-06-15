@@ -18,16 +18,31 @@
 #' })
 #' }
 #' @export
-with_package <- function(package, code, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
-  quietly = TRUE, verbose = getOption("verbose")) {
-
+with_package <- function(
+  package,
+  code,
+  pos = 2,
+  lib.loc = NULL,
+  character.only = TRUE,
+  logical.return = FALSE,
+  warn.conflicts = FALSE,
+  quietly = TRUE,
+  verbose = getOption("verbose")
+) {
   # Only try to attach (and detach) the package if it is not already attached.
   if (!(package %in% .packages())) {
     suppressPackageStartupMessages(
-      (get("library"))(package, pos = pos, lib.loc = lib.loc,
-        character.only = character.only, logical.return = logical.return,
-        warn.conflicts = warn.conflicts, quietly = quietly, verbose = verbose))
+      (get("library"))(
+        package,
+        pos = pos,
+        lib.loc = lib.loc,
+        character.only = character.only,
+        logical.return = logical.return,
+        warn.conflicts = warn.conflicts,
+        quietly = quietly,
+        verbose = verbose
+      )
+    )
 
     on.exit(detach(paste0("package:", package), character.only = TRUE))
   }
@@ -37,17 +52,34 @@ with_package <- function(package, code, pos = 2, lib.loc = NULL,
 
 #' @rdname with_package
 #' @export
-local_package <- function(package, pos = 2, lib.loc = NULL,
-  character.only = TRUE, logical.return = FALSE, warn.conflicts = FALSE,
-  quietly = TRUE, verbose = getOption("verbose"),
-  .local_envir = parent.frame()) {
-
+local_package <- function(
+  package,
+  pos = 2,
+  lib.loc = NULL,
+  character.only = TRUE,
+  logical.return = FALSE,
+  warn.conflicts = FALSE,
+  quietly = TRUE,
+  verbose = getOption("verbose"),
+  .local_envir = parent.frame()
+) {
   suppressPackageStartupMessages(
-    (get("library"))(package, pos = pos, lib.loc = lib.loc,
-      character.only = character.only, logical.return = logical.return,
-      warn.conflicts = warn.conflicts, quietly = quietly, verbose = verbose))
+    (get("library"))(
+      package,
+      pos = pos,
+      lib.loc = lib.loc,
+      character.only = character.only,
+      logical.return = logical.return,
+      warn.conflicts = warn.conflicts,
+      quietly = quietly,
+      verbose = verbose
+    )
+  )
 
-  defer(detach(paste0("package:", package), character.only = TRUE), envir = .local_envir)
+  defer(
+    detach(paste0("package:", package), character.only = TRUE),
+    envir = .local_envir
+  )
 }
 
 #' @rdname with_package
@@ -62,7 +94,11 @@ with_namespace <- function(package, code, warn.conflicts = FALSE) {
 
 #' @rdname with_package
 #' @export
-local_namespace <- function(package, .local_envir = parent.frame(), warn.conflicts = FALSE) {
+local_namespace <- function(
+  package,
+  .local_envir = parent.frame(),
+  warn.conflicts = FALSE
+) {
   ns <- asNamespace(package)
   name <- format(ns)
   (get("attach"))(ns, name = name, warn.conflicts = warn.conflicts)
@@ -72,7 +108,13 @@ local_namespace <- function(package, .local_envir = parent.frame(), warn.conflic
 #' @rdname with_package
 #' @inheritParams base::attach
 #' @export
-with_environment <- function(env, code, pos = 2L, name = format(env), warn.conflicts = FALSE) {
+with_environment <- function(
+  env,
+  code,
+  pos = 2L,
+  name = format(env),
+  warn.conflicts = FALSE
+) {
   (get("attach"))(env, name = name, pos = pos, warn.conflicts = warn.conflicts)
   on.exit(detach(name, character.only = TRUE))
   force(code)
@@ -80,8 +122,13 @@ with_environment <- function(env, code, pos = 2L, name = format(env), warn.confl
 
 #' @rdname with_package
 #' @export
-local_environment <- function(env, pos = 2L, name = format(env),
-  warn.conflicts = FALSE, .local_envir = parent.frame()) {
+local_environment <- function(
+  env,
+  pos = 2L,
+  name = format(env),
+  warn.conflicts = FALSE,
+  .local_envir = parent.frame()
+) {
   (get("attach"))(env, name = name, pos = pos, warn.conflicts = warn.conflicts)
   defer(detach(name, character.only = TRUE), envir = .local_envir)
 }

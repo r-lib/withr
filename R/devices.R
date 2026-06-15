@@ -19,7 +19,7 @@
 #' * `with_xfig()` and `local_xfig()` wrap around [grDevices::xfig()].
 #' * `with_png()` and `local_png()` wrap around [grDevices::png()].
 #' * `with_jpeg()` and `local_jpeg()` wrap around [grDevices::jpeg()].
-#' 
+#'
 #' @seealso \code{\link[grDevices]{Devices}}
 #' @examples
 #' # dimensions are in inches

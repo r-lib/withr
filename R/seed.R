@@ -19,11 +19,13 @@
 #' with_seed(seed, runif(5))
 #' with_seed(seed <- sample.int(.Machine$integer.max, 1L), runif(5))
 #' @export
-with_seed <- function(seed,
-                      code,
-                      .rng_kind = NULL,
-                      .rng_normal_kind = NULL,
-                      .rng_sample_kind = NULL) {
+with_seed <- function(
+  seed,
+  code,
+  .rng_kind = NULL,
+  .rng_normal_kind = NULL,
+  .rng_sample_kind = NULL
+) {
   force(seed)
   rng_kind <- list(.rng_kind, .rng_normal_kind, .rng_sample_kind)
 
@@ -35,11 +37,13 @@ with_seed <- function(seed,
 
 #' @rdname with_seed
 #' @export
-local_seed <- function(seed,
-                       .local_envir = parent.frame(),
-                       .rng_kind = NULL,
-                       .rng_normal_kind = NULL,
-                       .rng_sample_kind = NULL) {
+local_seed <- function(
+  seed,
+  .local_envir = parent.frame(),
+  .rng_kind = NULL,
+  .rng_normal_kind = NULL,
+  .rng_sample_kind = NULL
+) {
   old_seed <- get_seed()
 
   defer(envir = .local_envir, {
@@ -97,7 +101,12 @@ has_seed <- function() {
 
 get_seed <- function() {
   list(
-    random_seed = get0(".Random.seed", globalenv(), mode = "integer", inherits = FALSE),
+    random_seed = get0(
+      ".Random.seed",
+      globalenv(),
+      mode = "integer",
+      inherits = FALSE
+    ),
     rng_kind = RNGkind()
   )
 }

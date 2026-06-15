@@ -42,9 +42,7 @@ with_locale <- function(new, code) {
 
 #' @rdname with_locale
 #' @export
-local_locale <- function(.new = list(),
-                         ...,
-                         .local_envir = parent.frame()) {
+local_locale <- function(.new = list(), ..., .local_envir = parent.frame()) {
   new <- list_combine(as.list(.new), list(...))
   cats <- as_locale_cats(new)
 

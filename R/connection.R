@@ -20,11 +20,12 @@
 #' unlink("foo")
 #' @export
 with_connection <- function(con, code) {
-
   stopifnot(all(is.named(con)))
 
   on.exit({
-    for (connection in con) close(connection)
+    for (connection in con) {
+      close(connection)
+    }
   })
   eval(substitute(code), envir = con, enclos = parent.frame())
 }

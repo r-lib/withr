@@ -30,17 +30,28 @@
 #' # Note that this variable is only available in the scope of with_tempfile
 #' try(path2)
 #' @export
-with_tempfile <- function(new, code, envir = parent.frame(), .local_envir = parent.frame(),
-  pattern = "file", tmpdir = tempdir(), fileext = "") {
+with_tempfile <- function(
+  new,
+  code,
+  envir = parent.frame(),
+  .local_envir = parent.frame(),
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = ""
+) {
   if (!missing(envir)) {
-    .Deprecated(msg = "`envir` argument of with_tempfile() is deprecated.\n  Use `with_tempfile(.local_envir=)` instead.")
+    .Deprecated(
+      msg = "`envir` argument of with_tempfile() is deprecated.\n  Use `with_tempfile(.local_envir=)` instead."
+    )
     .local_envir <- envir
   }
   env <- new.env(parent = .local_envir)
   for (f in new) {
-    assign(f,
+    assign(
+      f,
       tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext),
-      envir = env)
+      envir = env
+    )
   }
   on.exit(unlink(mget(new, envir = env), recursive = TRUE))
   eval(substitute(code), envir = env)
@@ -51,10 +62,19 @@ with_tempfile <- function(new, code, envir = parent.frame(), .local_envir = pare
 #'   `path`. This is useful if you want to seed the file with some default
 #'   content.
 #' @export
-local_tempfile <- function(new = NULL, lines = NULL, envir = parent.frame(), .local_envir = parent.frame(),
-  pattern = "file", tmpdir = tempdir(), fileext = "") {
+local_tempfile <- function(
+  new = NULL,
+  lines = NULL,
+  envir = parent.frame(),
+  .local_envir = parent.frame(),
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = ""
+) {
   if (!missing(envir)) {
-    .Deprecated(msg = "`envir` argument of local_tempfile() is deprecated.\n  Use `local_tempfile(.local_envir=)` instead.")
+    .Deprecated(
+      msg = "`envir` argument of local_tempfile() is deprecated.\n  Use `local_tempfile(.local_envir=)` instead."
+    )
     .local_envir <- envir
   }
   if (is.null(new)) {
@@ -70,21 +90,33 @@ local_tempfile <- function(new = NULL, lines = NULL, envir = parent.frame(), .lo
     return(path)
   }
 
-  .Deprecated(msg = "`new` argument of local_tempfile() is deprecated.\n  Use `path <- local_tempfile()` instead.")
+  .Deprecated(
+    msg = "`new` argument of local_tempfile() is deprecated.\n  Use `path <- local_tempfile()` instead."
+  )
 
   for (f in new) {
-    assign(f,
+    assign(
+      f,
       tempfile(pattern = pattern, tmpdir = tmpdir, fileext = fileext),
-      envir = .local_envir)
+      envir = .local_envir
+    )
   }
-  defer(unlink(mget(new, envir = .local_envir), recursive = TRUE), envir = .local_envir)
+  defer(
+    unlink(mget(new, envir = .local_envir), recursive = TRUE),
+    envir = .local_envir
+  )
 }
 
 
 #' @rdname with_tempfile
 #' @export
-with_tempdir <- function(code, clean = TRUE,
-  pattern = "file", tmpdir = tempdir(), fileext = "") {
+with_tempdir <- function(
+  code,
+  clean = TRUE,
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = ""
+) {
   if (length(clean) > 1 || !is.logical(clean)) {
     stop("`clean` must be a single TRUE or FALSE", call. = FALSE)
   }
@@ -100,8 +132,13 @@ with_tempdir <- function(code, clean = TRUE,
 
 #' @rdname with_tempfile
 #' @export
-local_tempdir <- function(pattern = "file", tmpdir = tempdir(),
-                          fileext = "", .local_envir = parent.frame(), clean = TRUE) {
+local_tempdir <- function(
+  pattern = "file",
+  tmpdir = tempdir(),
+  fileext = "",
+  .local_envir = parent.frame(),
+  clean = TRUE
+) {
   if (length(clean) > 1 || !is.logical(clean)) {
     stop("`clean` must be a single TRUE or FALSE", call. = FALSE)
   }
