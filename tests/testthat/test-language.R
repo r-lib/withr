@@ -1,4 +1,7 @@
 test_that("can temporarily change language", {
+  # Skipped on CRAN because R's translations change over time, which
+  # breaks the exact error message matches below
+  skip_on_cran()
   skip_if_not(has_nls())
 
   # `with_language()` doesn't work when locale is set to C. At the
@@ -9,13 +12,16 @@ test_that("can temporarily change language", {
 
   expect_error(with_language("en", mean[[1]]), "not subsettable")
   expect_error(with_language("fr", mean[[1]]), "non indi\u00e7able")
-  expect_error(with_language("es", mean[[1]]), "no es subconjunto")
+  # R-devel changed the Spanish translation from "no es subconjunto" to
+  # "no se puede seleccionar elementos", so match either form
+  expect_error(with_language("es", mean[[1]]), "no es subconjunto|no se puede seleccionar")
 
   # Is correctly reset (#213)
   expect_error(mean[[1]], "not subsettable")
 })
 
 test_that("can use use either _ or -", {
+  skip_on_cran()
   skip_if_not(has_nls())
   skip_if_c_locale()
 
@@ -24,13 +30,14 @@ test_that("can use use either _ or -", {
 })
 
 test_that("can temporarily change language after triggering error", {
+  skip_on_cran()
   skip_if_not(has_nls())
   skip_if_c_locale()
 
   local_language("fr")
   try(mean[[1]], silent = TRUE) # trigger possible caching
 
-  expect_error(with_language("es", mean[[1]]), "no es subconjunto")
+  expect_error(with_language("es", mean[[1]]), "no es subconjunto|no se puede seleccionar")
 })
 
 test_that("warns if LC_ALL=C", {
