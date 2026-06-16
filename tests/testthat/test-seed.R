@@ -95,6 +95,19 @@ test_that("local_preserve_seed preserves empty seed", {
   expect_false(has_seed())
 })
 
+test_that("local_seed preserves empty seed (#286)", {
+  rm_seed()
+  local({
+    local_seed(1)
+    runif(1)
+  })
+  # `.Random.seed` must be truly absent, not present-but-`NULL`. A `NULL`
+  # value reads as no seed to `has_seed()` (it checks `mode = "integer"`),
+  # but makes the next RNG draw warn that `.Random.seed` is not an integer.
+  expect_false(exists(".Random.seed", globalenv(), inherits = FALSE))
+  expect_no_warning(runif(1))
+})
+
 test_that("RNGkind is also respected", {
   old <- RNGkind()
   on.exit(do.call("RNGkind", as.list(old)))

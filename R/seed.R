@@ -100,6 +100,12 @@ has_seed <- function() {
 }
 
 get_seed <- function() {
+  # Return `NULL` (rather than a list with `random_seed = NULL`) when no
+  # seed exists. Callers branch on `is.null()` to decide whether to remove
+  # `.Random.seed` on exit instead of assigning `NULL` to it.
+  if (!has_seed()) {
+    return(NULL)
+  }
   list(
     random_seed = get0(
       ".Random.seed",
