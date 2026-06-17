@@ -10,6 +10,23 @@
   ([\#286](https://github.com/r-lib/withr/issues/286),
   [@BjarkeHautop](https://github.com/BjarkeHautop)).
 
+  Note: If you had before:
+
+  ``` r
+
+  test_that("A", {
+    withr::local_seed(1)   # Seeds locally
+    runif(...)
+  })
+
+  test_that("B", {
+    runif(...)             # NO seed of its own
+  })
+  ```
+
+  Before the fix, the test “B” was accidentally seeded by “A”. Now it
+  needs to be seeded on its own.
+
 ## withr 3.0.2
 
 CRAN release: 2024-10-28

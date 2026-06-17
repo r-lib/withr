@@ -42,7 +42,20 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="3.0.3" id="withr-303">withr 3.0.3<a class="anchor" aria-label="anchor" href="#withr-303"></a></h2>
 <ul><li><p>Fixes for CRAN checks.</p></li>
-<li><p>Fixed issue that prevented <code><a href="../reference/with_seed.html">local_seed()</a></code> from preserving the seed (<a href="https://github.com/r-lib/withr/issues/286" class="external-link">#286</a>, <a href="https://github.com/BjarkeHautop" class="external-link">@BjarkeHautop</a>).</p></li>
+<li>
+<p>Fixed issue that prevented <code><a href="../reference/with_seed.html">local_seed()</a></code> from preserving the seed (<a href="https://github.com/r-lib/withr/issues/286" class="external-link">#286</a>, <a href="https://github.com/BjarkeHautop" class="external-link">@BjarkeHautop</a>).</p>
+<p>Note: If you had before:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">test_that</span><span class="op">(</span><span class="st">"A"</span>, <span class="op">{</span></span>
+<span>  <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="../reference/with_seed.html">local_seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>   <span class="co"># Seeds locally</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">test_that</span><span class="op">(</span><span class="st">"B"</span>, <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span>             <span class="co"># NO seed of its own</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<p>Before the fix, the test “B” was accidentally seeded by “A”. Now it needs to be seeded on its own.</p>
+</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="3.0.2" id="withr-302">withr 3.0.2<a class="anchor" aria-label="anchor" href="#withr-302"></a></h2><p class="text-muted">CRAN release: 2024-10-28</p>

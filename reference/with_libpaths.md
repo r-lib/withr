@@ -56,7 +56,7 @@ Other libpaths:
 new_lib <- tempfile()
 dir.create(new_lib)
 with_libpaths(new_lib, print(.libPaths()))
-#> [1] "/tmp/Rtmpkjj5qn/file191d607867f5"
+#> [1] "/tmp/RtmpLBhFck/file196d33d8802c"
 #> [2] "/opt/R/4.6.0/lib/R/site-library" 
 #> [3] "/opt/R/4.6.0/lib/R/library"      
 unlink(new_lib, recursive = TRUE)
