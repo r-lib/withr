@@ -24,7 +24,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/r-lib/withr/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/r-lib/withr/blob/HEAD/DESCRIPTION)
 
 Hester J, Henry L, Müller K, Ushey K, Wickham H, Chang W (2026). *withr:
 Run Code 'With' Temporarily Modified Global State*. R package version

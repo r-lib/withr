@@ -36,7 +36,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Time zone</h1>
-      <small class="dont-index">Source: <a href="https://github.com/r-lib/withr/blob/main/R/timezone.R" class="external-link"><code>R/timezone.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/withr/blob/HEAD/R/timezone.R" class="external-link"><code>R/timezone.R</code></a></small>
       <div class="d-none name"><code>with_timezone.Rd</code></div>
     </div>
 
@@ -89,11 +89,11 @@ execution environment.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 11:52:14 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 09:01:25 UTC"</span>
 <span class="r-in"><span><span class="fu">with_timezone</span><span class="op">(</span><span class="st">"Europe/Paris"</span>, <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 13:52:14 CEST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 11:01:25 CEST"</span>
 <span class="r-in"><span><span class="fu">with_timezone</span><span class="op">(</span><span class="st">"America/Los_Angeles"</span>, <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 04:52:14 PDT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 02:01:25 PDT"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">fun1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu">local_timezone</span><span class="op">(</span><span class="st">"CET"</span><span class="op">)</span></span></span>
@@ -105,13 +105,13 @@ execution environment.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 11:52:14 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 09:01:25 UTC"</span>
 <span class="r-in"><span><span class="fu">fun1</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 13:52:14 CEST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 11:01:25 CEST"</span>
 <span class="r-in"><span><span class="fu">fun2</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 04:52:14 PDT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 02:01:25 PDT"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-17 11:52:14 UTC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2026-06-22 09:01:25 UTC"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

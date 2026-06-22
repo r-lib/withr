@@ -2,6 +2,8 @@
 
 ## withr 3.0.3
 
+CRAN release: 2026-06-19
+
 - Fixes for CRAN checks.
 
 - Fixed issue that prevented
