@@ -49,11 +49,11 @@ environment.
 
 ``` r
 Sys.time()
-#> [1] "2026-06-15 14:00:38 UTC"
+#> [1] "2026-06-22 09:03:34 UTC"
 with_timezone("Europe/Paris", print(Sys.time()))
-#> [1] "2026-06-15 16:00:38 CEST"
+#> [1] "2026-06-22 11:03:34 CEST"
 with_timezone("America/Los_Angeles", print(Sys.time()))
-#> [1] "2026-06-15 07:00:38 PDT"
+#> [1] "2026-06-22 02:03:34 PDT"
 
 fun1 <- function() {
   local_timezone("CET")
@@ -65,11 +65,11 @@ fun2 <- function() {
   print(Sys.time())
 }
 Sys.time()
-#> [1] "2026-06-15 14:00:38 UTC"
+#> [1] "2026-06-22 09:03:34 UTC"
 fun1()
-#> [1] "2026-06-15 16:00:38 CEST"
+#> [1] "2026-06-22 11:03:34 CEST"
 fun2()
-#> [1] "2026-06-15 07:00:38 PDT"
+#> [1] "2026-06-22 02:03:34 PDT"
 Sys.time()
-#> [1] "2026-06-15 14:00:38 UTC"
+#> [1] "2026-06-22 09:03:34 UTC"
 ```

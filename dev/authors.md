@@ -28,12 +28,12 @@ Source:
 
 Hester J, Henry L, Müller K, Ushey K, Wickham H, Chang W (2026). *withr:
 Run Code 'With' Temporarily Modified Global State*. R package version
-3.0.2.9001, <https://withr.r-lib.org>.
+3.0.3.9000, <https://withr.r-lib.org>.
 
     @Manual{,
       title = {withr: Run Code 'With' Temporarily Modified Global State},
       author = {Jim Hester and Lionel Henry and Kirill Müller and Kevin Ushey and Hadley Wickham and Winston Chang},
       year = {2026},
-      note = {R package version 3.0.2.9001},
+      note = {R package version 3.0.3.9000},
       url = {https://withr.r-lib.org},
     }

@@ -95,7 +95,7 @@ with_(setwd)
 #>     on.exit(setwd(old))
 #>     force(code)
 #> }
-#> <environment: 0x556fc4c27810>
+#> <environment: 0x55f6baec5c18>
 
 global_stack <- list()
 set_global_state <- function(state, msg = "Changing global state.") {
@@ -115,5 +115,5 @@ with_(set_global_state, reset_global_state)
 #>     on.exit(reset_global_state(old))
 #>     force(code)
 #> }
-#> <environment: 0x556fc4c27810>
+#> <environment: 0x55f6baec5c18>
 ```
