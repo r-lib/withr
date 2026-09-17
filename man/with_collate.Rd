@@ -31,7 +31,7 @@ Temporarily change collation order by changing the value of the
 x <- c("bernard", "bérénice", "béatrice", "boris")
 
 with_collate("fr_FR", sort(x))
-#> [1] "béatrice" "bérénice" "bernard"  "boris"   
+#> [1] "béatrice" "bérénice" "bernard"  "boris"
 
 with_collate("C", sort(x))
 #> [1] "bernard"  "boris"    "béatrice" "bérénice"
