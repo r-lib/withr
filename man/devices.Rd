@@ -28,43 +28,43 @@
 \usage{
 with_bmp(new, code, ...)
 
-local_bmp(new, ..., .local_envir = parent.frame())
+local_bmp(new = NULL, ..., .local_envir = parent.frame())
 
 with_cairo_pdf(new, code, ...)
 
-local_cairo_pdf(new, ..., .local_envir = parent.frame())
+local_cairo_pdf(new = NULL, ..., .local_envir = parent.frame())
 
 with_cairo_ps(new, code, ...)
 
-local_cairo_ps(new, ..., .local_envir = parent.frame())
+local_cairo_ps(new = NULL, ..., .local_envir = parent.frame())
 
 with_pdf(new, code, ...)
 
-local_pdf(new, ..., .local_envir = parent.frame())
+local_pdf(new = NULL, ..., .local_envir = parent.frame())
 
 with_postscript(new, code, ...)
 
-local_postscript(new, ..., .local_envir = parent.frame())
+local_postscript(new = NULL, ..., .local_envir = parent.frame())
 
 with_svg(new, code, ...)
 
-local_svg(new, ..., .local_envir = parent.frame())
+local_svg(new = NULL, ..., .local_envir = parent.frame())
 
 with_tiff(new, code, ...)
 
-local_tiff(new, ..., .local_envir = parent.frame())
+local_tiff(new = NULL, ..., .local_envir = parent.frame())
 
 with_xfig(new, code, ...)
 
-local_xfig(new, ..., .local_envir = parent.frame())
+local_xfig(new = NULL, ..., .local_envir = parent.frame())
 
 with_png(new, code, ...)
 
-local_png(new, ..., .local_envir = parent.frame())
+local_png(new = NULL, ..., .local_envir = parent.frame())
 
 with_jpeg(new, code, ...)
 
-local_jpeg(new, ..., .local_envir = parent.frame())
+local_jpeg(new = NULL, ..., .local_envir = parent.frame())
 }
 \arguments{
 \item{new}{\code{[named character]}\cr New graphics device}
@@ -84,16 +84,16 @@ Temporarily use a graphics device.
 }
 \details{
 \itemize{
-\item \code{with_bmp()} and \code{local_bmp()} wrap around \code{\link[grDevices:png]{grDevices::bmp()}}.
-\item \code{with_cairo_pdf()} and \code{local_cairo_pdf()} wrap around \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}}.
-\item \code{with_cairo_ps()} and \code{local_cairo_ps()} wrap around \code{\link[grDevices:cairo]{grDevices::cairo_ps()}}.
+\item \code{with_bmp()} and \code{local_bmp()} wrap around \code{\link[grDevices:bmp]{grDevices::bmp()}}.
+\item \code{with_cairo_pdf()} and \code{local_cairo_pdf()} wrap around \code{\link[grDevices:cairo_pdf]{grDevices::cairo_pdf()}}.
+\item \code{with_cairo_ps()} and \code{local_cairo_ps()} wrap around \code{\link[grDevices:cairo_ps]{grDevices::cairo_ps()}}.
 \item \code{with_pdf()} and \code{local_pdf()} wrap around \code{\link[grDevices:pdf]{grDevices::pdf()}}.
 \item \code{with_postscript()} and \code{local_postscript()} wrap around \code{\link[grDevices:postscript]{grDevices::postscript()}}.
-\item \code{with_svg()} and \code{local_svg()} wrap around \code{\link[grDevices:cairo]{grDevices::svg()}}.
-\item \code{with_tiff()} and \code{local_tiff()} wrap around \code{\link[grDevices:png]{grDevices::tiff()}}.
+\item \code{with_svg()} and \code{local_svg()} wrap around \code{\link[grDevices:svg]{grDevices::svg()}}.
+\item \code{with_tiff()} and \code{local_tiff()} wrap around \code{\link[grDevices:tiff]{grDevices::tiff()}}.
 \item \code{with_xfig()} and \code{local_xfig()} wrap around \code{\link[grDevices:xfig]{grDevices::xfig()}}.
 \item \code{with_png()} and \code{local_png()} wrap around \code{\link[grDevices:png]{grDevices::png()}}.
-\item \code{with_jpeg()} and \code{local_jpeg()} wrap around \code{\link[grDevices:png]{grDevices::jpeg()}}.
+\item \code{with_jpeg()} and \code{local_jpeg()} wrap around \code{\link[grDevices:jpeg]{grDevices::jpeg()}}.
 }
 }
 \section{Functions}{

@@ -89,6 +89,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Lionel Henry \email{lionel@posit.co}
   \item Jim Hester
   \item Kirill Müller \email{krlmlr+r@mailbox.org}
   \item Kevin Ushey \email{kevinushey@gmail.com}
