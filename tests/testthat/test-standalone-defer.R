@@ -61,7 +61,7 @@ test_that("non-top-level global env is unwound like a normal env", {
   expect_length(the$global_exits, 0)
 })
 
-test_that("defered actions in global env are run on exit", {
+test_that("deferred actions in global env are run on exit", {
   path <- local_tempfile()
   callr::r(
     function(path) {
@@ -72,7 +72,7 @@ test_that("defered actions in global env are run on exit", {
   expect_equal(readLines(path), "a")
 })
 
-test_that("defered actions in Rmd are run on exit", {
+test_that("deferred actions in Rmd are run on exit", {
   skip_if_cannot_knit()
 
   rmd <- local_tempfile(fileext = ".Rmd")
