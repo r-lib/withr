@@ -51,13 +51,12 @@ Other libpaths:
 
 ``` r
 .libPaths()
-#> [1] "/home/runner/work/_temp/Library" "/opt/R/4.6.0/lib/R/site-library"
-#> [3] "/opt/R/4.6.0/lib/R/library"     
+#> [1] "/home/runner/work/_temp/Library" "/opt/R/4.6.1/lib/R/site-library"
+#> [3] "/opt/R/4.6.1/lib/R/library"     
 new_lib <- tempfile()
 dir.create(new_lib)
 with_libpaths(new_lib, print(.libPaths()))
-#> [1] "/tmp/Rtmp2desv4/file19693f09f787"
-#> [2] "/opt/R/4.6.0/lib/R/site-library" 
-#> [3] "/opt/R/4.6.0/lib/R/library"      
+#> [1] "/tmp/RtmpJDfEvO/file196ed4e8b47" "/opt/R/4.6.1/lib/R/site-library"
+#> [3] "/opt/R/4.6.1/lib/R/library"     
 unlink(new_lib, recursive = TRUE)
 ```
