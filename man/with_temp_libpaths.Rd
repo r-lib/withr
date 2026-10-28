@@ -29,7 +29,7 @@ Temporarily prepend a new temporary directory to the library paths.
 
 \code{\link[=.libPaths]{.libPaths()}}
 
-Other libpaths: 
-\code{\link{with_libpaths}()}
+Other libpaths:
+\code{\link[=with_libpaths]{with_libpaths()}}
 }
 \concept{libpaths}

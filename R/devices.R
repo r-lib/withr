@@ -42,7 +42,13 @@ with_bmp <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_bmp <- function(new, ..., .local_envir = parent.frame()) {
+local_bmp <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".bmp"
+    )
   grDevices::bmp(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -56,7 +62,13 @@ with_cairo_pdf <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_cairo_pdf <- function(new, ..., .local_envir = parent.frame()) {
+local_cairo_pdf <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".pdf"
+    )
   grDevices::cairo_pdf(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -70,7 +82,13 @@ with_cairo_ps <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_cairo_ps <- function(new, ..., .local_envir = parent.frame()) {
+local_cairo_ps <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".ps"
+    )
   grDevices::cairo_ps(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -84,7 +102,13 @@ with_pdf <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_pdf <- function(new, ..., .local_envir = parent.frame()) {
+local_pdf <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".pdf"
+    )
   grDevices::pdf(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -98,7 +122,13 @@ with_postscript <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_postscript <- function(new, ..., .local_envir = parent.frame()) {
+local_postscript <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".ps"
+    )
   grDevices::postscript(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -112,7 +142,13 @@ with_svg <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_svg <- function(new, ..., .local_envir = parent.frame()) {
+local_svg <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".svg"
+    )
   grDevices::svg(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -126,7 +162,13 @@ with_tiff <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_tiff <- function(new, ..., .local_envir = parent.frame()) {
+local_tiff <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".tif"
+    )
   grDevices::tiff(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -140,7 +182,13 @@ with_xfig <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_xfig <- function(new, ..., .local_envir = parent.frame()) {
+local_xfig <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".fig"
+    )
   grDevices::xfig(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -154,7 +202,13 @@ with_png <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_png <- function(new, ..., .local_envir = parent.frame()) {
+local_png <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".png"
+    )
   grDevices::png(new, ...)
   defer_dev_close(.local_envir)
 }
@@ -168,7 +222,13 @@ with_jpeg <- function(new, code, ...) {
 
 #' @rdname devices
 #' @export
-local_jpeg <- function(new, ..., .local_envir = parent.frame()) {
+local_jpeg <- function(new = NULL, ..., .local_envir = parent.frame()) {
+  new <- new %||%
+    local_tempfile(
+      .local_envir = .local_envir,
+      pattern = "withr_file",
+      fileext = ".jpg"
+    )
   grDevices::jpeg(new, ...)
   defer_dev_close(.local_envir)
 }

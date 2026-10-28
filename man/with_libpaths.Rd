@@ -38,7 +38,7 @@ unlink(new_lib, recursive = TRUE)
 
 \code{\link[=.libPaths]{.libPaths()}}
 
-Other libpaths: 
-\code{\link{with_temp_libpaths}()}
+Other libpaths:
+\code{\link[=with_temp_libpaths]{with_temp_libpaths()}}
 }
 \concept{libpaths}
