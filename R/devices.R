@@ -43,8 +43,7 @@ with_bmp <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_bmp <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::bmp(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::bmp, .local_envir = .local_envir)
 }
 
 #' @describeIn devices CAIRO_PDF device
@@ -57,8 +56,7 @@ with_cairo_pdf <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_cairo_pdf <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::cairo_pdf(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::cairo_pdf, .local_envir = .local_envir)
 }
 
 #' @describeIn devices CAIRO_PS device
@@ -71,8 +69,7 @@ with_cairo_ps <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_cairo_ps <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::cairo_ps(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::cairo_ps, .local_envir = .local_envir)
 }
 
 #' @describeIn devices PDF device
@@ -85,8 +82,7 @@ with_pdf <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_pdf <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::pdf(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::pdf, .local_envir = .local_envir)
 }
 
 #' @describeIn devices POSTSCRIPT device
@@ -99,8 +95,7 @@ with_postscript <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_postscript <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::postscript(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::postscript, .local_envir = .local_envir)
 }
 
 #' @describeIn devices SVG device
@@ -113,8 +108,7 @@ with_svg <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_svg <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::svg(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::svg, .local_envir = .local_envir)
 }
 
 #' @describeIn devices TIFF device
@@ -127,8 +121,7 @@ with_tiff <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_tiff <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::tiff(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::tiff, .local_envir = .local_envir)
 }
 
 #' @describeIn devices XFIG device
@@ -141,8 +134,7 @@ with_xfig <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_xfig <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::xfig(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::xfig, .local_envir = .local_envir)
 }
 
 #' @describeIn devices PNG device
@@ -155,8 +147,7 @@ with_png <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_png <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::png(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::png, .local_envir = .local_envir)
 }
 
 #' @describeIn devices JPEG device
@@ -169,27 +160,31 @@ with_jpeg <- function(new, code, ...) {
 #' @rdname devices
 #' @export
 local_jpeg <- function(new, ..., .local_envir = parent.frame()) {
-  grDevices::jpeg(new, ...)
-  defer_dev_close(.local_envir)
+  local_device(new, ..., .open = grDevices::jpeg, .local_envir = .local_envir)
 }
 
-defer_dev_close <- function(frame) {
-  cur <- grDevices::dev.cur()
-  defer(dev_close(cur), envir = frame)
+local_device <- function(..., .open, .local_envir) {
+  previous <- grDevices::dev.cur()
+  .open(...)
+  current <- grDevices::dev.cur()
+  defer(dev_close(current, previous), envir = .local_envir)
 
   # Note that unlike typical `local_` functions we return the current device
   # rather than the old one
-  invisible(cur)
+  invisible(current)
 }
 
-dev_close <- function(which) {
-  prev <- grDevices::dev.prev(which)
-  grDevices::dev.off(which)
-
-  # No devices active
-  if (prev != which) {
-    grDevices::dev.set(prev)
+dev_close <- function(which, previous) {
+  # Restore before closing to avoid activating an intervening device.
+  if (previous != grDevices::dev.cur() && device_is_open(previous)) {
+    grDevices::dev.set(previous)
   }
+  if (device_is_open(which)) {
+    grDevices::dev.off(which)
+  }
+}
 
-  prev
+device_is_open <- function(device) {
+  devices <- grDevices::dev.list()
+  identical(devices[match(device, devices)], device)
 }
