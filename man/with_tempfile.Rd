@@ -74,6 +74,17 @@ argument.
 Temporarily create a file or directory, which will automatically deleted
 once you're finished with it.
 }
+\details{
+\code{with_tempdir()} makes a new temporary directory the working directory
+while it evaluates \code{code}. Use relative paths to access files there or
+call \code{getwd()} inside \code{code} to get the directory path. The previous
+working directory is restored when the call exits.
+
+\code{local_tempdir()} creates a temporary directory and returns its path.
+Use that path with \code{file.path()} to access files inside the directory
+from your current working directory. By default, the directory is
+removed when the local scope exits.
+}
 \examples{
 # local_tempfile() is the easiest to use because it returns a path
 local({
@@ -93,6 +104,21 @@ with_tempfile("path2", {
 
 # Note that this variable is only available in the scope of with_tempfile
 try(path2)
+
+# with_tempdir() lets code use relative paths in the temporary directory.
+path3 <- with_tempdir({
+  writeLines("example", "example.txt")
+  getwd()
+})
+dir.exists(path3)
+
+# local_tempdir() gives you a path to use in the current scope.
+path4 <- local({
+  dir <- local_tempdir()
+  writeLines("example", file.path(dir, "example.txt"))
+  dir
+})
+dir.exists(path4)
 }
 \seealso{
 \code{\link{withr}} for examples
