@@ -1,5 +1,7 @@
 # withr (development version)
 
+* Graphics device helpers restore the previously active device on exit (#295).
+
 # withr 3.0.3
 
 * Fixes for CRAN checks.

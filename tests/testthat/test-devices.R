@@ -50,3 +50,59 @@ test_that("multiple devices closed in correct order", {
 
   expect_equal(dev.cur(), dev1)
 })
+
+test_that("local devices restore the previously active device (#295)", {
+  previous <- local_pdf(NULL)
+  local_pdf(NULL)
+  dev.set(previous)
+  devices <- dev.list()
+
+  local({
+    temporary <- local_pdf(NULL)
+    expect_identical(dev.cur(), temporary)
+  })
+
+  expect_identical(dev.cur(), previous)
+  expect_identical(dev.list(), devices)
+})
+
+test_that("device cleanup tolerates devices closed within the scope", {
+  previous <- local_pdf(NULL)
+  other <- local_pdf(NULL)
+  dev.set(previous)
+
+  local({
+    temporary <- local_pdf(NULL)
+    dev.off(temporary)
+    dev.set(other)
+  })
+  expect_identical(dev.cur(), previous)
+
+  local({
+    local_pdf(NULL)
+    dev.off(previous)
+  })
+  expect_identical(dev.cur(), other)
+})
+
+test_that("device cleanup leaves a different device in a reused slot open", {
+  path <- local_tempfile(fileext = ".ps")
+  previous <- local_pdf(NULL)
+
+  replacement <- local({
+    temporary <- local_pdf(NULL)
+    dev.off(temporary)
+    grDevices::postscript(path)
+    expect_identical(unname(dev.cur()), unname(temporary))
+    dev.cur()
+  })
+  defer(if (replacement %in% dev.list()) dev.off(replacement))
+
+  expect_true(replacement %in% dev.list())
+  expect_identical(dev.cur(), previous)
+})
+
+test_that("opening a local device preserves argument matching", {
+  device <- suppressWarnings(local_pdf(NULL, o = FALSE))
+  expect_identical(dev.cur(), device)
+})
