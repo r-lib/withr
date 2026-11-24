@@ -29,8 +29,12 @@ set_temp_libpath <- function(action = "prefix") {
 #'
 #' @template with
 #' @param new `[character]`\cr New library paths
-#' @param action `[character(1)]`\cr should new values `"replace"`, `"prefix"` or
-#'   `"suffix"` existing paths.
+#' @param action `[character(1)]`\cr How to combine new and existing library
+#'   paths. Use `"replace"` to replace the existing paths, `"prefix"` to add the
+#'   new paths first, or `"suffix"` to add them last. With `"replace"`,
+#'   [.libPaths()] also includes R's default library (`.Library`) and configured
+#'   site libraries (`.Library.site`). Use `lib.loc` in [library()] to limit the
+#'   search for an add-on package.
 #' @inheritParams with_collate
 #' @seealso [.libPaths()]
 #' @family libpaths
@@ -49,7 +53,8 @@ local_libpaths <- local_(set_libpaths, .libPaths, get = get_libpaths)
 
 #' Library paths
 #'
-#' Temporarily prepend a new temporary directory to the library paths.
+#' Create a temporary directory and add it to the library paths. By default,
+#' it goes first in the search order.
 #'
 #' @template with
 #' @seealso [.libPaths()]

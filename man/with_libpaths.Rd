@@ -14,8 +14,12 @@ local_libpaths(new = list(), action = "replace", .local_envir = parent.frame())
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
-\item{action}{\verb{[character(1)]}\cr should new values \code{"replace"}, \code{"prefix"} or
-\code{"suffix"} existing paths.}
+\item{action}{\verb{[character(1)]}\cr How to combine new and existing library
+paths. Use \code{"replace"} to replace the existing paths, \code{"prefix"} to add the
+new paths first, or \code{"suffix"} to add them last. With \code{"replace"},
+\code{\link[=.libPaths]{.libPaths()}} also includes R's default library (\code{.Library}) and configured
+site libraries (\code{.Library.site}). Use \code{lib.loc} in \code{\link[=library]{library()}} to limit the
+search for an add-on package.}
 
 \item{.local_envir}{\verb{[environment]}\cr The environment to use for scoping.}
 }
