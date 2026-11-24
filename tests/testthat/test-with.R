@@ -37,6 +37,15 @@ test_that("with_temp_libpaths has an action argument", {
   expect_equal(lib, .libPaths())
 })
 
+test_that("with_gctorture2 restores the previous collection interval", {
+  intervals <- callr::r(function() {
+    gctorture2(1000000L)
+    inside <- withr::with_gctorture2(2000000L, gctorture2(2000000L))
+    c(inside, gctorture2(0L))
+  })
+  expect_equal(intervals, c(2000000L, 1000000L))
+})
+
 test_that("with_ works", {
   res <- NULL
   set <- function(new) {
