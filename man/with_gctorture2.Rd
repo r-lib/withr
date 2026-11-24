@@ -7,7 +7,8 @@
 with_gctorture2(new, code, wait = new, inhibit_release = FALSE)
 }
 \arguments{
-\item{new}{\verb{[integer]}\cr run GC every 'step' allocations.}
+\item{new}{\verb{[integer]}\cr Run GC every \code{new} allocations. Use \code{0} to
+disable forced collections.}
 
 \item{code}{\code{[any]}\cr Code to execute in the temporary environment}
 
@@ -21,8 +22,14 @@ with_gctorture2(new, code, wait = new, inhibit_release = FALSE)
 argument.
 }
 \description{
-Temporarily turn gctorture2 on.
+Temporarily change the interval for forced garbage collection.
+}
+\details{
+After evaluating \code{code}, the helper restores the previous collection
+interval using the default values of \code{wait} and \code{inhibit_release}.
 }
 \seealso{
 \code{\link{withr}} for examples
+
+\code{\link[base:gctorture2]{base::gctorture2()}}
 }

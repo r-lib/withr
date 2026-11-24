@@ -1,5 +1,7 @@
 # withr (development version)
 
+* `with_gctorture2()` is now exported (#291).
+
 # withr 3.0.3
 
 * Fixes for CRAN checks.
